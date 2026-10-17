@@ -456,16 +456,30 @@ def figure_06_shutter_timing() -> None:
     s = SVG("图 6.1  滚动快门与全局快门的曝光窗口")
     s.panel(65, 75, 410, 450, "滚动快门")
     s.panel(525, 75, 410, 450, "全局快门")
-    for panel_x, global_mode in [(90, False), (550, True)]:
+    exposure_ms, scan_ms, now_ms, duration_ms = 4, 12, 8, 20
+    for panel_x, global_mode in [(65, False), (525, True)]:
+        left, right = panel_x + 65, panel_x + 385
+        scale = (right - left) / duration_ms
         for row in range(7):
-            y = 140 + row * 48
-            s.text(panel_x, y + 17, f"R{row}", size=14, color=GRAY)
-            start = panel_x + 70 + (0 if global_mode else row * 25)
-            s.rect(start, y, 180, 25, fill=PALE_BLUE, stroke=BLUE, sw=1.5, radius=2)
-        s.arrow(panel_x + 55, 485, panel_x + 345, 485, color=INK)
-        s.text(panel_x + 200, 515, "时间", size=15, anchor="middle")
-    s.text(270, 115, "各行窗口错开", size=16, color=RED, anchor="middle")
-    s.text(730, 115, "所有行同时积分", size=16, color=GREEN, anchor="middle")
+            y = 175 + row * 38
+            start_ms = 0 if global_mode else scan_ms * row / 6
+            start = left + start_ms * scale
+            elapsed_ms = min(exposure_ms, max(0, now_ms - start_ms))
+            s.text(panel_x + 22, y + 14, f"R{row}", size=13, color=GRAY)
+            s.line(left, y + 8, right, y + 8, color=LIGHT, width=1)
+            s.rect(start, y, exposure_ms * scale, 17, fill=PALE_BLUE, stroke=BLUE, sw=1.2, radius=1)
+            if elapsed_ms > 0:
+                s.rect(start, y, elapsed_ms * scale, 17, fill=CYAN, stroke="none", sw=0, radius=1)
+        s.line(left + now_ms * scale, 160, left + now_ms * scale, 438, color=AMBER, width=2)
+        s.arrow(left, 460, right, 460, color=INK)
+        for tick in [0, 5, 10, 15, 20]:
+            x = left + tick * scale
+            s.line(x, 456, x, 465, color=GRAY, width=1)
+            s.text(x, 484, str(tick), size=13, color=GRAY, anchor="middle")
+        s.text((left + right) / 2, 510, "时间 / ms", size=15, anchor="middle")
+    s.text(270, 135, "各行起点错开 2 ms", size=16, color=GRAY, anchor="middle")
+    s.text(730, 135, "各行均在 0–4 ms 积分", size=16, color=GRAY, anchor="middle")
+    s.text(500, 562, "同一时间刻度；每行曝光 4 ms；橙线为 8 ms；深色表示已积分的时间", size=17, anchor="middle")
     s.save("06_shutter_timing.svg")
 
 

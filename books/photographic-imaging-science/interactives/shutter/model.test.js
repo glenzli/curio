@@ -1,7 +1,21 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { motion, illumination, sinc, rodProfile } from "./model.js";
+import { motion, illumination, sinc, rodProfile, exposureState } from "./model.js";
 const near = (a, b, tolerance = 1e-9) => assert.ok(Math.abs(a - b) < tolerance, `${a} vs ${b}`);
+
+test("exposure progress handles waiting, integration and the completion boundary", () => {
+  const row = .5, scan = .016, exposure = .004;
+  assert.equal(exposureState(row, scan, exposure, .007).status, "waiting");
+  assert.equal(exposureState(row, scan, exposure, .008).status, "exposing");
+  near(exposureState(row, scan, exposure, .010).fraction, .5);
+  assert.equal(exposureState(row, scan, exposure, .012).status, "complete");
+  assert.equal(exposureState(row, scan, exposure, .100).fraction, 1);
+});
+
+test("a global exposure has identical row states on the shared time axis", () => {
+  for (const now of [0, .001, .004, .020])
+    assert.deepEqual(exposureState(0, 0, .004, now), exposureState(1, 0, .004, now));
+});
 
 test("2160 rows at 8 microseconds give 207.264 pixels of skew", () => {
   const scan = 2159 * 8e-6;

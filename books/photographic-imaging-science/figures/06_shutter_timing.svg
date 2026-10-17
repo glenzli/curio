@@ -9,38 +9,86 @@
 <text x="270.00" y="102.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">滚动快门</text>
 <rect x="525.00" y="75.00" width="410.00" height="450.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
 <text x="730.00" y="102.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">全局快门</text>
-<text x="90.00" y="157.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R0</text>
-<rect x="160.00" y="140.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="205.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R1</text>
-<rect x="185.00" y="188.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="253.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R2</text>
-<rect x="210.00" y="236.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="301.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R3</text>
-<rect x="235.00" y="284.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="349.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R4</text>
-<rect x="260.00" y="332.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="397.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R5</text>
-<rect x="285.00" y="380.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="90.00" y="445.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R6</text>
-<rect x="310.00" y="428.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<line x1="145.00" y1="485.00" x2="435.00" y2="485.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
-<text x="290.00" y="515.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">时间</text>
-<text x="550.00" y="157.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R0</text>
-<rect x="620.00" y="140.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="205.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R1</text>
-<rect x="620.00" y="188.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="253.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R2</text>
-<rect x="620.00" y="236.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="301.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R3</text>
-<rect x="620.00" y="284.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="349.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R4</text>
-<rect x="620.00" y="332.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="397.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R5</text>
-<rect x="620.00" y="380.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<text x="550.00" y="445.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R6</text>
-<rect x="620.00" y="428.00" width="180.00" height="25.00" rx="2" fill="#dcecf7" stroke="#2364aa" stroke-width="1.5" opacity="1.0"/>
-<line x1="605.00" y1="485.00" x2="895.00" y2="485.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
-<text x="750.00" y="515.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">时间</text>
-<text x="270.00" y="115.00" fill="#c44536" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">各行窗口错开</text>
-<text x="730.00" y="115.00" fill="#2a9d6f" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">所有行同时积分</text>
+<text x="87.00" y="189.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R0</text>
+<line x1="130.00" y1="183.00" x2="450.00" y2="183.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="130.00" y="175.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="130.00" y="175.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="87.00" y="227.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R1</text>
+<line x1="130.00" y1="221.00" x2="450.00" y2="221.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="162.00" y="213.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="162.00" y="213.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="87.00" y="265.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R2</text>
+<line x1="130.00" y1="259.00" x2="450.00" y2="259.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="194.00" y="251.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="194.00" y="251.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="87.00" y="303.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R3</text>
+<line x1="130.00" y1="297.00" x2="450.00" y2="297.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="226.00" y="289.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="226.00" y="289.00" width="32.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="87.00" y="341.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R4</text>
+<line x1="130.00" y1="335.00" x2="450.00" y2="335.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="258.00" y="327.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<text x="87.00" y="379.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R5</text>
+<line x1="130.00" y1="373.00" x2="450.00" y2="373.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="290.00" y="365.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<text x="87.00" y="417.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R6</text>
+<line x1="130.00" y1="411.00" x2="450.00" y2="411.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="322.00" y="403.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<line x1="258.00" y1="160.00" x2="258.00" y2="438.00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="130.00" y1="460.00" x2="450.00" y2="460.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="130.00" y1="456.00" x2="130.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="130.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">0</text>
+<line x1="210.00" y1="456.00" x2="210.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="210.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">5</text>
+<line x1="290.00" y1="456.00" x2="290.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="290.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">10</text>
+<line x1="370.00" y1="456.00" x2="370.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="370.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">15</text>
+<line x1="450.00" y1="456.00" x2="450.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="450.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">20</text>
+<text x="290.00" y="510.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">时间 / ms</text>
+<text x="547.00" y="189.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R0</text>
+<line x1="590.00" y1="183.00" x2="910.00" y2="183.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="175.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="175.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="227.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R1</text>
+<line x1="590.00" y1="221.00" x2="910.00" y2="221.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="213.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="213.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="265.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R2</text>
+<line x1="590.00" y1="259.00" x2="910.00" y2="259.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="251.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="251.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="303.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R3</text>
+<line x1="590.00" y1="297.00" x2="910.00" y2="297.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="289.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="289.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="341.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R4</text>
+<line x1="590.00" y1="335.00" x2="910.00" y2="335.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="327.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="327.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="379.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R5</text>
+<line x1="590.00" y1="373.00" x2="910.00" y2="373.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="365.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="365.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<text x="547.00" y="417.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R6</text>
+<line x1="590.00" y1="411.00" x2="910.00" y2="411.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<rect x="590.00" y="403.00" width="64.00" height="17.00" rx="1" fill="#dcecf7" stroke="#2364aa" stroke-width="1.2" opacity="1.0"/>
+<rect x="590.00" y="403.00" width="64.00" height="17.00" rx="1" fill="#188a9a" stroke="none" stroke-width="0" opacity="1.0"/>
+<line x1="718.00" y1="160.00" x2="718.00" y2="438.00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="590.00" y1="460.00" x2="910.00" y2="460.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="590.00" y1="456.00" x2="590.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="590.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">0</text>
+<line x1="670.00" y1="456.00" x2="670.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="670.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">5</text>
+<line x1="750.00" y1="456.00" x2="750.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="750.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">10</text>
+<line x1="830.00" y1="456.00" x2="830.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="830.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">15</text>
+<line x1="910.00" y1="456.00" x2="910.00" y2="465.00" stroke="#66717e" stroke-width="1" opacity="1.0"/>
+<text x="910.00" y="484.00" fill="#66717e" font-size="13" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">20</text>
+<text x="750.00" y="510.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">时间 / ms</text>
+<text x="270.00" y="135.00" fill="#66717e" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">各行起点错开 2 ms</text>
+<text x="730.00" y="135.00" fill="#66717e" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">各行均在 0–4 ms 积分</text>
+<text x="500.00" y="562.00" fill="#17202a" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">同一时间刻度；每行曝光 4 ms；橙线为 8 ms；深色表示已积分的时间</text>
 </svg>

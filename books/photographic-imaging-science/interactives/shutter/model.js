@@ -6,6 +6,13 @@ export function rowExposure(row, scan, exposure) {
   return { start, end: start + exposure, center: start + exposure / 2 };
 }
 
+export function exposureState(row, scan, exposure, now) {
+  const window = rowExposure(row, scan, exposure);
+  const fraction = Math.max(0, Math.min(1, (now - window.start) / exposure));
+  const status = now < window.start ? "waiting" : now >= window.end ? "complete" : "exposing";
+  return { ...window, fraction, status };
+}
+
 export function motion(row, scan, exposure, speed) {
   const window = rowExposure(row, scan, exposure);
   return { ...window, position: speed * window.center, blur: Math.abs(speed) * exposure };
