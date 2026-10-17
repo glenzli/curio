@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { focusGeometry } from "./model.js";
+import { depthOfField } from "../dof/model.js";
 const close = (a, b, tolerance = 1e-10) =>
   assert.ok(Math.abs(a - b) < tolerance, `${a} ≠ ${b}`);
 
@@ -38,4 +39,27 @@ test("the real-image model rejects its singular and nonphysical inputs", () => {
       RangeError,
     );
   }
+});
+
+test("3D cone radii agree with independent edge traces across its entire control domain", () => {
+  for (const focus of [0.3, 0.5, 2, 6])
+    for (const subject of [0.3, 1, 2, 6])
+      for (const fNumber of [Math.sqrt(2), 4, 16]) {
+        const cone = focusGeometry({
+          focusDistanceMm: focus * 1000,
+          subjectDistanceMm: subject * 1000,
+          fNumber,
+        });
+        for (const criterionUm of [5, 30, 50]) {
+          const traced = depthOfField({
+            focalLength: 50,
+            fNumber,
+            focusVergence: 1 / focus,
+            subjectVergence: 1 / subject,
+            criterionUm,
+          });
+          close(cone.blurDiameterMm, traced.diameter);
+          close(cone.sensorDistanceMm, traced.sensor);
+        }
+      }
 });

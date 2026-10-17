@@ -125,6 +125,16 @@
 - Ansys, [OpticStudio 2025 R2 User Guide: Seidel Coefficients](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v252/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Seidel_Coefficients.html),
   for the distinction and conversion between third-order ray and fourth-order
   wavefront aberration coefficients used in Chapter 13.
+- Nikon, [NIKKOR Lens Glossary: Multi-focusing system](https://imaging.nikon.com/imaging/lineup/lens/glossary/),
+  and Kouichi Ohshita, [NIKKOR Thousand and One Nights No. 84](https://imaging.nikon.com/imaging/information/story/0084/index.html),
+  especially the close-range-correction discussion. Background for multiple
+  independently moving groups and close-range aberration correction. Chapter 16
+  derives a separate paraxial focus/angular-scale example; it does not reproduce
+  the optical prescription or the reported lens rendering.
+- Edmund Optics, [Depth of Field and Depth of Focus](https://www.edmundoptics.com/knowledge-center/application-notes/imaging/depth-of-field-and-depth-of-focus/).
+  Background for geometric ray-cone acceptance versus resolution and diffraction.
+  Chapter 16 derives its own thin-lens near/far/hyperfocal formulas and checks
+  them using independent edge-ray roots; no product depth specification is used.
 - H. Angus Macleod, *Thin-Film Optical Filters*, 4th ed., CRC Press, 2010.
 - Steven J. Byrnes, [Multilayer optical calculations](https://arxiv.org/abs/1603.02720),
   §§3--4: coherent interface amplitudes and power normalization. Chapter 15 compares

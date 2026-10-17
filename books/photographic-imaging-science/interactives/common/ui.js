@@ -102,15 +102,18 @@ export function plot({
   samples = [],
   title,
   width = 640,
+  height = 260,
+  topPadding = 38,
+  bottomPadding = 40,
   leftPadding = 48,
   rightPadding = 18,
 }) {
   const W = width,
-    H = 260,
+    H = height,
     left = leftPadding,
     right = rightPadding,
-    top = 38,
-    bottom = 40;
+    top = topPadding,
+    bottom = bottomPadding;
   const x = (v) => left + ((v - xMin) / (xMax - xMin)) * (W - left - right),
     y = (v) => H - bottom - ((v - yMin) / (yMax - yMin)) * (H - top - bottom);
   const path = (points) =>
