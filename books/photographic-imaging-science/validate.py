@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import json
 import re
 import sys
 import xml.etree.ElementTree as ET
@@ -29,6 +30,9 @@ EQUATION_REFERENCE_RE = re.compile(
 )
 DISPLAY_MATH_RE = re.compile(r"\$\$(.*?)\$\$", re.DOTALL)
 ENV_TOKEN_RE = re.compile(r"\\(begin|end)\{([^}]+)\}")
+COMPONENT_BLOCK_RE = re.compile(
+    r'<div\b[^>]*\bdata-mb-component="([a-z0-9-]+)"[^>]*>.*?</div>', re.DOTALL
+)
 EXPECTED_EXERCISES = {
     0: 0,
     1: 3,
@@ -93,6 +97,36 @@ def local_target(raw: str) -> str | None:
     return target
 
 
+def validate_interactive_fallback(path: Path, text: str, match: re.Match, components: dict) -> Path:
+    """Allow an unnumbered diagram only inside its declared component, beside its source."""
+    alt, raw_target = match.groups()
+    blocks = [block for block in COMPONENT_BLOCK_RE.finditer(text)
+              if block.start() <= match.start() and match.end() <= block.end()]
+    if not alt.startswith("互动示意：") or len(blocks) != 1:
+        fail(f"unnumbered image must be a declared interactive fallback: {path.name}: {alt}")
+    block = blocks[0]
+    entry = components.get(block.group(1), {}).get("entry")
+    target = local_target(raw_target)
+    if not entry or target is None:
+        fail(f"interactive fallback has no declared local entry: {path.name}")
+    resolved = (path.parent / target).resolve()
+    expected = (ROOT / entry).resolve().parent / "fallback.svg"
+    if not resolved.is_relative_to(ROOT.resolve()) or resolved != expected:
+        fail(f"interactive fallback must be fallback.svg beside its component entry: {raw_target}")
+    after_image = text[match.end():block.end()]
+    if re.match(r"\n\n\*互动示意：[^*]+\*", after_image) is None:
+        fail(f"interactive fallback lacks an adjacent explanatory caption: {path.name}")
+    try:
+        svg = ET.parse(resolved).getroot()
+    except (ET.ParseError, OSError) as error:
+        fail(f"invalid interactive fallback SVG: {raw_target}: {error}")
+    if not svg.tag.endswith("svg") or any(not svg.get(key) for key in ("width", "height", "viewBox")):
+        fail(f"interactive fallback lacks SVG geometry: {raw_target}")
+    if svg.get("role") != "img" or svg.get("aria-label") != alt:
+        fail(f"interactive fallback SVG/text title mismatch: {raw_target}")
+    return resolved
+
+
 def main() -> None:
     markdown = sorted(ROOT.glob("*.md"))
     chapters = [path for path in markdown if CHAPTER_RE.match(path.name)]
@@ -145,6 +179,8 @@ def main() -> None:
     referenced_figures: list[Path] = []
     referenced_figure_numbers: dict[Path, str] = {}
     referenced_figure_alts: dict[Path, str] = {}
+    referenced_fallbacks: set[Path] = set()
+    components = json.loads((ROOT / "book.json").read_text(encoding="utf-8")).get("components", {})
     for path in chapters:
         text = path.read_text(encoding="utf-8")
         number = int(path.name[:2])
@@ -188,7 +224,16 @@ def main() -> None:
         chapter_tags.update(tags)
         exercises.extend(ids)
 
-        images = IMAGE_RE.findall(text)
+        images = []
+        for match in IMAGE_RE.finditer(text):
+            alt, raw_target = match.groups()
+            if FIGURE_NUMBER_RE.match(alt):
+                images.append((alt, raw_target))
+            else:
+                resolved = validate_interactive_fallback(path, text, match, components)
+                if resolved in referenced_fallbacks:
+                    fail(f"interactive fallback is referenced more than once: {raw_target}")
+                referenced_fallbacks.add(resolved)
         expected_figures = EXPECTED_FIGURES[number]
         if len(images) != expected_figures:
             fail(
@@ -263,6 +308,9 @@ def main() -> None:
         fail(f"figure inventory mismatch; unreferenced={missing}, unknown={extra}")
     if not (FIGURE_ROOT / "generate_figures.py").is_file():
         fail("missing deterministic figure generator")
+    fallback_paths = {path.resolve() for path in (ROOT / "interactives").glob("*/fallback.svg")}
+    if fallback_paths != referenced_fallbacks:
+        fail("interactive fallback inventory does not match chapter references")
     for path in figure_paths:
         try:
             root = ET.parse(path).getroot()
@@ -299,6 +347,7 @@ def main() -> None:
     print(f"answers={len(answers)}")
     print(f"svg_figures={len(figure_paths)}")
     print(f"figure_references={len(referenced_figures)}")
+    print(f"interactive_fallbacks={len(referenced_fallbacks)}")
     print("validation=ok")
 
 

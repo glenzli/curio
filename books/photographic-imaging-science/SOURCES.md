@@ -105,10 +105,22 @@
   §§2.2--2.2.2: cascaded ray-transfer matrices, the B = 0 imaging condition and
   two-lens systems. Chapters 11 and 16 use height followed by reduced angle;
   the interactive independently traces thin-group angle kicks and translations in air.
+- Zichao Fan et al., [Paraxial design of four-component zoom lens system with fixed
+  distance between focal points by matrix optics](https://arxiv.org/abs/2102.09319),
+  revised 2022. Background for constraining zoom trajectories by matrix elements;
+  Chapter 16 derives a separate three-thin-group example and does not reproduce
+  this paper's four-component design or aberration optimization.
+- Nikon, [Image Stabilization: Technology Overview](https://www.nikon.com/company/technology/technology_fields/software_and_systems/image_stabilization/),
+  for lens-shift and sensor-shift mechanisms and coordination. The interactive
+  derives its own affine thin-group and delayed-sinusoid model; it uses no
+  manufacturer controller parameters or claimed stabilization-stop figures.
 - Ansys, [OpticStudio User Guide: Back Focal Length](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Back_Focal_Length.html),
   for the last optical surface reference used for back focal length in Chapter 11.
 - Edmund Optics, [Telecentric Design Topics](https://www.edmundoptics.co.uk/knowledge-center/application-notes/imaging/telecentric-design-topics/),
-  for entrance and exit pupils as images of the aperture stop in Chapter 11.
+  for entrance and exit pupils as images of the aperture stop in Chapter 11,
+  and the distinction between object-space, image-space and double telecentricity
+  in Chapter 16. The two-lens interactive derives its own pupil conjugates and
+  separates chief-ray scale from defocus; it uses no product accuracy claims.
 - Virendra N. Mahajan, *Optical Imaging and Aberrations*, SPIE Press.
 - Ansys, [OpticStudio 2025 R2 User Guide: Seidel Coefficients](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v252/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Seidel_Coefficients.html),
   for the distinction and conversion between third-order ray and fourth-order

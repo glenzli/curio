@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-label="互动示意：双侧远心中继的主光线与边缘光线">
+<rect width="1000" height="560" rx="14" fill="#fff"/><g font-family="sans-serif" fill="#26313b"><text x="45" y="55" font-size="28">双侧远心：光阑位于两组的共同焦平面</text><text x="45" y="95" font-size="18">f₁ = 50 mm，f₂ = 75 mm；物面 z = −50，像面 z = 200 mm</text><path d="M55 230H950" stroke="#c9cfd4"/>
+<path d="M75.0 160 L245.0 177.5 L415.0 247.5 L670.0 352.5 L925.0 335" fill="none" stroke="#b47b43" stroke-width="2"/>
+<path d="M75.0 160 L245.0 160.0 L415.0 230 L670.0 335.0 L925.0 335" fill="none" stroke="#448b98" stroke-width="4"/>
+<path d="M75.0 160 L245.0 142.5 L415.0 212.5 L670.0 317.5 L925.0 335" fill="none" stroke="#b47b43" stroke-width="2"/>
+<path d="M245.0 135V385" stroke="#718591" stroke-width="3"/><text x="245.0" y="425" text-anchor="middle" font-size="19">前组</text>
+<path d="M670.0 135V385" stroke="#718591" stroke-width="3"/><text x="670.0" y="425" text-anchor="middle" font-size="19">后组</text>
+<path d="M925.0 135V385" stroke="#718591" stroke-width="3"/><text x="925.0" y="425" text-anchor="middle" font-size="19">像面</text>
+<path d="M415.0 135V212.5M415.0 247.5V385" stroke="#8b78aa" stroke-width="7"/><text x="415.0" y="425" text-anchor="middle" font-size="19">光阑 z=50</text>
+<text x="45" y="485" font-size="18">蓝线通过光阑中心，在物方与像方均平行于光轴；金线通过光阑边缘。</text><text x="45" y="525" font-size="18">合焦倍率 −1.5；前后移动物面或像面，仍需另看离焦跨度。横、纵比例不同。</text></g></svg>

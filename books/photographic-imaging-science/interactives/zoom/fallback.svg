@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-label="互动示意：三组变焦的补偿位置与固定像面">
+<rect width="1000" height="650" rx="14" fill="#fff"/><g fill="#26313b" font-family="sans-serif"><text x="45" y="55" font-size="28">三组变焦：像面固定在 z = 200 mm</text><text x="45" y="95" font-size="18">前组 +10 D；变倍组 −20 D；补偿组 +20 D；空气近轴模型</text>
+<path d="M75 190H940" stroke="#c9cfd4"/><text x="45" y="150" font-size="19">变倍组 20 mm；补偿组 137.555 mm；有效焦距 41.482 mm</text>
+<path d="M75.0 164V216" stroke="#448b98" stroke-width="5"/>
+<path d="M158.0 164V216" stroke="#b47b43" stroke-width="5"/>
+<path d="M645.8544680278378 164V216" stroke="#448b98" stroke-width="5"/>
+<path d="M905.0000000000001 164V216" stroke="#8b78aa" stroke-width="5"/>
+<text x="645.8544680278378" y="245" text-anchor="middle" font-size="17">补偿组</text><text x="905.0000000000001" y="245" text-anchor="middle" font-size="17">固定像面</text>
+<path d="M75 335H940" stroke="#c9cfd4"/><text x="45" y="295" font-size="19">变倍组 50 mm；补偿组 150.000 mm；有效焦距 100.000 mm</text>
+<path d="M75.0 309V361" stroke="#448b98" stroke-width="5"/>
+<path d="M282.5 309V361" stroke="#b47b43" stroke-width="5"/>
+<path d="M697.5 309V361" stroke="#448b98" stroke-width="5"/>
+<path d="M905.0000000000001 309V361" stroke="#8b78aa" stroke-width="5"/>
+<text x="697.5" y="390" text-anchor="middle" font-size="17">补偿组</text><text x="905.0000000000001" y="390" text-anchor="middle" font-size="17">固定像面</text>
+<path d="M75 480H940" stroke="#c9cfd4"/><text x="45" y="440" font-size="19">变倍组 60 mm；补偿组 167.550 mm；有效焦距 175.500 mm</text>
+<path d="M75.0 454V506" stroke="#448b98" stroke-width="5"/>
+<path d="M324.0 454V506" stroke="#b47b43" stroke-width="5"/>
+<path d="M770.3325830664667 454V506" stroke="#448b98" stroke-width="5"/>
+<path d="M905.0000000000001 454V506" stroke="#8b78aa" stroke-width="5"/>
+<text x="770.3325830664667" y="535" text-anchor="middle" font-size="17">补偿组</text><text x="905.0000000000001" y="535" text-anchor="middle" font-size="17">固定像面</text>
+<text x="45" y="625" font-size="18">改变变倍组位置后，补偿组按非直线轨迹移动；这不是实际镜头处方。</text></g></svg>
