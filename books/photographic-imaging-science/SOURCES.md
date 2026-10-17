@@ -27,6 +27,10 @@
   The paired-flat-field interactive also uses §2.5, Eqs. (16)--(18), for mean
   subtraction and half the difference variance. It uses the N−1 sample denominator
   for its small ROI and declares its own simulation and fit-selection conditions.
+  The correlation/calibration tab is a separate Gaussian random-effects teaching
+  model. Its per-frame row/column noise, two-way variance estimates and shared-dark
+  covariance are derived in Chapter 4; they are not presented as the standard's
+  fixed spatial-nonuniformity measurement or a conformity implementation.
 - Hamamatsu Photonics, [Photon Number Resolving Camera Technology](https://camera.hamamatsu.com/content/dam/hamamatsu-photonics/sites/documents/99_SALES_LIBRARY/sys/SCAS0149E_qCMOS_whitepaper.pdf),
   sections on BSI, DTI, QE, noise and MTF.
 - Sony Semiconductor Solutions, [Pregius/Pregius S Global Shutter Technology](https://www.sony-semicon.com/en/technology/industry/pregius.html).
@@ -58,6 +62,11 @@
 
 ## Log、RAW 与色彩编码
 
+- Bryce E. Bayer, [“Color imaging array”, US3971065A](https://patents.google.com/patent/US3971065A/en),
+  published 20 July 1976, preferred interleaved green/red/blue layout.
+  Chapter 7 derives its RGGB sampling cosets, reciprocal-lattice frequency cells
+  and phase corrections directly; the neutral-sinusoid and bilinear examples
+  do not reproduce a proprietary demosaicing pipeline.
 - ARRI, [ARRI LogC4 Logarithmic Color Space Specification](https://www.arri.com/resource/blob/278790/db65b86066de1f74852edb8f15acf082/2023-05-arri-logc4-specification-data.pdf),
   May 2023, §3.1 hardware EI gain and §4.1 EI-independent decoding curve.
 - ARRI, [Dynamic Range White Paper](https://www.arri.com/resource/blob/295460/e10ff8a5b3abf26c33f8754379b57442/2022-09-28-arri-dynamic-range-whitepaper-data.pdf),

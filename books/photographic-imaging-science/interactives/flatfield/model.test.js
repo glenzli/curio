@@ -1,4 +1,5 @@
 import test from "node:test";
+import "./calibration.test.js";
 import assert from "node:assert/strict";
 import {
   BLACK,

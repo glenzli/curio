@@ -9,10 +9,10 @@
 | 1 | Born--Wolf；Smith | 辐射度学与近轴像面照度；实际镜头暗角需具体瞳和机械模型 |
 | 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
 | 3 | Fossum；Janesick；EMVA 1288 | 列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
-| 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | 标准设备容差外置；互动用 N−1 样本方差及成对差分/2，PRNU 与漂移残差书内推导；不作完整合格性测试 |
+| 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | PTC 用 N−1 样本方差及成对差分/2；另用 Gaussian 行列随机效应模型推导 ROI 平均、方差分解与共享暗场校准下限，不冒充标准的固定空间非均匀性测量 |
 | 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和 DCG 权衡书内计算 |
 | 6 | Sony Pregius S；Hamamatsu qCMOS；Guenter et al. 2017 | BSI/DTI/堆栈/曲面具体制造为外部输入；时序畸变书内推导 |
-| 7 | Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | 标准配色函数与标定实践外置；同色异谱、精确线性色度映射条件、拟合矩阵和协方差传播书内论证 |
+| 7 | Bayer US3971065A；Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | RGGB 布局来自公开原始专利；同色格、倒格、起点相位与双线性示例书内计算；同色异谱、精确色度映射与协方差传播书内论证 |
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；互动另用观测水平梯度相关搜索，不冒充 HDR+ 的 FFT 配准 |
 | 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
@@ -54,3 +54,9 @@ Sellmeier 模型，未从 Abbe 数单独猜测光谱。第十五章互动用单�
 读取像素坐标和值，两条几何路径共用观测平台归一化。第四章 PTC 的输入增益、PRNU
 和读噪只用于生成及对照曲线，拟合仅用观测矩、黑白电平和声明的区间；重采样保留
 固定响应图样。所有示例仍是合成数据，未新增真实器材测量或数据集。
+
+Bayer 的中性条纹、每通道等效正弦及双线性结果分别显示；等效正弦保留原孔径振幅，
+不是在低频处重新计算孔径后的另一张物理输入。两个绿色位置假定响应一致。平场
+相关校准模型在每帧内部共享行列偏移，各帧独立；用 64 组独立光暗采集估计跨组方差
+与协方差，每组内部共用同一平均暗场。固定一次校准后的时间方差与跨组校准误差
+不混用；目标和暗场可独立重拍，生成的平均暗图只用于理想对照。
