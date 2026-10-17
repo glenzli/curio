@@ -70,6 +70,27 @@ $$
 
 ## 图版与校验
 
+全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
+[book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
+与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
+阅读器从同一套源文件生成本地预览和静态网站。第四章保留曝光与噪声实验，模型和
+单元测试位于 [interactives/noise](interactives/noise/)。
+本地将工具仓库克隆在 Curio 旁边并安装其依赖后，从 Curio 根目录运行：
+
+```bash
+node ../markdown-book/bin/markdown-book.js check books/photographic-imaging-science
+node ../markdown-book/bin/markdown-book.js serve books/photographic-imaging-science
+node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-science --out /tmp/imaging-book --base /books/photographic-imaging-science/
+```
+
+最后一条生成可挂载到对应网址的完整静态目录，包含本地字体、公式、图版和互动代码。
+网站可在 CI 中固定工具版本，构建后将这个目录挂到对应路径；生成的网页不回写为
+书籍源码。源码以 Markdown 为准，构建目录无需提交。
+
+安装 Markdown Book 的 Codex 插件后，可从侧栏进入书籍阅读器，也可在会话中调用
+`open_reader`，传入本书目录的绝对路径。侧栏和会话面板复用同一阅读器，支持章节
+导航、公式、静态图和噪声互动；修改源文件后会更新预览。
+
 重新生成全部图版：
 
 ```bash

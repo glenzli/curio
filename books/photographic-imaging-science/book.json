@@ -1,0 +1,152 @@
+{
+  "$schema": "https://raw.githubusercontent.com/glenzli/markdown-book/main/schema/book.schema.json",
+  "formatVersion": 1,
+  "id": "photographic-imaging-science",
+  "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
+  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。序章及 17 章正文、两篇附录、符号表、62 道练习答案和资料索引；第四章含可调曝光与噪声实验。",
+  "author": "glenzli",
+  "language": "zh-CN",
+  "chapters": [
+    {
+      "id": "preface",
+      "title": "序章：从一次曝光开始",
+      "file": "00_preface_scope_and_measurement.md"
+    },
+    {
+      "id": "radiometry",
+      "title": "第一章：辐射度学、光圈与曝光量",
+      "file": "01_radiometry_aperture_and_exposure.md"
+    },
+    {
+      "id": "photons",
+      "title": "第二章：从光子到电子：硅光电转换与像素",
+      "file": "02_photons_silicon_and_pixels.md"
+    },
+    {
+      "id": "cmos",
+      "title": "第三章：CMOS 像素、读出链与模数转换",
+      "file": "03_cmos_pixels_readout_and_adc.md"
+    },
+    {
+      "id": "noise",
+      "title": "第四章：噪声、信噪比、满阱与动态范围",
+      "file": "04_noise_snr_full_well_and_dynamic_range.md"
+    },
+    {
+      "id": "iso",
+      "title": "第五章：ISO、曝光指数、增益与“双原生”",
+      "file": "05_iso_exposure_index_and_gain.md"
+    },
+    {
+      "id": "sensor-architectures",
+      "title": "第六章：滚动/全局快门、背照、堆栈与曲面传感器",
+      "file": "06_shutters_bsi_stacking_and_curved_sensors.md"
+    },
+    {
+      "id": "color-sampling",
+      "title": "第七章：色彩滤阵、采样、去马赛克与色彩矩阵",
+      "file": "07_color_filter_sampling_and_demosaicing.md"
+    },
+    {
+      "id": "hdr",
+      "title": "第八章：包围曝光、多帧降噪与现代 HDR 合成",
+      "file": "08_computational_exposure_and_hdr.md"
+    },
+    {
+      "id": "transfer-curves",
+      "title": "第九章：Gamma、Log、曝光指数与显示变换",
+      "file": "09_gamma_log_exposure_index_and_display.md"
+    },
+    {
+      "id": "raw",
+      "title": "第十章：静态 RAW、视频 RAW、压缩与元数据",
+      "file": "10_still_raw_video_raw_and_compression.md"
+    },
+    {
+      "id": "geometrical-optics",
+      "title": "第十一章：几何光学、近轴矩阵与镜头基本量",
+      "file": "11_geometrical_optics_and_paraxial_systems.md"
+    },
+    {
+      "id": "diffraction",
+      "title": "第十二章：衍射、PSF、OTF、MTF 与采样",
+      "file": "12_diffraction_psf_otf_mtf_and_sampling.md"
+    },
+    {
+      "id": "aberrations",
+      "title": "第十三章：球差、彗差、像散、场曲、畸变与色差",
+      "file": "13_aberrations_and_field_behavior.md"
+    },
+    {
+      "id": "optical-materials",
+      "title": "第十四章：玻璃、树脂、萤石与低色散材料",
+      "file": "14_optical_materials_glass_resin_and_fluorite.md"
+    },
+    {
+      "id": "optical-elements",
+      "title": "第十五章：非球面、Fresnel、PF/DO 与镀膜",
+      "file": "15_aspheres_fresnel_diffractive_optics_and_coatings.md"
+    },
+    {
+      "id": "lens-architectures",
+      "title": "第十六章：镜头结构、对焦、变焦、防抖与远心性",
+      "file": "16_lens_architectures_focus_zoom_and_stabilization.md"
+    },
+    {
+      "id": "system-testing",
+      "title": "第十七章：怎样读 MTF、测试镜头并分析整套成像系统",
+      "file": "17_lens_testing_and_system_analysis.md"
+    },
+    {
+      "id": "appendix-a",
+      "title": "附录 A：概率、Fourier 变换与单位",
+      "file": "A_probability_fourier_and_units.md"
+    },
+    {
+      "id": "appendix-b",
+      "title": "附录 B：常用计算表与换算",
+      "file": "B_calculation_reference.md"
+    },
+    {
+      "id": "notation",
+      "title": "符号与约定",
+      "file": "NOTATION.md"
+    },
+    {
+      "id": "solutions",
+      "title": "摄影成像科学答案手册",
+      "file": "SOLUTIONS.md"
+    },
+    {
+      "id": "terms",
+      "title": "术语索引",
+      "file": "TERM_INDEX.md"
+    },
+    {
+      "id": "sources",
+      "title": "资料源",
+      "file": "SOURCES.md"
+    },
+    {
+      "id": "source-notes",
+      "title": "逐章来源注释",
+      "file": "CHAPTER_SOURCE_NOTES.md"
+    }
+  ],
+  "components": {
+    "noise": {
+      "entry": "interactives/noise/index.js",
+      "props": {
+        "seed": 20261017
+      }
+    }
+  },
+  "source": {
+    "repository": "https://github.com/glenzli/curio",
+    "path": "books/photographic-imaging-science"
+  },
+  "license": {
+    "name": "CC BY-NC-ND 4.0",
+    "url": "https://creativecommons.org/licenses/by-nc-nd/4.0/"
+  }
+}

@@ -102,7 +102,7 @@ $m_i=|H(\nu)|m_o$。因此
 $$
 \mathrm{MTF}(\nu)=\frac{m_i}{m_o},
 \qquad
-m=\frac{I_\max-I_\min}{I_\max+I_\min}.                  \tag{12.6}
+m=\frac{I_{\max}-I_{\min}}{I_{\max}+I_{\min}}.                  \tag{12.6}
 $$
 
 MTF 衡量某频率的对比传递，不是单一“锐度”。低频影响大结构反差，高频影响细节与

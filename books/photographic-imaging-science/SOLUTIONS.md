@@ -58,7 +58,7 @@ $$
 
 **答案 2.2.** 由 $K=q/C_\mathrm{FD}$，电容降为原来的 $1/4$，转换增益增为
 4 倍。若允许电压摆幅 $\Delta V$ 不变，可容纳电子数
-$N_\max=C_\mathrm{FD}\Delta V/q$，因此降为原来的 $1/4$。
+$N_{\max}=C_\mathrm{FD}\Delta V/q$，因此降为原来的 $1/4$。
 
 **答案 2.3.** 设两噪声为 $X,Y$。相关系数
 $\rho=\operatorname{Cov}(X,Y)/\sigma^2$，故

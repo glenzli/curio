@@ -19,7 +19,7 @@ Curio 收录我感兴趣、愿意长期研究，并与 AI 一起认真写成的�
 从各书的 README 进入目录。参考资料、符号和审校记录随书维护；教材写作约束见
 [books/SKILL.md](books/SKILL.md)。
 
-使用 Python 3 和 Git，运行全部现有检查：
+使用 Python 3、Node.js 22 或更新版本和 Git，运行全部现有检查：
 
 ```bash
 make check

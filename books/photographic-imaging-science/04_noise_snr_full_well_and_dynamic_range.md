@@ -33,10 +33,14 @@ $$
 若报告 dB，取 $20\log_{10}\mathrm{SNR}$。式 (4.2) 不含 PRNU，因为它描述同一
 像素重复曝光的时间涨落；若比较整幅均匀平场的像素总体，必须另加空间非均匀项。
 
+<div data-mb-component="noise">
+
 ![图 4.1 信号电平变化时的噪声预算](figures/04_noise_budget.svg)
 
 *图 4.1　读噪在低信号区可主导，散粒噪声按信号平方根增长，PRNU 的空间标准差
 近似按信号线性增长。三条线是否相交以及交点位置必须由实测参数决定。*
+
+</div>
 
 **命题 4.2（两种极限）.** 当 $\mu_s\ll\mu_d+\sigma_r^2$ 时，
 $\mathrm{SNR}\approx\mu_s/\sqrt{\mu_d+\sigma_r^2}$；当
@@ -266,7 +270,7 @@ $$
 得到 $\mu^2-4\mu-4\sigma_r^2=0$，正根为
 
 $$
-\mu_\min=2+2\sqrt{1+\sigma_r^2}\approx7.39\ e^-.
+\mu_{\min}=2+2\sqrt{1+\sigma_r^2}\approx7.39\ e^-.
 $$
 
 此时可用动态范围变成
@@ -275,7 +279,7 @@ $\log_2(50\,000/7.39)\approx12.72$ 档。相同传感器因下端判据不同，
 $b=\mu_d+\sigma_r^2$，由 $\mu^2=k^2(\mu+b)$ 得
 
 $$
-\mu_\min(k)=\frac{k^2+\sqrt{k^4+4k^2b}}2.                \tag{4.6a}
+\mu_{\min}(k)=\frac{k^2+\sqrt{k^4+4k^2b}}2.                \tag{4.6a}
 $$
 
 特别地，SNR 为一的下端也并不严格等于读噪 rms，因为信号本身还有散粒噪声。式
