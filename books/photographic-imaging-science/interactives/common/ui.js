@@ -1,0 +1,160 @@
+const style = `
+:host{display:block;color:var(--text,#263c33);font:13px/1.7 ui-sans-serif,-apple-system,"PingFang SC",sans-serif}*{box-sizing:border-box}.lab{padding:24px}.kicker{font-size:10px;letter-spacing:.09em;opacity:.6}h3{font-size:22px;line-height:1.4;margin:8px 0}p{margin:8px 0;opacity:.72}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}.controls label{font-size:11px;display:grid;gap:8px}.controls output{float:right;font-variant-numeric:tabular-nums;font-weight:600}input{width:100%;accent-color:#426d58}button{font:inherit;color:inherit;background:transparent;border:1px solid #9caea2;border-radius:5px;padding:6px 10px;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:3px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chart{margin:16px 0;min-width:0}.chart svg{width:100%;height:auto;display:block}.chart text{font-family:inherit;fill:currentColor;font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:10px;margin:8px 0}.legend i{display:inline-block;width:18px;border-top:2px solid;vertical-align:middle;margin-right:5px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-block:1px solid #9caea244;padding:15px 0;margin:18px 0}.stats small{font-size:10px;opacity:.65}.stats strong{font-size:22px;line-height:1.5;font-variant-numeric:tabular-nums;display:block}.stats em{font-style:normal;font-size:10px;opacity:.65}.note{font-size:10px;line-height:1.85;opacity:.65}.reading{font-size:12px}.stripes{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stripes svg{width:100%;height:54px;border-radius:4px;display:block}.stripes small{font-size:10px}.field-grid{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:14px;align-items:center}.psf svg{width:100%;height:auto}.psf p{font-size:10px;text-align:center}.chart-wrap{border-radius:6px;background:color-mix(in srgb,currentColor 3%,transparent);padding:10px}.criterion{font-size:12px;font-weight:600}@media(max-width:550px){.lab{padding:18px}h3{font-size:19px}.controls{grid-template-columns:1fr;gap:12px}.stats strong{font-size:18px}.stripes{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.psf{max-width:180px;margin:auto}}`;
+
+export function experiment({
+  element,
+  signal,
+  kicker,
+  title,
+  intro,
+  controls,
+  content,
+  note,
+  presets = [],
+  update,
+}) {
+  const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
+  root.innerHTML = `<style>${style}</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div>${content}<p class="note">${note}</p></section>`;
+  const state = {},
+    fields = new Map();
+  for (const control of controls) {
+    const label = document.createElement("label"),
+      name = document.createElement("span"),
+      output = document.createElement("output"),
+      input = document.createElement("input");
+    input.type = "range";
+    input.min = control.min;
+    input.max = control.max;
+    input.step = control.step;
+    input.value = control.value;
+    input.setAttribute("aria-label", control.label);
+    name.textContent = control.label;
+    name.append(output);
+    label.append(name, input);
+    root.querySelector(".controls").append(label);
+    state[control.key] = control.value;
+    fields.set(control.key, { input, output, control });
+    input.addEventListener(
+      "input",
+      () => {
+        state[control.key] = Number(input.value);
+        render();
+      },
+      { signal },
+    );
+  }
+  function render() {
+    for (const [key, { input, output, control }] of fields) {
+      input.value = state[key];
+      output.value = control.format
+        ? control.format(state[key])
+        : String(state[key]);
+    }
+    update(root, state);
+  }
+  for (const preset of presets) {
+    const button = document.createElement("button");
+    button.textContent = preset.label;
+    button.addEventListener(
+      "click",
+      () => {
+        Object.assign(
+          state,
+          typeof preset.values === "function"
+            ? preset.values(state)
+            : preset.values,
+        );
+        render();
+      },
+      { signal },
+    );
+    root.querySelector(".actions").append(button);
+  }
+  if (!presets.length) root.querySelector(".actions").remove();
+  render();
+  return () => root.replaceChildren();
+}
+
+const escape = (value) =>
+  String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll('"', "&quot;");
+export function plot({
+  curves,
+  xMax,
+  xLabel,
+  yLabel = "MTF",
+  yMin = 0,
+  yMax = 1,
+  markers = [],
+  samples = [],
+  title,
+}) {
+  const W = 640,
+    H = 260,
+    left = 48,
+    right = 18,
+    top = 38,
+    bottom = 40;
+  const x = (v) => left + (v / xMax) * (W - left - right),
+    y = (v) => H - bottom - ((v - yMin) / (yMax - yMin)) * (H - top - bottom);
+  const path = (points) =>
+    points
+      .map(
+        ([a, b], index) =>
+          `${index ? "L" : "M"}${x(a).toFixed(2)},${y(b).toFixed(2)}`,
+      )
+      .join(" ");
+  let inner = "";
+  for (let i = 0; i <= 4; i++) {
+    const v = yMin + ((yMax - yMin) * i) / 4,
+      u = (xMax * i) / 4;
+    inner += `<path d="M${left},${y(v)}H${W - right}" stroke="currentColor" opacity=".10"/><text x="${left - 8}" y="${y(v) + 4}" text-anchor="end">${Number(v.toFixed(2))}</text><text x="${x(u)}" y="${H - bottom + 20}" text-anchor="middle">${Number(u.toFixed(1))}</text>`;
+  }
+  const labels = [];
+  for (const marker of markers.filter(
+    (marker) => marker.value >= 0 && marker.value <= xMax,
+  )) {
+    const column = x(marker.value);
+    const stacked = labels.some((previous) => Math.abs(previous - column) < 90);
+    labels.push(column);
+    inner += `<path d="M${column},${top}V${H - bottom}" stroke="${marker.color ?? "#a27640"}" stroke-dasharray="3 5"/><text x="${column}" y="${top - 9 - (stacked ? 13 : 0)}" text-anchor="middle">${escape(marker.label)}</text>`;
+  }
+  for (const curve of curves)
+    inner += `<path d="${path(curve.points)}" fill="none" stroke="${curve.color}" stroke-width="2.1" ${curve.dashed ? 'stroke-dasharray="6 4"' : ""}/>`;
+  for (const [a, b] of samples)
+    inner += `<circle cx="${x(a)}" cy="${y(b)}" r="3.6" fill="#9b703c" stroke="white" stroke-width="1"/>`;
+  inner += `<text x="${left}" y="12">${escape(yLabel)}</text><text x="${(left + W - right) / 2}" y="${H - 2}" text-anchor="middle">${escape(xLabel)}</text>`;
+  return `<svg role="img" aria-label="${escape(title)}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
+}
+export const points = (max, fn, count = 200) =>
+  Array.from({ length: count + 1 }, (_, i) => [
+    (max * i) / count,
+    fn((max * i) / count),
+  ]);
+export function legend(curves) {
+  return curves
+    .map(
+      (curve) =>
+        `<span><i style="border-color:${curve.color};${curve.dashed ? "border-top-style:dashed" : ""}"></i>${curve.name}</span>`,
+    )
+    .join("");
+}
+export function stripe(frequency, gain = 1, widthMm = 0.24) {
+  let rectangles = "";
+  for (let i = 0; i < 384; i++) {
+    const intensity =
+      0.5 +
+      0.4 *
+        gain *
+        Math.cos((2 * Math.PI * frequency * widthMm * (i + 0.5)) / 384);
+    const encoded =
+      intensity <= 0.0031308
+        ? 12.92 * intensity
+        : 1.055 * intensity ** (1 / 2.4) - 0.055;
+    const value = Math.round(255 * Math.max(0, Math.min(1, encoded)));
+    rectangles += `<rect x="${i}" width="1.05" height="54" fill="rgb(${value} ${value} ${value})"/>`;
+  }
+  return `<svg role="img" aria-label="正弦条纹，线性输入调制度0.8" viewBox="0 0 384 54" preserveAspectRatio="none">${rectangles}</svg>`;
+}

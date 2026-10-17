@@ -38,3 +38,8 @@
 典型形态，未由具体镜头处方追迹；图 12.1 的环纹经亮度增强，不用于比较环纹能量。
 若未来加入外部照片或实测图，必须在图注中登记器材、条件、数据处理与许可来源，
 并与现有机制图分开编号。
+
+
+### 互动模型的来源与边界
+
+新增采样、MTF 与像场互动分别按第七章盒积分与频率折返、第十二章圆瞳及像素孔径公式、第十三章明确声明的椭圆 Gaussian 教学假设计算。第十七章重复使用同一像场模型以练习读图，不嵌入或拟合厂商镜头数据。图例读法对照 [Nikon 官方 MTF 说明](https://imaging.nikon.com/imaging/lineup/lens/mtf_chart/)；频率传递对照 [Edmund Optics 的 MTF 说明](https://www.edmundoptics.com/knowledge-center/application-notes/imaging/modulation-transfer-function-mtf-and-mtf-curves/)。系统性像差背景仍以本章列出的光学资料为准。

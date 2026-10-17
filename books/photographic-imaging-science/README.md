@@ -116,3 +116,12 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 器件工艺、镜头优化软件、感知色貌模型、压缩编码器实现和摄影艺术史属于外部学科，
 只在主线需要处建立接口。本书不替某一品牌评定器材，也不把实验室单一指标等同于
 照片价值。
+
+
+## 光学与采样演示
+
+- 第七章 `sampling`：连续正弦、像素盒积分、采样相位与基带折返；0.50 cycles/pixel 的边界相位单独展示。
+- 第十二章 `mtf`：无像差圆瞳与矩形像素的预采样 MTF、Nyquist、Airy 尺度及线性调制度条纹。
+- 第十三、十七章共用 `field`：明确声明的局部椭圆 Gaussian PSF 模型，联动像高 MTF、两个方向最佳焦面和固定平面/局部重对焦。
+
+以上模型均属于本书；`interactives/common/ui.js` 只共用展示与控件。各组件保留原 SVG 回退，正常阅读无需脚本。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
