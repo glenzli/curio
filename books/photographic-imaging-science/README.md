@@ -73,8 +73,8 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 11 个互动组件、12 处章节插入，
-从 CMOS 增益、噪声和快门时序，到 HDR、编码、采样与光学测量。模型与测试位于
+阅读器从同一套源文件生成本地预览和静态网站。当前有 14 个互动组件、15 处章节插入，
+从 4T/CDS、CMOS 增益、噪声和快门时序，到 HDR、编码、消色差、增透膜与光学测量。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
 [互动演示审读](INTERACTIVE_REVIEW.md)。
 三维组件按需使用工具内置的 Three.js，不依赖在线 CDN；不支持 WebGL 2 时保留静态图。
@@ -121,6 +121,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 
 ## 互动演示
 
+- 第二章 `pixel`：PPD 积分、FD 复位、两次采样与电荷转移的共同时间轴；比较共同复位偏移的消除和独立采样噪声的保留。
 - 第三章 `readout`：同一电荷在 ADC 前增益与 ADC 后数字乘法中的量化、输入端读噪及高光上限。
 - 第四章 `noise`：曝光、散粒噪声、读噪与满阱；使用固定随机种子比较同一组像素。
 - 第六章 `shutter`：逐行曝光的慢速回放、匀速物体的行内模糊与行间倾斜，以及静止场景的正弦照明条带。
@@ -130,6 +131,8 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第九章 `encoding`：线性、Gamma 与带线性 toe 的教学 Log，比较码值跨度、量化后反解的暗部渐变及编码前高光剪切。
 - 第十二章 `mtf`：无像差圆瞳与矩形像素的预采样 MTF、Nyquist、Airy 尺度及线性调制度条纹。
 - 第十三、十七章共用 `field`：明确声明的局部椭圆 Gaussian PSF 模型，联动像高 MTF、两个方向最佳焦面和固定平面/局部重对焦。
+- 第十四章 `achromat`：SCHOTT N-BK7/N-F2 目录色散与接触薄片光焦度分配，显示 F/C 同焦、残余谱线焦移、相同材料退化及像面上的几何离焦斑。
+- 第十五章 `coating`：正入射单层无吸收膜的精确复振幅、反射光谱与能量守恒；独立改变物理厚度、膜材和基底折射率。
 - 第十六章 `focus`：近轴薄透镜、光束与弥散圈的三维对焦实验。
 - 第十七章 `edge`：合成斜边的法向投影、ESF 分箱、LSF 求导、DFT 与有限差分修正；空箱、噪声、加窗和解析真值分别显示。
 

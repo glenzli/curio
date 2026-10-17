@@ -7,7 +7,7 @@
 |---|---|---|
 | 0 | Holst--Lomheim；Goodman | 成像链分层由本书组织；完整相机工程不在序章展开 |
 | 1 | Born--Wolf；Smith | 辐射度学与近轴像面照度；实际镜头暗角需具体瞳和机械模型 |
-| 2 | Fossum；Janesick；Holst--Lomheim | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导 |
+| 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
 | 3 | Fossum；Janesick；EMVA 1288 | 列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
 | 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5；Janesick, *Photon Transfer* | 标准设备容差外置；暗噪声处理、共享暗场的校准协方差、成对平场、PTC 和 SNR 下端书内推导 |
 | 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和 DCG 权衡书内计算 |
@@ -19,7 +19,7 @@
 | 11 | Born--Wolf；Smith；Kingslake--Johnson；Ansys BFL 定义；Edmund Optics 瞳定义 | 真实处方数值追迹外置；近轴矩阵、主平面分解和厚透镜算例书内完成；光线图按近轴关系构造 |
 | 12 | Goodman；Zeiss MTF notes | 标量 Fourier 模型为外部物理框架；物理瞳坐标、OTF 自相关与圆盘重叠计算在正文展开，宽谱合成注明条件 |
 | 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；RMS--Strehl 小误差关系在正文推导 |
-| 14 | Nikon Research Report 2022；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；Sellmeier 用法、消色差和二级光谱残差书内推导 |
+| 14 | Nikon Research Report 2022；SCHOTT N-BK7/N-F2 数据表；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；互动使用目录 Sellmeier 系数与谱线数据；接触薄片消色差和二级光谱残差书内推导，不冒充镜头处方 |
 | 15 | Born--Wolf；Macleod；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 效率与薄膜特征矩阵书内推导 |
 | 16 | Smith；Kingslake--Johnson | 复杂变焦与防抖控制外置；镜组矩阵、统一超焦距约定的景深边界和运动 OTF 书内推导 |
 | 17 | Burns 2000；Zeiss MTF notes；ISO 12233:2024（公开范围） | 二维 PSF 的线积分、斜边有限差分与尺度书内推导；流程不宣称完成 ISO 合格性实现 |
@@ -43,3 +43,8 @@
 ### 互动模型的来源与边界
 
 新增采样、MTF 与像场互动分别按第七章盒积分与频率折返、第十二章圆瞳及像素孔径公式、第十三章明确声明的椭圆 Gaussian 教学假设计算。第十七章重复使用同一像场模型以练习读图，不嵌入或拟合厂商镜头数据。图例读法对照 [Nikon 官方 MTF 说明](https://imaging.nikon.com/imaging/lineup/lens/mtf_chart/)；频率传递对照 [Edmund Optics 的 MTF 说明](https://www.edmundoptics.com/knowledge-center/application-notes/imaging/modulation-transfer-function-mtf-and-mtf-curves/)。系统性像差背景仍以本章列出的光学资料为准。
+
+第二章互动把 PPD 电荷与 FD 读出分开，独立采样噪声不与共同复位噪声混同；固定电荷
+只用于考察读出，不代表散粒噪声被消除。第十四章的连续焦移来自两种目录玻璃的完整
+Sellmeier 模型，未从 Abbe 数单独猜测光谱。第十五章互动用单层精确反射与透射式，
+并与正文特征矩阵逐点对照；复振幅分解中的“膜内返回”已经包含全部多次往返。

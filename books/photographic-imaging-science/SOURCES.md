@@ -11,6 +11,11 @@
   Systems*, 2nd ed., JCD Publishing/SPIE Press, 2011.
 - Eric R. Fossum, “CMOS Image Sensors: Electronic Camera-on-a-Chip,”
   *IEEE Transactions on Electron Devices* 44(10), 1997, pp. 1689--1698.
+- Eric R. Fossum and Donald B. Hondongwa, [“A Review of the Pinned Photodiode
+  for CCD and CMOS Image Sensors”](https://digitalcommons.dartmouth.edu/facoa/2423/),
+  *IEEE Journal of the Electron Devices Society* 2(3), 2014, pp. 33--43,
+  DOI 10.1109/JEDS.2014.2306412. Background for the functional 4T/PPD sequence;
+  the interactive readout model is an idealized calculation, not a circuit simulation.
 - Albert J. P. Theuwissen, *Solid-State Imaging with Charge-Coupled Devices*,
   Kluwer, 1995.
 - European Machine Vision Association, [EMVA Standard 1288, Release 4.0 Linear](https://www.emva.org/wp-content/uploads/EMVA1288Linear_4.0Release.pdf),
@@ -91,6 +96,13 @@
   for the distinction and conversion between third-order ray and fourth-order
   wavefront aberration coefficients used in Chapter 13.
 - H. Angus Macleod, *Thin-Film Optical Filters*, 4th ed., CRC Press, 2010.
+- SCHOTT, optical glass data sheets for
+  [N-BK7](https://media.schott.com/api/public/content/41e799d0bf874807a0bb8e702fbb75b5?v=54856406)
+  and [N-F2](https://media.schott.com/api/public/content/061f3156c83a44ed9220770b0f65a869?v=d69b35e0),
+  especially the Sellmeier constants, reference-line indices and relative partial
+  dispersion. Chapter 14 stores the numerical coefficients locally, uses wavelengths
+  in µm in the formula, and limits the demonstration to 435.83--700 nm. The catalog
+  values are material inputs; the chosen lens powers do not reproduce a manufactured lens.
 - Carl Zeiss Camera Lens Division, [How to Read MTF Curves](https://lenspire.zeiss.com/photo/app/uploads/2018/04/Article-MTF-2008-EN.pdf).
 - ISO, [ISO 12233:2024, Digital cameras -- Resolution and spatial frequency
   responses](https://www.iso.org/standard/88626.html), edition 5.
