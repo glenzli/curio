@@ -24,6 +24,9 @@
   read on 17 October 2026. Chapter 4 uses this linear model. The separate
   [Release 4.0 General](https://www.emva.org/wp-content/uploads/EMVA1288General_4.0Release.pdf)
   addresses broader camera responses; it must not be cited as if it were the same derivation.
+  The paired-flat-field interactive also uses §2.5, Eqs. (16)--(18), for mean
+  subtraction and half the difference variance. It uses the N−1 sample denominator
+  for its small ROI and declares its own simulation and fit-selection conditions.
 - Hamamatsu Photonics, [Photon Number Resolving Camera Technology](https://camera.hamamatsu.com/content/dam/hamamatsu-photonics/sites/documents/99_SALES_LIBRARY/sys/SCAS0149E_qCMOS_whitepaper.pdf),
   sections on BSI, DTI, QE, noise and MTF.
 - Sony Semiconductor Solutions, [Pregius/Pregius S Global Shutter Technology](https://www.sony-semicon.com/en/technology/industry/pregius.html).
@@ -43,6 +46,8 @@
 - Samuel W. Hasinoff et al., [“Burst photography for high dynamic range and
   low-light imaging on mobile cameras”](https://research.google/pubs/burst-photography-for-high-dynamic-range-and-low-light-imaging-on-mobile-cameras/),
   *ACM Transactions on Graphics* 35(6), 2016.
+  The book's horizontal gradient-correlation example is a separate teaching algorithm;
+  it does not reproduce this paper's constant-exposure FFT alignment and burst pipeline.
 - Paul E. Debevec and Jitendra Malik, [“Recovering High Dynamic Range Radiance
   Maps from Photographs”](https://people.eecs.berkeley.edu/~malik/papers/debevec-malik97.pdf),
   SIGGRAPH 1997.
@@ -110,6 +115,8 @@
   IS&T PICS 2000, pp. 135--138, especially the discrete derivative and noise-bias
   sections. Used for the error analysis in Chapter 17, not as a substitute for
   the complete 2024 ISO test requirements.
+  The edge-fitting interactive follows the derivative-centroid and linear-fit outline
+  on pp. 135--136, with locally declared smoothing, support and rejection thresholds.
 - Nikon, [Aberration Correction](https://www.nikon.com/company/technology/technology_fields/optics/aberration_correction/)
   and [Resin for Phase Fresnel Lenses](https://www.nikon.com/company/technology/technology_fields/materials/phase_fresnel_lens/).
 - Nikon Research Report Vol. 4 (2022), [chromatic-aberration correction with

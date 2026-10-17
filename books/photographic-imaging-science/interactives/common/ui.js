@@ -92,6 +92,7 @@ const escape = (value) =>
     .replaceAll('"', "&quot;");
 export function plot({
   curves,
+  xMin = 0,
   xMax,
   xLabel,
   yLabel = "MTF",
@@ -100,14 +101,17 @@ export function plot({
   markers = [],
   samples = [],
   title,
+  width = 640,
+  leftPadding = 48,
+  rightPadding = 18,
 }) {
-  const W = 640,
+  const W = width,
     H = 260,
-    left = 48,
-    right = 18,
+    left = leftPadding,
+    right = rightPadding,
     top = 38,
     bottom = 40;
-  const x = (v) => left + (v / xMax) * (W - left - right),
+  const x = (v) => left + ((v - xMin) / (xMax - xMin)) * (W - left - right),
     y = (v) => H - bottom - ((v - yMin) / (yMax - yMin)) * (H - top - bottom);
   const path = (points) =>
     points
@@ -119,12 +123,12 @@ export function plot({
   let inner = "";
   for (let i = 0; i <= 4; i++) {
     const v = yMin + ((yMax - yMin) * i) / 4,
-      u = (xMax * i) / 4;
+      u = xMin + ((xMax - xMin) * i) / 4;
     inner += `<path d="M${left},${y(v)}H${W - right}" stroke="currentColor" opacity=".10"/><text x="${left - 8}" y="${y(v) + 4}" text-anchor="end">${Number(v.toFixed(2))}</text><text x="${x(u)}" y="${H - bottom + 20}" text-anchor="middle">${Number(u.toFixed(1))}</text>`;
   }
   const labels = [];
   for (const marker of markers.filter(
-    (marker) => marker.value >= 0 && marker.value <= xMax,
+    (marker) => marker.value >= xMin && marker.value <= xMax,
   )) {
     const column = x(marker.value);
     const stacked = labels.some((previous) => Math.abs(previous - column) < 90);
