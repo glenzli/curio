@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 10.1  RAW 显影流程及可重新选择的步骤">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 10.1  RAW 显影流程及可重新选择的步骤</text>
+<rect x="25.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#e8edf2" stroke="#66717e" stroke-width="2.5" opacity="1.0"/>
+<text x="92.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">打包 RAW</text>
+<line x1="160.00" y1="272.00" x2="180.00" y2="272.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="185.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#fbfcfe" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<text x="252.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">黑/白电平</text>
+<line x1="320.00" y1="272.00" x2="340.00" y2="272.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="345.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#fbfcfe" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<text x="412.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">去马赛克</text>
+<line x1="480.00" y1="272.00" x2="500.00" y2="272.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="505.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#fbfcfe" stroke="#2a9d6f" stroke-width="2.5" opacity="1.0"/>
+<text x="572.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">白平衡</text>
+<line x1="640.00" y1="272.00" x2="660.00" y2="272.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="665.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#fbfcfe" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<text x="732.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">颜色矩阵</text>
+<line x1="800.00" y1="272.00" x2="820.00" y2="272.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="825.00" y="220.00" width="135.00" height="105.00" rx="4" fill="#fbfcfe" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<text x="892.50" y="280.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">色调/输出</text>
+<text x="275.00" y="400.00" fill="#2a9d6f" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">通常仍可重选</text>
+<line x1="160.00" y1="375.00" x2="580.00" y2="375.00" stroke="#2a9d6f" stroke-width="3" opacity="1.0"/>
+<text x="790.00" y="400.00" fill="#d18f00" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">输出决定逐步烘焙</text>
+<line x1="640.00" y1="375.00" x2="940.00" y2="375.00" stroke="#d18f00" stroke-width="3" opacity="1.0"/>
+<text x="500.00" y="500.00" fill="#17202a" font-size="22" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">RAW 是数据契约，不是“零处理”的同义词</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 15.2  折射元件与 PF 元件的相反色散">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 15.2  折射元件与 PF 元件的相反色散</text>
+<rect x="45.00" y="85.00" width="285.00" height="410.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="187.50" y="112.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">正折射透镜</text>
+<rect x="357.00" y="85.00" width="285.00" height="410.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="499.50" y="112.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">正 PF 元件</text>
+<rect x="670.00" y="85.00" width="285.00" height="410.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="812.50" y="112.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">组合校色</text>
+<line x1="70.00" y1="300.00" x2="305.00" y2="300.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="6 5"/>
+<line x1="145.00" y1="175.00" x2="145.00" y2="425.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<line x1="70.00" y1="230.00" x2="145.00" y2="230.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="145.00" y1="230.00" x2="220.00" y2="300.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="70.00" y1="370.00" x2="145.00" y2="370.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="145.00" y1="370.00" x2="280.00" y2="300.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<circle cx="220.00" cy="300.00" r="5.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<circle cx="280.00" cy="300.00" r="5.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="382.00" y1="300.00" x2="617.00" y2="300.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="6 5"/>
+<line x1="457.00" y1="175.00" x2="457.00" y2="425.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<line x1="382.00" y1="230.00" x2="457.00" y2="230.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="457.00" y1="230.00" x2="592.00" y2="300.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="382.00" y1="370.00" x2="457.00" y2="370.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="457.00" y1="370.00" x2="532.00" y2="300.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<circle cx="592.00" cy="300.00" r="5.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<circle cx="532.00" cy="300.00" r="5.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="695.00" y1="300.00" x2="930.00" y2="300.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="6 5"/>
+<line x1="770.00" y1="175.00" x2="770.00" y2="425.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<line x1="805.00" y1="190.00" x2="805.00" y2="410.00" stroke="#7353ba" stroke-width="5" opacity="1.0"/>
+<line x1="695.00" y1="230.00" x2="770.00" y2="230.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="770.00" y1="230.00" x2="805.00" y2="243.61" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="805.00" y1="243.61" x2="895.00" y2="300.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="695.00" y1="370.00" x2="770.00" y2="370.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="770.00" y1="370.00" x2="805.00" y2="359.11" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="805.00" y1="359.11" x2="895.00" y2="300.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<circle cx="895.00" cy="300.00" r="5.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<circle cx="895.00" cy="300.00" r="5.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<text x="500.00" y="555.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">PF：f(λ) ∝ 1/λ；与普通折射色差配对后可减轻长焦校色负担</text>
+</svg>

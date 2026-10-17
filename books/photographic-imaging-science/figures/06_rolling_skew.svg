@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 6.2  行间采样时间差造成运动倾斜">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.2  行间采样时间差造成运动倾斜</text>
+<rect x="80.00" y="90.00" width="360.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="260.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">真实运动轨迹</text>
+<rect x="560.00" y="90.00" width="360.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="740.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">滚动读出的单帧</text>
+<rect x="150.00" y="180.00" width="18.00" height="210.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.25"/>
+<text x="159.00" y="420.00" fill="#17202a" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">t0</text>
+<rect x="220.00" y="180.00" width="18.00" height="210.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.43"/>
+<text x="229.00" y="420.00" fill="#17202a" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">t1</text>
+<rect x="290.00" y="180.00" width="18.00" height="210.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.61"/>
+<text x="299.00" y="420.00" fill="#17202a" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">t2</text>
+<rect x="360.00" y="180.00" width="18.00" height="210.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.79"/>
+<text x="369.00" y="420.00" fill="#17202a" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">t3</text>
+<polygon points="620.00,180.00 680.00,180.00 850.00,390.00 790.00,390.00" fill="#f7e2df" stroke="#c44536" stroke-width="4" opacity="1.0"/>
+<line x1="600.00" y1="190.00" x2="875.00" y2="190.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<line x1="600.00" y1="225.00" x2="875.00" y2="225.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<line x1="600.00" y1="260.00" x2="875.00" y2="260.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<line x1="600.00" y1="295.00" x2="875.00" y2="295.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<line x1="600.00" y1="330.00" x2="875.00" y2="330.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<line x1="600.00" y1="365.00" x2="875.00" y2="365.00" stroke="#e8edf2" stroke-width="1" opacity="1.0"/>
+<text x="740.00" y="440.00" fill="#c44536" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">xj = x0 + v(t0 + jΔt)</text>
+</svg>

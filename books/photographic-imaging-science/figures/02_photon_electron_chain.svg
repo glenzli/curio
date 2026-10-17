@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 2.1  从光子到 RAW 码值的信号链">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 2.1  从光子到 RAW 码值的信号链</text>
+<rect x="35.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#f7efd8" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<text x="100.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入射光子</text>
+<text x="100.00" y="305.00" fill="#d18f00" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Nγ</text>
+<line x1="167.00" y1="275.00" x2="193.00" y2="275.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="195.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#dff2e9" stroke="#2a9d6f" stroke-width="2.5" opacity="1.0"/>
+<text x="260.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">滤色片与 QE</text>
+<text x="260.00" y="305.00" fill="#2a9d6f" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">η(λ)</text>
+<line x1="327.00" y1="275.00" x2="353.00" y2="275.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="355.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#dcecf7" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<text x="420.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">信号电子</text>
+<text x="420.00" y="305.00" fill="#2364aa" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Ne</text>
+<line x1="487.00" y1="275.00" x2="513.00" y2="275.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="515.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#f7e2df" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<text x="580.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FD 转换</text>
+<text x="580.00" y="305.00" fill="#c44536" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">q/CFD</text>
+<line x1="647.00" y1="275.00" x2="673.00" y2="275.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="675.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#eee8f8" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<text x="740.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">ADC</text>
+<text x="740.00" y="305.00" fill="#7353ba" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">g · Ne</text>
+<line x1="807.00" y1="275.00" x2="833.00" y2="275.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="835.00" y="210.00" width="130.00" height="130.00" rx="4" fill="#e8edf2" stroke="#17202a" stroke-width="2.5" opacity="1.0"/>
+<text x="900.00" y="260.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">RAW</text>
+<text x="900.00" y="305.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">DN</text>
+<text x="500.00" y="430.00" fill="#17202a" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">每一箭头都可能改变均值、方差、饱和点或单位</text>
+</svg>

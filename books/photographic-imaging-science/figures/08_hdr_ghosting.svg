@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 8.3  多曝光运动导致鬼影">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 8.3  多曝光运动导致鬼影</text>
+<rect x="50.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="185.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">短曝光 t₁</text>
+<rect x="365.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="500.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">长曝光 t₂</text>
+<rect x="680.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="815.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">直接融合</text>
+<circle cx="150.00" cy="215.00" r="32.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.8"/>
+<rect x="116.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.8"/>
+<line x1="130.00" y1="377.00" x2="110.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="1.0"/>
+<line x1="170.00" y1="377.00" x2="190.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="1.0"/>
+<circle cx="500.00" cy="215.00" r="32.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.8"/>
+<rect x="466.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.8"/>
+<line x1="480.00" y1="377.00" x2="460.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="1.0"/>
+<line x1="520.00" y1="377.00" x2="540.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="1.0"/>
+<circle cx="755.00" cy="215.00" r="32.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.45"/>
+<rect x="721.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.45"/>
+<line x1="735.00" y1="377.00" x2="715.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="0.45"/>
+<line x1="775.00" y1="377.00" x2="795.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="0.45"/>
+<circle cx="865.00" cy="215.00" r="32.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.45"/>
+<rect x="831.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.45"/>
+<line x1="845.00" y1="377.00" x2="825.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="0.45"/>
+<line x1="885.00" y1="377.00" x2="905.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="0.45"/>
+<text x="815.00" y="465.00" fill="#7353ba" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">两个时刻不能自动成为同一时刻</text>
+</svg>

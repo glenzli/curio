@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 6.4  平面传感器与弯曲最佳像面">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.4  平面传感器与弯曲最佳像面</text>
+<line x1="80.00" y1="300.00" x2="900.00" y2="300.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="300.00" cy="300.00" rx="30.00" ry="160.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<line x1="80.00" y1="170.00" x2="300.00" y2="300.00" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="720.00" y2="210.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="80.00" y1="300.00" x2="300.00" y2="300.00" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="760.00" y2="300.00" stroke="#2a9d6f" stroke-width="2.5" opacity="1.0"/>
+<line x1="80.00" y1="430.00" x2="300.00" y2="300.00" stroke="#7353ba" stroke-width="2" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="720.00" y2="390.00" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<polyline points="738.39,173.78 737.06,177.12 735.77,180.66 734.51,184.39 733.30,188.30 732.13,192.40 731.01,196.66 729.93,201.09 728.90,205.68 727.92,210.42 726.99,215.30 726.11,220.32 725.29,225.47 724.52,230.73 723.81,236.11 723.16,241.59 722.56,247.16 722.03,252.82 721.56,258.55 721.15,264.34 720.80,270.20 720.51,276.10 720.29,282.04 720.13,288.01 720.03,294.00 720.00,300.00 720.03,306.00 720.13,311.99 720.29,317.96 720.51,323.90 720.80,329.80 721.15,335.66 721.56,341.45 722.03,347.18 722.56,352.84 723.16,358.41 723.81,363.89 724.52,369.27 725.29,374.53 726.11,379.68 726.99,384.70 727.92,389.58 728.90,394.32 729.93,398.91 731.01,403.34 732.13,407.60 733.30,411.70 734.51,415.61 735.77,419.34 737.06,422.88 738.39,426.22" fill="none" stroke="#2364aa" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="790.00" y1="145.00" x2="790.00" y2="455.00" stroke="#c44536" stroke-width="5" opacity="1.0"/>
+<text x="680.00" y="130.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">弯曲最佳像面</text>
+<text x="805.00" y="130.00" fill="#c44536" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面传感器</text>
+<text x="500.00" y="535.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">曲率必须与具体镜头的场曲和像散共同匹配</text>
+</svg>

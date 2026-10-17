@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 9.3  EI、中灰与固定传感器范围">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 9.3  EI、中灰与固定传感器范围</text>
+<rect x="100.00" y="180.00" width="800.00" height="58.00" rx="4" fill="#e8edf2" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<rect x="100.00" y="180.00" width="500.00" height="58.00" rx="4" fill="#dff2e9" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="600.00" y="180.00" width="300.00" height="58.00" rx="4" fill="#dcecf7" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="600.00" y1="162.00" x2="600.00" y2="256.00" stroke="#d18f00" stroke-width="4" opacity="1.0"/>
+<text x="600.00" y="152.00" fill="#d18f00" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">中灰</text>
+<text x="500.00" y="280.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">EI 低：中灰信号高</text>
+<rect x="100.00" y="355.00" width="800.00" height="58.00" rx="4" fill="#e8edf2" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<rect x="100.00" y="355.00" width="320.00" height="58.00" rx="4" fill="#dff2e9" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="420.00" y="355.00" width="480.00" height="58.00" rx="4" fill="#dcecf7" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="420.00" y1="337.00" x2="420.00" y2="431.00" stroke="#d18f00" stroke-width="4" opacity="1.0"/>
+<text x="420.00" y="327.00" fill="#d18f00" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">中灰</text>
+<text x="500.00" y="455.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">EI 高：中灰信号低</text>
+<text x="190.00" y="520.00" fill="#2a9d6f" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">阴影侧</text>
+<text x="810.00" y="520.00" fill="#2364aa" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">高光侧</text>
+</svg>

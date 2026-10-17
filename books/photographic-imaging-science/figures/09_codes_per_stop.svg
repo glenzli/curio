@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 9.2  线性与 Log 的每档码值分配">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 9.2  线性与 Log 的每档码值分配</text>
+<text x="90.00" y="125.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">线性编码</text>
+<rect x="170.00" y="90.00" width="12.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="176.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="182.00" y="90.00" width="24.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="194.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">2</text>
+<rect x="206.00" y="90.00" width="48.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="230.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">3</text>
+<rect x="254.00" y="90.00" width="96.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="302.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">4</text>
+<rect x="350.00" y="90.00" width="192.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="446.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">5</text>
+<rect x="542.00" y="90.00" width="384.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="734.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">6</text>
+<text x="90.00" y="310.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log 编码</text>
+<rect x="170.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="233.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第1档</text>
+<rect x="296.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="359.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第2档</text>
+<rect x="422.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="485.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第3档</text>
+<rect x="548.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="611.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第4档</text>
+<rect x="674.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="737.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第5档</text>
+<rect x="800.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
+<text x="863.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第6档</text>
+<text x="500.00" y="475.00" fill="#17202a" font-size="22" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log 近似让相邻曝光档获得相同码值宽度</text>
+</svg>

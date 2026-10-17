@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 2.3  典型 4T 钉扎光电二极管像素">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 2.3  典型 4T 钉扎光电二极管像素</text>
+<rect x="70.00" y="230.00" width="190.00" height="150.00" rx="4" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="165.00" y="290.00" fill="#2364aa" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">PPD</text>
+<text x="165.00" y="330.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">积累电子</text>
+<rect x="295.00" y="260.00" width="95.00" height="90.00" rx="4" fill="#f7efd8" stroke="#d18f00" stroke-width="3" opacity="1.0"/>
+<text x="342.00" y="315.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">TX</text>
+<rect x="425.00" y="230.00" width="150.00" height="150.00" rx="4" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="500.00" y="285.00" fill="#c44536" font-size="28" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FD</text>
+<text x="500.00" y="330.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">CFD</text>
+<line x1="260.00" y1="305.00" x2="295.00" y2="305.00" stroke="#2364aa" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="390.00" y1="305.00" x2="425.00" y2="305.00" stroke="#d18f00" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="640.00" y="120.00" width="120.00" height="75.00" rx="4" fill="#e8edf2" stroke="#66717e" stroke-width="2" opacity="1.0"/>
+<text x="700.00" y="167.00" fill="#17202a" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">RST</text>
+<line x1="640.00" y1="158.00" x2="545.00" y2="230.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="640.00" y="255.00" width="120.00" height="75.00" rx="4" fill="#dff2e9" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
+<text x="700.00" y="302.00" fill="#17202a" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">SF</text>
+<line x1="575.00" y1="305.00" x2="640.00" y2="292.00" stroke="#2a9d6f" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="820.00" y="255.00" width="110.00" height="75.00" rx="4" fill="#e8edf2" stroke="#66717e" stroke-width="2" opacity="1.0"/>
+<text x="875.00" y="302.00" fill="#17202a" font-size="21" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">SEL</text>
+<line x1="760.00" y1="292.00" x2="820.00" y2="292.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="930.00" y1="292.00" x2="965.00" y2="292.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="900.00" y="360.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">列线</text>
+<text x="500.00" y="500.00" fill="#17202a" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">转换增益 K ≈ q/CFD；小 CFD 提高 V/e⁻，也压缩电压容量</text>
+</svg>

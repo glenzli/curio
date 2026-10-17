@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 16.1  双高斯、反望远与望远型的光焦度布局">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 16.1  双高斯、反望远与望远型的光焦度布局</text>
+<rect x="75.00" y="100.00" width="250.00" height="350.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="200.00" y="127.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">双高斯</text>
+<ellipse cx="118.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="118.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<ellipse cx="160.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="160.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="202.00" y1="210.00" x2="202.00" y2="350.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<ellipse cx="244.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="244.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<ellipse cx="286.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="286.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="90.00" y1="280.00" x2="310.00" y2="280.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="5 4"/>
+<rect x="375.00" y="100.00" width="250.00" height="350.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="500.00" y="127.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">反望远</text>
+<ellipse cx="418.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="418.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<ellipse cx="460.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="460.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="502.00" y1="210.00" x2="502.00" y2="350.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<ellipse cx="544.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="544.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<ellipse cx="586.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="586.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="390.00" y1="280.00" x2="610.00" y2="280.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="5 4"/>
+<rect x="675.00" y="100.00" width="250.00" height="350.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="800.00" y="127.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">望远</text>
+<ellipse cx="718.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="718.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<ellipse cx="760.00" cy="280.00" rx="16.00" ry="70.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<text x="760.00" y="288.00" fill="#2364aa" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="802.00" y1="210.00" x2="802.00" y2="350.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
+<ellipse cx="844.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="844.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<ellipse cx="886.00" cy="280.00" rx="16.00" ry="55.00" fill="#f7e2df" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<text x="886.00" y="288.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="690.00" y1="280.00" x2="910.00" y2="280.00" stroke="#66717e" stroke-width="1" opacity="1.0" stroke-dasharray="5 4"/>
+<text x="500.00" y="520.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">符号只表示一阶光焦度；真实镜片形状和像差校正远更复杂</text>
+</svg>

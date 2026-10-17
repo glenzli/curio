@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 13.2  场曲与同一平面测试">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 13.2  场曲与同一平面测试</text>
+<line x1="80.00" y1="300.00" x2="920.00" y2="300.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="300.00" cy="300.00" rx="25.00" ry="150.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<polyline points="740.98,144.04 738.55,147.05 736.17,150.27 733.85,153.70 731.58,157.31 729.36,161.12 727.21,165.12 725.13,169.30 723.11,173.65 721.16,178.18 719.28,182.86 717.48,187.71 715.75,192.70 714.10,197.84 712.54,203.12 711.06,208.53 709.67,214.06 708.36,219.71 707.14,225.46 706.02,231.31 704.99,237.26 704.05,243.29 703.20,249.40 702.46,255.57 701.81,261.81 701.26,268.10 700.81,274.43 700.45,280.79 700.20,287.18 700.05,293.58 700.00,300.00 700.05,306.42 700.20,312.82 700.45,319.21 700.81,325.57 701.26,331.90 701.81,338.19 702.46,344.43 703.20,350.60 704.05,356.71 704.99,362.74 706.02,368.69 707.14,374.54 708.36,380.29 709.67,385.94 711.06,391.47 712.54,396.88 714.10,402.16 715.75,407.30 717.48,412.29 719.28,417.14 721.16,421.82 723.11,426.35 725.13,430.70 727.21,434.88 729.36,438.88 731.58,442.69 733.85,446.30 736.17,449.73 738.55,452.95 740.98,455.96" fill="none" stroke="#2364aa" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="805.00" y1="105.00" x2="805.00" y2="495.00" stroke="#c44536" stroke-width="5" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="727.54" y2="145.00" stroke="#2a9d6f" stroke-width="1.8" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="706.78" y2="225.00" stroke="#2a9d6f" stroke-width="1.8" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="700.00" y2="300.00" stroke="#2a9d6f" stroke-width="1.8" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="706.78" y2="375.00" stroke="#2a9d6f" stroke-width="1.8" opacity="1.0"/>
+<line x1="300.00" y1="300.00" x2="727.54" y2="455.00" stroke="#2a9d6f" stroke-width="1.8" opacity="1.0"/>
+<text x="660.00" y="90.00" fill="#2364aa" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">逐像高最佳焦面</text>
+<text x="820.00" y="90.00" fill="#c44536" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面靶 / 传感器</text>
+<text x="500.00" y="540.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">边缘重新对焦后的性能可把场曲与局部像差分开</text>
+</svg>

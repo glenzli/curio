@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 4.3  动态范围上端与多种下端判据">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 4.3  动态范围上端与多种下端判据</text>
+<line x1="110.00" y1="280.00" x2="900.00" y2="280.00" stroke="#17202a" stroke-width="7" opacity="1.0"/>
+<line x1="160.00" y1="245.00" x2="160.00" y2="315.00" stroke="#c44536" stroke-width="4" opacity="1.0"/>
+<text x="160.00" y="355.00" fill="#c44536" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1×读噪</text>
+<line x1="235.00" y1="245.00" x2="235.00" y2="315.00" stroke="#d18f00" stroke-width="4" opacity="1.0"/>
+<text x="235.00" y="355.00" fill="#d18f00" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">SNR=2</text>
+<line x1="850.00" y1="245.00" x2="850.00" y2="315.00" stroke="#2364aa" stroke-width="4" opacity="1.0"/>
+<text x="850.00" y="355.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">线性满阱</text>
+<line x1="165.00" y1="180.00" x2="845.00" y2="180.00" stroke="#2364aa" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="505.00" y="155.00" fill="#2364aa" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">工程 DR：QFW / σr</text>
+<line x1="240.00" y1="390.00" x2="845.00" y2="390.00" stroke="#d18f00" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="540.00" y="435.00" fill="#d18f00" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">可用 DR：QFW / μmin(SNR 门槛)</text>
+</svg>

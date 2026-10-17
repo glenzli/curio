@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 3.2  量化步长、系统增益与电子刻度">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 3.2  量化步长、系统增益与电子刻度</text>
+<line x1="130.00" y1="485.00" x2="830.00" y2="485.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="130.00" y1="485.00" x2="130.00" y2="95.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="480.00" y="520.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">输入电压</text>
+<text x="88.00" y="290.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif" transform="rotate(-90 88 290.0)">输出码值</text>
+<polyline points="130.00,485.00 217.50,485.00 217.50,429.29 217.50,429.29 305.00,429.29 305.00,373.57 305.00,373.57 392.50,373.57 392.50,317.86 392.50,317.86 480.00,317.86 480.00,262.14 480.00,262.14 567.50,262.14 567.50,206.43 567.50,206.43 655.00,206.43 655.00,150.71 655.00,150.71 742.50,150.71 742.50,95.00 742.50,95.00 830.00,95.00" fill="none" stroke="#2364aa" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="130.00,485.00 830.00,95.00" fill="none" stroke="#66717e" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0" stroke-dasharray="8 6"/>
+<text x="745.00" y="155.00" fill="#66717e" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">理想线性</text>
+<text x="640.00" y="340.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">量化阶梯 Δ</text>
+<text x="500.00" y="545.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">位深规定阶梯数量；有效精度还受读噪与非线性限制</text>
+</svg>

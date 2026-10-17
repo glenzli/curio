@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 14.2  正低色散片与负高色散片组成消色差双片">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 14.2  正低色散片与负高色散片组成消色差双片</text>
+<line x1="70.00" y1="310.00" x2="930.00" y2="310.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="430.00" cy="310.00" rx="35.00" ry="165.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<path d="M470,165 Q512,310 470,455 L530,455 Q488,310 530,165 Z" fill="#f7e2df" stroke="#c44536" stroke-width="3"/>
+<text x="430.00" y="500.00" fill="#2364aa" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+Φ₁ / 高 V₁</text>
+<text x="500.00" y="535.00" fill="#c44536" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−Φ₂ / 低 V₂</text>
+<line x1="80.00" y1="210.00" x2="430.00" y2="210.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="430.00" y1="210.00" x2="500.00" y2="245.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="500.00" y1="245.00" x2="820.00" y2="310.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="80.00" y1="255.00" x2="430.00" y2="255.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="430.00" y1="255.00" x2="500.00" y2="274.25" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="500.00" y1="274.25" x2="820.00" y2="310.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<circle cx="820.00" cy="310.00" r="7.00" fill="#2a9d6f" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
+<text x="820.00" y="350.00" fill="#2a9d6f" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F、C 两线共焦</text>
+<text x="670.00" y="125.00" fill="#17202a" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Φ₁/V₁ + Φ₂/V₂ = 0</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 17.3  镜头测试中必须分离的误差来源">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 17.3  镜头测试中必须分离的误差来源</text>
+<circle cx="500.00" cy="285.00" r="75.00" fill="#e8edf2" stroke="#17202a" stroke-width="3" opacity="1.0"/>
+<text x="500.00" y="280.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">测得的</text>
+<text x="500.00" y="310.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">系统 MTF</text>
+<rect x="90.00" y="110.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<text x="170.00" y="152.00" fill="#2364aa" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">镜头像差</text>
+<line x1="170.00" y1="180.00" x2="438.12" y2="258.75" stroke="#2364aa" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="420.00" y="60.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<text x="500.00" y="102.00" fill="#c44536" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">对焦误差</text>
+<line x1="500.00" y1="130.00" x2="500.00" y2="249.38" stroke="#c44536" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="750.00" y="110.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<text x="830.00" y="152.00" fill="#7353ba" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">样品偏心</text>
+<line x1="830.00" y1="180.00" x2="561.88" y2="258.75" stroke="#7353ba" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="90.00" y="395.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#2a9d6f" stroke-width="2.5" opacity="1.0"/>
+<text x="170.00" y="437.00" fill="#2a9d6f" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">测试靶 / 空气</text>
+<line x1="170.00" y1="395.00" x2="438.12" y2="312.19" stroke="#2a9d6f" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="420.00" y="465.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<text x="500.00" y="507.00" fill="#d18f00" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">传感器采样</text>
+<line x1="500.00" y1="465.00" x2="500.00" y2="325.31" stroke="#d18f00" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="750.00" y="395.00" width="160.00" height="70.00" rx="4" fill="#fbfcfe" stroke="#188a9a" stroke-width="2.5" opacity="1.0"/>
+<text x="830.00" y="437.00" fill="#188a9a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">RAW 解码 / 锐化</text>
+<line x1="830.00" y1="395.00" x2="561.88" y2="312.19" stroke="#188a9a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="500.00" y="575.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">旋转、重复装卸、对焦包围和多样品统计用于分离这些来源</text>
+</svg>

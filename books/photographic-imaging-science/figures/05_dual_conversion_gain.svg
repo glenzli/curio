@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 5.2  双转换增益的容量--读噪权衡">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 5.2  双转换增益的容量--读噪权衡</text>
+<line x1="130.00" y1="470.00" x2="830.00" y2="470.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="130.00" y1="470.00" x2="130.00" y2="100.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="480.00" y="505.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">输入电子数</text>
+<text x="88.00" y="285.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif" transform="rotate(-90 88 285.0)">FD 输出电压</text>
+<polyline points="130.00,470.00 354.00,100.00" fill="none" stroke="#c44536" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="130.00,470.00 830.00,236.90" fill="none" stroke="#2364aa" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="130.00" y1="100.00" x2="830.00" y2="100.00" stroke="#66717e" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
+<text x="340.00" y="125.00" fill="#c44536" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">HCG：高 V/e⁻，较早触顶</text>
+<text x="600.00" y="290.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">LCG：低 V/e⁻，容量更大</text>
+<text x="500.00" y="545.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">同一“ISO”菜单可能在某阈值切换两条读出曲线</text>
+</svg>

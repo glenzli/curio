@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 3.1  CMOS 读出链及噪声注入位置">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 3.1  CMOS 读出链及噪声注入位置</text>
+<rect x="80.00" y="230.00" width="140.00" height="110.00" rx="4" fill="#dcecf7" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<text x="150.00" y="295.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像素 SF</text>
+<line x1="220.00" y1="285.00" x2="243.00" y2="285.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="255.00" y="230.00" width="165.00" height="110.00" rx="4" fill="#dff2e9" stroke="#2a9d6f" stroke-width="2.5" opacity="1.0"/>
+<text x="337.00" y="295.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">列采样 / CDS</text>
+<line x1="420.00" y1="285.00" x2="443.00" y2="285.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="455.00" y="230.00" width="140.00" height="110.00" rx="4" fill="#f7efd8" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<text x="525.00" y="295.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">模拟增益</text>
+<line x1="595.00" y1="285.00" x2="618.00" y2="285.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="630.00" y="230.00" width="140.00" height="110.00" rx="4" fill="#f7e2df" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<text x="700.00" y="295.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">列 ADC</text>
+<line x1="770.00" y1="285.00" x2="793.00" y2="285.00" stroke="#66717e" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="805.00" y="230.00" width="140.00" height="110.00" rx="4" fill="#eee8f8" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<text x="875.00" y="295.00" fill="#17202a" font-size="18" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">数字校正</text>
+<text x="150.00" y="420.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R1：增益前噪声</text>
+<line x1="190.00" y1="398.00" x2="190.00" y2="340.00" stroke="#2364aa" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="590.00" y="420.00" fill="#c44536" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R2 / 量化：增益后噪声</text>
+<line x1="670.00" y1="398.00" x2="670.00" y2="340.00" stroke="#c44536" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="500.00" y="505.00" fill="#17202a" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">模拟增益只能压低其后噪声折算到输入端的贡献</text>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 15.3  四分之一波长增透膜的反射相消">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 15.3  四分之一波长增透膜的反射相消</text>
+<rect x="150.00" y="300.00" width="700.00" height="180.00" rx="4" fill="#dcecf7" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<text x="500.00" y="450.00" fill="#2364aa" font-size="22" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">玻璃 ns</text>
+<rect x="150.00" y="230.00" width="700.00" height="70.00" rx="4" fill="#dff2e9" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
+<text x="500.00" y="275.00" fill="#2a9d6f" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">膜层 nc，光学厚度 λ/4</text>
+<text x="500.00" y="120.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">空气 n₀</text>
+<line x1="340.00" y1="90.00" x2="340.00" y2="230.00" stroke="#d18f00" stroke-width="4" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="340.00" y1="230.00" x2="340.00" y2="145.00" stroke="#c44536" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="620.00" y1="90.00" x2="620.00" y2="300.00" stroke="#d18f00" stroke-width="4" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="620.00" y1="300.00" x2="620.00" y2="145.00" stroke="#2364aa" stroke-width="3" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="185.00" y="170.00" fill="#c44536" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">上界面反射</text>
+<text x="650.00" y="170.00" fill="#2364aa" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">膜内往返后反射</text>
+<text x="500.00" y="510.00" fill="#17202a" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">两条正入射光程并列示意；出射反射波叠加</text>
+<text x="500.00" y="550.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">设计波长正入射时，nc² = n₀ns 使总反射振幅为零</text>
+</svg>

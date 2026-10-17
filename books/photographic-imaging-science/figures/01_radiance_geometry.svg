@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 1.1  辐亮度、投影面积与立体角">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 1.1  辐亮度、投影面积与立体角</text>
+<polygon points="120.00,420.00 360.00,470.00 390.00,400.00 150.00,350.00" fill="#dcecf7" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<text x="220.00" y="465.00" fill="#2364aa" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">接收面 dA</text>
+<line x1="255.00" y1="400.00" x2="255.00" y2="210.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="270.00" y="225.00" fill="#17202a" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">法线 n</text>
+<line x1="760.00" y1="210.00" x2="180.00" y2="365.00" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<line x1="760.00" y1="210.00" x2="260.00" y2="385.00" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<line x1="760.00" y1="210.00" x2="345.00" y2="410.00" stroke="#d18f00" stroke-width="2.5" opacity="1.0"/>
+<circle cx="760.00" cy="210.00" r="12.00" fill="#d18f00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<text x="760.00" y="175.00" fill="#d18f00" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">方向微元 dΩ</text>
+<line x1="255.00" y1="400.00" x2="690.00" y2="235.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="7 6"/>
+<text x="420.00" y="300.00" fill="#17202a" font-size="22" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">θ</text>
+<text x="500.00" y="520.00" fill="#17202a" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">dΦ = L cosθ dA dΩ dλ</text>
+</svg>

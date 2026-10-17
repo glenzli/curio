@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 6.3  FSI、BSI 与逻辑堆栈的层次区别">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.3  FSI、BSI 与逻辑堆栈的层次区别</text>
+<rect x="35.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="177.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FSI</text>
+<rect x="70.00" y="155.00" width="215.00" height="65.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="177.00" y="193.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
+<rect x="70.00" y="220.00" width="215.00" height="80.00" rx="1" fill="#f7efd8" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="177.00" y="266.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">金属布线</text>
+<rect x="70.00" y="300.00" width="215.00" height="130.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="177.00" y="371.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光敏硅</text>
+<line x1="120.00" y1="120.00" x2="120.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="177.00" y1="120.00" x2="177.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="234.00" y1="120.00" x2="234.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="350.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="492.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI</text>
+<rect x="385.00" y="155.00" width="215.00" height="65.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="492.00" y="193.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
+<rect x="385.00" y="220.00" width="215.00" height="130.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="492.00" y="291.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">减薄光敏硅</text>
+<rect x="385.00" y="350.00" width="215.00" height="80.00" rx="1" fill="#f7efd8" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="492.00" y="396.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">金属布线</text>
+<line x1="435.00" y1="120.00" x2="435.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="492.00" y1="120.00" x2="492.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="549.00" y1="120.00" x2="549.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<rect x="665.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="807.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI + 逻辑堆栈</text>
+<rect x="700.00" y="145.00" width="215.00" height="55.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="807.00" y="178.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
+<rect x="700.00" y="200.00" width="215.00" height="105.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="807.00" y="258.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像素晶圆</text>
+<rect x="700.00" y="305.00" width="215.00" height="35.00" rx="1" fill="#e8edf2" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="807.00" y="328.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">键合互连</text>
+<rect x="700.00" y="340.00" width="215.00" height="105.00" rx="1" fill="#f7e2df" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
+<text x="807.00" y="398.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">逻辑 / ADC</text>
+<line x1="750.00" y1="112.00" x2="750.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="807.00" y1="112.00" x2="807.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<line x1="864.00" y1="112.00" x2="864.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="500.00" y="555.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">结构名称规定层次关系，不直接给出读噪、动态范围或扫描时间</text>
+</svg>

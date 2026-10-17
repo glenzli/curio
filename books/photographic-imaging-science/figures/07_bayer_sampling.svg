@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 7.2  Bayer CFA 的空间采样">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 7.2  Bayer CFA 的空间采样</text>
+<rect x="190.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="260.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="330.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="400.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="470.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="540.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="610.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="680.00" y="95.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="139.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="190.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="260.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="330.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="400.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="470.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="540.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="610.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="680.00" y="165.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="209.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="190.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="260.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="330.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="400.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="470.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="540.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="610.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="680.00" y="235.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="279.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="190.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="260.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="330.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="400.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="470.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="540.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="610.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="680.00" y="305.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="349.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="190.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="260.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="330.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="400.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="470.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="540.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="610.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">R</text>
+<rect x="680.00" y="375.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="419.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="190.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="225.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="260.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="295.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="330.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="365.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="400.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="435.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="470.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="505.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="540.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="575.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<rect x="610.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2a9d6f" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="645.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">G</text>
+<rect x="680.00" y="445.00" width="70.00" height="70.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="2" opacity="0.78"/>
+<text x="715.00" y="489.00" fill="#ffffff" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">B</text>
+<line x1="185.00" y1="540.00" x2="745.00" y2="540.00" stroke="#17202a" stroke-width="2" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="465.00" y="575.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">完整 photosite 节距 p；单独 R/B 的规则周期更大</text>
+</svg>

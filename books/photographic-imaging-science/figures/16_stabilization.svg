@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 16.3  角抖动、像移与防抖补偿">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 16.3  角抖动、像移与防抖补偿</text>
+<rect x="55.00" y="95.00" width="420.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="265.00" y="122.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">未补偿</text>
+<rect x="525.00" y="95.00" width="420.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
+<text x="735.00" y="122.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">移动光学组 / 传感器补偿</text>
+<ellipse cx="205.00" cy="300.00" rx="22.00" ry="130.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<line x1="405.00" y1="155.00" x2="405.00" y2="445.00" stroke="#17202a" stroke-width="4" opacity="1.0"/>
+<line x1="85.00" y1="263.00" x2="205.00" y2="275.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="205.00" y1="275.00" x2="405.00" y2="320.00" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<circle cx="405.00" cy="320.00" r="8.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="375.00" y1="300.00" x2="435.00" y2="300.00" stroke="#2a9d6f" stroke-width="3" opacity="1.0" stroke-dasharray="5 4"/>
+<text x="365.00" y="290.00" fill="#2a9d6f" font-size="14" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">理想位置</text>
+<ellipse cx="675.00" cy="280.00" rx="22.00" ry="130.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<line x1="875.00" y1="155.00" x2="875.00" y2="445.00" stroke="#17202a" stroke-width="4" opacity="1.0"/>
+<line x1="555.00" y1="263.00" x2="675.00" y2="275.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="675.00" y1="275.00" x2="875.00" y2="300.00" stroke="#c44536" stroke-width="3" opacity="1.0"/>
+<circle cx="875.00" cy="300.00" r="8.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="675.00" y1="420.00" x2="675.00" y2="385.00" stroke="#2a9d6f" stroke-width="4" opacity="1.0" marker-end="url(#arrow)"/>
+<text x="700.00" y="420.00" fill="#2a9d6f" font-size="15" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">补偿位移</text>
+<text x="500.00" y="545.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">小角度像移 Δx ≈ fθ；防抖不冻结主体运动</text>
+</svg>

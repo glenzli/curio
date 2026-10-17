@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 11.3  孔径光阑、入瞳与出瞳">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 11.3  孔径光阑、入瞳与出瞳</text>
+<line x1="50.00" y1="305.00" x2="950.00" y2="305.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="280.00" cy="305.00" rx="25.00" ry="135.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<ellipse cx="720.00" cy="305.00" rx="25.00" ry="125.00" fill="#dcecf7" stroke="#2a9d6f" stroke-width="3" opacity="1.0"/>
+<line x1="500.00" y1="220.00" x2="500.00" y2="390.00" stroke="#17202a" stroke-width="10" opacity="1.0"/>
+<text x="500.00" y="420.00" fill="#17202a" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">孔径光阑</text>
+<line x1="170.00" y1="262.50" x2="170.00" y2="347.50" stroke="#c44536" stroke-width="5" opacity="1.0" stroke-dasharray="6 4"/>
+<text x="170.00" y="225.00" fill="#c44536" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入瞳（前组所成像）</text>
+<line x1="835.00" y1="260.57" x2="835.00" y2="349.43" stroke="#7353ba" stroke-width="5" opacity="1.0" stroke-dasharray="6 4"/>
+<text x="835.00" y="225.00" fill="#7353ba" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">出瞳（后组所成像）</text>
+<line x1="500.00" y1="220.00" x2="280.00" y2="220.00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="280.00" y1="220.00" x2="170.00" y2="347.50" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="500.00" y1="220.00" x2="280.00" y2="305.00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="280.00" y1="305.00" x2="170.00" y2="347.50" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
+<line x1="500.00" y1="220.00" x2="720.00" y2="220.00" stroke="#188a9a" stroke-width="2" opacity="1.0"/>
+<line x1="720.00" y1="220.00" x2="835.00" y2="349.43" stroke="#188a9a" stroke-width="2" opacity="1.0"/>
+<line x1="500.00" y1="220.00" x2="720.00" y2="305.00" stroke="#188a9a" stroke-width="2" opacity="1.0"/>
+<line x1="720.00" y1="305.00" x2="835.00" y2="349.43" stroke="#188a9a" stroke-width="2" opacity="1.0"/>
+<text x="500.00" y="535.00" fill="#17202a" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">f 数使用入瞳直径，不是前玉直径</text>
+</svg>

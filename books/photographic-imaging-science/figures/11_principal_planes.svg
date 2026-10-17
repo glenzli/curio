@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 11.2  厚系统的主平面与等效焦距">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
+<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 11.2  厚系统的主平面与等效焦距</text>
+<line x1="70.00" y1="300.00" x2="930.00" y2="300.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="440.00" cy="300.00" rx="70.00" ry="170.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
+<ellipse cx="560.00" cy="300.00" rx="60.00" ry="150.00" fill="#dff2e9" stroke="#2a9d6f" stroke-width="3" opacity="1.0"/>
+<line x1="465.00" y1="110.00" x2="465.00" y2="490.00" stroke="#c44536" stroke-width="3" opacity="1.0" stroke-dasharray="7 5"/>
+<text x="465.00" y="95.00" fill="#c44536" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">H</text>
+<line x1="540.00" y1="110.00" x2="540.00" y2="490.00" stroke="#7353ba" stroke-width="3" opacity="1.0" stroke-dasharray="7 5"/>
+<text x="540.00" y="95.00" fill="#7353ba" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">H′</text>
+<line x1="620.00" y1="120.00" x2="620.00" y2="505.00" stroke="#66717e" stroke-width="1.2" opacity="1.0" stroke-dasharray="5 5"/>
+<text x="620.00" y="105.00" fill="#66717e" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">后表面</text>
+<line x1="540.00" y1="420.00" x2="820.00" y2="420.00" stroke="#7353ba" stroke-width="2.5" opacity="1.0"/>
+<line x1="540.00" y1="410.00" x2="540.00" y2="430.00" stroke="#7353ba" stroke-width="2" opacity="1.0"/>
+<line x1="820.00" y1="410.00" x2="820.00" y2="430.00" stroke="#7353ba" stroke-width="2" opacity="1.0"/>
+<text x="680.00" y="446.00" fill="#7353ba" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">有效焦距 f：从 H′ 量起</text>
+<line x1="620.00" y1="480.00" x2="820.00" y2="480.00" stroke="#c44536" stroke-width="2.5" opacity="1.0"/>
+<line x1="620.00" y1="470.00" x2="620.00" y2="490.00" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<line x1="820.00" y1="470.00" x2="820.00" y2="490.00" stroke="#c44536" stroke-width="2" opacity="1.0"/>
+<text x="720.00" y="506.00" fill="#c44536" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">后焦距 BFD：从后表面量起</text>
+<line x1="540.00" y1="205.00" x2="820.00" y2="300.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="80.00" y1="205.00" x2="465.00" y2="205.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0"/>
+<line x1="465.00" y1="205.00" x2="540.00" y2="205.00" stroke="#2364aa" stroke-width="1.5" opacity="1.0" stroke-dasharray="5 4"/>
+<circle cx="820.00" cy="300.00" r="4.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
+<text x="835.00" y="290.00" fill="#2364aa" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F′</text>
+<text x="500.00" y="535.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">镜筒长度、后焦距和有效焦距不是同一个量</text>
+</svg>
