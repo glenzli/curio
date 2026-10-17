@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；包含噪声、采样混叠、MTF 传递、像场重对焦及三维弥散圈实验。",
+  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；8 组互动模型涵盖读出增益、噪声、快门时序、采样、编码、MTF、像场及三维对焦。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [
@@ -151,6 +151,15 @@
     },
     "field": {
       "entry": "interactives/field/index.js"
+    },
+    "readout": {
+      "entry": "interactives/readout/index.js"
+    },
+    "shutter": {
+      "entry": "interactives/shutter/index.js"
+    },
+    "encoding": {
+      "entry": "interactives/encoding/index.js"
     }
   },
   "source": {

@@ -73,9 +73,10 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。第四章保留曝光与噪声实验，
-第十六章提供薄透镜对焦与弥散圈的三维动画。模型和测试分别位于
-[interactives/noise](interactives/noise/) 与 [interactives/focus](interactives/focus/)。
+阅读器从同一套源文件生成本地预览和静态网站。当前有 8 组互动模型、9 处章节插入，
+从 CMOS 增益、噪声和快门时序，到编码、采样与光学传递。模型与测试位于
+[interactives](interactives/)；逐章选择理由及后续安排见
+[互动演示审读](INTERACTIVE_REVIEW.md)。
 三维组件按需使用工具内置的 Three.js，不依赖在线 CDN；不支持 WebGL 2 时保留静态图。
 本地将工具仓库克隆在 Curio 旁边并安装其依赖后，从 Curio 根目录运行：
 
@@ -91,7 +92,7 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 
 安装 Markdown Book 的 Codex 插件后，可从侧栏进入书籍阅读器，也可在会话中调用
 `open_reader`，传入本书目录的绝对路径。侧栏和会话面板复用同一阅读器，支持章节
-导航、公式、静态图和噪声互动；修改源文件后会更新预览。
+导航、公式、静态图和各组互动；修改源文件后会更新预览。
 
 重新生成全部图版：
 
@@ -118,10 +119,15 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 照片价值。
 
 
-## 光学与采样演示
+## 互动演示
 
+- 第三章 `readout`：同一电荷在 ADC 前增益与 ADC 后数字乘法中的量化、输入端读噪及高光上限。
+- 第四章 `noise`：曝光、散粒噪声、读噪与满阱；使用固定随机种子比较同一组像素。
+- 第六章 `shutter`：逐行曝光的慢速回放、匀速物体的行内模糊与行间倾斜，以及静止场景的正弦照明条带。
 - 第七章 `sampling`：连续正弦、像素盒积分、采样相位与基带折返；0.50 cycles/pixel 的边界相位单独展示。
+- 第九章 `encoding`：线性、Gamma 与带线性 toe 的教学 Log，比较码值跨度、量化后反解的暗部渐变及编码前高光剪切。
 - 第十二章 `mtf`：无像差圆瞳与矩形像素的预采样 MTF、Nyquist、Airy 尺度及线性调制度条纹。
 - 第十三、十七章共用 `field`：明确声明的局部椭圆 Gaussian PSF 模型，联动像高 MTF、两个方向最佳焦面和固定平面/局部重对焦。
+- 第十六章 `focus`：近轴薄透镜、光束与弥散圈的三维对焦实验。
 
 以上模型均属于本书；`interactives/common/ui.js` 只共用展示与控件。各组件保留原 SVG 回退，正常阅读无需脚本。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。

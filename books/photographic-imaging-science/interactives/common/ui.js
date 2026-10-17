@@ -12,6 +12,7 @@ export function experiment({
   note,
   presets = [],
   update,
+  setup,
 }) {
   const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
   root.innerHTML = `<style>${style}</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div>${content}<p class="note">${note}</p></section>`;
@@ -72,7 +73,16 @@ export function experiment({
   }
   if (!presets.length) root.querySelector(".actions").remove();
   render();
-  return () => root.replaceChildren();
+  const teardown = setup?.({ root, state, render });
+  let disposed = false;
+  function dispose() {
+    if (disposed) return;
+    disposed = true;
+    teardown?.();
+    root.replaceChildren();
+  }
+  signal?.addEventListener("abort", dispose, { once: true });
+  return dispose;
 }
 
 const escape = (value) =>
