@@ -73,8 +73,10 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。第四章保留曝光与噪声实验，模型和
-单元测试位于 [interactives/noise](interactives/noise/)。
+阅读器从同一套源文件生成本地预览和静态网站。第四章保留曝光与噪声实验，
+第十六章提供薄透镜对焦与弥散圈的三维动画。模型和测试分别位于
+[interactives/noise](interactives/noise/) 与 [interactives/focus](interactives/focus/)。
+三维组件按需使用工具内置的 Three.js，不依赖在线 CDN；不支持 WebGL 2 时保留静态图。
 本地将工具仓库克隆在 Curio 旁边并安装其依赖后，从 Curio 根目录运行：
 
 ```bash

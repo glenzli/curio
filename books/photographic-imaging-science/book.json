@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。序章及 17 章正文、两篇附录、符号表、62 道练习答案和资料索引；第四章含可调曝光与噪声实验。",
+  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。序章及 17 章正文、两篇附录、符号表、62 道练习答案和资料索引；第四章含曝光与噪声实验，第十六章含三维对焦与弥散圈动画。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [
@@ -139,6 +139,9 @@
       "props": {
         "seed": 20261017
       }
+    },
+    "focus": {
+      "entry": "interactives/focus/index.js"
     }
   },
   "source": {
