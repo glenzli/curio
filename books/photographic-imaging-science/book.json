@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；16 个互动组件涵盖 Bayer 方向采样、平场相关噪声与暗场校准、HDR 位移估计、斜边拟合及光学演示。",
+  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；18 个互动组件涵盖采样与校准、HDR 与斜边估计、PF 相位量化、多层膜及近轴镜组光路。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [
@@ -184,6 +184,12 @@
     },
     "bayer": {
       "entry": "interactives/bayer/index.js"
+    },
+    "pf": {
+      "entry": "interactives/pf/index.js"
+    },
+    "paraxial": {
+      "entry": "interactives/paraxial/index.js"
     }
   },
   "source": {

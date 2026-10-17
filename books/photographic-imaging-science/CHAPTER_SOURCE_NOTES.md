@@ -16,12 +16,12 @@
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；互动另用观测水平梯度相关搜索，不冒充 HDR+ 的 FFT 配准 |
 | 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
-| 11 | Born--Wolf；Smith；Kingslake--Johnson；Ansys BFL 定义；Edmund Optics 瞳定义 | 真实处方数值追迹外置；近轴矩阵、主平面分解和厚透镜算例书内完成；光线图按近轴关系构造 |
+| 11 | Born--Wolf；Smith；Kingslake--Johnson；MIT 6.161 §2.2；Ansys BFL 定义；Edmund Optics 瞳定义 | 真实处方追迹外置；近轴矩阵、主平面分解和有限共轭书内推导；两薄组互动另用逐面倾角与传播求交 |
 | 12 | Goodman；Zeiss MTF notes | 标量 Fourier 模型为外部物理框架；物理瞳坐标、OTF 自相关与圆盘重叠计算在正文展开，宽谱合成注明条件 |
 | 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；RMS--Strehl 小误差关系在正文推导 |
 | 14 | Nikon Research Report 2022；SCHOTT N-BK7/N-F2 数据表；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；互动使用目录 Sellmeier 系数与谱线数据；接触薄片消色差和二级光谱残差书内推导，不冒充镜头处方 |
-| 15 | Born--Wolf；Macleod；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 效率与薄膜特征矩阵书内推导 |
-| 16 | Smith；Kingslake--Johnson | 复杂变焦与防抖控制外置；镜组矩阵、统一超焦距约定的景深边界和运动 OTF 书内推导 |
+| 15 | Born--Wolf；Macleod；Erteza 1995 §2.1.2；Byrnes §§3--4；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 逐段 Fourier 积分、连续极限及交替四分之一波层导纳书内推导；多层膜矩阵与界面递推独立比较 |
+| 16 | Smith；Kingslake--Johnson；MIT 6.161 §2.2.2 | 复杂变焦与防抖控制外置；镜组矩阵、统一超焦距约定的景深边界和运动 OTF 书内推导；复用两薄组互动，未复现实际处方 |
 | 17 | Burns 2000 pp. 135--136；Zeiss MTF notes；ISO 12233:2024（公开范围） | 互动采用逐行差分质心与直线拟合，并自定支持域、平滑和失败条件；二维 PSF 线积分、有限差分与尺度书内推导，不宣称完成 ISO 合格性实现 |
 
 ## 一手资料使用原则
@@ -48,6 +48,13 @@
 只用于考察读出，不代表散粒噪声被消除。第十四章的连续焦移来自两种目录玻璃的完整
 Sellmeier 模型，未从 Abbe 数单独猜测光谱。第十五章互动用单层精确反射与透射式，
 并与正文特征矩阵逐点对照；复振幅分解中的“膜内返回”已经包含全部多次往返。
+
+PF 互动把径向结构局部近似为周期相位屏。折射率差无色散时，相位深度按波长反比
+缩放；逐段精确积分与对齐每级边界的中点积分分开实现，设计条件解析效率保留。
+有限级次图的余量单列，不把 Fourier 级次能量当成完整电磁光栅的功率预测。多层膜
+另以特征矩阵和从基底回推的 Fresnel 递推计算复反射、透射，理想四分之一波导纳只
+在其适用条件下直接比较。第十一、十六章共用两薄组模型，矩阵成像与逐面近轴追迹
+互核；无焦系统、物点出射平行和虚像分别判断，均不代替真实镜头的像差分析。
 
 第八章位移估计只读取观测与曝光时间；模拟场景的真位移、有效标志和方差不进入
 估计器。真位移另用于生成融合对照，理想方差仍只用于教学融合。第十七章拟合器只

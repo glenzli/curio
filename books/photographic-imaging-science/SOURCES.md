@@ -101,6 +101,10 @@
 - Warren J. Smith, *Modern Optical Engineering*, 4th ed., McGraw-Hill, 2008.
 - Rudolf Kingslake and R. Barry Johnson, *Lens Design Fundamentals*, 2nd ed.,
   Academic Press, 2010.
+- MIT, [6.161 Geometric Optics notes](https://web.mit.edu/6.161/www/Geometric-Optics-9-07.pdf),
+  §§2.2--2.2.2: cascaded ray-transfer matrices, the B = 0 imaging condition and
+  two-lens systems. Chapters 11 and 16 use height followed by reduced angle;
+  the interactive independently traces thin-group angle kicks and translations in air.
 - Ansys, [OpticStudio User Guide: Back Focal Length](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v251/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Back_Focal_Length.html),
   for the last optical surface reference used for back focal length in Chapter 11.
 - Edmund Optics, [Telecentric Design Topics](https://www.edmundoptics.co.uk/knowledge-center/application-notes/imaging/telecentric-design-topics/),
@@ -110,6 +114,17 @@
   for the distinction and conversion between third-order ray and fourth-order
   wavefront aberration coefficients used in Chapter 13.
 - H. Angus Macleod, *Thin-Film Optical Filters*, 4th ed., CRC Press, 2010.
+- Steven J. Byrnes, [Multilayer optical calculations](https://arxiv.org/abs/1603.02720),
+  §§3--4: coherent interface amplitudes and power normalization. Chapter 15 compares
+  characteristic matrices with a separate Fresnel recursion, restricted to real indices,
+  normal incidence and a semi-infinite substrate. Complex phases follow the +i matrix
+  in Eq. (15.7); a different time-harmonic convention conjugates the amplitudes.
+- I. A. Erteza, [Diffraction efficiency analysis for multi-level diffractive optical
+  elements](https://digital.library.unt.edu/ark:/67531/metadc620317/m1/8/),
+  Sandia report, November 1995, §2.1.2, p. 4: diffraction-order efficiencies from
+  Fourier coefficients of a stepped phase grating. Chapter 15 derives its own
+  constant-index, scalar local-grating model and compares exact interval integrals
+  with midpoint quadrature; it does not model a manufactured radial PF lens.
 - SCHOTT, optical glass data sheets for
   [N-BK7](https://media.schott.com/api/public/content/41e799d0bf874807a0bb8e702fbb75b5?v=54856406)
   and [N-F2](https://media.schott.com/api/public/content/061f3156c83a44ed9220770b0f65a869?v=d69b35e0),
