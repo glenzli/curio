@@ -4,10 +4,9 @@ export function mount({ element, signal }) {
   return experiment({
     element,
     signal,
-    kicker: "频率实验 12 · 非相干圆瞳与像素孔径",
-    title: "同一组条纹，经过系统还剩多少对比？",
-    intro:
-      "改变光圈、像素节距和条纹频率。先看连续像的对比传递，再用 Nyquist 标线判断采样条件。",
+    kicker: "第十二章 · 衍射与像素孔径",
+    title: "光圈、像素节距与 MTF",
+    intro: "调整光圈、像素节距和条纹频率，观察 MTF 曲线和输出条纹的变化。",
     controls: [
       {
         key: "fNumber",
@@ -42,7 +41,7 @@ export function mount({ element, signal }) {
       { label: "f/8", values: { fNumber: 8 } },
       { label: "f/16", values: { fNumber: 16 } },
       {
-        label: "观察 Nyquist",
+        label: "设为 Nyquist 频率",
         values: (s) => ({ frequency: Number((500 / s.pixelUm).toFixed(1)) }),
       },
     ],
@@ -84,17 +83,17 @@ export function mount({ element, signal }) {
       });
       root.querySelector(".legend").innerHTML = legend(curves);
       root.querySelector(".input-strip").innerHTML =
-        `<small>输入条纹 · 调制度 0.800 · 同一物理宽度 0.24 mm</small>${stripe(s.frequency)}`;
+        `<small>输入条纹 · 调制度 0.800 · 像面宽度 0.24 mm</small>${stripe(s.frequency)}`;
       root.querySelector(".output-strip").innerHTML =
         `<small>预采样输出 · 调制度 ${(0.8 * m.system).toFixed(3)}</small>${stripe(s.frequency, m.systemOtf)}`;
       root.querySelector(".stats").innerHTML =
         `<div><small>选定频率的系统 MTF</small><strong>${m.system.toFixed(3)}</strong><em>${m.optical.toFixed(3)} × ${m.pixel.toFixed(3)}</em></div><div><small>传感器 Nyquist</small><strong>${m.nyquist.toFixed(1)}</strong><em>lp/mm</em></div><div><small>衍射截止频率</small><strong>${m.cutoff.toFixed(1)}</strong><em>lp/mm · Airy 直径 ${m.airyDiameterUm.toFixed(2)} µm</em></div>`;
       root.querySelector(".criterion").textContent =
         s.frequency >= m.nyquist
-          ? "已到或超过 Nyquist：这里仍画连续像，不能把条纹当成无混叠的传感器输出。"
-          : "低于 Nyquist；仍需抑制其他高频成分，不能仅凭这一条纹保证整幅图像没有混叠。";
+          ? "当前频率已达到或超过 Nyquist 频率。图中显示的是采样前的连续像，传感器采样时可能产生混叠。"
+          : "当前条纹频率低于 Nyquist 频率。场景中其他高于 Nyquist 的成分仍可能产生混叠。";
       root.querySelector(".reading").textContent =
-        `在 ${s.frequency.toFixed(1)} lp/mm，输入 80% 调制度变为 ${(80 * m.system).toFixed(1)}%。${m.systemOtf < 0 ? "像素孔径的有符号 OTF 为负，输出发生半周期相位反转；MTF 只报告其模。" : ""}`;
+        `在 ${s.frequency.toFixed(1)} lp/mm 处，条纹调制度由 80% 降至 ${(80 * m.system).toFixed(1)}%。${m.systemOtf < 0 ? "像素孔径的 OTF 在此频率为负，条纹相位反转半个周期；MTF 显示的是 OTF 的模。" : ""}`;
       root.querySelector(".lab").dataset.mtf = String(m.system);
     },
   });

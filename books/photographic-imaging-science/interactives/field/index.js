@@ -10,14 +10,14 @@ export function mount({ element, signal }) {
   return experiment({
     element,
     signal,
-    kicker: "像场实验 13 / 17 · 声明的高斯教学模型",
-    title: "边缘变软，是焦面弯了，还是方向焦点分开了？",
+    kicker: "第十三 / 十七章 · 高斯 PSF 模型",
+    title: "场曲与像散对 MTF 的影响",
     intro:
-      "横轴是从中心到角落的像高，每条曲线固定一个频率。改变焦面，比较固定平面与局部重对焦的结果。",
+      "移动像面，比较中心和边缘的 MTF。加入像散后，可观察径向与切向的最佳焦面如何分开。",
     controls: [
       {
         key: "height",
-        label: "观察像高",
+        label: "像高",
         min: 0,
         max: 21.6,
         step: 0.1,
@@ -53,7 +53,7 @@ export function mount({ element, signal }) {
       },
       {
         key: "frequency",
-        label: "细节曲线频率",
+        label: "细节曲线的空间频率",
         min: 20,
         max: 60,
         step: 1,
@@ -64,12 +64,12 @@ export function mount({ element, signal }) {
     presets: [
       { label: "仅场曲", values: { curvature: 75, astigmatism: 0, focus: 0 } },
       {
-        label: "加入方向焦面分裂",
+        label: "加入像散",
         values: { curvature: 75, astigmatism: 35, focus: 0 },
       },
       { label: "中心对焦", values: { focus: 0 } },
       {
-        label: "当前像高重对焦",
+        label: "在当前位置重新对焦",
         values: (s) => ({
           focus: Number((s.curvature * (s.height / maxHeight) ** 2).toFixed(1)),
         }),
@@ -77,7 +77,7 @@ export function mount({ element, signal }) {
     ],
     content:
       '<div class="field-grid"><div><div class="chart-wrap"><div class="mtf-chart chart"></div><div class="legend"></div></div></div><div class="psf"></div></div><div class="focus-chart chart"></div><div class="stats"></div><p class="criterion"></p>',
-    note: "R/T 在此明确指空间频率向量的径向/切向，并非通用的厂商 S/M 线型约定。模型设 u=(h/21.6 mm)²，z_R=(C+A)u，z_T=(C−A)u；σ_q²=(1.8 µm)²+[0.08(z−z_q)]²，MTF_q=exp[−2π²(σ_qν)²]，频率计算中 µm 换算为 mm。用局部椭圆高斯 PSF 演示诊断逻辑，不是某支镜头的处方、Seidel 拟合、完整衍射传播或实测。",
+    note: "R/T 表示空间频率向量的径向/切向，与厂商的 S/M 线型约定未必一致。模型设 u=(h/21.6 mm)²，z_R=(C+A)u，z_T=(C−A)u；σ_q²=(1.8 µm)²+[0.08(z−z_q)]²，MTF_q=exp[−2π²(σ_qν)²]，频率计算中 µm 换算为 mm。本演示使用局部椭圆高斯 PSF 说明场曲与像散的影响，不对应任何具体镜头，也不包含 Seidel 像差拟合、完整衍射传播或实测数据。",
     update(root, s) {
       const m = fieldResponse(s),
         curves = [];
@@ -106,7 +106,7 @@ export function mount({ element, signal }) {
       root.querySelector(".psf").innerHTML = psf(m);
       const focal = [
         {
-          name: "径向最佳面",
+          name: "径向最佳焦面",
           color: "#426d58",
           points: points(
             maxHeight,
@@ -114,7 +114,7 @@ export function mount({ element, signal }) {
           ),
         },
         {
-          name: "切向最佳面",
+          name: "切向最佳焦面",
           color: "#496c8c",
           dashed: true,
           points: points(
@@ -123,7 +123,7 @@ export function mount({ element, signal }) {
           ),
         },
         {
-          name: "当前平面",
+          name: "当前像面",
           color: "#a77840",
           points: [
             [0, s.focus],
@@ -134,7 +134,7 @@ export function mount({ element, signal }) {
       root.querySelector(".focus-chart").innerHTML = plot({
         curves: focal,
         xMax: maxHeight,
-        xLabel: "像高 · mm · 绿/蓝为两个最佳面，棕色为当前平面",
+        xLabel: "像高 · mm · 绿/蓝为两个最佳焦面，棕色为当前像面",
         yLabel: "轴向位置 · µm",
         yMin: -40,
         yMax: 160,
@@ -142,11 +142,11 @@ export function mount({ element, signal }) {
         title: "两个方向的最佳焦面与当前固定像面",
       });
       root.querySelector(".stats").innerHTML =
-        `<div><small>选定位置 · 径向 MTF</small><strong>${m.radial.toFixed(3)}</strong><em>${s.frequency} lp/mm</em></div><div><small>选定位置 · 切向 MTF</small><strong>${m.tangential.toFixed(3)}</strong><em>${s.frequency} lp/mm</em></div><div><small>两个最佳面间距</small><strong>${Math.abs(m.radialFocus - m.tangentialFocus).toFixed(1)}</strong><em>µm</em></div>`;
+        `<div><small>选定位置 · 径向 MTF</small><strong>${m.radial.toFixed(3)}</strong><em>${s.frequency} lp/mm</em></div><div><small>选定位置 · 切向 MTF</small><strong>${m.tangential.toFixed(3)}</strong><em>${s.frequency} lp/mm</em></div><div><small>两个最佳焦面的间距</small><strong>${Math.abs(m.radialFocus - m.tangentialFocus).toFixed(1)}</strong><em>µm</em></div>`;
       root.querySelector(".criterion").textContent =
         s.astigmatism === 0
-          ? "仅有场曲：对选定像高重新对焦，可恢复本模型的轴上基准；同一平面上的其他位置仍会变化。"
-          : "两个方向最佳面已分开：当前按钮取平均焦面，不保证任意频率的平均 MTF 最优，也不能让两方向同时达到各自最佳值。";
+          ? "当前仅有场曲。在所选像高处重新对焦，两方向的 MTF 都可恢复至轴上基准值；其他像高处的 MTF 则会随之改变。"
+          : "像散使两个方向的最佳焦面分开。“在当前位置重新对焦”将像面移到两者的中间位置，无法同时达到两个方向各自的最佳 MTF；此位置也不一定使任意频率下的平均 MTF 最大。";
       root.querySelector(".lab").dataset.radialMtf = String(m.radial);
       root.querySelector(".lab").dataset.tangentialMtf = String(m.tangential);
     },
