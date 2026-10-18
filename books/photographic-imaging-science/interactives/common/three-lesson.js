@@ -26,7 +26,7 @@ export function mountThreeLesson(context, spec, createScene) {
     ".three-hint{position:absolute;bottom:8px;left:10px;color:#617180;font-size:10px;pointer-events:none;background:#ffffffc9;padding:2px 5px;border-radius:3px}",
     ".three-scale{font-size:11px;opacity:.7}.three-legend{display:flex;gap:8px 18px;flex-wrap:wrap;font-size:11px;margin:10px 0}.three-legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px}",
     ".three-trace svg{width:100%;height:auto;display:block}.three-trace text{fill:currentColor;font-family:inherit}.three-trace{margin:16px 0}.three-status{font-size:12px;padding:10px 12px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:5px}",
-    "@media(max-width:550px){.three-stage{height:310px}.three-labels span{font-size:9px}.three-trace{overflow:auto}.three-trace svg{min-width:520px}}",
+    "@media(max-width:550px){.three-stage{height:310px}.three-labels span{font-size:9px}.three-trace{overflow:auto}.three-trace>svg{min-width:520px}}",
   ].join("");
   const content =
     "<style>" +
@@ -158,7 +158,8 @@ export function mountThreeLesson(context, spec, createScene) {
         .join("");
       dom.querySelector(".reading").textContent = currentOutput.reading;
       dom.querySelector(".three-status").textContent = currentOutput.status;
-      dom.querySelector(".three-trace").innerHTML = currentOutput.figure;
+      dom.querySelector(".three-trace").innerHTML =
+        currentOutput.liveFigure ?? currentOutput.figure;
       if (visual) {
         visual.update(currentOutput.model, parameters);
         if (currentOutput.halt) pause();
@@ -214,7 +215,11 @@ export function mountThreeLesson(context, spec, createScene) {
           () => {
             if (viewport.playing) return pause();
             const r = spec.replay;
-            if (state[r.key] >= r.end) state[r.key] = r.start;
+            if (
+              state[r.key] >= r.end ||
+              (r.restartOnHalt && currentOutput.halt)
+            )
+              state[r.key] = r.start;
             frameBudget = 0;
             render();
             if (!currentOutput.halt) viewport.setPlaying(true);

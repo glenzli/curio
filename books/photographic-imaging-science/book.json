@@ -362,6 +362,33 @@
     },
     "lens-atlas": {
       "entry": "interactives/lens-atlas/index.js"
+    },
+    "autofocus": {
+      "entry": "interactives/autofocus/index.js"
+    },
+    "cds-spectrum": {
+      "entry": "interactives/cds-spectrum/index.js"
+    },
+    "dark-sequence": {
+      "entry": "interactives/dark-sequence/index.js"
+    },
+    "motion-transfer": {
+      "entry": "interactives/motion-transfer/index.js"
+    },
+    "offaxis-bokeh": {
+      "entry": "interactives/offaxis-bokeh/index.js"
+    },
+    "parallax": {
+      "entry": "interactives/parallax/index.js"
+    },
+    "rotating-shutter": {
+      "entry": "interactives/rotating-shutter/index.js"
+    },
+    "sharpening": {
+      "entry": "interactives/sharpening/index.js"
+    },
+    "starburst": {
+      "entry": "interactives/starburst/index.js"
     }
   },
   "source": {

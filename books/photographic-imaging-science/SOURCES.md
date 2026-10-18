@@ -408,3 +408,11 @@ Tables and relevant drawings read 19 October 2026. The book computes monochromat
 spherical-cap geometry, Snell paths and paraxial references from these inputs;
 historical patent performance claims, tolerances, spectral data and product identity
 are outside these calculations.
+
+
+## 分瞳、离轴瞳与离散处理的补充资料
+
+- Canon，2013-07-02，[Dual Pixel CMOS AF技术说明](https://global.canon/en/news/2013/jul02e.html)。用于双光电二极管、分瞳相位差与对比度扫描的机制说明；第18章条带瞳、相关搜索与位置控制参数由本书定义。
+- Pharr、Jakob、Humphreys，*Physically Based Rendering*, 3rd ed., [§6.4，特别是§6.4.5](https://pbr-book.org/3ed-2018/Camera_Models/Realistic_Cameras)。用于逐界面截光与离轴有效瞳的背景；本书两圆复瞳的衍射计算沿用Goodman框架。
+- VGG，Hartley–Zisserman配套[多视几何原始代码](https://www.robots.ox.ac.uk/~vgg/hzbook/code/)，其中[相机与平面导出单应矩阵](https://www.robots.ox.ac.uk/~vgg/hzbook/code/vgg_multiview/vgg_H_from_2P_plane.m)用于核对平面映射；本书另给针孔投影、光线求交和遮挡判定。
+- Imatest，[Sharpening](https://www.imatest.com/imaging/sharpening/)。用于锐化、响应增益、过冲与噪声的测量背景；三点核公式、核DTFT和方差由本书直接计算。

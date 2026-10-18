@@ -25,6 +25,15 @@ const ids = [
   "column-stripes",
   "ptc-repeat",
   "bayer-texture",
+  "autofocus",
+  "cds-spectrum",
+  "dark-sequence",
+  "motion-transfer",
+  "offaxis-bokeh",
+  "parallax",
+  "rotating-shutter",
+  "sharpening",
+  "starburst",
 ];
 for (const id of ids) {
   const folder = new URL(`./${id}/`, import.meta.url);

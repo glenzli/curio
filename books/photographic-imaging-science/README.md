@@ -79,8 +79,8 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、18 章正文、两篇附录、符号表、答案、术语
 与资料页，共 26 个阅读页面。Markdown、55 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 73 个组件、81 处章节插入，
-18 章正文均有演示；另外保留52张组件自带的无编号静态回退。
+阅读器从同一套源文件生成本地预览和静态网站。当前有 82 个组件、90 处章节插入，
+18 章正文均有演示；另外保留61张组件自带的无编号静态回退。
 从光子计数与 QE、单斜坡 ADC、双增益共享噪声，到曝光积累、4T/CDS、平场校准、采样与配准，以及
 浮动对焦、呼吸、景深和其他光学演示。演示按内容采用条件比较、可暂停回放或三维光路。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
@@ -237,3 +237,14 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 
 - 第十六章的三维镜组运动：浮动对焦和变焦补偿共用已有逐线模型，等效组沿固定导轨移动，固定传感器处的光束截面与原解析对照同步。
 - 第十八章的三维对焦驱动：步进丝杠换向间隙、音圈加速与反向制动、环形超声行波与局部椭圆。可旋转、暂停和恢复参数，静态图保留同一输入的曲线与读数。
+
+新增展示涵盖[CDS频谱](03_cmos_pixels_readout_and_adc.md#采样间隔怎样选择噪声频率)、
+[暗场序列](04_noise_snr_full_well_and_dynamic_range.md#把热像素和主暗场放回连续拍摄)、
+[旋转快门](06_shutters_bsi_stacking_and_curved_sensors.md#转动叶片为什么会弯曲)、
+[两景深视差](08_computational_exposure_and_hdr.md#同一相机移动近景与远景仍会错位)、
+[星芒](12_diffraction_psf_otf_mtf_and_sampling.md#孔径直边与点光源的星芒)、
+[猫眼散景](13_aberrations_and_field_behavior.md#离轴截光怎样改变散景形状)、
+[运动传递](16_lens_architectures_focus_zoom_and_stabilization.md#相同rms的轨迹模糊是否相同)、
+[锐化](17_lens_testing_and_system_analysis.md#将锐化带来的响应增益单独列出)与
+[自动对焦](18_lens_size_accessories_and_focus_drives.md#187-自动对焦怎样判断移动方向)。
+全书现有86道练习及逐题答案；这些模型保留已知真值和静态图，适合按预设先预测、再观察。
