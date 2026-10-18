@@ -88,10 +88,14 @@ export function mount({ element, signal, session }) {
         Math.abs(s.frequency - 0.5) < 1e-8
           ? "频率等于 Nyquist 频率。相位为四分之一周期时，所有采样点都落在平均光强处。"
           : s.frequency > 0.5
-            ? "频率超过 Nyquist 频率。采样值也符合图中的低频正弦，仅凭这些数值无法确定原条纹频率。"
+            ? "频率超过 Nyquist 频率。采样值也符合图中的基带曲线，仅凭这些数值无法确定原条纹频率。"
             : "频率低于 Nyquist 频率。要从样本重建整个信号，仍需满足带限条件。";
+      const periods =
+        m.aliasFrequency < 1e-8
+          ? `输入条纹每 ${(1 / s.frequency).toFixed(2)} 个像素节距重复一次；图中的基带曲线为常量。`
+          : `输入条纹每 ${(1 / s.frequency).toFixed(2)} 个像素节距重复一次；基带曲线的周期为 ${(1 / m.aliasFrequency).toFixed(2)} 个像素节距。`;
       root.querySelector(".reading").textContent =
-        `橙色圆点表示每隔一个像素节距取得的样本，Nyquist 频率为 0.5 cycles/pixel。像素积分影响条纹对比度，采样间隔决定频谱副本之间的距离；积分不改变 Nyquist 频率。`;
+        `${periods} 橙色圆点每隔一个像素节距取样，Nyquist 频率为 0.5 cycles/pixel。像素积分改变条纹对比度；积分宽度不改变 Nyquist 频率。`;
       root.querySelector(".lab").dataset.aliasFrequency = String(
         m.aliasFrequency,
       );

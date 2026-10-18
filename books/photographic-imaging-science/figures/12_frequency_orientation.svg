@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 12.4  条纹方向与空间频率方向">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 12.4  条纹方向与空间频率方向</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="36.00" y="100.00" width="326.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="390.00" y="100.00" width="276.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="688.00" y="100.00" width="276.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<text x="54.00" y="132.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">先确定画面中的位置</text>
+<rect x="62.00" y="162.00" width="274.00" height="264.00" rx="4" fill="#fff" stroke="#c7d0d9" stroke-width="1.5" opacity="1.0"/>
+<line x1="144.00" y1="326.00" x2="168.00" y2="326.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0"/>
+<line x1="156.00" y1="314.00" x2="156.00" y2="338.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0"/>
+<text x="107.00" y="356.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">画面中心</text>
+<defs><marker id="arrow-316fa4-3" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L10 5.5L1 10Z" fill="#316fa4"/></marker></defs>
+<line x1="156.00" y1="326.00" x2="287.00" y2="195.00" stroke="#316fa4" stroke-width="3" opacity="1.0" marker-end="url(#arrow-316fa4-3)"/>
+<defs><marker id="arrow-be8a39-3" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L10 5.5L1 10Z" fill="#be8a39"/></marker></defs>
+<line x1="222.00" y1="168.00" x2="314.00" y2="260.00" stroke="#be8a39" stroke-width="3" opacity="1.0" marker-end="url(#arrow-be8a39-3)"/>
+<circle cx="268.00" cy="214.00" r="5.00" fill="#fff" stroke="#25303b" stroke-width="2" opacity="1.0"/>
+<text x="279.00" y="181.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">离轴点</text>
+<text x="203.00" y="299.00" fill="#316fa4" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">径向</text>
+<text x="290.00" y="295.00" fill="#be8a39" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">切向</text>
+<text x="199.00" y="452.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">径向连接画面中心与离轴点</text>
+<text x="528.00" y="132.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">条纹沿径向</text>
+<defs><clipPath id="orientation-patch-0"><rect x="414" y="170" width="228" height="228" rx="4"/></clipPath></defs>
+<rect x="414.00" y="170.00" width="228.00" height="228.00" rx="4" fill="#fff" stroke="#c7d0d9" stroke-width="1" opacity="1.0"/>
+<g clip-path="url(#orientation-patch-0)">
+<line x1="28.00" y1="304.00" x2="548.00" y2="-216.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="52.00" y1="328.00" x2="572.00" y2="-192.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="76.00" y1="352.00" x2="596.00" y2="-168.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="100.00" y1="376.00" x2="620.00" y2="-144.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="124.00" y1="400.00" x2="644.00" y2="-120.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="148.00" y1="424.00" x2="668.00" y2="-96.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="172.00" y1="448.00" x2="692.00" y2="-72.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="196.00" y1="472.00" x2="716.00" y2="-48.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="220.00" y1="496.00" x2="740.00" y2="-24.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="244.00" y1="520.00" x2="764.00" y2="0.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="268.00" y1="544.00" x2="788.00" y2="24.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="292.00" y1="568.00" x2="812.00" y2="48.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="316.00" y1="592.00" x2="836.00" y2="72.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="340.00" y1="616.00" x2="860.00" y2="96.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="364.00" y1="640.00" x2="884.00" y2="120.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="388.00" y1="664.00" x2="908.00" y2="144.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="412.00" y1="688.00" x2="932.00" y2="168.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="436.00" y1="712.00" x2="956.00" y2="192.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="460.00" y1="736.00" x2="980.00" y2="216.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="484.00" y1="760.00" x2="1004.00" y2="240.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="508.00" y1="784.00" x2="1028.00" y2="264.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+</g>
+<line x1="471.00" y1="227.00" x2="585.00" y2="341.00" stroke="#fff" stroke-width="9" opacity="1.0"/>
+<defs><marker id="arrow-be8a39-4" markerWidth="13" markerHeight="13" refX="12" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L12 6.5L1 12Z" fill="#be8a39"/></marker></defs>
+<line x1="471.00" y1="227.00" x2="585.00" y2="341.00" stroke="#be8a39" stroke-width="4" opacity="1.0" marker-end="url(#arrow-be8a39-4)"/>
+<line x1="510.00" y1="302.00" x2="546.00" y2="266.00" stroke="#25303b" stroke-width="2" opacity="1.0"/>
+<text x="528.00" y="433.00" fill="#be8a39" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">频率沿切向</text>
+<text x="528.00" y="459.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">箭头指向明暗交替的方向</text>
+<text x="826.00" y="132.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">条纹沿切向</text>
+<defs><clipPath id="orientation-patch-1"><rect x="712" y="170" width="228" height="228" rx="4"/></clipPath></defs>
+<rect x="712.00" y="170.00" width="228.00" height="228.00" rx="4" fill="#fff" stroke="#c7d0d9" stroke-width="1" opacity="1.0"/>
+<g clip-path="url(#orientation-patch-1)">
+<line x1="326.00" y1="264.00" x2="846.00" y2="784.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="350.00" y1="240.00" x2="870.00" y2="760.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="374.00" y1="216.00" x2="894.00" y2="736.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="398.00" y1="192.00" x2="918.00" y2="712.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="422.00" y1="168.00" x2="942.00" y2="688.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="446.00" y1="144.00" x2="966.00" y2="664.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="470.00" y1="120.00" x2="990.00" y2="640.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="494.00" y1="96.00" x2="1014.00" y2="616.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="518.00" y1="72.00" x2="1038.00" y2="592.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="542.00" y1="48.00" x2="1062.00" y2="568.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="566.00" y1="24.00" x2="1086.00" y2="544.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="590.00" y1="0.00" x2="1110.00" y2="520.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="614.00" y1="-24.00" x2="1134.00" y2="496.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="638.00" y1="-48.00" x2="1158.00" y2="472.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="662.00" y1="-72.00" x2="1182.00" y2="448.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="686.00" y1="-96.00" x2="1206.00" y2="424.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="710.00" y1="-120.00" x2="1230.00" y2="400.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="734.00" y1="-144.00" x2="1254.00" y2="376.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="758.00" y1="-168.00" x2="1278.00" y2="352.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="782.00" y1="-192.00" x2="1302.00" y2="328.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+<line x1="806.00" y1="-216.00" x2="1326.00" y2="304.00" stroke="#dae1e7" stroke-width="15" opacity="1.0"/>
+</g>
+<line x1="769.00" y1="341.00" x2="883.00" y2="227.00" stroke="#fff" stroke-width="9" opacity="1.0"/>
+<defs><marker id="arrow-316fa4-4" markerWidth="13" markerHeight="13" refX="12" refY="6.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L12 6.5L1 12Z" fill="#316fa4"/></marker></defs>
+<line x1="769.00" y1="341.00" x2="883.00" y2="227.00" stroke="#316fa4" stroke-width="4" opacity="1.0" marker-end="url(#arrow-316fa4-4)"/>
+<line x1="808.00" y1="266.00" x2="844.00" y2="302.00" stroke="#25303b" stroke-width="2" opacity="1.0"/>
+<text x="826.00" y="433.00" fill="#316fa4" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">频率沿径向</text>
+<text x="826.00" y="459.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">箭头指向明暗交替的方向</text>
+<text x="500.00" y="521.00" fill="#25303b" font-size="23" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">空间频率方向与条纹延伸方向垂直</text>
+<text x="500.00" y="557.00" fill="#7a8590" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">颜色区分径向与切向；厂商的 S/T 或 S/M 字母仍按各自图例读取</text>
+</svg>

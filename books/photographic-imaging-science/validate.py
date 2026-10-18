@@ -66,7 +66,7 @@ EXPECTED_FIGURES = {
     9: 3,
     10: 2,
     11: 3,
-    12: 3,
+    12: 4,
     13: 3,
     14: 2,
     15: 3,
@@ -306,8 +306,8 @@ def main() -> None:
                 fail(f"unknown equation reference ({reference}) in {path.name}")
 
     figure_paths = sorted(path.resolve() for path in FIGURE_ROOT.glob("*.svg"))
-    if len(figure_paths) != 48:
-        fail(f"expected 48 generated SVG figures, found {len(figure_paths)}")
+    if len(figure_paths) != 49:
+        fail(f"expected 49 generated SVG figures, found {len(figure_paths)}")
     if set(figure_paths) != set(referenced_figures):
         missing = sorted(
             str(path.relative_to(ROOT))

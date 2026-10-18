@@ -14,6 +14,7 @@ $\sigma_\alpha^2,\sigma_\beta^2,\sigma_\varepsilon^2$ 为三层生成方差，$M
 | $\lambda$ | 真空波长 | m，常用 nm |
 | $h$ | Planck 常数 | J s |
 | $c$ | 真空光速 | m/s |
+| $\Omega$（第一章） | 立体角；球面截取面积与球半径平方之比 | sr |
 | $L_{e,\lambda}$ | 光谱辐亮度 | W m$^{-2}$ sr$^{-1}$ m$^{-1}$ |
 | $L_v$ | 光度学亮度，测光模型使用 | cd/m$^2$ |
 | $K_m$ | 反射式测光校正常数，单位随亮度与曝光指数约定 | 依式 (5.1) |
@@ -38,6 +39,7 @@ $\sigma_\alpha^2,\sigma_\beta^2,\sigma_\varepsilon^2$ 为三层生成方差，$M
 | $\mathcal R(\lambda)$ | 光电响应度 | A/W |
 | $N_\gamma$ | 入射光子计数 | photon |
 | $N_e$ | 收集到的光电子计数 | e$^-$ |
+| $\mu_e,\sigma_e$（第二章） | 重复曝光电子数的均值与标准差 | e$^-$ |
 | $Q_\mathrm{FW}$ | 线性满阱容量 | e$^-$ |
 | $\sigma_r$ | 输入等效读出噪声的均方根 | e$^-$ rms |
 | $\mu_d$ | 一次曝光内平均暗电子数 | e$^-$ |

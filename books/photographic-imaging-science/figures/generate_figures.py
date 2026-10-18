@@ -977,6 +977,58 @@ def figure_12_system_mtf() -> None:
     s.save("12_system_mtf.svg")
 
 
+def figure_12_frequency_orientation() -> None:
+    s = SVG("图 12.4  条纹方向与空间频率方向")
+    for x, width in [(36, 326), (390, 276), (688, 276)]:
+        s.rect(x, 100, width, 376, fill="#fafbfc", stroke=LIGHT, sw=1, radius=8)
+    s.text(54, 132, "先确定画面中的位置", size=20, weight="600")
+    s.rect(62, 162, 274, 264, fill="#fff", stroke="#c7d0d9", sw=1.5)
+    center, field = (156, 326), (268, 214)
+    s.line(144, 326, 168, 326, color=GRAY, width=1.5)
+    s.line(156, 314, 156, 338, color=GRAY, width=1.5)
+    s.text(107, 356, "画面中心", size=16, color=GRAY)
+    s.line(*center, 287, 195, color=BLUE, width=3, arrow=True)
+    s.line(222, 168, 314, 260, color=AMBER, width=3, arrow=True)
+    s.circle(*field, 5, fill="#fff", stroke=INK, sw=2)
+    s.text(279, 181, "离轴点", size=16, anchor="middle")
+    s.text(203, 299, "径向", size=18, color=BLUE)
+    s.text(290, 295, "切向", size=18, color=AMBER)
+    s.text(199, 452, "径向连接画面中心与离轴点", size=17, anchor="middle")
+
+    # Stripe vectors and frequency vectors are perpendicular in each patch.
+    # SVG y increases downwards; the chosen radial direction is (1, -1).
+    patches = [
+        (414, (1, -1), (1, 1), AMBER, "条纹沿径向", "频率沿切向"),
+        (712, (1, 1), (1, -1), BLUE, "条纹沿切向", "频率沿径向"),
+    ]
+    for i, (x, stripe, frequency, color, heading, label) in enumerate(patches):
+        y, side = 170, 228
+        cx, cy = x + side / 2, y + side / 2
+        s.text(cx, 132, heading, size=20, anchor="middle", weight="600")
+        clip = f"orientation-patch-{i}"
+        s.add(f'<defs><clipPath id="{clip}"><rect x="{x}" y="{y}" width="{side}" height="{side}" rx="4"/></clipPath></defs>')
+        s.rect(x, y, side, side, fill="#fff", stroke="#c7d0d9", sw=1)
+        s.add(f'<g clip-path="url(#{clip})">')
+        for offset in range(-240, 241, 24):
+            ox = cx + offset * frequency[0]
+            oy = cy + offset * frequency[1]
+            s.line(ox - 260 * stripe[0], oy - 260 * stripe[1],
+                   ox + 260 * stripe[0], oy + 260 * stripe[1], color="#dae1e7", width=15)
+        s.add('</g>')
+        ax, ay = cx - 57 * frequency[0], cy - 57 * frequency[1]
+        bx, by = cx + 57 * frequency[0], cy + 57 * frequency[1]
+        s.line(ax, ay, bx, by, color="#fff", width=9)
+        s.line(ax, ay, bx, by, color=color, width=4, arrow=True)
+        # A short perpendicular tick marks the direction in which stripes extend.
+        s.line(cx - 18 * stripe[0], cy - 18 * stripe[1],
+               cx + 18 * stripe[0], cy + 18 * stripe[1], color=INK, width=2)
+        s.text(cx, 433, label, size=21, color=color, anchor="middle", weight="600")
+        s.text(cx, 459, "箭头指向明暗交替的方向", size=17, anchor="middle")
+    s.text(500, 521, "空间频率方向与条纹延伸方向垂直", size=23, anchor="middle", weight="600")
+    s.text(500, 557, "颜色区分径向与切向；厂商的 S/T 或 S/M 字母仍按各自图例读取", size=18, color=GRAY, anchor="middle")
+    s.save("12_frequency_orientation.svg")
+
+
 def spot_cluster(cx: float, cy: float, kind: str) -> list[tuple[float, float]]:
     pts = []
     for i in range(80):
@@ -1340,6 +1392,7 @@ FIGURES = [
     figure_12_airy_psf,
     figure_12_diffraction_mtf,
     figure_12_system_mtf,
+    figure_12_frequency_orientation,
     figure_13_aberration_spots,
     figure_13_field_curvature,
     figure_13_distortion_grid,

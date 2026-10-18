@@ -7,7 +7,8 @@
 来自场景的光经过镜头，在传感器表面形成光学像。像素在有限时间内收集光子，将其中
 一部分转换成电子；读出电路测量电荷，文件保存测量结果。显影软件随后估计颜色、
 压低噪声、调整明暗，显示器再把数字变成光。曝光决定入射光子预算，读出增益影响
-电荷到码值的换算，RAW保存采样结果，MTF描述不同粗细纹理的对比传递。
+电荷到码值的换算，RAW保存采样结果，调制传递函数（MTF）描述不同粗细纹理的
+对比传递。
 
 ## 0.1 一张照片中发生了什么
 
@@ -112,7 +113,7 @@ Log 以及静态和视频 RAW。沿这条线，读者应能回答：一次曝光
 | [8 HDR](08_computational_exposure_and_hdr.md) | 配准、未剪切支持与融合权重 | 二维搜索、局部运动和共同样本数；练习 8.4 |
 | [9 编码](09_gamma_log_exposure_index_and_display.md)、[10 RAW](10_still_raw_video_raw_and_compression.md) | 捕获、记录、监看各自的上限；按标签解码 | 分段 Log 连续性、逐码反解和微型 DNG 检查 |
 | [11 近轴光学](11_geometrical_optics_and_paraxial_systems.md) | 物像共轭、主平面、光阑与两侧瞳 | 矩阵连乘、厚系统及孔径截光 |
-| [12 衍射](12_diffraction_psf_otf_mtf_and_sampling.md)、[13 像差](13_aberrations_and_field_behavior.md) | PSF 的宽度与形状，MTF 的频率、方向和相位信息 | 复瞳自相关证明、Bessel 积分、轴上比与峰值比；练习 13.5 |
+| [12 衍射](12_diffraction_psf_otf_mtf_and_sampling.md)、[13 像差](13_aberrations_and_field_behavior.md) | PSF 的宽度与形状，MTF 的频率与方向；相位信息另读 OTF | 复瞳自相关证明、Bessel 积分、轴上比与峰值比；练习 13.5 |
 | [14 材料](14_optical_materials_glass_resin_and_fluorite.md)、[15 元件](15_aspheres_fresnel_diffractive_optics_and_coatings.md) | 色散、面形、衍射与镀膜解决的不同问题 | 消色差条件、温漂补偿和非球面斜率；练习 14.5、15.5 |
 | [16 镜组运动](16_lens_architectures_focus_zoom_and_stabilization.md) | 对焦、呼吸、补偿、防抖、景深与远心性 | 按章首五步指引，每次只固定或改变一个条件 |
 | [17 系统测试](17_lens_testing_and_system_analysis.md) | 区分预采样模型、RAW 系统测量与处理后图像 | 斜边拟合、装夹重复性及贯穿算例的报告；练习 17.5 |
