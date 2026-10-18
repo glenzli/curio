@@ -6,7 +6,7 @@
 | 章节 | 主要来源 | 外部输入与边界 |
 |---|---|---|
 | 0 | Holst--Lomheim；Goodman | 成像链分层由本书组织；完整相机工程不在序章展开 |
-| 1 | Born--Wolf；Smith | 辐射度学与近轴像面照度；互动另用同面圆光阑的有限角积分及解析值互核，近摄限于瞳放大率1；实际镜头暗角需具体瞳和机械模型 |
+| 1 | Born--Wolf；Smith；Gardner 1947 §§II、IV.1与表1 | 辐射度学、有限出瞳与cos⁴θ边界；圆锥/圆瞳积分和圆周闭式由书内推导，另核对Gardner表值；近摄限于瞳放大率1；实际暗角需具体瞳与机械模型 |
 | 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim；MIT Probability Lectures 22/23 | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
 | 3 | Fossum；Janesick；EMVA 1288 | 单斜坡机制另核对Kleinfelder等2001 slide 7；列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
 | 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | PTC 用 N−1 样本方差及成对差分/2；另用 Gaussian 行列随机效应模型推导 ROI 平均、方差分解与共享暗场校准下限，不冒充标准的固定空间非均匀性测量 |
@@ -16,11 +16,11 @@
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；另用水平梯度与二维强度相关教学搜索，不冒充 HDR+ 的 FFT 配准 |
 | 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
-| 11 | Born--Wolf；Smith；Kingslake--Johnson；MIT 6.161 §2.2；Ansys BFL 定义；Edmund Optics 瞳定义 | 真实处方追迹外置；近轴矩阵、主平面分解和有限共轭书内推导；两薄组互动另用逐面倾角与传播求交 |
+| 11 | Born--Wolf；Smith；Kingslake--Johnson；MIT 6.161 §2.2；Ansys BFL 定义；Edmund Optics 瞳定义；MIT 2.71 Lecture 6 slides 3–6 | 真实处方追迹外置；近轴矩阵、主平面和有限共轭书内推导；孔径逐面截光另对照ABCD三圆投影与圆弧面积，不把面积比当照度 |
 | 12 | Goodman；MIT 2.71 2014 Lecture 25；Zeiss MTF notes | 标量 Fourier 模型为外部物理框架；物理瞳坐标、OTF 自相关与圆盘重叠计算在正文展开，宽谱合成注明条件；复瞳传播分别对照 Airy、圆盘重叠、直接自相关、Parseval 与网格收敛 |
 | 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；RMS--Strehl 小误差关系及四项圆瞳模式的正交归一在正文推导；波前演示以连续圆瞳积分和纯离焦精确式另核轴上比 |
 | 14 | Nikon Research Report 2022；SCHOTT N-BK7/N-F2 数据表；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；互动使用目录 Sellmeier 系数与谱线数据；接触薄片消色差和二级光谱残差书内推导，不冒充镜头处方 |
-| 15 | Born--Wolf；Macleod；Erteza 1995 §2.1.2；Byrnes §§3--4；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 逐段 Fourier 积分、连续极限及交替四分之一波层导纳书内推导；多层膜矩阵与界面递推独立比较 |
+| 15 | Born--Wolf；Macleod；Erteza 1995 §2.1.2；Byrnes v5 §§2--4、附录A；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 逐段 Fourier 积分、连续极限及交替四分之一波层导纳书内推导；正/斜入射s/p矩阵与完整电场递推比较；区分切向振幅和能流，不含吸收或倏逝波 |
 | 16 | Smith；Kingslake--Johnson；MIT 6.161 §2.2.2；Fan et al. 2022；Nikon 防抖与多组对焦原理；Edmund 远心与景深说明 | 三组补偿方程、去心薄组响应、整周期残余 RMS、瞳共轭与远心条件书内推导，并有独立追迹对照；复杂控制、像差、处方与器材性能外置 |
 | 17 | Burns 2000 pp. 135--136；Zeiss MTF notes；ISO 12233:2024（公开范围） | 互动采用逐行差分质心与直线拟合，并自定支持域、平滑和失败条件；二维 PSF 线积分、有限差分与尺度书内推导，不宣称完成 ISO 合格性实现 |
 
@@ -120,3 +120,18 @@ ISO 演示采用正文给定的教学电压/电容尺度，观测统计只读取
 和共同取样规则；生成函数、真位移、种子与遮挡几何不进入搜索。已知位移和独立坐标
 计算核对整数情形，亚像素图采用相同观测重采样保留插值误差。失败检查是教学筛选，
 不是可靠性证明；本轮没有实现局部光流、HDR+或真实器材的配准精度评估。
+
+## 本轮补充：离轴照度、孔径截光与偏振
+
+第1章固定平行圆瞳与接收面，由两个投影余弦和距离项推导有限瞳积分，再以散度
+转成圆周闭式。Gardner 1947的表1另核对一个有限孔径值；该文关于瞳畸变和角度
+定义的限制也保留。有限平面圆瞳的精确解不等于真实镜头暗角的完整模型。
+
+第11章使用MIT讲义的孔径光阑定义，但两薄组处方、逐面截光、入口三圆约束及
+分段圆弧面积均为书内例子。格点计数与解析面积互核，限制孔径允许随半径转移；
+面积比只描述几何通光，未计入cos⁴θ、衍射和像素角度响应。
+
+第15章按Snell逐层计算s/p导纳与法向相位，矩阵使用切向电场及$e^{+i\omega t}$
+约定；独立递推使用完整电场Fresnel系数，再转换p基矢符号与切向分量。Byrnes v5
+§§2--4及附录A用于核对场、功率和符号约定，未复制外部实现。当前只含实常数折射率、
+无损传播波和半无限基底，临界角、倏逝波、吸收及色散均需扩展模型后另验。

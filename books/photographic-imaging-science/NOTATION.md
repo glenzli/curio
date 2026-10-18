@@ -80,6 +80,17 @@ $$
 e^{-2\pi i\boldsymbol\nu\cdot\boldsymbol r}\,d^2\boldsymbol r.
 $$
 
+第1章有限圆瞳小节局部采用$a,z,h$表示瞳半径、两平面轴向距离与像点高度，
+三者用同一长度单位；$\theta=\arctan(h/z)$指向出瞳中心。该处$h$不是Planck常数。
+第11章截光例中，$\boldsymbol h=(h_x,h_y)$为入口坐标（mm），$u$为近轴倾角（rad）；
+$A_i,B_i$把入口高度和倾角映到第$i$个孔面，$c_i,r_i$为映回入口平面的圆心与半径（mm）。
+
+第15章斜入射小节中，$\kappa=n_j\sin\theta_j$无量纲，$d_j,\lambda$同用nm；
+$Y^{(s)}=n\cos\theta$、$Y^{(p)}=n/\cos\theta$为归一化切向场导纳，
+$\delta_j=2\pi n_jd_j\cos\theta_j/\lambda$用rad。$r,t$采用切向电场振幅，
+$T_\sigma=(Y_s^{(\sigma)}/Y_0^{(\sigma)})|t_\sigma|^2$；$Y_s$的下标表示基底。
+$w_p$是入射能流中p偏振的比例，s/p反射与透射按功率加权。时间约定为$e^{+i\omega t}$。
+
 ## 码值与色彩
 
 - “线性”默认指码值与到达相应通道的曝光量成正比，不表示已经是场景绝对辐亮度。

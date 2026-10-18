@@ -174,11 +174,14 @@
   Chapter 16 derives its own thin-lens near/far/hyperfocal formulas and checks
   them using independent edge-ray roots; no product depth specification is used.
 - H. Angus Macleod, *Thin-Film Optical Filters*, 4th ed., CRC Press, 2010.
-- Steven J. Byrnes, [Multilayer optical calculations](https://arxiv.org/abs/1603.02720),
-  §§3--4: coherent interface amplitudes and power normalization. Chapter 15 compares
-  characteristic matrices with a separate Fresnel recursion, restricted to real indices,
-  normal incidence and a semi-infinite substrate. Complex phases follow the +i matrix
-  in Eq. (15.7); a different time-harmonic convention conjugates the amplitudes.
+- Steven J. Byrnes, [Multilayer optical calculations, arXiv:1603.02720v5](https://arxiv.org/abs/1603.02720v5),
+  2020-12-30, §§2--4 and Appendix A: Snell angles, s/p Fresnel fields, coherent layers,
+  Poynting normalization and the sign of reflected p amplitudes. Chapter 15 compares
+  characteristic matrices for tangential E with a separate full-vector Fresnel recursion,
+  at normal and oblique incidence. The book uses real constant indices, propagating waves
+  and a semi-infinite substrate; TIR, absorption and evanescent layers are excluded.
+  Its +i matrix follows exp(+iωt), conjugating the phase convention in the paper;
+  p amplitudes are converted to the same tangential-field basis before comparison.
 - I. A. Erteza, [Diffraction efficiency analysis for multi-level diffractive optical
   elements](https://digital.library.unt.edu/ark:/67531/metadc620317/m1/8/),
   Sandia report, November 1995, §2.1.2, p. 4: diffraction-order efficiencies from
@@ -217,5 +220,11 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
 
 ## 本轮展示的补充来源
 
-- MIT 2.71/2.710, [Lecture 6: Aperture stop, entrance and exit pupils](https://ocw.mit.edu/courses/2-71-optics-spring-2009/4579ef815b0fa56546a2c3861ff1a76b_MIT2_71S09_lec06.pdf), 2009-02-23, slides 3–6：光阑、两侧瞳像与主/边缘光线。第11章使用定义并自行推导两薄组共轭式；互动光路由本书模型生成，未复制讲义图。
+- Irvine C. Gardner, [Validity of the Cosine-Fourth-Power Law of Illumination](https://nvlpubs.nist.gov/nistpubs/jres/39/jresv39n3p213_A1b.pdf),
+  *Journal of Research of the National Bureau of Standards* 39 (1947), pp. 213–219,
+  RP1824, especially §§II, IV.1 and Table 1. Finite uniform-pupil illumination and the
+  limits imposed by pupil distortion and angle definitions. Chapter 1 derives its own
+  disk and boundary integrals; the numerical test also checks the table's correction
+  1.076 at 40° with sinα=0.25. The demonstration is not a real-lens vignetting prediction.
+- MIT 2.71/2.710, [Lecture 6: Aperture stop, entrance and exit pupils](https://ocw.mit.edu/courses/2-71-optics-spring-2009/4579ef815b0fa56546a2c3861ff1a76b_MIT2_71S09_lec06.pdf), 2009-02-23, slides 3–6：光阑、两侧瞳像与主/边缘光线。第11章使用定义并自行推导两薄组共轭式、实际孔径约束和入口圆盘交集；互动光路由本书模型生成，未复制讲义图。
 - Ansys Optics, [How to model colored and Tristimulus Sources](https://optics.ansys.com/hc/en-us/articles/43071101853331-How-to-model-colored-and-Tristimulus-Sources), “Source modeling using measured spectra”：多谱线和权重的输入约定。第12章的探测信号权重、同一像面上的 PSF/OTF 合成和位移相位由书内式 (12.9a)–(12.9b) 推出；不复现商业软件的追迹算法。
