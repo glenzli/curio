@@ -99,7 +99,7 @@
 - Joseph W. Goodman, *Introduction to Fourier Optics*, 4th ed., W. H. Freeman,
   2017.
 - MIT, [2.71/2.710 Optics, Lecture 25 review notes](https://live.ocw.mit.edu/courses/2-71-optics-spring-2014/ecd8b4c1c7717a31e961837de299879b_MIT2_71S14_lec25_notes.pdf),
-  Nick Fang, 12 May 2014, sections C–H: negative-sign Fourier convention,
+  Nick Fang, 12 May 2014, §§C–E (pp. 5–8): negative-sign Fourier convention,
   Fraunhofer propagation, coherent amplitude and incoherent intensity transfer.
   Chapters 12–13 use this scalar framework; the disk normalization, four explicitly
   defined wavefront modes, defocus sinc-squared reference and finite-grid checks
