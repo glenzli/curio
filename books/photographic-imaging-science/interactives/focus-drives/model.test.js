@@ -176,3 +176,5 @@ test("declared drive endpoints are finite and malformed states reject", () => {
   ])
     assert.throws(() => waveState(p), RangeError);
 });
+
+await import("./view.test.js");

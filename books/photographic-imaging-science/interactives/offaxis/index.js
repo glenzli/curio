@@ -1,4 +1,4 @@
-import { experiment } from "../common/ui.js";
+import { migrateStageProgress, experiment } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import { illumination } from "./model.js";
 import { geometryFigure, curveData, illuminationFigure } from "./figures.js";
@@ -11,6 +11,8 @@ const stages = [
 export function mount({ element, signal, session }) {
   let key, curveKey, m, data;
   return experiment({
+    version: 2,
+    migrate: (saved) => migrateStageProgress(saved, 25, 3),
     element,
     signal,
     session,
@@ -39,28 +41,32 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
-        label: "几何推导的展示进度",
+        label: "查看讲解环节",
         min: 0,
-        max: 100,
+        max: 3,
         step: 0.25,
-        value: 100,
-        format: (v) => v.toFixed(1) + "%",
+        value: 3,
+        discrete: true,
+        format: (v) =>
+          ["出瞳投影", "距离反平方", "接收面投影", "三个因子的乘积"][
+            Math.min(3, Math.floor(v))
+          ],
       },
     ],
     presets: [
       {
         label: "小出瞳 · 45°",
-        values: { angle: 45, radiusRatio: 0.05, progress: 100 },
+        values: { angle: 45, radiusRatio: 0.05, progress: 3 },
       },
       {
         label: "扩大出瞳",
-        values: { angle: 45, radiusRatio: 0.35, progress: 100 },
+        values: { angle: 45, radiusRatio: 0.35, progress: 3 },
       },
-      { label: "轴上对照", values: { angle: 0, progress: 100 } },
-      { label: "看出瞳投影", values: { progress: 20 } },
-      { label: "看距离项", values: { progress: 45 } },
-      { label: "看接收面", values: { progress: 70 } },
-      { label: "三个因子合起来", values: { progress: 100 } },
+      { label: "轴上对照", values: { angle: 0, progress: 3 } },
+      { label: "看出瞳投影", values: { progress: 0 } },
+      { label: "看距离项", values: { progress: 1 } },
+      { label: "看接收面", values: { progress: 2 } },
+      { label: "三个因子合起来", values: { progress: 3 } },
       { label: "从推导开始", values: { progress: 0 } },
     ],
     content:
@@ -82,7 +88,7 @@ export function mount({ element, signal, session }) {
       }
       root.querySelector("[data-geometry]").innerHTML =
         geometryFigure(m, "side") + geometryFigure(m, "projection");
-      const step = Math.min(3, Math.floor(s.progress / 25));
+      const step = Math.min(3, Math.floor(s.progress));
       root.querySelector(".factors").innerHTML = [
         ["出瞳投影", "cosθ", m.projection],
         ["距离反平方", "cos²θ", m.distance],
@@ -128,6 +134,7 @@ export function mount({ element, signal, session }) {
         element,
         signal,
         key: "progress",
+        end: 3,
         label: "逐项展示几何因子",
         durationMs: 8000,
       }),

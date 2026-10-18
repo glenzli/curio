@@ -15,6 +15,7 @@ export function replay({
 }) {
   const button = document.createElement("button");
   button.dataset.replay = "true";
+  button.dataset.replayKey = key;
   root.querySelector(".actions").prepend(button);
   let frame = 0,
     running = false,
@@ -28,6 +29,8 @@ export function replay({
     cancelAnimationFrame(frame);
     button.textContent = label;
     button.setAttribute("aria-pressed", "false");
+    button.disabled = !!root.querySelector(`input[data-control-key="${key}"]`)
+      ?.disabled;
     // Save and display the same final frame, including time since the last draw.
     if (wasRunning && !disposed) render();
   }
@@ -37,7 +40,8 @@ export function replay({
       end,
       state[key] +
         // The first frame can carry a timestamp just before the click handler.
-        (Math.max(0, Math.min(100, time - previous)) * (end - start)) / durationMs,
+        (Math.max(0, Math.min(100, time - previous)) * (end - start)) /
+          durationMs,
     );
     previous = time;
     if (time - drawn >= 50 || state[key] === end) {
@@ -49,8 +53,13 @@ export function replay({
   }
   pause();
   const onPlay = () => {
+    if (button.disabled) return;
     if (running) return pause();
-    if ((startOnFirstPlay && !played) || state[key] >= end || state[key] < start)
+    if (
+      (startOnFirstPlay && !played) ||
+      state[key] >= end ||
+      state[key] < start
+    )
       state[key] = start;
     played = true;
     running = true;

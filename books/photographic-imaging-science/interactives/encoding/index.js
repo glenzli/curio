@@ -20,12 +20,47 @@ function ramp(curve, bits) {
 
 export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, session, kicker: "编码 · 位深与码值分配", title: "线性、Gamma 与 Log 的量化",
-    intro: "三种编码接收同一个线性信号。调整位深和观察范围，比较每档的码值跨度；下方渐变先反解码，再按相同方式显示。",
+    element,
+    signal,
+    session,
+    kicker: "编码 · 位深与码值分配",
+    title: "线性、Gamma 与 Log 的量化",
+    intro:
+      "三种编码接收同一个线性信号。调整位深和观察范围，比较每档的码值跨度；下方渐变先反解码，再按相同方式显示。",
     controls: [
-      { key: "bits", label: "编码位深", min: 8, max: 12, step: 1, value: 10, format: (x) => `${x} bit` },
-      { key: "stops", label: "曲线观察范围", min: 8, max: 16, step: 1, value: 12, format: (x) => `白点以下 ${x} 档` },
-      { key: "probeEV", label: "探针输入（相对白点）", min: -16, max: 2, step: 0.25, value: -9, format: (x) => `${x > 0 ? "+" : ""}${x} 档` },
+      {
+        key: "bits",
+        label: "编码位深",
+        min: 8,
+        max: 12,
+        step: 1,
+        value: 10,
+        format: (x) => `${x} bit`,
+      },
+      {
+        key: "stops",
+        label: "曲线观察范围",
+        min: 8,
+        max: 16,
+        step: 1,
+        value: 12,
+        format: (x) => `白点以下 ${x} 档`,
+      },
+      {
+        key: "probeEV",
+        label: "探针输入（相对白点）",
+        min: -16,
+        max: 2,
+        step: 0.25,
+        value: -9,
+        format: (x) => `${x > 0 ? "+" : ""}${x} 档`,
+        hint: (s) =>
+          s.probeEV < -s.stops
+            ? "取样点在图窗左侧；增加观察范围可显示它，读数仍保留。"
+            : s.probeEV > 0
+              ? "输入超过白点，图中标记停在裁切后的白点。"
+              : "竖线与三个圆点对应下方的码值读数；不改变编码曲线。",
+      },
     ],
     presets: [
       { label: "8 bit 暗部", values: { bits: 8, probeEV: -9 } },
@@ -36,20 +71,59 @@ export function mount({ element, signal, session }) {
     note: "模型只隔离编码量化，不模拟噪声、色彩、上游 ADC 或真实显示器。满量程前的线性输入先裁到 [0,1]；量化取最近整数码，码域为 0…2ᵇ−1。教学 Log 采用式 (9.3) 的连续一阶导数拼接：xₜ = s = 2⁻¹²，并归一化为 f(0)=0、f(1)=1；曲线参数与式 (9.3) 一致。码值跨度可以是小数，不等于该区间内不同整数码的数量。渐变仅用于观察编码误差，屏幕自身的量化也会影响外观。",
     update(root, state) {
       const maximum = 2 ** state.bits - 1;
-      const lines = curves.map((curve) => ({ ...curve,
-        points: points(state.stops, (u) => maximum * encode(2 ** (u - state.stops), curve.key)) }));
-      root.querySelector("[data-chart]").innerHTML = plot({ curves: lines, xMax: state.stops, yMax: maximum,
-        xLabel: `从 −${state.stops} 档起的档数（最右为白点）`, yLabel: "编码码值", title: "相同线性输入的三种编码曲线" });
+      const lines = curves.map((curve) => ({
+        ...curve,
+        points: points(
+          state.stops,
+          (u) => maximum * encode(2 ** (u - state.stops), curve.key),
+        ),
+      }));
+      root.querySelector("[data-chart]").innerHTML = plot({
+        curves: lines,
+        xMax: state.stops,
+        yMax: maximum,
+        xLabel: `从 −${state.stops} 档起的档数（最右为白点）`,
+        yLabel: "编码码值",
+        title: "相同线性输入的三种编码曲线",
+        markers: [
+          {
+            value: Math.min(state.stops, state.probeEV + state.stops),
+            label: "当前取样",
+          },
+        ],
+        samples: curves.map((c) => [
+          Math.min(state.stops, state.probeEV + state.stops),
+          quantize(2 ** state.probeEV, c.key, state.bits).code,
+        ]),
+      });
       root.querySelector("[data-legend]").innerHTML = legend(lines);
       const lower = -state.stops;
-      root.querySelector("[data-stats]").innerHTML = curves.map((curve) => `<div><small>${curve.name} · 最暗一档</small><strong>${format(stopSpan(lower, curve.key, state.bits))}</strong><em>码值跨度，${lower} → ${lower + 1} 档</em></div>`).join("");
-      root.querySelector("[data-ramps]").innerHTML = curves.map((curve) => `<div><small>${curve.name}</small>${ramp(curve.key, state.bits)}</div>`).join("");
+      root.querySelector("[data-stats]").innerHTML = curves
+        .map(
+          (curve) =>
+            `<div><small>${curve.name} · 最暗一档</small><strong>${format(stopSpan(lower, curve.key, state.bits))}</strong><em>码值跨度，${lower} → ${lower + 1} 档</em></div>`,
+        )
+        .join("");
+      root.querySelector("[data-ramps]").innerHTML = curves
+        .map(
+          (curve) =>
+            `<div><small>${curve.name}</small>${ramp(curve.key, state.bits)}</div>`,
+        )
+        .join("");
       const input = 2 ** state.probeEV;
-      root.querySelector("[data-probe]").textContent = `探针输入 ${input.toPrecision(4)}：` + curves.map((curve) => {
-        const result = quantize(input, curve.key, state.bits);
-        return `${curve.name} ${result.code} 码，反解为 ${result.estimate.toPrecision(4)}`;
-      }).join("；") + "。";
-      root.querySelector("[data-clipping]").textContent = input > 1 ? "输入在编码之前已被裁到白点。增加位深或换用 Log，都不能恢复这部分高光。" : "改变曲线观察范围只改变横轴；渐变输入范围、相机曝光和编码曲线参数均不变。";
+      root.querySelector("[data-probe]").textContent =
+        `探针输入 ${input.toPrecision(4)}：` +
+        curves
+          .map((curve) => {
+            const result = quantize(input, curve.key, state.bits);
+            return `${curve.name} ${result.code} 码，反解为 ${result.estimate.toPrecision(4)}`;
+          })
+          .join("；") +
+        "。";
+      root.querySelector("[data-clipping]").textContent =
+        input > 1
+          ? "输入在编码之前已被裁到白点。增加位深或换用 Log，都不能恢复这部分高光。"
+          : "改变曲线观察范围只改变横轴；渐变输入范围、相机曝光和编码曲线参数均不变。";
     },
   });
 }

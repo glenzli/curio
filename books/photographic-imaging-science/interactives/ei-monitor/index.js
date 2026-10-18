@@ -1,4 +1,4 @@
-import { experiment } from "../common/ui.js";
+import { migrateStageProgress, experiment } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import { eiBudget } from "./model.js";
 import {
@@ -10,6 +10,8 @@ import {
 export function mount({ element, signal, session }) {
   let key, m;
   return experiment({
+    version: 2,
+    migrate: (saved) => migrateStageProgress(saved, 20, 4),
     element,
     signal,
     session,
@@ -56,12 +58,16 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
-        label: "处理链的展示进度",
+        label: "查看处理环节",
         min: 0,
-        max: 100,
-        step: 0.25,
-        value: 100,
-        format: (v) => v.toFixed(1) + "%",
+        max: 4,
+        step: 1,
+        value: 4,
+        discrete: true,
+        format: (v) =>
+          ["收集电子", "线性RAW", "Log文件", "反解与增益", "监看码"][
+            Math.min(4, Math.floor(v))
+          ],
       },
     ],
     presets: [
@@ -73,7 +79,7 @@ export function mount({ element, signal, session }) {
           policy: "fixed",
           recording: "fixed",
           probe: 4,
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -83,7 +89,7 @@ export function mount({ element, signal, session }) {
           exposure: 0,
           policy: "fixed",
           recording: "fixed",
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -93,7 +99,7 @@ export function mount({ element, signal, session }) {
           exposure: 0,
           policy: "metered",
           recording: "fixed",
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -104,7 +110,7 @@ export function mount({ element, signal, session }) {
           policy: "metered",
           recording: "fixed",
           probe: 6,
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -115,7 +121,7 @@ export function mount({ element, signal, session }) {
           policy: "metered",
           recording: "ei-gain",
           probe: 6,
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -126,7 +132,7 @@ export function mount({ element, signal, session }) {
           policy: "fixed",
           recording: "fixed",
           probe: 4,
-          progress: 100,
+          progress: 4,
         },
       },
       {
@@ -137,13 +143,13 @@ export function mount({ element, signal, session }) {
           policy: "fixed",
           recording: "fixed",
           probe: 7,
-          progress: 100,
+          progress: 4,
         },
       },
       { label: "从输入开始", values: { progress: 0 } },
     ],
     content:
-      '<style>.actions button{font-size:11px;padding:4px 8px}.ei-chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,125px),1fr));gap:8px}.ei-step{border:1px solid var(--line,#aaa);border-radius:6px;padding:10px;font-size:11px;min-width:0;overflow-wrap:anywhere}.ei-step[data-active=true]{outline:1px solid currentColor}.ei-step strong{display:block;font-size:16px;font-variant-numeric:tabular-nums}.ei-step small{font-size:10px}.ei-step em{display:block;font-size:10px;font-style:normal}.ei-svg svg{width:100%;height:auto}.ei-svg text{fill:currentColor}.chart text{font-size:13px}.truth{font-size:11px;line-height:1.9;border:1px solid var(--line,#aaa);padding:12px;border-radius:6px}.stats strong{font-size:20px}@media(max-width:650px){.ei-chain{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}.chart text{font-size:21px}.ei-svg text{font-size:21px}}</style><p class="reading" data-mode></p><div class="ei-chain"></div><p class="reading" data-flags aria-live="polite"></p><div class="ei-svg" data-allocation></div><div class="stats"></div><div class="chart" data-monitor></div><div class="legend" data-markers></div><div class="ei-svg" data-patches></div><p class="reading" data-reading></p><p class="truth" data-truth></p>',
+      '<style>.actions button{font-size:11px;padding:4px 8px}.ei-chain{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,125px),1fr));gap:8px}.ei-step{border:1px solid var(--line,#aaa);border-radius:6px;padding:10px;font-size:11px;min-width:0;overflow-wrap:anywhere}.ei-step[data-active=true]{outline:1px solid currentColor}.ei-step strong{display:block;font-size:16px;font-variant-numeric:tabular-nums}.ei-step small{font-size:10px}.ei-step em{display:block;font-size:10px;font-style:normal}.ei-svg svg{width:100%;height:auto}.ei-svg text{fill:currentColor}.chart text{font-size:13px}.truth{font-size:11px;line-height:1.9;border:1px solid var(--line,#aaa);padding:12px;border-radius:6px}.stats strong{font-size:20px}@media(max-width:650px){.ei-chain{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr}.chart text{font-size:21px}.ei-svg text{font-size:21px}}</style><p class="reading" data-mode></p><div class="ei-chain"></div><p class="reading" data-stage-explanation></p><p class="reading" data-flags aria-live="polite"></p><div class="ei-svg" data-allocation></div><div class="stats"></div><div class="chart" data-monitor></div><div class="legend" data-markers></div><div class="ei-svg" data-patches></div><p class="reading" data-reading></p><p class="truth" data-truth></p>',
     note: "固定传感器模式：线性满阱32000 e⁻，输入等效读噪4 e⁻ RMS；EI 800基准曝光下中灰1000 e⁻。EI倍率g=2^(相对EI档位)；固定曝光策略保持曝光，按表策略使曝光乘1/g，另乘额外实际曝光补偿。14 bit线性RAW按满阱比例四舍五入，未模拟黑电平与噪声观测。Log采用第9章给定的分段函数。固定记录链在解码后给监看乘g；编码前增益模式在Log前乘g，解码后不再重复加EI。两种路径在无截顶、无量化时给出相同监看，但文件上限可以不同。教学显示用clamp(0.18·解码电子参考值/1000,0,1)^(1/2.2)，没有色调肩部；监看白不等于RAW或传感器白。光子/读噪SNR仅对未饱和均值按μ/sqrt(μ+16)报告，未加ADC/Log量化噪声。总范围log2(32000/4)按容量/读噪工程比计算；含散粒噪声的SNR=1下端另按第四章求解。档位上限为连续标称边界；有限ADC和文件码区间会提前舍入为白码，另保留逐码反解。回放只突出链中步骤，不改变曝光或数据。",
     update(root, s) {
       const p = eiBudget(s);
@@ -173,7 +179,7 @@ export function mount({ element, signal, session }) {
         key = k;
       }
       const q = m.probeResult,
-        step = Math.min(4, Math.floor(s.progress / 20));
+        step = Math.min(4, Math.floor(s.progress));
       root.querySelector("[data-mode]").textContent =
         `EI ${m.ei.toFixed(0)}；${m.policy === "metered" ? "按EI测光，实际曝光随之减少" : "固定实际曝光，只改变EI映射"}；实际曝光为基准的${m.exposureRatio.toFixed(4)}倍。${m.recording === "fixed" ? "固定Log记录，EI用于解码后的监看。" : "Log编码前加入EI增益，监看不重复乘。"}`;
       root.querySelector(".ei-chain").innerHTML = [
@@ -204,6 +210,13 @@ export function mount({ element, signal, session }) {
             `<section class="ei-step" data-active="${i === step}"><small>${a}</small><strong>${b}</strong><em>${c}</em></section>`,
         )
         .join("");
+      root.querySelector("[data-stage-explanation]").textContent = [
+        `① 先按实际曝光收集电子：这个场景探针的均值为${q.mu.toFixed(2)} e⁻。EI怎样影响收光，由上方曝光规则决定。`,
+        `② 捕获值先受32000 e⁻满阱限制，再量化为14-bit RAW：当前${q.rawCode} DN。后面的监看设置不改变这个码。`,
+        `③ RAW之后、Log之前的数字增益为${q.recordGain.toFixed(3)}×，随后记录为${m.bits}-bit Log中的${q.logCode} DN。`,
+        `④ 先反解文件码，得到${(q.decoded * 32000).toFixed(2)} e_ref，再施加${q.monitorGain.toFixed(3)}×监看增益。`,
+        `⑤ 线性显示输入为${q.monitorLinear.toFixed(5)}，经教学显示映射得到${q.display.toFixed(5)}。显示变白与前面的捕获裁切分别查看。`,
+      ][step];
       root.querySelector("[data-flags]").textContent =
         `探针：传感器${q.sensorClipped ? "已达白点" : "未饱和"}，文件${q.recordClipped ? "编码输入已截顶" : q.fileWhite ? "已舍入为白码" : "未到容器白码"}，监看${q.monitorClipped ? "已到显示白" : "未到显示白"}。${q.sensorClipped ? "探针已饱和，不报告其线性SNR。" : "探针输入端SNR " + q.snr.toFixed(3) + "。"}`;
       root.querySelector(".stats").innerHTML = [
@@ -241,6 +254,7 @@ export function mount({ element, signal, session }) {
         element,
         signal,
         key: "progress",
+        end: 4,
         label: "逐步展开EI监看链",
         durationMs: 9000,
       }),

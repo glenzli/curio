@@ -1,21 +1,14 @@
 import { control, number } from "../common/lesson-view.js";
 import { imagePanels } from "../common/image-view.js";
 import { memoOne } from "../common/field-view.js";
-import { clippedPsf, directDensity, inside, CROP, SCALE } from "./model.js";
+import { clippedPsf, directDensity, CROP, SCALE } from "./model.js";
 const centered = memoOne(
   (s) => clippedPsf({ ...s, shift: 0 }),
   ["front", "defocus"],
 );
-function mask(p) {
-  return Float64Array.from({ length: 81 * 81 }, (_, i) =>
-    inside(
-      p,
-      (((i % 81) - 40) * 2.8) / 80,
-      ((Math.floor(i / 81) - 40) * 2.8) / 80,
-    )
-      ? 1
-      : 0,
-  );
+function mask(p, id) {
+  const scale = 240 / 2.8;
+  return `<defs><clipPath id="${id}"><circle cx="120" cy="120" r="${scale}"/></clipPath></defs><rect width="240" height="240" fill="#10171c"/><circle cx="${120 + scale * p.shift}" cy="120" r="${scale * p.front}" fill="white" clip-path="url(#${id})"/><circle cx="120" cy="120" r="${scale}" fill="none" stroke="#648cac" stroke-width="1" stroke-dasharray="4 4"/>`;
 }
 function apparatus(p) {
   const X = (z) => 80 + 5 * z,
@@ -75,19 +68,19 @@ export const spec = {
         [
           {
             label: "1 轴上有效瞳",
-            values: mask(axis.p),
-            width: 81,
-            height: 81,
+            vector: mask(axis.p, "axis-pupil"),
+            width: 240,
+            height: 240,
             gamma: 1,
             scale: "归一坐标−1.4…+1.4",
           },
           {
             label: "2 当前离轴有效瞳",
-            values: mask(m.p),
-            width: 81,
-            height: 81,
+            vector: mask(m.p, "edge-pupil"),
+            width: 240,
+            height: 240,
             gamma: 1,
-            scale: "交集直接决定通过的孔径",
+            scale: "两圆连续交集；虚线为完整光阑",
           },
           {
             label: "3 同一前孔的轴上点像",

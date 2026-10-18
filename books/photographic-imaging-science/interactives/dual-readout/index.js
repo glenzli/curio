@@ -1,4 +1,4 @@
-import { experiment } from "../common/ui.js";
+import { migrateStageProgress, experiment } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import {
   dualMetrics,
@@ -10,6 +10,8 @@ import { readoutCards, scatterFigure } from "./figures.js";
 export function mount({ element, signal, session }) {
   let cacheKey, cache;
   return experiment({
+    version: 2,
+    migrate: (saved) => migrateStageProgress(saved, [0, 30, 60, 85], 3),
     element,
     signal,
     session,
@@ -47,12 +49,16 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
-        label: "读出步骤",
+        label: "查看讲解环节",
         min: 0,
-        max: 100,
+        max: 3,
         step: 1,
-        value: 100,
-        format: (v) => v.toFixed(0) + "%",
+        value: 3,
+        discrete: true,
+        format: (v) =>
+          ["积分", "高增益读出", "低增益或再次积分", "归一化与融合"][
+            Math.min(3, Math.floor(v))
+          ],
       },
     ],
     presets: [
@@ -65,7 +71,7 @@ export function mount({ element, signal, session }) {
           highNoise: 1,
           lowNoise: 1,
           mode: "shared",
-          progress: 100,
+          progress: 3,
         },
       },
       {
@@ -75,7 +81,7 @@ export function mount({ element, signal, session }) {
           highNoise: 1,
           lowNoise: 4,
           mode: "shared",
-          progress: 100,
+          progress: 3,
         },
       },
       {
@@ -85,7 +91,7 @@ export function mount({ element, signal, session }) {
           highNoise: 1,
           lowNoise: 4,
           mode: "shared",
-          progress: 100,
+          progress: 3,
         },
       },
       { label: "从积分开始", values: { progress: 0 } },
@@ -130,7 +136,7 @@ export function mount({ element, signal, session }) {
         p,
         o.example,
         o.samples[0],
-        s.progress,
+        [0, 30, 60, 85][Math.min(3, Math.floor(s.progress))],
       );
       root.querySelector("[data-key]").textContent = clipped
         ? "蓝点为有截顶的实际观测；暂停绘制线性真值椭圆，表中仍保留裁切前真值。"
@@ -187,6 +193,7 @@ export function mount({ element, signal, session }) {
         element,
         signal,
         key: "progress",
+        end: 3,
         label: "回放读出步骤",
         durationMs: 8000,
       }),

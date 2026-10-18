@@ -3,7 +3,32 @@ const style = `
 
 // Preserve derived values and paused animation positions; step="any" is not numeric.
 export function restoredControlValue(control, value) {
-  return Number.isFinite(value) ? Math.max(control.min, Math.min(control.max, value)) : control.value;
+  return Number.isFinite(value)
+    ? Math.max(control.min, Math.min(control.max, value))
+    : control.value;
+}
+
+// Legacy explanatory playheads were percentages although only whole stages
+// changed. Preserve the selected stage when replacing them with discrete steps.
+export function migrateStageProgress(saved, oldStep, lastStage) {
+  if (saved?.version !== 1 || !saved.parameters) return saved;
+  const previous = saved.parameters.progress;
+  const progress = Number.isFinite(previous)
+    ? Math.max(
+        0,
+        Math.min(
+          lastStage,
+          Array.isArray(oldStep)
+            ? oldStep.findLastIndex((start) => previous >= start)
+            : Math.floor(previous / oldStep),
+        ),
+      )
+    : lastStage;
+  return {
+    ...saved,
+    version: 2,
+    parameters: { ...saved.parameters, progress },
+  };
 }
 
 export function experiment({
@@ -20,13 +45,27 @@ export function experiment({
   update,
   setup,
   version = 1,
+  migrate,
 }) {
   const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
   root.innerHTML = `<style>${style}</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div>${content}<p class="note">${note}</p></section>`;
-  const saved = session?.load();
-  const restored = saved?.version === version && saved.parameters && typeof saved.parameters === "object";
-  const state = restored ? Object.fromEntries(Object.entries(saved.parameters).filter(([k,v]) => k.length < 64 && (["number","string","boolean"].includes(typeof v)) && (typeof v !== "number" || Number.isFinite(v)))) : {};
-  let presetLabel = restored ? saved.preset ?? null : null;
+  const stored = session?.load();
+  const saved = migrate ? migrate(stored) : stored;
+  const restored =
+    saved?.version === version &&
+    saved.parameters &&
+    typeof saved.parameters === "object";
+  const state = restored
+    ? Object.fromEntries(
+        Object.entries(saved.parameters).filter(
+          ([k, v]) =>
+            k.length < 64 &&
+            ["number", "string", "boolean"].includes(typeof v) &&
+            (typeof v !== "number" || Number.isFinite(v)),
+        ),
+      )
+    : {};
+  let presetLabel = restored ? (saved.preset ?? null) : null;
   const fields = new Map();
   let snapshot;
   session?.describe(() => snapshot);
@@ -41,13 +80,20 @@ export function experiment({
     input.step = control.step;
     input.value = control.value;
     input.setAttribute("aria-label", control.label);
+    input.dataset.controlKey = control.key;
     name.textContent = control.label;
     name.append(output);
     label.append(name, input);
+    const hint = document.createElement("small");
+    hint.id = `hint-${control.key}`;
+    hint.style.opacity = ".7";
+    hint.style.fontSize = "10px";
+    input.setAttribute("aria-describedby", hint.id);
+    label.append(hint);
     root.querySelector(".controls").append(label);
     const previous = state[control.key];
     state[control.key] = restoredControlValue(control, previous);
-    fields.set(control.key, { input, output, control });
+    fields.set(control.key, { input, output, hint, control });
     input.addEventListener(
       "input",
       () => {
@@ -59,27 +105,71 @@ export function experiment({
     );
   }
   function render() {
-    for (const [key, { input, output, control }] of fields) {
-      input.value = state[key];
-      output.value = control.format
-        ? control.format(state[key])
-        : String(state[key]);
+    for (const [key, { input, output, hint, control }] of fields) {
+      const shown = control.discrete ? Math.floor(state[key]) : state[key];
+      input.value = shown;
+      if (control.enabled) input.disabled = !control.enabled(state);
+      hint.textContent =
+        typeof control.hint === "function"
+          ? control.hint(state)
+          : (control.hint ?? "");
+      hint.hidden = !hint.textContent;
+      output.value = control.format ? control.format(shown) : String(shown);
     }
     update(root, state);
-    const parameters = Object.fromEntries(Object.entries(state).filter(([,v]) => ["number","boolean","string"].includes(typeof v) && (typeof v !== "number" || Number.isFinite(v))));
+    for (const button of root.querySelectorAll("button[data-replay-key]")) {
+      const field = fields.get(button.dataset.replayKey);
+      if (field) button.disabled = field.input.disabled;
+    }
+    const parameters = Object.fromEntries(
+      Object.entries(state).filter(
+        ([, v]) =>
+          ["number", "boolean", "string"].includes(typeof v) &&
+          (typeof v !== "number" || Number.isFinite(v)),
+      ),
+    );
     session?.save({ version, parameters, preset: presetLabel });
     snapshot = {
       title,
       preset: presetLabel,
-      parameters: [...fields.values()].map(({control}) => ({ label: control.label, value: control.format ? control.format(state[control.key]) : String(state[control.key]) })),
-      options: Object.fromEntries(Object.entries(parameters).filter(([key]) => !fields.has(key))),
+      parameters: [...fields.values()].map(({ control }) => ({
+        label: control.label,
+        value: control.format
+          ? control.format(state[control.key])
+          : String(state[control.key]),
+      })),
+      options: Object.fromEntries(
+        Object.entries(parameters).filter(([key]) => !fields.has(key)),
+      ),
       readings: {
-        stats: [...root.querySelectorAll("small")].filter(node=>node.parentElement?.querySelector(":scope > strong")).map(node=>({label:node.textContent,value:node.parentElement.querySelector(":scope > strong").textContent,detail:node.parentElement.querySelector(":scope > em")?.textContent ?? ""})),
-        notes: [...root.querySelectorAll(".reading,[data-reading],[data-truth],.wave-truth")].map(node=>node.textContent.replace(/\s+/g," ").trim()).join("\n").slice(0,1800),
+        stats: [...root.querySelectorAll("small")]
+          .filter((node) =>
+            node.parentElement?.querySelector(":scope > strong"),
+          )
+          .map((node) => ({
+            label: node.textContent,
+            value:
+              node.parentElement.querySelector(":scope > strong").textContent,
+            detail:
+              node.parentElement.querySelector(":scope > em")?.textContent ??
+              "",
+          })),
+        notes: [
+          ...root.querySelectorAll(
+            ".reading,[data-reading],[data-truth],.wave-truth",
+          ),
+        ]
+          .map((node) => node.textContent.replace(/\s+/g, " ").trim())
+          .join("\n")
+          .slice(0, 1800),
       },
       assumptions: note,
     };
-    for (const button of root.querySelectorAll(".actions button[data-preset]")) button.setAttribute("aria-pressed", String(button.dataset.preset === presetLabel));
+    for (const button of root.querySelectorAll(".actions button[data-preset]"))
+      button.setAttribute(
+        "aria-pressed",
+        String(button.dataset.preset === presetLabel),
+      );
   }
   for (const preset of presets) {
     const button = document.createElement("button");
@@ -105,12 +195,16 @@ export function experiment({
     const reset = document.createElement("button");
     reset.type = "button";
     reset.textContent = "重置参数";
-    reset.addEventListener("click",()=>{
-      for (const key of Object.keys(state)) delete state[key];
-      for (const control of controls) state[control.key]=control.value;
-      presetLabel=null;
-      render();
-    },{signal});
+    reset.addEventListener(
+      "click",
+      () => {
+        for (const key of Object.keys(state)) delete state[key];
+        for (const control of controls) state[control.key] = control.value;
+        presetLabel = null;
+        render();
+      },
+      { signal },
+    );
     root.querySelector(".actions").append(reset);
   }
   if (!presets.length && !session) root.querySelector(".actions").remove();
@@ -132,6 +226,16 @@ const escape = (value) =>
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll('"', "&quot;");
+export function tickLabel(value) {
+  if (value === 0) return "0";
+  const v = Number(value.toPrecision(4));
+  return Math.abs(v) < 1e-3 || Math.abs(v) >= 1e6
+    ? v
+        .toExponential(2)
+        .replace(/\.?0+e/, "e")
+        .replace("e+", "e")
+    : String(v);
+}
 export function plot({
   curves,
   xMin = 0,
@@ -154,7 +258,13 @@ export function plot({
 }) {
   const W = width,
     H = height,
-    left = leftPadding,
+    left = Math.max(
+      leftPadding,
+      ...Array.from(
+        { length: 5 },
+        (_, i) => tickLabel(yMin + ((yMax - yMin) * i) / 4).length * 7 + 12,
+      ),
+    ),
     right = rightPadding,
     top = topPadding,
     bottom = bottomPadding;
@@ -171,7 +281,7 @@ export function plot({
   for (let i = 0; i <= 4; i++) {
     const v = yMin + ((yMax - yMin) * i) / 4,
       u = xMin + ((xMax - xMin) * i) / 4;
-    inner += `<path d="M${left},${y(v)}H${W - right}" stroke="currentColor" opacity=".10"/><text x="${left - 8}" y="${y(v) + 4}" text-anchor="end">${Number(v.toFixed(2))}</text><text x="${x(u)}" y="${H - bottom + 20}" text-anchor="middle">${Number(u.toFixed(1))}</text>`;
+    inner += `<path d="M${left},${y(v)}H${W - right}" stroke="currentColor" opacity=".10"/><text x="${left - 8}" y="${y(v) + 4}" text-anchor="end">${tickLabel(v)}</text><text x="${x(u)}" y="${H - bottom + 20}" text-anchor="${i === 0 ? "start" : i === 4 ? "end" : "middle"}">${tickLabel(u)}</text>`;
   }
   const labels = [];
   for (const marker of markers.filter(
@@ -182,10 +292,14 @@ export function plot({
     labels.push(column);
     inner += `<path d="M${column},${top}V${H - bottom}" stroke="${marker.color ?? "#a27640"}" stroke-dasharray="3 5"/><text x="${column}" y="${top - 9 - (stacked ? 13 : 0)}" text-anchor="middle">${escape(marker.label)}</text>`;
   }
+  let field = "";
   for (const curve of curves)
-    inner += `<path d="${path(curve.points)}" fill="none" stroke="${curve.color}" stroke-width="2.1" ${curve.dashed ? 'stroke-dasharray="6 4"' : ""}/>`;
+    field += `<path d="${path(curve.points)}" fill="none" stroke="${curve.color}" stroke-width="2.1" ${curve.dashed ? 'stroke-dasharray="6 4"' : ""}/>`;
   for (const [a, b] of samples)
-    inner += `<circle cx="${x(a)}" cy="${y(b)}" r="3.6" fill="#9b703c" stroke="white" stroke-width="1"/>`;
+    field += `<circle cx="${x(a)}" cy="${y(b)}" r="3.6" fill="#9b703c" stroke="white" stroke-width="1"/>`;
+  // A nested viewport clips curves to the axes without shared SVG ids. Outlying
+  // samples must not cover labels or look as though they remain in range.
+  inner += `<svg x="${left}" y="${top}" width="${W - left - right}" height="${H - top - bottom}" viewBox="${left} ${top} ${W - left - right} ${H - top - bottom}" overflow="hidden" data-plot-field="true" style="width:${W - left - right}px;height:${H - top - bottom}px;overflow:hidden">${field}</svg>`;
   inner += `<text x="${left}" y="${topLabelY}">${escape(yLabel)}</text><text x="${(left + W - right) / 2}" y="${H - bottomLabelPadding}" text-anchor="middle">${escape(xLabel)}</text>`;
   return `<svg role="img" aria-label="${escape(title)}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
 }

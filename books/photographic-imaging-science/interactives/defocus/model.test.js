@@ -144,3 +144,5 @@ test("defocus rejects nonfinite, unsupported grids and coefficients", () => {
   assert.throws(() => propagate({}, NaN));
   assert.throws(() => propagate({}, 0.9));
 });
+
+await import("./view.test.js");

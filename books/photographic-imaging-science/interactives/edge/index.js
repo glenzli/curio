@@ -288,6 +288,7 @@ export function mount({ element, signal, session }) {
       {
         key: "row",
         label: "查看像素行",
+        hint: "只改变选中行及其投影样本；MTF仍用全部有效行计算。",
         min: 0,
         max: SIZE - 1,
         step: 1,

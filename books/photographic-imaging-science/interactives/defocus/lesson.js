@@ -1,7 +1,8 @@
 import {
   propagate,
   directDensity,
-  inside,
+  radialLimit,
+  SIDES,
   displacementUm,
   NAMES,
   WHITE,
@@ -10,6 +11,17 @@ import {
 import { control, number } from "../common/lesson-view.js";
 import { imagePanels } from "../common/image-view.js";
 let key, cached;
+function aperture(shape) {
+  const sides = SIDES[shape];
+  const edge = sides
+    ? `<polygon points="${Array.from({ length: sides }, (_, i) => {
+        const a = ((2 * i + 1) * Math.PI) / sides,
+          r = radialLimit(shape, a);
+        return `${120 + 74 * r * Math.cos(a)},${120 - 74 * r * Math.sin(a)}`;
+      }).join(" ")}" fill="white"/>`
+    : '<circle cx="120" cy="120" r="74" fill="white"/>';
+  return `<rect width="240" height="240" fill="#10171c"/>${edge}`;
+}
 export const spec = {
   title: "离焦点像与光阑形状",
   alt: "互动示意：等面积光阑与共同像面尺度下的前后离焦PSF",
@@ -22,7 +34,14 @@ export const spec = {
     { ...control("shape", "等面积光阑", 0, 3, 1, 0), format: (v) => NAMES[v] },
     control("amount", "两侧离焦系数绝对值", 0, 0.6, 0.025, 0.45, " λ", 3),
     control("spherical", "球差系数", -0.25, 0.25, 0.005, 0.12, " λ", 3),
-    control("scan", "中央像面扫描 · c/|c侧|", -1, 1, 0.01, 0, "", 2),
+    {
+      ...control("scan", "中央像面扫描 · c/|c侧|", -1, 1, 0.01, 0, "", 2),
+      enabled: (s) => s.amount > 0,
+      hint: (s) =>
+        s.amount > 0
+          ? "只移动中央图的像面，前后两张对照图保持原位置。"
+          : "两侧离焦系数为0，三个像面重合；增大离焦系数后可扫描。",
+    },
   ],
   presets: [
     {
@@ -68,11 +87,6 @@ export const spec = {
       back = cached[1],
       current = propagate(s, s.amount * s.scan),
       all = [front, current, back];
-    const mask = Float64Array.from({ length: 81 * 81 }, (_, i) =>
-      inside(s.shape, ((i % 81) - 40) / 28, (Math.floor(i / 81) - 40) / 28)
-        ? 1
-        : 0,
-    );
     const images = all.map((g, i) => ({
       label: ["2 像面在焦点前", "3 当前扫描像面", "4 像面在焦点后"][i],
       values: g.crop,
@@ -90,12 +104,12 @@ export const spec = {
         [
           {
             label: "1 等面积光阑",
-            values: mask,
-            width: 81,
-            height: 81,
+            vector: aperture(s.shape),
+            width: 240,
+            height: 240,
             white: 1,
             gamma: 1,
-            detail: `${NAMES[s.shape]}；连续面积 π`,
+            detail: `${NAMES[s.shape]}；连续轮廓，面积 π`,
             scale: `离散面积 ${number(current.area, 5)}；坐标用等面积圆半径`,
           },
           ...images,

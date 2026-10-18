@@ -17,10 +17,18 @@ export const spec = {
     {
       ...control("metered", "曝光规则", 0, 1, 1, 0),
       format: (v) => (v ? "按EI少曝" : "固定实际曝光"),
+      hint: (s) =>
+        s.eiStops === 0
+          ? "当前EI 800，两种规则曝光相同；改变EI后再比较。"
+          : "按EI少曝会改变捕获电子数；固定实际曝光则保持收光不变。",
     },
     {
       ...control("record", "EI增益的位置", 0, 1, 1, 0),
       format: (v) => (v ? "记录Log之前" : "记录之后监看"),
+      hint: (s) =>
+        s.eiStops === 0
+          ? "当前EI增益为1×，前后位置结果相同；可选“亮窗在记录时合并”比较。"
+          : "先看文件Log码，再看降低监看后三幅亮区是否仍有差别。",
     },
     control("bits", "教学Log位深", 8, 12, 1, 10, " bit"),
     control("monitor", "额外监看补偿", -4, 2, 0.5, 0, "档", 1),
@@ -37,7 +45,9 @@ export const spec = {
       format: (v) => `${number(((v + 0.5) / 32) * 100, 0)}%`,
     },
     {
-      ...control("progress", "处理步骤", 0, 4, 0.01, 4),
+      ...control("progress", "高亮查看环节", 0, 4, 1, 4),
+      discrete: true,
+      hint: "只切换处理环节的高亮；六幅图始终保留完整结果。",
       format: (v) => stages[Math.min(4, Math.floor(v))],
     },
   ],

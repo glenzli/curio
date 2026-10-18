@@ -81,20 +81,59 @@ export const stepperSpec = {
         ]),
       },
     ];
+    const micro = [[0, 0]],
+      unitUm = (1000 * m.lead) / 200;
+    for (let j = 0; j < m.subdivisions; j++) {
+      const x = (j + 0.5) / m.subdivisions;
+      micro.push(
+        [x, (j * unitUm) / m.subdivisions],
+        [x, ((j + 1) * unitUm) / m.subdivisions],
+      );
+    }
+    micro.push([1, unitUm]);
+    const detail = plot({
+      curves: [
+        {
+          name: "连续指令",
+          color: C.blue,
+          dashed: true,
+          points: [
+            [0, 0],
+            [1, unitUm],
+          ],
+        },
+        { name: "细分后位置指令", color: C.amber, points: micro },
+      ],
+      xMin: 0,
+      xMax: 1,
+      yMin: 0,
+      yMax: unitUm * 1.05,
+      xLabel: "一个整步内的指令分数（局部放大）",
+      yLabel: "理论位移 / μm",
+      height: 220,
+      title: "局部细分台阶：不代表真实机械精度",
+    });
     return {
       model: m,
-      figure: plot({
-        curves,
-        xMin: 0,
-        xMax: 1,
-        xLabel: "一次往返进度",
-        yLabel: "位移 / mm",
-        yMax: m.peak + 0.15,
-        height: 200,
-        title: "同一往返中丝杠和镜组的位置",
-        markers: [{ value: m.phase, label: "当前" }],
-      }),
-      figureHeight: 200,
+      figure:
+        '<svg role="img" aria-label="整段往返与一个整步的细分台阶" viewBox="0 0 640 440">' +
+        plot({
+          curves,
+          xMin: 0,
+          xMax: 1,
+          xLabel: "一次往返进度",
+          yLabel: "位移 / mm",
+          yMax: m.peak + 0.15,
+          height: 200,
+          title: "同一往返中丝杠和镜组的位置",
+          markers: [{ value: m.phase, label: "当前" }],
+        }).replace("<svg ", '<svg x="0" y="0" width="640" height="200" ') +
+        detail.replace(
+          "<svg ",
+          '<svg x="0" y="220" width="640" height="220" ',
+        ) +
+        "</svg>",
+      figureHeight: 440,
       stats: [
         [
           "当前转角",
@@ -127,7 +166,7 @@ export const stepperSpec = {
             ? "螺母已贴住反向接触面，开始返回。"
             : "正向接触面已贴紧，转角按导程换成位移。",
       reading:
-        "蓝虚线是转角对应的理论位置，赭色线是带间隙的镜组位置。增加细分可以缩小指令间隔；本例的换向间隙仍按设定值保留。",
+        "上图看整段往返与换向间隙，下图放大一个整步的指令台阶。增加细分会缩小指令间隔，整段毫米尺度下可能看不出差别；它不消除机械间隙，也不保证同等的真实位置精度。",
     };
   },
 };
@@ -280,7 +319,10 @@ export const ultrasonicSpec = {
       format: (v) => number(4 * v, 2) + " 周期",
     },
     control("amplitude", "法向振幅", 0.5, 4, 0.5, 2, " μm", 1),
-    control("frequency", "给定驱动频率", 20, 60, 5, 40, " kHz", 0),
+    {
+      ...control("frequency", "实际驱动频率", 20, 60, 5, 40, " kHz", 0),
+      hint: "相位图按慢放进度显示；频率改变实际波速读数，同一相位的形状相同。",
+    },
     {
       ...control("reverse", "行波方向", 0, 1, 1, 0),
       format: (v) => (v ? "反向" : "正向"),

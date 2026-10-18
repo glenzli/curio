@@ -441,3 +441,68 @@ f/4与f/16预设对应50 mm固定焦距，孔径直径12.50/3.125 mm，550 nm首
 2.683/10.733 μm。连续圆孔与独立FFT样点同时保留，数值精度放入可展开区域。
 旧版会话中的λN位置和ν/νc频率先换为物理单位，新会话恢复后仍暂停。共用视图的
 第13章相位图也改用连续圆周裁切，FFT对照改为128格瞳。
+
+## 全书互动有效性复查（2026-10-19）
+
+基线`2e45119`。清点82类组件、90处正文插入；展开五组多页签后，实际检查97个
+面板实例和432个控件，包含当前模式下应禁用的手动输入。逐项检查正文、默认值、
+预设、单参数边界及对应图形；跨章重复使用的组件另核挂载与独立状态。输入—输出
+预检与浏览器实操分开记录，不用格式检查代替模型或画面验证。
+
+判据：
+
+1. 物理参数改变模型时，有相应的图形或读数；图幅随参数缩放时有固定参照。
+2. 取样、显示和讲解控件就近说明作用，取样位置在图中有标记。
+3. 当前模式接管或不使用某个参数时，禁用该控件并说明条件；物理上结果相同的
+   情形解释其原因，保留能比较的预设。
+4. 讲解环节用具名离散步骤；运动、积分和扫描保留连续进度。回放可暂停、恢复后
+   不自行继续；旧状态范围与新界面含义对应。
+5. 连续轮廓与计算网格分开。CFA、量化台阶、图像样本和误差网格仍保留原始刻度；
+   真值不参与估计支路，不逐图拉伸掩盖误差，静态图保留相同模型与参照。
+
+本次修正：
+
+- 离焦与离轴猫眼改连续圆／多边形轮廓和两圆交集。像面仍保留原采样、面积误差、
+  全场／裁剪能量和独立积分，不把绘图平滑解释成数值已经收敛。
+- 共用曲线绘制按坐标框裁剪，曲线和样点不会覆盖轴标签；本地SVG视窗不依赖重复
+  的全局clipPath编号。刻度保留足够有效数字，小量改用科学记数，标签按长度留白；
+  0.25与0.75不再显示为0.3与0.8。固定场曲PSF视窗在轮廓超界时给出提示。
+- ADC电荷取样增加暗部标记和全范围裁切图；编码探针增加竖线、码值点及窗口外
+  提示。配准、斜边行选择和Bayer相位／积分宽度明确各自改变哪幅图。
+- 白平衡、EI、双读出、RAW打包、cos⁴θ和瞳构图改具名步骤，迁移旧百分比状态。
+  捕获场景把环节选择明确为高亮查看；快门两种视图统一使用有限回放和精确暂停。
+- 自动补偿的手动组位置、单绿模式的红蓝焦面、单帧时的新增采样相位／配准偏差、
+  固定偏移模式的运动RMS及零离焦时的像面扫描按模式禁用。EI基准处的等价链路、
+  PTC默认范围内筛选无变化等情况给出直接说明和可比较预设。
+- 自动对焦增加完整位置轨迹预览；细分驱动增加一个整步的局部台阶。重复实验另加
+  9／17／33点对焦包围比较图；主分组实验不随这个独立支路的候选数改变。
+
+### 逐章覆盖
+
+下表包含全部82个组件标识；同一组件在多章使用时仍逐处检查。镀膜、平场、近摄
+附件、驱动和镜组运动的所有页签均展开检查。
+
+| 章节 | 组件 | 检查及修正重点 |
+| --- | --- | --- |
+| [序章](00_preface_scope_and_measurement.md) | `signal-chain` | 信号链环节与单位对应。 |
+| [第一章](01_radiometry_aperture_and_exposure.md) | `exposure`, `offaxis` | 光子积累与轨迹保留连续时间；cos⁴θ改具名环节。 |
+| [第二章](02_photons_silicon_and_pixels.md) | `absorption`, `counting`, `pixel` | 吸收深度、计数统计与4T/CDS采样时序。 |
+| [第三章](03_cmos_pixels_readout_and_adc.md) | `readout`, `ramp-adc`, `adc-errors`, `column-stripes`, `cds-spectrum` | 输入电荷在局部和全范围图定位；列条带、斜坡与频谱保持真值。 |
+| [第四章](04_noise_snr_full_well_and_dynamic_range.md) | `noise`, `dark-sequence`, `flatfield`, `ptc-repeat`, `calibration-drift` | 两种平场页签、暗场复用与PTC散布；增加同范围饱和筛选对照。 |
+| [第五章](05_iso_exposure_index_and_gain.md) | `ei-monitor`, `iso`, `dual-readout`, `capture-scene` | EI和双读出改具名步骤；捕获链的等价条件就近说明。 |
+| [第六章](06_shutters_bsi_stacking_and_curved_sensors.md) | `shutter-timing`, `shutter`, `rotating-shutter`, `sensor-stack`, `focus-survey` | 时序和图像快门共用回放；旋转曝光与结构展开各有实际含义。 |
+| [第七章](07_color_filter_sampling_and_demosaicing.md) | `metamerism`, `bayer`, `sampling`, `bayer-texture`, `demosaic-noise`, `white-balance` | Bayer图像与频率图分开说明；白平衡改具名传播环节。 |
+| [第八章](08_computational_exposure_and_hdr.md) | `registration2d`, `parallax`, `hdr`, `local-motion`, `subpixel` | 完整搜索统计与过渡叠加图区分；单帧依赖控件按条件禁用。 |
+| [第九章](09_gamma_log_exposure_index_and_display.md) | `encoding`, `ei-monitor`, `tone-map`, `capture-scene` | 探针码值点、窗口外提示；跨章共用组件保持独立状态。 |
+| [第十章](10_still_raw_video_raw_and_compression.md) | `dng-inspector`, `raw`, `capture-scene` | DNG选中样本、错误解释及四个打包环节。 |
+| [第十一章](11_geometrical_optics_and_paraxial_systems.md) | `paraxial`, `thick-lens`, `pupils`, `apertures` | 有限共轭、无穷远和截光边界；瞳构图改五个明确环节。 |
+| [第十二章](12_diffraction_psf_otf_mtf_and_sampling.md) | `spectrum`, `pupil`, `psf-image`, `chromatic-focus`, `starburst`, `mtf` | 固定尺度、取样标记、卷积、谱线权重与连续孔径；单绿条件明确。 |
+| [第十三章](13_aberrations_and_field_behavior.md) | `wavefront`, `psf-image`, `field`, `distortion`, `chromatic-focus`, `defocus`, `offaxis-bokeh` | 复波前和定尺度场变模型；离焦及猫眼轮廓与计算网格分开。 |
+| [第十四章](14_optical_materials_glass_resin_and_fluorite.md) | `achromat`, `thermal-focus` | 色差、像面和温漂分别变化，数值与图尺对应。 |
+| [第十五章](15_aspheres_fresnel_diffractive_optics_and_coatings.md) | `asphere`, `pf`, `coating`, `oblique-coating`, `veiling-flare`, `ghost` | 单／多层与s/p极化、相位级次、双反射行程和光幕。 |
+| [第十六章](16_lens_architectures_focus_zoom_and_stabilization.md) | `paraxial`, `lens-atlas`, `lens-layouts`, `floating`, `zoom`, `lens-motion`, `focus`, `dof`, `stabilization`, `motion-transfer`, `digital-framing`, `telecentric` | 自动模式的手动位置禁用；对焦、防抖、数字补偿与截面图对应。 |
+| [第十七章](17_lens_testing_and_system_analysis.md) | `field`, `edge`, `sharpening`, `focus-survey`, `repeatability` | 斜边行取样、锐化与观测；对焦候选数增加独立比较图。 |
+| [第十八章](18_lens_size_accessories_and_focus_drives.md) | `pupil-size`, `optical-accessories`, `focus-drives`, `autofocus` | 近摄附件三页签、驱动三页签；细分局部图和AF轨迹预览。 |
+| [附录 B](B_calculation_reference.md) | `unit-calculator` | 单位换算、独立物理尺度和SNR下端标记。 |
+
+Bayer相位、像素积分、配准过渡与三维光圈等操作主要改变画面，不能只靠文本差分判断有效性；另检查相应图像、标记或几何。独立统计支路只改自己的表或图，不强迫无关读数联动。静态构建与完整验证结果见本轮闭合记录。

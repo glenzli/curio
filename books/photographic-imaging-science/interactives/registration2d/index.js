@@ -86,6 +86,7 @@ export function mount({ element, signal, session }) {
       {
         key: "progress",
         label: "配准位移的回放进度",
+        hint: "移动配准叠加图；相关面和误差读数始终对应完整配准。",
         min: 0,
         max: 100,
         step: 0.25,

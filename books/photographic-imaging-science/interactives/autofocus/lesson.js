@@ -21,7 +21,7 @@ export const spec = {
   title: "自动对焦：从分瞳图像到镜组动作",
   alt: "互动示意：分瞳相位差对焦、镜组闭环移动和对比度扫描的独立对照",
   intro:
-    "先观察A、B两幅分瞳图像的错位，再播放镜组调整。切换到均匀目标或重复条纹，看看相关峰还能不能给出可靠方向。",
+    "先观察A、B两幅分瞳图像的错位，再播放镜组调整。最后一图预览本次模拟的完整位置轨迹，校正比例会改变收敛或来回摆动的过程；竖线标出当前播放到哪一步。",
   staticCaption:
     "薄透镜f=50 mm、物距550 mm、像距55 mm；镜组初始偏移+0.20 mm。A、B为一维半瞳积分，观测噪声RMS 0.005。",
   note: "局部一维近轴模型：半瞳均为宽5 mm的均匀条带，像素间距4 μm；固定纹理尺度、无像素孔径积分；A、B各按半瞳通量归一，合并图像取(A+B)/2。相关器只读取两幅含噪观测，搜索±8 px；镜组更新使用焦点附近标定斜率22.5 px/mm。已知薄透镜焦点仅作核对。三维支架展示位置指令，驱动机构的动态响应见18.6；对比度扫描使用独立的33次位置采样。停止后冻结该次观测，恢复实验时暂停。",
@@ -40,7 +40,10 @@ export const spec = {
   controls: [
     control("start", "镜组初始偏移", -0.3, 0.3, 0.01, 0.2, " mm", 2),
     control("noise", "单幅观测噪声RMS", 0, 0.05, 0.005, 0.005, "", 3),
-    control("gain", "每次校正比例", 0.2, 1.8, 0.1, 0.8, "", 1),
+    {
+      ...control("gain", "每次校正比例", 0.2, 1.8, 0.1, 0.8, "", 1),
+      hint: "改变下次位置指令与轨迹预览；第0步的初始观测本身不变。",
+    },
     {
       ...control("kind", "目标纹理", 0, 2, 1, 0),
       format: (v) => ["多频纹理", "均匀目标", "重复条纹"][v],
@@ -132,12 +135,37 @@ export const spec = {
         xLabel: "镜组偏移 / mm",
         yLabel: "A、B合并图像的方差",
       },
+      {
+        title: "4 完整回放预览：校正比例怎样改变位置轨迹",
+        curves: [
+          curve(
+            "本次模拟的位置指令",
+            a.history.map((h, i) => [i, h.group]),
+          ),
+          curve(
+            "已知焦点（只作对照）",
+            [
+              [0, 0],
+              [8, 0],
+            ],
+            2,
+            true,
+          ),
+        ],
+        xMin: 0,
+        xMax: 8,
+        yMin: -0.32,
+        yMax: 0.32,
+        xLabel: "校正步骤 · 竖线为当前回放位置",
+        yLabel: "镜组偏移 / mm",
+        markers: [{ value: s.step, label: "当前步骤" }],
+      },
     ];
     return {
       model: m,
       figure: trace(panels),
       liveFigure: `<style>.focus-trace-hint{display:none}@media(max-width:550px){.focus-trace-hint{display:block;font-size:11px;opacity:.7}}</style><small class="focus-trace-hint">曲线可左右滑动查看</small>${trace(panels)}`,
-      figureHeight: 1020,
+      figureHeight: 1360,
       halt: current.stopped,
       status: current.stopped
         ? `第${current.iteration}步：${current.reason}。`

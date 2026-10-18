@@ -129,3 +129,5 @@ test("repeatability rejects missing groups, duplicate identities and invalid stu
   ])
     assert.throws(() => parameters(p));
 });
+
+await import("./view.test.js");

@@ -21,6 +21,16 @@ function sequenceSteps(input, example, first) {
 export function readoutCards(input, example, first, progress = 100) {
   const steps = sequenceSteps(input, example, first);
   const current = steps.findLastIndex((step) => progress >= step.start);
+  const instructions = [
+    input.mode === "independent"
+      ? `① 第一次积分得到S₁=${example.chargeH} e⁻；另一通道稍后重新积分。`
+      : `① 一次积分得到S₁=${example.chargeH} e⁻。后面两路都读取这一份电荷，散粒噪声也随之共享。`,
+    `② 高增益路径读出H=${first.high.toFixed(2)} e_ref；这里已换回统一的输入参考刻度。`,
+    input.mode === "independent"
+      ? `③ 再次积分得到独立计数S₂=${example.chargeL} e⁻，低增益路径读出L=${first.low.toFixed(2)} e_ref。`
+      : `③ 仍读取同一S₁，低增益路径读出L=${first.low.toFixed(2)} e_ref；通道读噪可以不同，共有的计数并未重拍。`,
+    `④ 按当前有效通道和融合规则得到${first.fused.toFixed(2)} e_ref；下方散点与协方差比较完整的成对观测。`,
+  ];
   return (
     '<h4>一组读出的步骤 · 第一组生成数据</h4><ol class="dual-steps">' +
     steps
@@ -29,7 +39,9 @@ export function readoutCards(input, example, first, progress = 100) {
           `<li aria-current="${i === current ? "step" : "false"}" data-ready="${progress >= step.start}"><span>${i + 1} ${step.name}</span><strong>${step.detail}</strong></li>`,
       )
       .join("") +
-    '</ol><p class="dual-key">步骤间隔只作展示；电荷来自一次积分，或两次独立积分。</p>'
+    '</ol><p class="reading">' +
+    instructions[Math.max(0, current)] +
+    '</p><p class="dual-key">步骤间隔只作展示；电荷来自一次积分，或两次独立积分。</p>'
   );
 }
 export function readoutSequence(input = {}, example, first, progress = 100) {

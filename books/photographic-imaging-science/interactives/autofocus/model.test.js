@@ -53,3 +53,5 @@ test("closed loop uses measured offsets, reaches either side of focus, and contr
   assert.equal(m.knownFocus, 0);
   assert.throws(() => autofocus({ gain: 0 }), RangeError);
 });
+
+await import("./view.test.js");

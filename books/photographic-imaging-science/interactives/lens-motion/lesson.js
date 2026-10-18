@@ -138,7 +138,14 @@ export const zoomingSpec = {
       ...control("compensate", "补偿方式", 0, 1, 1, 1),
       format: (v) => (v ? "自动保持像面" : "锁定后组"),
     },
-    control("compensator", "锁定时的 G3位置", 90, 190, 0.1, 150, " mm", 1),
+    {
+      ...control("compensator", "锁定时的 G3位置", 90, 190, 0.1, 150, " mm", 1),
+      enabled: (s) => !s.compensate,
+      hint: (s) =>
+        s.compensate
+          ? "自动补偿正在计算G3；切换“锁定后组”后可手调。"
+          : "手调G3，观察实际像面与固定传感器是否重合。",
+    },
   ],
   presets: [
     { label: "锁住补偿组", values: { compensate: 0, compensator: 150 } },

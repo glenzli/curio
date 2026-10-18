@@ -87,6 +87,7 @@ export function mount({ element, signal, session }) {
       {
         key: "phase",
         label: "输入相位",
+        hint: "只移动条纹位置；频率图上的点不随相位移动。",
         min: 0,
         max: 1,
         step: 0.01,
@@ -96,6 +97,7 @@ export function mount({ element, signal, session }) {
       {
         key: "width",
         label: "方形孔径边长 / 像素节距",
+        hint: "先对像素面积积分，再取样；下方图像会变，采样格点的频率边界不变。",
         min: 0,
         max: 1,
         step: 0.1,

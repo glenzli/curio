@@ -41,6 +41,7 @@ export const spec = {
     {
       ...control("exclude", "排除接近饱和的级", 0, 1, 1, 1),
       format: (v) => (v ? "开" : "关"),
+      hint: "仅当拟合范围包含接近饱和的观测时生效；用下方两个饱和段预设比较。",
     },
     control("study", "显露到第几次采集", 1, STUDIES, 1, STUDIES, ""),
     control("batch", "随机批次", 0, 9, 1, 0, ""),
@@ -86,6 +87,16 @@ export const spec = {
         prnuPercent: 4,
         driftPercent: 20,
         fitPercent: 75,
+        exclude: 1,
+        study: 24,
+      },
+    },
+    {
+      label: "同范围排除饱和段",
+      values: {
+        prnuPercent: 0,
+        driftPercent: 0,
+        fitPercent: 105,
         exclude: 1,
         study: 24,
       },

@@ -1,10 +1,12 @@
-import { experiment } from "../common/ui.js";
+import { migrateStageProgress, experiment } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import { observations, experimentData, correlation } from "./model.js";
 import { scatterFigure, covarianceTable, NAMES } from "./figures.js";
 export function mount({ element, signal, session }) {
   let rawKey, key, raw, m;
   return experiment({
+    version: 2,
+    migrate: (saved) => migrateStageProgress(saved, 34, 2),
     element,
     signal,
     session,
@@ -60,12 +62,14 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
-        label: "传播步骤的展示进度",
+        label: "查看传播环节",
         min: 0,
-        max: 100,
-        step: 0.25,
-        value: 100,
-        format: (v) => v.toFixed(1) + "%",
+        max: 2,
+        step: 1,
+        value: 2,
+        discrete: true,
+        format: (v) =>
+          ["输入噪声", "白平衡", "矩阵混合"][Math.min(2, Math.floor(v))],
       },
     ],
     presets: [
@@ -77,23 +81,23 @@ export function mount({ element, signal, session }) {
           mixing: 1,
           shared: 8,
           exposure: 0,
-          progress: 100,
+          progress: 2,
         },
       },
-      { label: "关闭白平衡", values: { red: 1, blue: 1, progress: 100 } },
+      { label: "关闭白平衡", values: { red: 1, blue: 1, progress: 2 } },
       {
         label: "只有通道乘法",
         values: { red: 2, blue: 2.5, mixing: 0, progress: 60 },
       },
       {
         label: "独立输入仍会相关",
-        values: { shared: 0, mixing: 1, progress: 100 },
+        values: { shared: 0, mixing: 1, progress: 2 },
       },
       {
         label: "增大共同噪声",
-        values: { shared: 20, mixing: 1, progress: 100 },
+        values: { shared: 20, mixing: 1, progress: 2 },
       },
-      { label: "少收两档光", values: { exposure: -2, progress: 100 } },
+      { label: "少收两档光", values: { exposure: -2, progress: 2 } },
       {
         label: "重拍输入读数",
         values: (s) => ({ seed: ((s.seed ?? 20261018) + 1) >>> 0 }),
@@ -121,7 +125,7 @@ export function mount({ element, signal, session }) {
         root.querySelector(".wb-cov").innerHTML = covarianceTable(m);
         key = k;
       }
-      const stage = Math.min(2, Math.floor(s.progress / 34));
+      const stage = Math.min(2, Math.floor(s.progress));
       root
         .querySelectorAll(".wb-stage")
         .forEach((e, i) => (e.dataset.active = String(i === stage)));
@@ -151,6 +155,7 @@ export function mount({ element, signal, session }) {
         element,
         signal,
         key: "progress",
+        end: 2,
         label: "逐步展示噪声传播",
         durationMs: 8500,
       }),

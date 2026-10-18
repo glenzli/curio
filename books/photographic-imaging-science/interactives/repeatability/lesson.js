@@ -1,5 +1,10 @@
-import { repeatability, MEAN } from "./model.js";
+import { repeatability, selectionStudy, MEAN } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
+import { memoOne } from "../common/field-view.js";
+const selections = memoOne(
+  (s) => [0, 1, 2].map((grid) => selectionStudy({ ...s, grid })),
+  ["seed", "readSD"],
+);
 let key, cached;
 function groups(m, progress) {
   const w = 720,
@@ -52,6 +57,10 @@ export const spec = {
     {
       ...control("grid", "对焦候选点数", 0, 2, 1, 2),
       format: (v) => String([9, 17, 33][Math.round(v)]),
+      hint: (s) =>
+        s.readSD === 0
+          ? "三种网格都包含真实峰值，零测量噪声时结果相同。"
+          : "下方专图比较9、17、33个候选，竖线标出当前选择；上方分组实验不变。",
     },
     control("progress", "已显露的观测", 0, 100, 1, 100, "%"),
   ],
@@ -114,7 +123,15 @@ export const spec = {
     const pdf = (x) =>
       Math.exp(-0.5 * (x / (sd * 1000)) ** 2) / (sd * Math.sqrt(2 * Math.PI));
     const max = Math.max(...hist.map((p) => p[1]), sd > 0 ? pdf(0) : 0) * 1.12;
-    const selection = m.selection;
+    const selection = m.selection,
+      studies = selections(s),
+      selectionValues = studies.flatMap((v) =>
+        [v.observedMean, v.selectedTruthMean, v.validationMean].map(
+          (x) => 1000 * (x - v.truePeak),
+        ),
+      ),
+      selectionMin = Math.min(-1, ...selectionValues) * 1.15,
+      selectionMax = Math.max(1, ...selectionValues) * 1.15;
     return {
       figureHeight: 270,
       figure: groups(m, s.progress),
@@ -145,6 +162,38 @@ export const spec = {
               label: sd === 0 ? "方差为零" : "生成均值",
               color: "#777",
             },
+          ],
+        },
+        {
+          title: "对焦包围：挑出的最高读数有多少来自测量误差",
+          xMin: 9,
+          xMax: 33,
+          yMin: selectionMin,
+          yMax: selectionMax,
+          xLabel: "给定候选点数（9、17、33；连线仅作导引）",
+          yLabel: "平均读数−生成峰值（×10⁻³）",
+          markers: [{ value: selection.count, label: "当前候选数" }],
+          curves: [
+            ...[
+              ["观测最大值", "observedMean"],
+              ["选中位置真值", "selectedTruthMean"],
+              ["独立复测", "validationMean"],
+            ].map(([name, k], i) =>
+              curve(
+                name,
+                studies.map((v) => [v.count, 1000 * (v[k] - v.truePeak)]),
+                i,
+              ),
+            ),
+            curve(
+              "真实峰值参考",
+              [
+                [9, 0],
+                [33, 0],
+              ],
+              3,
+              true,
+            ),
           ],
         },
       ],
