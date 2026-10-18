@@ -46,7 +46,18 @@ $$
 归一化；把最佳对焦时的 RMS 与固定像面 RMS 直接比较会把 defocus 口径混在一起。
 
 上述内积对应均匀透射的完整圆瞳；遮挡或振幅加权改变时，应使用匹配的权重，不能
-直接沿用同一组 RMS 系数。若实相位误差 $\varphi=2\pi W/\lambda$ 已去均值且足够小，
+直接沿用同一组 RMS 系数。
+
+比较点像时，还要先确定比较的位置。令 $h$ 为固定像面上的强度 PSF，$h_{\rm ref}$
+为相同瞳振幅、相同总通量下的无像差参考 PSF，参考峰值位于原点。本书把
+$\mathcal S=\max_{\boldsymbol r}h(\boldsymbol r)/h_{\rm ref}(0)$ 称为 Strehl
+ratio（峰值比），另记固定参考原点的轴上比 $S_0=h(0)/h_{\rm ref}(0)$。
+这里的最大值只在该像面内取，不包含重新对焦；比较时应一并声明焦位和去倾斜规则。
+仅当原点也是被比较 PSF 的峰值位置时，$S_0$ 与 $\mathcal S$ 才相同。
+例如彗差会使峰值偏离原点；[Mahajan（1985）](https://opg.optica.org/josaa/abstract.cfm?uri=josaa-2-6-833)
+的表 1 分别报告了峰值、质心处和原点处的强度。
+
+若实相位误差 $\varphi=2\pi W/\lambda$ 已去均值且足够小，
 像面中心的归一化复振幅为
 $\langle e^{i\varphi}\rangle$。展开指数得
 
@@ -55,10 +66,10 @@ $$
 \approx1-\frac12\langle\varphi^2\rangle,
 $$
 
-故中心强度比，即 Strehl ratio，满足 Maréchal 近似
+故轴上比 $S_0$ 的二阶展开可写成常用的 Maréchal 指数近似：
 
 $$
-\mathcal S\approx
+S_0\approx
 \exp\left[-\left(\frac{2\pi\sigma_W}{\lambda}\right)^2\right]. \tag{13.3}
 $$
 
@@ -66,9 +77,11 @@ $$
 比较。若 $|\varphi|\le\varepsilon\ll1$，指数展开的平均余项为
 $O(\varepsilon^3)$，所以强度比的二阶式是 $1-\langle\varphi^2\rangle$；
 式 (13.3) 的指数形式在该阶与之相同，是常用近似而非精确等式。
-$\sigma_W=\lambda/14$ 时得到 $\mathcal S\approx0.818$，在 550 nm 下对应约
+$\sigma_W=\lambda/14$ 时得到 $S_0\approx0.818$，在 550 nm 下对应约
 39 nm 的波前 RMS。相同 RMS 的不同模式组合仍可形成不同 PSF，也可具有不同的
-高频 MTF；Strehl 只压缩了其中一个峰值指标。
+高频 MTF。轴上比和峰值比各自都只概括点像的一个强度特征；若要把式 (13.3) 用于
+峰值比，还需峰值位于所用参考原点。小相位近似与具体像差平衡的关系另见
+[Mahajan（1982）](https://opg.optica.org/josa/abstract.cfm?uri=josa-72-9-1258)。
 
 ### 同样的 RMS，可以有不同的点像
 
@@ -305,5 +318,10 @@ $k<1$，其边缘波像差项
 **练习 13.3.** 设计一个区分场曲和边缘固有像差的拍摄测试，说明需改变哪个变量。
 
 **练习 13.4.** 用式 (13.3) 分别估计
-$\sigma_W=\lambda/20$ 与 $\lambda/10$ 的 Strehl ratio。说明为何两个数字都只能
-在 Maréchal 近似适用且 RMS 口径一致时比较。
+$\sigma_W=\lambda/20$ 与 $\lambda/10$ 的轴上比 $S_0$。说明近似条件与 RMS
+口径，并指出还需什么位置条件，才能把它们解释为本书约定的 Strehl 峰值比。
+
+**练习 13.5.** 先只保留纯离焦 $W/\lambda=c\sqrt3(2\rho^2-1)$，取 $c=0.12$，
+用正文精确式计算 $S_0$，再与式 (13.3) 比较。随后清零离焦，只在纯彗差系数
+$+0.12$ 与 $-0.12$ 之间切换；切换前预测 $S_0$、固定方向 MTF、OTF 实部和虚部
+各怎样变化，再观察点像与读数核对。为什么这些比较仍没有执行峰值位置搜索？

@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和CMOS读出，到噪声、RAW、镜头与整套成像系统。25个阅读页面、62道练习答案；56个组件贯通成像链、吸收收集、校准漂移、采样与颜色、局部HDR、DNG、厚透镜、宽谱衍射、焦面测量与光学结构。保留已知真值、静态图和可恢复的实验参数。",
+  "description": "从光子、曝光和CMOS读出，到噪声、RAW、镜头与整套成像系统。25个阅读页面、70道练习答案；56个组件贯通成像链、吸收收集、校准漂移、采样与颜色、局部HDR、DNG、厚透镜、宽谱衍射、焦面测量与光学结构。保留已知真值、静态图和可恢复的实验参数。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [

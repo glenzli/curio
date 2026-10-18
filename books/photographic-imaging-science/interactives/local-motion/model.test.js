@@ -41,3 +41,26 @@ test("estimated weights remain distinct from oracle weights and deterministic", 
   assert.notEqual(a.weight, b.weight);
   assert.deepEqual(localMotion(), localMotion());
 });
+
+test("RMSE shares a support set; failed estimates do not invalidate oracle data", () => {
+  for (const ratio of [4, 7, 8]) {
+    const m = localMotion({ ratio });
+    const common = m.profiles.filter((p) =>
+      ["global", "local", "oracle"].every((key) => p[key] !== null),
+    );
+    assert.equal(m.compared, common.length);
+    for (const key of ["global", "local", "oracle"]) {
+      if (!common.length) assert.equal(m.rmse[key], null);
+      else {
+        const mse =
+          common.reduce((sum, p) => sum + (p[key] - p.truth) ** 2, 0) /
+          common.length;
+        assert(Math.abs(m.rmse[key] ** 2 - mse) < 1e-10);
+      }
+    }
+    if (ratio === 8) {
+      assert.equal(m.compared, 0);
+      assert(m.profiles.some((p) => p.oracle !== null));
+    }
+  }
+});

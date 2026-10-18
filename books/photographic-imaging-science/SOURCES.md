@@ -164,6 +164,16 @@
   in Chapter 16. The two-lens interactive derives its own pupil conjugates and
   separates chief-ray scale from defocus; it uses no product accuracy claims.
 - Virendra N. Mahajan, *Optical Imaging and Aberrations*, SPIE Press.
+- Virendra N. Mahajan, [“Strehl ratio for primary aberrations: some analytical results
+  for circular and annular pupils”](https://opg.optica.org/josa/abstract.cfm?uri=josa-72-9-1258),
+  JOSA 72, 1258–1266 (1982), abstract and Table 1: small-aberration approximation
+  and its reference-point/balancing conventions. Chapter 13 derives the on-axis
+  second-order expansion and does not infer an exact peak search from RMS alone.
+- Virendra N. Mahajan, [“Line of sight of an aberrated optical system”](https://opg.optica.org/josaa/abstract.cfm?uri=josaa-2-6-833),
+  JOSA A 2, 833–846 (1985), abstract and Table 1: peak, centroid and reference-origin
+  irradiance are distinct for coma. Chapter 13 explicitly separates a fixed-plane
+  peak-ratio convention from its fixed-origin readout S₀. Article tables/abstracts
+  were checked; no claim is made to have accessed the paywalled full texts.
 - Ansys, [OpticStudio 2025 R2 User Guide: Seidel Coefficients](https://ansyshelp.ansys.com/public/Views/Secured/Zemax/v252/en/OpticStudio_User_Guide/OpticStudio_Help/topics/Seidel_Coefficients.html),
   for the distinction and conversion between third-order ray and fourth-order
   wavefront aberration coefficients used in Chapter 13.

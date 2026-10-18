@@ -33,7 +33,10 @@ export const spec = {
       valid = (key, region) =>
         m.profiles
           .filter((p) => p[key] !== null && Math.floor(p.x / 64) === region)
-          .map((p) => [p.x, p[key]]);
+          .map((p) => [p.x, p[key]]),
+      available = ["global", "local", "oracle"].map(
+        (key) => m.profiles.filter((p) => p[key] !== null).length,
+      );
     return {
       panels: [0, 1].map((region) => ({
         title: region ? "主体区域" : "背景区域",
@@ -65,8 +68,13 @@ export const spec = {
           number(m.rmse.local) + " e⁻/短曝光",
           `真值支路 ${number(m.rmse.oracle)}`,
         ],
+        [
+          "共同评估位置",
+          `${m.compared}/${m.profiles.length}`,
+          "三路均有效的位置；RMSE使用同一集合",
+        ],
       ],
-      reading: `局部搜索只读取观测数组，不读取生成位移。${m.local.map((x, i) => `${i ? "主体" : "背景"}：${x.reason}`).join("；")}。饱和样本在融合中剔除；本图不估计遮挡边界或真实物体分割，增加局部块也不能自动解决这些问题。`,
+      reading: `局部搜索只读取观测数组，不读取生成位移。${m.local.map((x, i) => `${i ? "主体" : "背景"}：${x.reason}`).join("；")}。各支路有效位置：全局${available[0]}、局部${available[1]}、已知位移${available[2]}，总计${m.profiles.length}处。${m.compared ? "RMSE只比较共同有效位置，不代表全图误差。" : "没有三路共同有效的位置，三项RMSE均不报告；已知位移支路仍可能有有效数据。"}饱和样本在融合中剔除；本图不估计遮挡边界或真实物体分割。`,
     };
   },
 };

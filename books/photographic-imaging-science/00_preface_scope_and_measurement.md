@@ -51,6 +51,26 @@ $\mathcal C$ 表示去马赛克、白平衡、颜色变换、降噪和色调映�
 [第九章](09_gamma_log_exposure_index_and_display.md)继续区分记录和显示，
 [第十章](10_still_raw_video_raw_and_compression.md)则打开文件中的实际样本。
 
+### 贯穿算例的固定参数
+
+后文会反复回到例 1.4 的同一次曝光。以下参数属于一台虚拟的单色相机，用来练习
+各层换算；它们不是某款器材的实测数据。像面曝光量已经包含前方光学系统的能量
+传输，算光子数时不再乘一次镜头透射率。
+
+| 环节 | 固定输入与约定 |
+|---|---|
+| 入射与像素 | 550 nm 窄带光，像面曝光量 $10^{-4}\ \mathrm{J/m^2}$，方形像素节距及感光宽度均为 4 μm |
+| 光电转换 | 外量子效率 0.70；固定窗口内 Poisson 光子计数，每个光子独立地贡献零或一个电子 |
+| 噪声与容量 | 满阱 32,000 e⁻，输入等效读噪 4 e⁻ rms，暗电流与 PRNU 在本例中取零 |
+| 线性读出 | 满阱对应增益前 1 V 信号跨度，默认模拟增益一；14 bit 端点等距量化，黑电平 0 DN，白电平 16,383 DN |
+| 显示支路 | 先按黑白电平归一化为 $x$，教学显示信号为 $x^{1/2.2}$；这不是实际显示器的亮度标定 |
+| 空间响应 | 另取无像差圆瞳、空气中远焦 $f/8$，无 OLPF、无运动，局部线性、空间不变；在同一平均曝光附近比较小调制度条纹 |
+
+默认值与上方成像链演示一致，噪声和光学部分由后续章节加入。第 2 章计算电子
+计数的分布，第 3--5 章分别处理码格、SNR 和增益，第 9--10 章跟踪监看与文件，
+第 12、17 章计算并报告空间响应。各处标题中的“贯穿算例”都指这张参数表。
+其他例子会给出自己的输入，不自动继承这组数值。
+
 ## 0.2 两条主线及其汇合点
 
 本书沿两条主线展开。
@@ -75,6 +95,31 @@ Log 以及静态和视频 RAW。沿这条线，读者应能回答：一次曝光
 章给出的成像与频率语言，是理解全书比较结论的共同基础。遇到陌生符号时可查
 [符号表](NOTATION.md)，查技术名词可用[术语索引](TERM_INDEX.md)；练习答案集中在
 [答案手册](SOLUTIONS.md)。
+
+### 第一遍读到哪里，第二遍再算什么
+
+第一次阅读可以先把物理量和因果关系连起来，再返回推导。下表中的“首读”连同
+各节给出的假设，足以理解贯穿算例；“推导”保留了完整论证，适合在需要复算时细读。
+“测量与实验”则要求主动控制变量，不必一边读正文一边操作所有演示。
+
+| 章节 | 首读时抓住的关系 | 第二遍的推导或实验 |
+|---|---|---|
+| [1 辐射度学](01_radiometry_aperture_and_exposure.md) | 曝光量、像素能量、光子数；f 数平方律与 cos⁴θ 的条件 | §1.4 有限出瞳的面积分与圆周积分；区分数值误差和小瞳近似偏差 |
+| [2 光电转换](02_photons_silicon_and_pixels.md)、[3 读出](03_cmos_pixels_readout_and_adc.md) | QE、Poisson 计数、电子/电压/DN 与剪切位置 | 稀疏化证明、CDS 协方差、斜坡 ADC 和列误差 |
+| [4 噪声](04_noise_snr_full_well_and_dynamic_range.md)、[5 增益](05_iso_exposure_index_and_gain.md) | 用同一电子刻度比较曝光、噪声、增益与高光余量 | 成对平场、共享校准与双读出协方差；练习 4.5 |
+| [6 结构与快门](06_shutters_bsi_stacking_and_curved_sensors.md) | 曝光窗口、入光方向和功能层分别说明什么 | 快门时序、曲率匹配；练习 6.4 |
+| [7 颜色与采样](07_color_filter_sampling_and_demosaicing.md) | 相机通道、混叠、减黑后白平衡与颜色矩阵 | Luther 条件的线性空间证明；插值协方差实验 7.4 |
+| [8 HDR](08_computational_exposure_and_hdr.md) | 配准、未剪切支持与融合权重 | 二维搜索、局部运动和共同样本数；练习 8.4 |
+| [9 编码](09_gamma_log_exposure_index_and_display.md)、[10 RAW](10_still_raw_video_raw_and_compression.md) | 捕获、记录、监看各自的上限；按标签解码 | 分段 Log 连续性、逐码反解和微型 DNG 检查 |
+| [11 近轴光学](11_geometrical_optics_and_paraxial_systems.md) | 物像共轭、主平面、光阑与两侧瞳 | 矩阵连乘、厚系统及孔径截光 |
+| [12 衍射](12_diffraction_psf_otf_mtf_and_sampling.md)、[13 像差](13_aberrations_and_field_behavior.md) | PSF 的宽度与形状，MTF 的频率、方向和相位信息 | 复瞳自相关证明、Bessel 积分、轴上比与峰值比；练习 13.5 |
+| [14 材料](14_optical_materials_glass_resin_and_fluorite.md)、[15 元件](15_aspheres_fresnel_diffractive_optics_and_coatings.md) | 色散、面形、衍射与镀膜解决的不同问题 | 消色差条件、温漂补偿和非球面斜率；练习 14.5、15.5 |
+| [16 镜组运动](16_lens_architectures_focus_zoom_and_stabilization.md) | 对焦、呼吸、补偿、防抖、景深与远心性 | 按章首五步指引，每次只固定或改变一个条件 |
+| [17 系统测试](17_lens_testing_and_system_analysis.md) | 区分预采样模型、RAW 系统测量与处理后图像 | 斜边拟合、装夹重复性及贯穿算例的报告；练习 17.5 |
+
+需要复数、概率或 Fourier 变换时，可先读[附录 A](A_probability_fourier_and_units.md)
+的相应部分。八道新增实验题都给出了可手算的输入和[参考答案](SOLUTIONS.md)；
+演示用于比较观测与已知真值，静态阅读时也能完成主要推理。
 
 ## 0.3 一句器材结论里可能有几个问题
 
