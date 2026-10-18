@@ -359,6 +359,9 @@
     },
     "lens-motion": {
       "entry": "interactives/lens-motion/index.js"
+    },
+    "lens-atlas": {
+      "entry": "interactives/lens-atlas/index.js"
     }
   },
   "source": {

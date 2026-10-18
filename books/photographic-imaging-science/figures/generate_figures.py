@@ -8,6 +8,7 @@ import math
 import base64
 import struct
 import zlib
+import subprocess
 from pathlib import Path
 
 
@@ -1393,36 +1394,10 @@ def figure_15_flare_forms():
 
 
 def figure_16_classical_layouts():
-    s=SVG("图 16.2  常见镜组的等效光焦度与胶合分组")
-    cases=[("三片式",[1,-1,1],"三片分离；正—负—正"),
-           ("Tessar式",[1,-1,1],"后胶合双片合成一个等效组"),
-           ("双高斯式",[1,-1,-1,1],"光阑两侧近对称"),
-           ("反望远式",[-1,1],"前负后正，保留后焦空间"),
-           ("望远式",[1,-1],"前正后负，缩短轴向像程")]
-    for i,(title,powers,caption) in enumerate(cases):
-        x=36+(i%3)*326;y=88+(i//3)*205
-        s.panel(x,y,276,188,title)
-        yc=y+101
-        s.line(x+20,yc,x+256,yc,color=GRAY,width=1,dash="4 4")
-        xs=[x+44+j*188/(len(powers)-1) for j in range(len(powers))]
-        for xx,p in zip(xs,powers):
-            engineering_thin_group(s,xx,yc,38,p>0,BLUE if p>0 else RED)
-            s.text(xx,yc+58,"+" if p>0 else "−",size=18,anchor="middle")
-        stop=(xs[1]+xs[2])/2 if len(xs)==3 else (xs[1]+xs[2])/2 if len(xs)==4 else (xs[0]+xs[1])/2
-        s.line(stop,yc-48,stop,yc-15,width=3)
-        s.line(stop,yc+15,stop,yc+48,width=3)
-        s.text(x+138,y+175,caption,size=15,anchor="middle")
-    x,y=688,293
-    s.panel(x,y,276,188,"“片”与“组”分别计数")
-    s.rect(x+38,y+58,77,60,fill=PALE_BLUE,stroke=BLUE,sw=1,radius=0)
-    s.rect(x+115,y+58,77,60,fill=PALE_AMBER,stroke=AMBER,sw=1,radius=0)
-    s.text(x+77,y+95,"玻璃1",size=16,anchor="middle")
-    s.text(x+153,y+95,"玻璃2",size=16,anchor="middle")
-    s.text(x+138,y+147,"两片胶合 → 一个胶合组",size=17,anchor="middle")
-    s.text(x+138,y+174,"再按一阶作用选取等效平面",size=15,anchor="middle")
-    s.text(500,531,"薄组符号定位一阶作用；箭头向外为正，向内为负",size=21,anchor="middle")
-    s.text(500,566,"结构名称与示意组序不能替代曲率、玻璃、厚度和物距组成的完整处方",size=17,color=GRAY,anchor="middle")
-    s.save("16_classical_layouts.svg")
+    # The numbered atlas and the interactive share their prescription geometry.
+    subprocess.run([
+        "node", str(OUT.parent / "interactives/lens-atlas/generate-fallback.js"), "--numbered"
+    ], check=True)
 
 
 def figure_18_pupil_clearance():

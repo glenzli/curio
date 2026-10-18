@@ -369,3 +369,42 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
   its own six-order traveling wave and small-slope surface kinematics; it does not
   reproduce the paper's USR60 geometry, measured resonance or finite-volume model.
   Rotor motion uses a declared peak-contact no-slip reference, without a contact-load solver.
+
+### 第16章镜片剖面的数值来源
+
+以下六例使用原表曲率、中心厚度、空气间隔和基准折射率。先从原表计算焦距，
+再把全部长度等比例缩放至50 mm；原表的标称焦距与本书按已刊小数计算的焦距
+分别保留。净口径及未给出精确位置的光阑由本书另行指定，表中逐项列明。
+
+- H. D. Taylor, [US568052A, *Lens*](https://patents.google.com/patent/US568052A/en),
+  22 September 1896, Series IIIᵇ / Fig. 10, printed pp. 8–9. Three-element example,
+  not the cemented four-element Fig. 8. Original convex/concave surface signs are
+  converted to the book's centre-to-the-right-positive convention. The six radii
+  become +17, −94.5, −56, +15.9, +362.3, −77 at the nominal 100-unit scale.
+- P. Rudolph, [US721240A, *Photographic objective*](https://patents.google.com/patent/US721240A/en),
+  24 February 1903, sole numerical example, printed p. 2. Four elements in three
+  air-separated groups; the rear cemented pair retains its distinct indices and
+  common curved interface. The table's b₁ and b₂ fix the stop location.
+- J. G. Baker, [US2532751A, *Highly corrected objective having two inner divergent meniscus components between collective components*](https://patents.google.com/patent/US2532751A/en),
+  5 December 1950, Example 2, printed p. 7. Six-element/four-group Gauss form;
+  all lengths in the F=1 table are first multiplied by100. The book places its stop
+  at the midpoint of the central air interval; no claim to reproduce the patent's
+  complete full-field performance is made from this teaching aperture.
+- L. Bertele, [US1998704A, *Photographic objective*](https://patents.google.com/patent/US1998704A/en),
+  23 April 1935, Example I, printed p. 1. Six elements arranged as 1+3+2, rather
+  than a seven-element Sonnar. The original scan confirms nD=1.6890 in the fourth
+  glass and nD=1.5647 in the fifth; the middle cemented triplet remains intact.
+- P. Angénieux, [US2649022A, *Wide-angle photographic objective lens assembly*](https://patents.google.com/patent/US2649022A/en),
+  18 August 1953, Fig. 1 / Table I, printed p. 3. Six elements/five air-separated
+  groups; the negative front meniscus and the remaining positive system are kept
+  separate from the negative single element within that rear system.
+- W. Merté, *Telephotographic objective*, US2171274, 29 August 1939, Fig. 1,
+  [original patent reproduced in University of Arizona OPTI415 Homework1](https://wp.optics.arizona.edu/visualopticslab/wp-content/uploads/sites/52/2022/01/415HW1_2022.pdf),
+  PDF p. 4, with stop placement specified in question3 on PDF p. 1. Five elements,
+  three air-separated groups; the negative rear system includes a positive final
+  singlet. The scan gives nD=1.55226 for L1 and1.58910 for L3.
+
+Tables and relevant drawings read 19 October 2026. The book computes monochromatic
+spherical-cap geometry, Snell paths and paraxial references from these inputs;
+historical patent performance claims, tolerances, spectral data and product identity
+are outside these calculations.

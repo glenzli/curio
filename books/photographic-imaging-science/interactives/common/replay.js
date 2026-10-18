@@ -23,17 +23,21 @@ export function replay({
     disposed = false,
     played = false;
   function pause() {
+    const wasRunning = running;
     running = false;
     cancelAnimationFrame(frame);
     button.textContent = label;
     button.setAttribute("aria-pressed", "false");
+    // Save and display the same final frame, including time since the last draw.
+    if (wasRunning && !disposed) render();
   }
   function tick(time) {
     if (!running || disposed) return;
     state[key] = Math.min(
       end,
       state[key] +
-        (Math.min(100, time - previous) * (end - start)) / durationMs,
+        // The first frame can carry a timestamp just before the click handler.
+        (Math.max(0, Math.min(100, time - previous)) * (end - start)) / durationMs,
     );
     previous = time;
     if (time - drawn >= 50 || state[key] === end) {
