@@ -60,6 +60,15 @@
 
 ## 曝光、ISO 与计算成像
 
+- Bartlomiej Wronski et al., [“Handheld Multi-Frame Super-Resolution”](https://arxiv.org/abs/1905.03277),
+  *ACM Transactions on Graphics* 38(4), 2019, Article 28, DOI
+  [10.1145/3306346.3323024](https://doi.org/10.1145/3306346.3323024);
+  [author project](https://sites.google.com/view/handheld-super-res/).
+  Background for obtaining complementary samples from shifted CFA bursts. Chapter 8's
+  finite one-dimensional Fourier problem, Gaussian/box forward model, rank witnesses
+  and least-squares solver are derived separately; they do not reproduce the paper's
+  raw alignment, reconstruction or robustness pipeline. Public author summary and
+  bibliographic record checked 18 October 2026.
 - ISO, [ISO 12232:2019, Photography -- Digital still cameras -- Determination
   of exposure index, ISO speed ratings, standard output sensitivity, and
   recommended exposure index](https://www.iso.org/standard/73758.html), edition 3,
@@ -143,6 +152,22 @@
 
 ## 几何光学、Fourier 光学与镜头
 
+- Delft University of Technology, *Advanced Optical Imaging*,
+  [Chapter 7: Coherent optical imaging](https://qiweb.tudelft.nl/aoi/coherentimaging/coherentimaging/),
+  §§7.1–7.2, and [Chapter 8: Wavefield aberrations](https://qiweb.tudelft.nl/aoi/wavefieldaberrations/wavefieldaberrations/),
+  §§8.1.1 and 8.3, checked 18 October 2026. Scalar propagation, pupil phase and
+  Zernike background for the Chapter 13 aperture comparison. The book derives its
+  own fixed-scale detector-displacement sign from propagation to f+Δz, rather than
+  identifying it with the lecture's compensating-lens phase. Equal-area polygon
+  boundaries, finite FFT normalization and independent polar quadrature are local
+  calculations; no continuous PSF is claimed exact from Parseval alone.
+- Matt Pharr, Wenzel Jakob and Greg Humphreys, *Physically Based Rendering*,
+  4th ed., [§9.3: Specular Reflection and Transmission](https://www.pbr-book.org/4ed/Reflection_Models/Specular_Reflection_and_Transmission),
+  checked 18 October 2026. Reflection, Snell and dielectric Fresnel relations for
+  Chapter 15. The two-singlet prescription, selected double-reflection paths,
+  cap intersections, aperture tests and global-slope paraxial comparisons are this
+  book's own teaching construction. It is a discrete meridional power model,
+  not a complete flare renderer or an irradiance estimate over a two-dimensional pupil.
 - Max Born and Emil Wolf, *Principles of Optics*, 7th expanded ed., Cambridge
   University Press, 1999.
 - Joseph W. Goodman, *Introduction to Fourier Optics*, 4th ed., W. H. Freeman,

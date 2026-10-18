@@ -19,6 +19,9 @@ const ids = [
   "psf-image",
   "capture-scene",
   "repeatability",
+  "subpixel",
+  "ghost",
+  "defocus",
 ];
 for (const id of ids) {
   const folder = new URL(`./${id}/`, import.meta.url);

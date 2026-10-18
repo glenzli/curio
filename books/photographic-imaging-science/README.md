@@ -78,8 +78,8 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 59 个组件、67 处章节插入，
-17 章正文均有演示；另外保留38张组件自带的无编号静态回退。
+阅读器从同一套源文件生成本地预览和静态网站。当前有 62 个组件、70 处章节插入，
+17 章正文均有演示；另外保留41张组件自带的无编号静态回退。
 从光子计数与 QE、单斜坡 ADC、双增益共享噪声，到曝光积累、4T/CDS、平场校准、采样与配准，以及
 浮动对焦、呼吸、景深和其他光学演示。演示按内容采用条件比较、可暂停回放或三维光路。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
@@ -107,7 +107,7 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 python3 books/photographic-imaging-science/figures/generate_figures.py
 ```
 
-17张静态图和教学DNG由
+20张静态图和教学DNG由
 [generate-lessons.mjs](interactives/generate-lessons.mjs)统一确定性生成；运行
 `node books/photographic-imaging-science/interactives/generate-lessons.mjs`。其他互动图的入口随模型保存，例如
 [列ADC误差图](interactives/adc-errors/generate-fallback.js)、
@@ -158,6 +158,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第七章 `bayer`：RGGB 的方形/菱形频率单元、方向和格点相位；双线性插值只读 CFA 观测，输入真值和每通道等效基带正弦独立保留。
 - 第八章 `registration2d`：固定共同支持的横纵位移搜索、二维相关面及观测叠加；保留生成真值、误差、遮挡、单向/周期图案与失败状态。
 - 第八章 `hdr`：从观测的条带梯度相关曲线估计水平位移，比较未配准、估计配准与真值配准；保留曝光预算、方差权重、去鬼影及估计失败条件。
+- 第八章 `subpixel`：逐帧加入不同采样相位，比较Fourier重建、原始真值和观测残差；保留同相位秩亏、矩形孔径零点及已知位移支路。
 - 第五、九章共用 `ei-monitor`：固定曝光、按EI少曝与编码前增益分开，逐级跟踪电子/RAW/Log/监看；物理档位真值、有限码区间和三处白点另列。
 - 第九章 `encoding`：线性、Gamma 与带线性 toe 的教学 Log，比较码值跨度、量化后反解的暗部渐变及编码前高光剪切。
 - 第十章 `raw`：字节打包与解码的分步回放，比较丢低位和错误位序；保留独立位串对照、有符号归一化及样本载荷。
@@ -167,12 +168,14 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十二章 `spectrum`：同一像面尺度上的双波长强度与复OTF合成；Airy、连续瞳积分、直接瞳相关与错误取模顺序对照。
 - 第十二章 `pupil`：复瞳、复振幅相量、PSF 和复 OTF 的分步回放；Airy、圆盘重叠、直接瞳相关、连续积分和归一化检验分别列出。
 - 第十三章 `wavefront`：四个归一化 Zernike 模式和离焦扫描，保留轴上强度、OTF 实虚部与相位、固定方向 MTF 和纯离焦精确对照。
+- 第十三章 `defocus`：等面积圆、六边形、五边形与方形光阑，固定像面和亮度标尺扫描焦点两侧；FFT、直接相量和、连续积分及共轭反转互核。
 - 第十二章 `mtf`：无像差圆瞳与矩形像素的预采样 MTF、Nyquist、Airy 尺度及线性调制度条纹。
 - 第十三、十七章共用 `field`：明确声明的局部椭圆 Gaussian PSF 模型，联动像高 MTF、两个方向最佳焦面和固定平面/局部重对焦。
 - 第十四章 `achromat`：SCHOTT N-BK7/N-F2 目录色散与接触薄片光焦度分配，显示 F/C 同焦、残余谱线焦移、相同材料退化及像面上的几何离焦斑。
 - 第十五章 `pf`：等宽相位量化、非设计波长与深度误差；逐段 Fourier 积分、中点积分及设计效率真值对照，图外级次余量单列。
 - 第十五章 `coating`：单层相消与多层膜两个页签。保留精确单层复振幅，新增两/四/六层次序及厚度误差；特征矩阵、界面递推、理想四分之一波导纳相互核对。
 - 第十五章 `oblique-coating`：回放入射角扫描，按Snell重新计算s/p导纳和相位；矩阵与完整电场Fresnel递推比较复振幅和能流，保留Brewster、零膜厚与正入射匹配。
+- 第十五章 `ghost`：两片完整球面教学处方的指定双反射路径，逐段展示往返折射、孔径截断和s/p功率；独立近轴矩阵与正入射乘积对照。
 - 第十六章 `focus`：近轴薄透镜、光束与弥散圈的三维对焦；容许直径、景深近远界和独立边缘追迹读数。
 - 第十六章 `floating`：有限对焦下的两组协同与固定远景方向，比较只移动后组与同时约束角尺度；独立二次消元、矩阵和逐面求解对照，行程不足时停止自动运动。
 - 第十六章 `dof`：近远界、超焦距、无穷远和输出判据；边缘光线二分求解与解析式独立核对，收紧判据不改变光束。
@@ -181,7 +184,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十六章 `telecentric`：光阑位置、入瞳/出瞳、两侧主光线与物/像面轴向偏移；独立几何和矩阵追迹互核，离焦跨度单列。
 - 第十七章 `edge`：逐行差分质心与直边拟合，再做法向投影、ESF、LSF、DFT 及差分修正；拟合几何、已知几何与解析 MTF 分别对照，无效拟合与空箱停止报告。
 
-以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有38张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
+以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有41张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
 
 静态实验示意采用 `互动示意：` 开头的替代文本与相邻图注，放在对应的
 `data-mb-component` 容器中，图源为组件入口旁的 `fallback.svg`。书稿检查单独核对
