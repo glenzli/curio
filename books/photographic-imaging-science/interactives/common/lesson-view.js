@@ -50,7 +50,7 @@ export function chart(panel) {
   });
 }
 export function lessonBody(result) {
-  return `${result.figure ?? ""}${(result.panels ?? []).map((p) => `<div class="chart"><h4>${escape(p.title)}</h4>${chart(p)}<div class="legend">${legend(p.curves.filter((c) => c.name))}</div></div>`).join("")}<div class="stats">${result.stats.map(([label, value, detail = ""]) => `<div><small>${escape(label)}</small><strong>${escape(value)}</strong><em>${escape(detail)}</em></div>`).join("")}</div><p class="reading" data-truth>${escape(result.reading)}</p>${result.table ?? ""}`;
+  return `${result.liveFigure ?? result.figure ?? ""}${(result.panels ?? []).map((p) => `<div class="chart"><h4>${escape(p.title)}</h4>${chart(p)}<div class="legend">${legend(p.curves.filter((c) => c.name))}</div></div>`).join("")}<div class="stats">${result.stats.map(([label, value, detail = ""]) => `<div><small>${escape(label)}</small><strong>${escape(value)}</strong><em>${escape(detail)}</em></div>`).join("")}</div><p class="reading" data-truth>${escape(result.reading)}</p>${result.table ?? ""}`;
 }
 // Shared presentation only: each lesson owns its data, model and reference calculation.
 export function fallback(spec) {
@@ -61,11 +61,12 @@ export function fallback(spec) {
   let y = 104 + captions.length * 23,
     body = "";
   if (r.figure) {
+    const figureHeight = r.figureHeight ?? 310;
     body += r.figure.replace(
       "<svg ",
-      `<svg x="30" y="${y}" width="740" height="310" `,
+      `<svg x="30" y="${y}" width="740" height="${figureHeight}" `,
     );
-    y += 330;
+    y += figureHeight + 20;
   }
   for (const p of panels) {
     body += `<text x="30" y="${y}" font-size="20">${escape(p.title)}</text>`;
@@ -89,7 +90,13 @@ export function fallback(spec) {
   }
   // These tables are generated locally by lesson specs, without nested markup.
   // Keep their calibration values available in a static-only reader too.
-  for (const row of (r.table ?? "").matchAll(/<tr>([\s\S]*?)<\/tr>/g)) {
+  for (const line of r.staticRows ?? []) {
+    body += `<text x="30" y="${y}" font-size="15">${escape(line)}</text>`;
+    y += 24;
+  }
+  for (const row of (r.staticRows ? "" : (r.table ?? "")).matchAll(
+    /<tr>([\s\S]*?)<\/tr>/g,
+  )) {
     const cells = [...row[1].matchAll(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/g)].map(
       (m) => m[1],
     );

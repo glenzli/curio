@@ -300,6 +300,82 @@ $a$ 次装夹或对焦效应，$\varepsilon_{\ell,a,r}$ 表示重复拍摄与估
 估计置信区间，并同时保存共同焦面结果。若报告多像高、多频率，预先规定主要指标，
 避免只展示偶然最好的一个角和一个频率。
 
+### 同一装夹多拍，为什么不能代替多支样品
+
+把上面的模型具体化为平衡实验：抽取 $L\ge2$ 支样品，每支独立装夹 $A\ge2$ 次，
+每次拍摄 $R\ge2$ 张。假设三层随机项各自独立同分布、相互独立且均值为零，方差
+依次为 $\sigma_\alpha^2,\sigma_\beta^2,\sigma_\varepsilon^2$。整套均值可展开为
+
+$$
+\bar y=\mu+\frac1L\sum_\ell\alpha_\ell
++\frac1{LA}\sum_{\ell,a}\beta_{\ell,a}
++\frac1{LAR}\sum_{\ell,a,r}\varepsilon_{\ell,a,r}.
+$$
+
+独立性使各和式之间的协方差为零，每个项的方差再乘其权重平方，得到
+
+$$
+\operatorname{Var}(\bar y)=
+\frac{\sigma_\alpha^2}{L}+\frac{\sigma_\beta^2}{LA}
++\frac{\sigma_\varepsilon^2}{LAR}.                         \tag{17.3}
+$$
+
+同次装夹的两张观测共享 $\alpha_\ell$ 与 $\beta_{\ell,a}$，协方差是
+$\sigma_\alpha^2+\sigma_\beta^2$；同支不同装夹只共享 $\alpha_\ell$，协方差是
+$\sigma_\alpha^2$。因此增加 $R$ 只降低式 (17.3) 的最后一项，不能把前两项也按
+连拍张数除掉。演示的三层项均取Gaussian分布，只用于检验测量设计；带噪MTF读数
+不先截断到 $[0,1]$，以免截断再改变这个加性模型。
+
+<div data-mb-component="repeatability">
+
+![互动示意：样品、装夹与重复拍摄的方差分量及选择峰值偏差](interactives/repeatability/fallback.svg)
+
+*互动示意：4支样品、每支3次装夹、每次5张，三层标准差依次为0.040、0.025、0.015。
+点图按组逐条显露，统计始终使用完整数据；直方图另来自256次完整合成采集。*
+
+</div>
+
+观测估计采用平衡嵌套方差分析（ANOVA）。令 $\bar y_{\ell,a}$ 为单次装夹均值，
+$\bar y_\ell$ 为单支样品均值，$\bar y$ 为总体样本均值。三个均方定义为
+
+$$
+\begin{aligned}
+M_\varepsilon&=\frac{\sum_{\ell,a,r}(y_{\ell,a,r}-\bar y_{\ell,a})^2}{LA(R-1)},\\
+M_\beta&=\frac{R\sum_{\ell,a}(\bar y_{\ell,a}-\bar y_\ell)^2}{L(A-1)},\\
+M_\alpha&=\frac{AR\sum_\ell(\bar y_\ell-\bar y)^2}{L-1}.
+\end{aligned}                                             \tag{17.4}
+$$
+
+组内减去均值后只剩独立拍摄误差，故 $E[M_\varepsilon]=\sigma_\varepsilon^2$。
+同支样品各次装夹均值在给定 $\alpha_\ell$ 后独立，方差为
+$\sigma_\beta^2+\sigma_\varepsilon^2/R$；无偏样本方差的期望再乘 $R$，得到
+$E[M_\beta]=R\sigma_\beta^2+\sigma_\varepsilon^2$。各支均值独立，方差为
+$\sigma_\alpha^2+\sigma_\beta^2/A+\sigma_\varepsilon^2/(AR)$；对应样本方差乘 $AR$ 后得到
+$E[M_\alpha]=AR\sigma_\alpha^2+R\sigma_\beta^2+\sigma_\varepsilon^2$。
+解这三式便得到原始矩估计
+
+$$
+\widehat\sigma_\varepsilon^2=M_\varepsilon,\qquad
+\widehat\sigma_\beta^2=\frac{M_\beta-M_\varepsilon}{R},\qquad
+\widehat\sigma_\alpha^2=\frac{M_\alpha-M_\beta}{AR}.           \tag{17.5}
+$$
+
+有限样本中，两个均方的差可能为负，因此后两项保留原始负矩估计，而不解释为负的物理方差。
+模型与平方和分解可对照[NIST的嵌套ANOVA说明](https://itl.nist.gov/div898/handbook/ppc/section2/ppc233.htm)，
+负矩估计及受约束替代方法见[NIST的方差分量说明](https://itl.nist.gov/div898/handbook/prc/section4/prc44.htm)。
+本例只展示原始矩估计，不计算REML或置信区间。
+
+默认60条观测的生成均值标准差约为0.02135；误把它们当独立总体样本，按单次观测
+方差除以60，会得到约0.00639。当前观测另给分组标准误
+$\sqrt{M_\alpha/(LAR)}$，它等于各支样品均值的样本标准差除以 $\sqrt L$，可由式
+(17.4)直接消去 $AR$ 验证。它和已知生成方差的预算不是同一个数，也不是自动得到的
+置信区间。
+
+下方的对焦支路在 $-80\ldots80\ \mu\mathrm m$ 取9、17或33个嵌套网格点，均包含
+真实最佳焦位。每次仅从带噪扫描选择最大值，再在选中的位置独立复测；该位置的生成
+响应和整条曲线的真实峰值另列。网格加密时保留已有位置的同一份噪声，所以被选中的
+观测最大值逐次不减，但生成峰值完全未动。独立复测不会继承选择时恰好偏高的噪声。
+
 ## 17.7 MTF 之外还必须测什么
 
 一支镜头的系统评价至少还包括：

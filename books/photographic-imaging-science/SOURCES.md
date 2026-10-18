@@ -127,6 +127,20 @@
   Morgan Kaufmann, 2012.
 - R. W. G. Hunt and M. R. Pointer, *Measuring Colour*, 4th ed., Wiley, 2011.
 
+## 重复实验与统计
+
+- NIST/SEMATECH, *e-Handbook of Statistical Methods*,
+  [§3.2.3.3 Two-Way Nested ANOVA](https://itl.nist.gov/div898/handbook/ppc/section2/ppc233.htm),
+  model and nested sum-of-squares table; and
+  [§7.4.4 What are variance components?](https://itl.nist.gov/div898/handbook/prc/section4/prc44.htm),
+  random effects, expected mean squares and negative method-of-moments estimates.
+  Read 18 October 2026. Chapter 17 states its balanced independent Gaussian model,
+  derives its mean-variance budget and three moment estimates, and compares fresh
+  complete synthetic studies with the known inputs. Raw negative estimates are
+  displayed as estimates, not physical negative variances; no REML or confidence
+  intervals are implemented. Focus selection uses the book's declared Gaussian
+  response and a separate validation measurement, not measured lens data.
+
 ## 几何光学、Fourier 光学与镜头
 
 - Max Born and Emil Wolf, *Principles of Optics*, 7th expanded ed., Cambridge
@@ -140,6 +154,11 @@
   defined wavefront modes, defocus sinc-squared reference and finite-grid checks
   are worked out for this book. The staged display is a calculation sequence,
   not propagation time or a prescription-based lens simulation.
+  The two-dimensional image extension fixes a 32-cell pupil, 4-fold padding and
+  1.1 μm image grid, and declares its renormalized finite 33×33 PSF. Zero-padded
+  linear convolution is compared with direct spatial sums. Pixel averages refer
+  to the declared piecewise-constant fine grid, not exact continuous propagation;
+  PSF truncation and the final image crop are reported separately.
 - Warren J. Smith, *Modern Optical Engineering*, 4th ed., McGraw-Hill, 2008.
 - Rudolf Kingslake and R. Barry Johnson, *Lens Design Fundamentals*, 2nd ed.,
   Academic Press, 2010.

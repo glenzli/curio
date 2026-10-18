@@ -78,8 +78,8 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 56 个组件、61 处章节插入，
-17 章正文均有演示；另外保留35张组件自带的无编号静态回退。
+阅读器从同一套源文件生成本地预览和静态网站。当前有 59 个组件、67 处章节插入，
+17 章正文均有演示；另外保留38张组件自带的无编号静态回退。
 从光子计数与 QE、单斜坡 ADC、双增益共享噪声，到曝光积累、4T/CDS、平场校准、采样与配准，以及
 浮动对焦、呼吸、景深和其他光学演示。演示按内容采用条件比较、可暂停回放或三维光路。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
@@ -107,7 +107,7 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 python3 books/photographic-imaging-science/figures/generate_figures.py
 ```
 
-本轮14张静态图和教学DNG由
+17张静态图和教学DNG由
 [generate-lessons.mjs](interactives/generate-lessons.mjs)统一确定性生成；运行
 `node books/photographic-imaging-science/interactives/generate-lessons.mjs`。其他互动图的入口随模型保存，例如
 [列ADC误差图](interactives/adc-errors/generate-fallback.js)、
@@ -181,7 +181,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十六章 `telecentric`：光阑位置、入瞳/出瞳、两侧主光线与物/像面轴向偏移；独立几何和矩阵追迹互核，离焦跨度单列。
 - 第十七章 `edge`：逐行差分质心与直边拟合，再做法向投影、ESF、LSF、DFT 及差分修正；拟合几何、已知几何与解析 MTF 分别对照，无效拟合与空箱停止报告。
 
-以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有35张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
+以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有38张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
 
 静态实验示意采用 `互动示意：` 开头的替代文本与相邻图注，放在对应的
 `data-mb-component` 容器中，图源为组件入口旁的 `fallback.svg`。书稿检查单独核对
@@ -199,3 +199,11 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
   径向畸变、材料/镜筒温漂和非球面矢高差/斜率。
 - 第1、3、5、16章补条件比较与阅读步骤，复用已充分覆盖的演示。完整逐章取舍见
   [展示分析](INTERACTIVE_REVIEW.md)，没有为凑数量重复已有模型。
+
+本轮补充三组展示，共增加六处插入：
+
+- 第十二、十三章 `psf-image`：已知二维点阵与细线、有限PSF线性卷积、像素面积采样，探针的空间求和另核FFT结果；截取能量与画面裁剪分开。
+- 第五、九、十章 `capture-scene`：同一场景的满阱、RAW、Log与监看；降低监看与未裁切参考并列，保留每层码值、单位与剪切位置。
+- 第十七章 `repeatability`：平衡嵌套采集、原始矩估计与256次完整重复的均值分布；对焦包围另比选择读数、独立复测及生成峰值。
+
+三组都保留静态图、真值和可暂停回放；恢复时保持暂停。具体定义及复核入口见[展示分析](INTERACTIVE_REVIEW.md)。

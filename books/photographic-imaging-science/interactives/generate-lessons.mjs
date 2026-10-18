@@ -16,6 +16,9 @@ const ids = [
   "thermal-focus",
   "asphere",
   "unit-calculator",
+  "psf-image",
+  "capture-scene",
+  "repeatability",
 ];
 for (const id of ids) {
   const folder = new URL(`./${id}/`, import.meta.url);
