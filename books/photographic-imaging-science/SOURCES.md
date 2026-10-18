@@ -102,12 +102,16 @@
   includes the ALEXA 35 high-EI encoding limit described in that implementation.
 - Sony, [Help Guide for Creators: Base ISO](https://helpguide.sony.net/di/pp/v1/en/contents/TP1000756719.html)
   and [Gamut](https://helpguide.sony.net/di/pp/v1/en/contents/TP1000756714.html).
-- Adobe, [Digital Negative (DNG) Specification 1.7.1.0](https://helpx.adobe.com/content/dam/help/en/photoshop/pdf/DNG_Spec_1_7_1_0.pdf),
-  September 2023; [official download page](https://helpx.adobe.com/camera-raw/digital-negative.html).
+- Adobe, [Digital Negative (DNG) Specification 1.7.1.0](https://helpx.adobe.com/content/dam/help/en/camera-raw/digital-negative/jcr_content/root/content/flex/items/position/position-par/download_section_733958301/download-1/DNG_Spec_1_7_1_0.pdf),
+  September 2023; [official download page](https://helpx.adobe.com/camera-raw/desktop/dng-and-file-formats/digital-negative.html).
   The official PDF was read on 17 October 2026: ColorMatrix1/2, p. 33;
   ForwardMatrix1/2, pp. 52--53; raw linearization and normalization, Chapter 5,
   p. 99; colour processing, Chapter 6, pp. 100 onward. ColorMatrix maps XYZ to
   reference camera coordinates; ForwardMatrix maps white-balanced camera colours to D50 XYZ.
+  Rechecked 18 October 2026 for the generated 32×32 teaching DNG: Chapters 3–5
+  (uncompressed TIFF storage, CFA, version, black/white and normalization tags).
+  Its virtual identity ColorMatrix is not a measured camera profile. LibRaw also
+  independently decodes every stored sample; no SDK code or external image is redistributed.
 - Yuteng Zhu and Graham D. Finlayson, [“Designing a Color Filter via Optimization
   of Vora-Value for Making a Camera more Colorimetric”](https://arxiv.org/abs/2005.06421),
   2020 preprint, introduction and §2, for the Luther condition and spectral

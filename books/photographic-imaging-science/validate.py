@@ -273,6 +273,18 @@ def main() -> None:
                 f"alt={chapter_figure_numbers}, caption={caption_numbers}"
             )
 
+    # Appendices are declared reading pages too. Validate their component images
+    # with the same ownership and caption contract as numbered chapters.
+    numbered_names = {path.name for path in chapters}
+    for page in json.loads((ROOT / "book.json").read_text(encoding="utf-8"))["chapters"]:
+        path = ROOT / page["file"]
+        if path.name in numbered_names:
+            continue
+        text = path.read_text(encoding="utf-8")
+        for block in COMPONENT_BLOCK_RE.finditer(text):
+            for match in IMAGE_RE.finditer(text, block.start(), block.end()):
+                referenced_fallbacks.add(validate_interactive_fallback(path, text, match, components))
+
     if len(exercises) != len(set(exercises)):
         fail("duplicate exercise identifiers")
 

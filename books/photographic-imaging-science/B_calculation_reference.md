@@ -116,3 +116,18 @@ $$
 \rightarrow\text{像素积分}
 \rightarrow\text{采样与处理}.
 $$
+
+## B.8 带单位的换算器
+
+下方把像素节距从μm换成mm、波长从nm换成mm后，再计算像面频率。
+入射光子预算仍用SI面积和光子能量。输出分别给出Nyquist频率、理想光学截止、
+Airy第一零点直径和指定SNR下端，不将它们合并为一个“分辨率分数”。
+
+<div data-mb-component="unit-calculator">
+
+![互动示意：光子预算、采样频率、衍射尺度与SNR判据换算](interactives/unit-calculator/fallback.svg)
+
+*互动示意：4 μm像素、550 nm、f/8，曝光量10⁻⁴ J/m²。光学尺度使用理想圆瞳，
+SNR模型另固定32000 e⁻满阱和3 e⁻读噪；没有把入射光子直接当成实测电子数。*
+
+</div>

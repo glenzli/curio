@@ -73,8 +73,8 @@ $$
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
 [book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
 与资料页，共 25 个阅读页面。Markdown、48 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 42 个组件、45 处章节插入，
-17 章正文均有演示；另外保留二十一张组件自带的无编号静态回退。
+阅读器从同一套源文件生成本地预览和静态网站。当前有 56 个组件、61 处章节插入，
+17 章正文均有演示；另外保留35张组件自带的无编号静态回退。
 从光子计数与 QE、单斜坡 ADC、双增益共享噪声，到曝光积累、4T/CDS、平场校准、采样与配准，以及
 浮动对焦、呼吸、景深和其他光学演示。演示按内容采用条件比较、可暂停回放或三维光路。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
@@ -102,7 +102,9 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 python3 books/photographic-imaging-science/figures/generate_figures.py
 ```
 
-互动静态图的生成入口随模型保存。本批三张分别由
+本轮14张静态图和教学DNG由
+[generate-lessons.mjs](interactives/generate-lessons.mjs)统一确定性生成；运行
+`node books/photographic-imaging-science/interactives/generate-lessons.mjs`。其他互动图的入口随模型保存，例如
 [列ADC误差图](interactives/adc-errors/generate-fallback.js)、
 [白平衡传播图](interactives/white-balance/generate-fallback.js)和
 [EI监看图](interactives/ei-monitor/generate-fallback.js)生成，从仓库根目录用Node运行
@@ -174,10 +176,21 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十六章 `telecentric`：光阑位置、入瞳/出瞳、两侧主光线与物/像面轴向偏移；独立几何和矩阵追迹互核，离焦跨度单列。
 - 第十七章 `edge`：逐行差分质心与直边拟合，再做法向投影、ESF、LSF、DFT 及差分修正；拟合几何、已知几何与解析 MTF 分别对照，无效拟合与空箱停止报告。
 
-以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有二十一张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
+以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。原有48幅编号技术图保持，另有35张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
 
 静态实验示意采用 `互动示意：` 开头的替代文本与相邻图注，放在对应的
 `data-mb-component` 容器中，图源为组件入口旁的 `fallback.svg`。书稿检查单独核对
 其归属、标题、SVG 与引用完整性；同一组件可跨章复用同一回退图，每处仍需图注。不将它们混入原有技术图编号。
 
 本批新增第3章的列ADC误差、第7章的白平衡噪声传播，以及第5、9章共用的EI监看链。全书现有42个组件、45处插入。支持会话接口的阅读器会恢复控件、种子、预设与播放步骤；恢复后暂停。讨论草稿可附上打开时的实验参数、读数和模型条件。
+
+
+本轮全书分析后的补充：
+
+- 序章与附录B：成像链分步展示、带单位的光子/采样/衍射/SNR换算。
+- 第2、4、7、8章：吸收与收集深度、旧校准漂移、插值空间协方差、局部运动与观测权重。
+- 第9、10章：连续色调肩部与有限显示码、可下载微型DNG及逐码检查。
+- 第6、11—15、17章：厚玻璃、曲面焦面与包围对焦、三谱线轴向色差及对焦目标、
+  径向畸变、材料/镜筒温漂和非球面矢高差/斜率。
+- 第1、3、5、16章补条件比较与阅读步骤，复用已充分覆盖的演示。完整逐章取舍见
+  [展示分析](INTERACTIVE_REVIEW.md)，没有为凑数量重复已有模型。

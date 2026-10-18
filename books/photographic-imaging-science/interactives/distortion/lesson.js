@@ -1,0 +1,77 @@
+import { distortion, radialMap } from "./model.js";
+import { control, curve, grid, number, colors } from "../common/lesson-view.js";
+export const spec = {
+  title: "畸变改变坐标，也改变局部采样尺度",
+  alt: "互动示意：径向畸变网格、逆映射与局部面积尺度",
+  intro:
+    "用单一径向系数映射方格。网格弯曲与点像模糊是不同问题；这里计算坐标和Jacobian，不给网格额外加模糊。",
+  staticCaption: "归一化方形像场，k=−0.12；探针半径1。",
+  note: "教学映射(x,y)→(1+kr²)(x,y)，输入正方形[-1,1]²；k∈[-0.15,0.15]保证全域径向单调。坐标校正需要重采样，本模型不声称逆映射能逆转像素积分、混叠或真实镜头像差。",
+  controls: [
+    control("coefficient", "径向系数 k", -0.15, 0.15, 0.01, -0.12, "", 2),
+    control("radius", "半径探针", 0, 1.4, 0.05, 1, "", 2),
+  ],
+  presets: [
+    { label: "桶形", values: { coefficient: -0.12, radius: 1 } },
+    { label: "无畸变", values: { coefficient: 0, radius: 1 } },
+    { label: "枕形", values: { coefficient: 0.12, radius: 1 } },
+  ],
+  evaluate(s) {
+    const m = distortion(s),
+      scale = 90,
+      center = [
+        [170, 160],
+        [460, 160],
+      ],
+      path = (points, c) =>
+        points
+          .map(
+            ([x, y], i) =>
+              `${i ? "L" : "M"}${c[0] + scale * x},${c[1] - scale * y}`,
+          )
+          .join(" ");
+    let lines = "";
+    for (let j = -4; j <= 4; j++) {
+      const v = j / 4;
+      for (const vertical of [false, true]) {
+        const pts = grid(-1, 1, (u) => u, 40).map(([u]) =>
+          vertical ? [v, u] : [u, v],
+        );
+        lines += `<path d="${path(pts, center[0])}" stroke="#777"/><path d="${path(
+          pts.map(([x, y]) => radialMap(x, y, s.coefficient)),
+          center[1],
+        )}" stroke="${colors[0]}"/>`;
+      }
+    }
+    return {
+      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="原始方格与径向畸变方格"><g fill="none" stroke-width="1.5">${lines}</g><text x="170" y="32" text-anchor="middle">原始坐标</text><text x="460" y="32" text-anchor="middle">畸变后坐标</text><text x="320" y="286" text-anchor="middle">两幅图使用相同坐标尺度</text></svg>`,
+      panels: [
+        {
+          title: "局部径向与切向放大率",
+          xMax: Math.SQRT2,
+          xLabel: "归一化半径 r",
+          yLabel: "局部尺度",
+          yMax: 2,
+          curves: [
+            curve(
+              "径向 1+3kr²",
+              grid(0, Math.SQRT2, (r) => 1 + 3 * s.coefficient * r * r),
+            ),
+            curve(
+              "切向 1+kr²",
+              grid(0, Math.SQRT2, (r) => 1 + s.coefficient * r * r),
+              1,
+            ),
+          ],
+        },
+      ],
+      stats: [
+        ["径向位置变化", number(100 * m.relative, 1) + "%", "相对同一理想半径"],
+        ["局部面积比例", number(m.jacobian, 3), "径向×切向Jacobian"],
+        ["逆映射半径", number(m.inverted, 6), `原始 ${number(s.radius, 6)}`],
+      ],
+      reading:
+        "单调域内用二分求逆，并与已知原始坐标对照。面积Jacobian描述采样密度变化；它不是相对照度、通光率或MTF。实际校正后的角落细节还取决于裁剪、插值和原始采样。",
+    };
+  },
+};

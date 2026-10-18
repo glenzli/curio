@@ -1,58 +1,57 @@
-# 摄影成像科学：展示与互动的逐章安排
+# 全书展示分析与模型复核
 
-这份记录按正文问题、现有图版和可检验模型选择演示形式，供持续改稿使用。
-需要比较条件时让读者操作；需要看清顺序时采用分步展示或可暂停回放；定义、材料
-分类与规格审读保留表格和静态图。覆盖章节不等于每个概念都应再加一个组件。
+本轮检查序章、17章正文、两篇附录和参考页，按“读者需要比较什么、已有图是否足够、
+新增量是否有可核对模型”选择内容。已完成本轮选定的14个新组件，现为 **56个组件、
+61处插入、35张无编号静态回退**。25个阅读页面、48幅编号图、62道练习与答案保留原编号。
+科学模型仍由本书持有，Markdown Book继续负责阅读、构建、状态恢复和讨论上下文。
 
-## 本轮完成的范围
+## 逐章判断与本轮结果
 
-全书现有 **42 个组件、45 处章节插入**，17章正文均至少有一处演示。本批补上第3章
-列电压偏置与斜坡非线性、第7章白平衡噪声传播，以及第5、9章共用的EI监看链。
-25个阅读页面、48幅编号技术图、62道练习与答案保持原编号，另有二十一张无编号静态回退。
-
-列ADC以时钟阈值搜索对照连续交叉根，DNL/INL另核解析式；比较精确暗场码相减和
-已知电压偏置归零。白平衡沿用同批观测，以矩阵乘积、潜在噪声源和样本协方差三路
-对照。EI链区分曝光策略、记录增益与监看，保留连续物理档位和有限码域的差别。
-
-所有组件接入可选实验会话，恢复后暂停；学科模型留在本书。Markdown Book 0.7.1
-将共用阅读底色改为中性黑白灰，明暗自动/手动选择继续可用；书中数据曲线保留区分颜色。
-
-## 逐章安排
-
-| 章节 | 已有演示 | 适合继续补的内容与形式 |
+| 章节 | 需要加强的地方 | 本轮处理与对照 |
 | --- | --- | --- |
-| [0 序章](00_preface_scope_and_measurement.md) | 成像链总览图与两条阅读路线。 | **分步展示**：选中一段处理链时标出输入、输出和单位，链接到该章。无需自动循环播放所有环节，也不把 DN、曝光量和显示亮度共用一条无单位刻度。 |
-| [1 辐射度学](01_radiometry_aperture_and_exposure.md) | `exposure`比较光子积累与匀速轨迹；`offaxis`展开cos⁴θ，有限圆瞳面积分与圆周解析互核。 | **扩展条件**：真实广角暗角需瞳畸变、机械截光与像素角度响应；不能把有限平面圆瞳直接当作实测镜头。近摄工作f数已有比较。 |
-| [2 光子与像素](02_photons_silicon_and_pixels.md) | `counting`回放Poisson到达与QE筛选，比较固定入射数；`pixel`保留4T/CDS时序。 | **下一步考虑吸收深度**：用有来源的硅吸收系数比较波长，分开吸收与收集概率；不画虚构载流子轨迹。计数统计已有独立真值，无需再加一套相同直方图。 |
-| [3 CMOS 与 ADC](03_cmos_pixels_readout_and_adc.md) | `readout`、`ramp-adc`和`adc-errors`保留增益位置、扫描锁存、固定列偏置、非线性码宽与暗场残差。 | **时间误差**：比较器延迟、列增益差、时钟边沿与亚稳态需要各自的时钟/电路模型；当前非线性斜坡始终单调，不模拟缺码。 |
-| [4 噪声与动态范围](04_noise_snr_full_well_and_dynamic_range.md) | `noise`、PTC、行列随机效应与有限暗场校准保留观测、拟合和生成真值。 | **实验比较**：温度或时间漂移后复用旧校准，分别看偏差与随机方差；先声明合成漂移律。实际温度倍增率需要器件数据。动态范围可再加不同 SNR 下端的阈值探针。 |
-| [5 ISO 与增益](05_iso_exposure_index_and_gain.md) | `iso`、`dual-readout`保留曝光/增益与共享协方差；`ei-monitor`与第9章共用曝光、记录与监看链。 | **实测增益切换**：模式相关读噪、容量和融合权重需要观测资料；当前EI例固定传感器与模拟读出，不将菜单行为泛化到所有相机。 |
-| [6 快门与传感器结构](06_shutters_bsi_stacking_and_curved_sensors.md) | 滚动/全局共轴时间窗、运动积分与频闪；`sensor-stack`展开FSI/BSI/逻辑堆栈，入光和电子路径分开回放，层序与功能晶圆参照互核。 | **曲面与隔离展示**：曲面传感器先声明具体镜头两方向焦面；DTI若继续加光路，需要吸收/收集和侧向传播模型，不能用本次功能虚线推断串扰或QE。 |
-| [7 色彩与采样](07_color_filter_sampling_and_demosaicing.md) | `sampling`、`bayer`、`metamerism`保留方向/光谱；`white-balance`比较均值、标准差、全协方差与同批观测，保留独立潜在源真值。 | **标定与空间相关**：真实XYZ需可追溯响应与配色函数；CFA、去马赛克和裁切后的噪声不能套用当前三通道未裁切Gaussian例。 |
-| [8 多帧与 HDR](08_computational_exposure_and_hdr.md) | `hdr`估计水平位移；`registration2d`保留横纵相关面、固定共同支持、真值重采样和误差，拒绝平坦、单向/周期歧义与唯一边界峰，并比较遮挡区域选择。 | **局部运动与权重估计**：先从已知观测噪声比较局部块，再估计未知方差；重复纹理需额外约束，不能仅提高搜索密度。旋转/视差不由一个全局平移解释。 |
-| [9 Gamma、Log 与显示](09_gamma_log_exposure_index_and_display.md) | `encoding`比较编码量化；`ei-monitor`跟踪实际电子、RAW、Log、解码增益与监看白点，并比较编码前EI增益。 | **实际显示变换**：教学硬白点和Gamma可再接声明的色调肩部；厂商Log与LUT必须固定版本、输入色域和码域，不能由此推断具体相机。 |
-| [10 RAW 与压缩](10_still_raw_video_raw_and_compression.md) | `raw`：12-bit 打包/解包回放、错误半字节顺序、预先丢位、有符号归一化和样本载荷。位串重排作为独立对照。 | **可展开的真实样本**：用许可明确的微型 DNG 展开 CFA、黑白电平、线性化、处理状态和码流。解码后的样本需逐码比对；真正编解码器的无损性与压缩率不能由这次教学打包推出。 |
-| [11 几何光学](11_geometrical_optics_and_paraxial_systems.md) | `paraxial`与`pupils`保留主平面、实虚瞳像和无穷远；`apertures`逐面截光并比较入口三圆交集真值。 | **厚系统**：再引入玻璃内传播和明确曲面处方。当前面积比不包含照度投影、衍射或散焦亮度；第16章远心实验继续作边界对照。 |
-| [12 衍射与 MTF](12_diffraction_psf_otf_mtf_and_sampling.md) | `pupil` 的复瞳→相量→PSF→复 OTF 回放；与 `mtf` 的像素孔径读法连接。 | 已补 `spectrum` 的双波长强度与复 OTF 合成，保留单色和相位抵消对照；下一步再考虑轴向色差与更多谱线。 |
-| [13 像差与像场](13_aberrations_and_field_behavior.md) | `wavefront` 的四项 Zernike 模式、固定轴上比、离焦扫描及复 OTF；`field` 继续作为全像场的椭圆 Gaussian 教学模型。 | **下一步区分不同优化目标**：在声明的波前模型中比较最大轴上值、固定频率 MTF 和最佳焦面；畸变仍另作几何网格映射，不从局部 PSF 推出全场形变。 |
-| [14 材料与色散](14_optical_materials_glass_resin_and_fluorite.md) | `achromat` 采用 N-BK7/N-F2 Sellmeier 目录，保留 F/C 自动配比、同材料无解及残余谱线。 | **光谱与材料展示**：突出部分色散残差，再考虑有目录依据的第三材料；温漂分别画 dn/dT、曲率和镜筒伸长。材料分类与制造工艺保留静态比较，不做材料等级打分。 |
-| [15 非球面、PF 与镀膜](15_aspheres_fresnel_diffractive_optics_and_coatings.md) | `pf`、正入射单/多层膜及`oblique-coating`保留Fourier、矩阵和界面递推；斜入射分别核对s/p复振幅、能流及层序。 | **材料与边界**：色散、吸收和全反射需复折射率及正确的倏逝波分支。非球面先展示矢高差与斜率，不以夸大形状代替光路。当前镀膜仅含无损传播波。 |
-| [16 镜头结构](16_lens_architectures_focus_zoom_and_stabilization.md) | `floating`、`dof`、3D光锥、变焦补偿、防抖、远心与两薄组光路合计七处演示。 | **组织现有回放**：围绕固定像面、固定远景方向和物点距离做短的引导序列。若演示浮动组真正校正近摄像差，必须另有明确处方或波像差模型；当前双约束只证明一阶对焦与尺度补偿。 |
-| [17 系统测试](17_lens_testing_and_system_analysis.md) | `edge` 由观测拟合边缘，再作 ESF/LSF/DFT；与 `field` 共用局部像场读法。 | **测量流程展示**：对焦包围、共同/各自最佳焦面、四角和重复装夹分别看。以有来源的输入或声明参数的合成场景显示误差层次；把拟合残差与结果置信区间分开，不用单条 MTF 自动诊断镜头偏心。 |
+| [0 序章](00_preface_scope_and_measurement.md) | 成像链的单位易混淆。 | 新增`signal-chain`分步展示，同次曝光的能量、光子、电子、电压、DN和显示各自保留单位；完整曝光均值不随回放重新生成。 |
+| [1 辐射度学](01_radiometry_aperture_and_exposure.md) | 光子预算、运动和有限瞳规律需要连起来读。 | 复用`exposure/offaxis`，补等曝光与小瞳极限的阅读顺序；保留圆锥、面积分、圆周解析和Gardner表值。真实瞳畸变不由教学曲线代替。 |
+| [2 光子与像素](02_photons_silicon_and_pixels.md) | 吸收并不等于收集。 | 新增`absorption`，入口失效层、指数吸收与收集概率分开；闭式、分层存活差分与理想端点互核。穿透长度直接指定，不伪造硅波长数据。 |
+| [3 CMOS与ADC](03_cmos_pixels_readout_and_adc.md) | 电荷、比较器交叉、时钟锁存、列校准易混用。 | 复用三组已有演示，补分层检验顺序。斜坡保持单调、列偏置保持固定；不以光标抖动冒充时钟噪声。 |
+| [4 噪声与动态范围](04_noise_snr_full_well_and_dynamic_range.md) | 有限校准复用后又发生漂移；DR下端判据。 | 新增`calibration-drift`，均值偏差、随机方差和MSE分开；8192次整套采集对照已知预算，SNR正根另核二分。原PTC、行列相关与有限暗场仍保留。 |
+| [5 ISO与增益](05_iso_exposure_index_and_gain.md) | ISO、共享双读出、EI比较条件。 | 复用`iso/dual-readout/ei-monitor`，补固定曝光→共享光子→增益位置的顺序。无实测资料时不增加品牌模式优劣图。 |
+| [6 快门与结构](06_shutters_bsi_stacking_and_curved_sensors.md) | 曲面传感器必须针对具体两方向焦面。 | 新增`focus-survey`，给定场曲、像散、倾斜和传感器曲率；固定平面与各点最佳分别报告。Gaussian替代模型不声称器件性能。 |
+| [7 颜色与采样](07_color_filter_sampling_and_demosaicing.md) | 插值后的像素相关影响区域平均。 | 新增`demosaic-noise`，一维同色插值按全协方差、原始独立源权重和8192次观测三路核对；与已有Bayer、光谱、白平衡分开。 |
+| [8 多帧与HDR](08_computational_exposure_and_hdr.md) | 一个全局平移不能解释不同区域运动；未知方差。 | 新增`local-motion`，观测全局/局部搜索与已知位移、已知方差支路对照。固定候选支持，饱和剔除；RMSE使用三路共同有效位置。未把观测权重当固定无偏权重。 |
+| [9 编码与显示](09_gamma_log_exposure_index_and_display.md) | 高光压缩、量化合并、捕获裁切。 | 新增`tone-map`，明确C¹指数肩部、显式逆与有限白码；捕获白点、显示增益及Gamma分层。原EI实验仍保留硬白点以便比较。 |
+| [10 RAW](10_still_raw_video_raw_and_compression.md) | 从标签走到实际文件字节。 | 新增`dng-inspector`和可下载32×32合成DNG；CFA、IFD、字节序、黑白电平与全部1024样本核对。LibRaw独立逐码检查通过；不声称通用解码或真实色度标定。 |
+| [11 几何光学](11_geometrical_optics_and_paraxial_systems.md) | 厚系统例子需要玻璃内传播。 | 新增`thick-lens`：两曲面近轴折射、d/n传播，矩阵/厚制镜者公式/逐面倾角互核；保留主平面与BFD、零厚度端点。原两薄组和截光不被替换。 |
+| [12 衍射](12_diffraction_psf_otf_mtf_and_sampling.md) | 双谱线横向错位之外的轴向色差。 | 新增`chromatic-focus`：三线PSF按同一μm坐标合成，有符号OTF先求和；轴上sinc²、径向复积分、1D交集、2D交集与零离焦圆盘真值互核。 |
+| [13 像差与像场](13_aberrations_and_field_behavior.md) | 畸变几何和最佳焦点定义。 | 新增`distortion`网格、单调逆与Jacobian；共用`chromatic-focus`比较轴上目标和固定频率MTF目标，明确2 μm扫描精度。局部波前不被用于推断全场几何。 |
+| [14 材料](14_optical_materials_glass_resin_and_fluorite.md) | 镜片温漂与镜筒伸长；部分色散残差。 | 新增`thermal-focus`，有限温差与一阶导数互核，玻璃/折射率/镜筒分开；已有N-BK7/N-F2目录的部分色散式另核直接谱线差。热参数明确是示意输入。 |
+| [15 光学元件](15_aspheres_fresnel_diffractive_optics_and_coatings.md) | 非球面不能只靠放大轮廓。 | 新增`asphere`，实际μm矢高差与无量纲斜率分开，球方程/圆锥极限/有限差分互核。PF与s/p多层膜原有边界保留。 |
+| [16 镜头结构](16_lens_architectures_focus_zoom_and_stabilization.md) | 七组模型需要有目的的阅读顺序。 | 补固定像面→固定远景方向→曝光RMS→模糊判据→离轴主光线的五步比较，复用已有几何和动画，不重复造镜组模型。 |
+| [17 系统测试](17_lens_testing_and_system_analysis.md) | 对焦包围、四角与重复装夹。 | 共用`focus-survey`；从观测数组找格点峰，真焦点只作对照。共同/各自焦点分开，噪声下不把半步长界或残差当置信区间；不自动诊断偏心。 |
+| [附录A](A_probability_fourier_and_units.md) | 把概率公式接回实验。 | 增加插值协方差、共享校准和观测依赖权重的对应链接。 |
+| [附录B](B_calculation_reference.md) | 单位换算需要可代入。 | 新增`unit-calculator`：SI光子预算、lp/mm、Airy直径、SNR正根；原公式表仍可独立阅读。 |
+| 符号、答案、术语、来源 | 参考页应便于检索。 | 同步局部符号、DNG规范与新模型边界；不增加无关动画。 |
 
-附录 A 连接到噪声、加权融合与 Fourier 演示的同一模型；附录 B 先保持公式表，
-下一步可提供带单位的换算器。答案、符号和资料页保持参考用途，不添加无关回放。
+## 新模型入口与独立参考
 
-## 后续实施次序与进入条件
+每个目录均有`model.js`、`model.test.js`、`lesson.js`、`index.js`与`fallback.svg`。
+公共`common/lesson*.js`只负责绘图、读数与会话接入，学科计算不集中到公共层。
+[generate-lessons.mjs](interactives/generate-lessons.mjs)确定性生成本轮14张回退图和DNG。
 
-1. **漂移、局部运动与未知权重**。第4章复用旧校准，第8章局部块运动和未知方差，
-   保留已知生成条件与可失败的观测估计。当前全局平移不能解释旋转或视差。
-2. **实际颜色与监看**。本批白平衡协方差和EI链已完成。进一步加入去马赛克空间相关、
-   有来源的响应/XYZ或明确的色调肩部，分别核对新变换的边界与误差。
-3. **光学与器件的边界扩展**。厚玻璃、色散/吸收膜层、曲面传感器与DTI分别需要
-   新处方、材料或器件模型；不从功能截面外推性能。
-4. **真实输入与测量流程**。微型DNG和第17章重复装夹/对焦包围需来源、参数与误差约定，
-   完成小样本逐项对照后再接入。现有合成输入保留作回归真值。
+- [吸收](interactives/absorption/model.js)、[漂移](interactives/calibration-drift/model.js)、[插值协方差](interactives/demosaic-noise/model.js)：分别保留闭式/分层积分、已知预算/独立采集、全矩阵/有效源权重。
+- [局部HDR](interactives/local-motion/model.js)、[显示肩部](interactives/tone-map/model.js)、[DNG](interactives/dng-inspector/model.js)：观测估计与生成值分离，显式逆/码区间、文件字节/生成数组/外部LibRaw分开。
+- [厚镜](interactives/thick-lens/model.js)、[焦面流程](interactives/focus-survey/model.js)、[三谱线](interactives/chromatic-focus/model.js)：矩阵与逐面、声明焦点与观测扫描、闭式与不同维数的连续积分互核。
+- [畸变](interactives/distortion/model.js)、[温漂](interactives/thermal-focus/model.js)、[非球面](interactives/asphere/model.js)：单调逆/差分Jacobian、有限温差/导数、圆方程/解析斜率/差分分别核对。
+- [成像链](interactives/signal-chain/model.js)、[单位](interactives/unit-calculator/model.js)：固定SI常数、面积与波长换算，增益位置和捕获裁切端点单列。
+
+## 哪些扩展需要新的外部输入
+
+本轮选定的教学条目已实现。仍可开展的研究与器材测量不靠更多滑块补齐：
+
+- 硅的波长/温度吸收表、DTI与横向载流子收集需要材料和器件输入；当前纵向收集律只证明该模型中的预算。
+- 实际相机增益模式、漂移标定、CFA响应及XYZ需可追溯测量；教学矩阵、热参数和DNG恒等矩阵不能替代。
+- 真实厚镜的大口径像差、浮动校正和广角暗角需完整处方；曲面Gaussian场不能反推出它。
+- 吸收膜层、倏逝波与全反射需复折射率及正确分支，另作电磁模型。当前s/p演示明确限定无损传播波。
+- 旋转、视差、遮挡分割、自适应去马赛克与压缩编解码器需新算法和输入。局部整数搜索、线性插值和未压缩DNG不扩大为这些能力。
 
 ## 动画与三维的使用
 
