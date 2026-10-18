@@ -25,9 +25,9 @@ function spectrum(s) {
   }
   return `<svg role="img" aria-label="各衍射级次的效率，实心柱为量化相位，空心柱为同深度连续 blaze" viewBox="0 0 432 265"><text x="30" y="18">衍射效率 / %</text>${drawing}<text x="221" y="261" text-anchor="middle">衍射级次 m</text></svg>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "PF · 局部周期相位模型", title: "相位量化与衍射级次",
+    element, signal, session, kicker: "PF · 局部周期相位模型", title: "相位量化与衍射级次",
     intro: "从两级增加到四级、八级，比较目标一级与其余衍射级次。再固定结构改变波长，观察设计波长的效率公式何时失效。",
     controls: [
       { key: "levels", label: "相位级数 N", min: 1, max: 32, step: 1, value: 4 },

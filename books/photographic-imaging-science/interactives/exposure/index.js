@@ -16,10 +16,11 @@ function panel(m, label, progress, scale, motionScale) {
     travel = (m.motionPixels * progress) / 100;
   return `<div class="exposure-panel"><h4>${label}</h4><p>f/${m.p.fNumber.toFixed(2)} · ${m.p.exposureMs.toFixed(3)} ms · T=${m.p.transmission.toFixed(2)}</p><svg role="img" aria-label="${label}的曝光积累和点目标轨迹" viewBox="0 0 430 156"><text x="16" y="17">均匀背景：累积光子</text><rect x="16" y="30" width="${(360 * m.photons) / scale}" height="22" fill="#448b98" opacity=".15"/><rect x="16" y="30" width="${(360 * m.photons * progress) / 100 / scale}" height="22" fill="#448b98" opacity=".7"/><text x="16" y="78">移动点：按时间积分的轨迹</text><path d="M16 108H${16 + m.motionPixels * motionScale}" stroke="#b47b43" opacity=".2" stroke-width="13"/><path d="M16 108H${16 + travel * motionScale}" stroke="#b47b43" opacity=".7" stroke-width="13"/><circle cx="${16 + travel * motionScale}" cy="108" r="4" fill="#b47b43"/><text x="16" y="146">${elapsed.toFixed(3)} ms / ${m.p.exposureMs.toFixed(3)} ms；轨迹 ${travel.toFixed(3)} px</text></svg><p>结束时 ${format(m.photons)} 个平均光子<br>完整运动区间 ${m.motionPixels.toFixed(3)} px</p></div>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "曝光 · 光子预算与运动积分",
     title: "相同曝光量，运动轨迹仍可能不同",
     intro:

@@ -18,9 +18,9 @@ function ramp(curve, bits) {
   return `<svg role="img" aria-label="${curve} 编码量化后反解并统一显示的暗部渐变" viewBox="0 0 320 40" preserveAspectRatio="none">${strips}</svg>`;
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "编码 · 位深与码值分配", title: "线性、Gamma 与 Log 的量化",
+    element, signal, session, kicker: "编码 · 位深与码值分配", title: "线性、Gamma 与 Log 的量化",
     intro: "三种编码接收同一个线性信号。调整位深和观察范围，比较每档的码值跨度；下方渐变先反解码，再按相同方式显示。",
     controls: [
       { key: "bits", label: "编码位深", min: 8, max: 12, step: 1, value: 10, format: (x) => `${x} bit` },

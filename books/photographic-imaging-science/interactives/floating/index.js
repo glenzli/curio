@@ -47,7 +47,7 @@ function background(m, label) {
   }
   return `<div class="background"><h4>${label}</h4><svg role="img" aria-label="${label}时固定远景方向的像面标尺" viewBox="0 0 300 100">${s}</svg><p>角尺度 ${mm(m.scale)} / rad<br>相对无穷远 ${percent(m.breathingPercent)}%</p></div>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   const trajectory = Array.from({ length: 101 }, (_, i) => {
     const w = i * 0.02,
       p = floatingTruth(w)[0];
@@ -56,6 +56,7 @@ export function mount({ element, signal }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "对焦 · 两个移动组与远景尺度",
     title: "镜组怎样一边对焦，一边补偿画面尺度",
     intro:

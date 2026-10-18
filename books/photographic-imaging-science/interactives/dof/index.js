@@ -62,10 +62,11 @@ function graph(m) {
     body += `<circle cx="${x(p.subjectVergence)}" cy="${y((m.diameter * 1000) / p.criterionUm)}" r="4" fill="#b47b43"/>`;
   return `<svg role="img" aria-label="景深近远界与连续变化的弥散圈" viewBox="0 0 570 267">${body}<text x="285" y="261" text-anchor="middle">物距 · 按倒数距离均匀排布</text></svg>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "景深 · 几何光线与输出判据",
     title: "改变容许弥散圈，景深边界随之改变",
     intro:

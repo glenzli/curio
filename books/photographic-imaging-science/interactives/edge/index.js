@@ -220,11 +220,12 @@ function projectionChart(result, state, stage) {
   return responseChart(result, state, stage - 1);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey, result;
   return experiment({
     element,
     signal,
+    session,
     kicker: "系统测试 · 从样本拟合边缘",
     title: "拟合边缘，再计算 ESF、LSF 与 MTF",
     intro:

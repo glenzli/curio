@@ -15,9 +15,9 @@ function panel(mode, scan, exposure, now, duration, selected) {
   return `<section class="timing-panel" aria-label="${mode === "global" ? "全局快门" : "滚动快门"}曝光窗口"><h4>${mode === "global" ? "全局快门" : "滚动快门"}</h4><p>${mode === "global" ? "各行同时开始、同时结束" : "各行的曝光窗口沿时间错开"}</p>${rows}<div class="time-row time-axis"><span></span><div><span>0</span><span>${format(duration * 500)}</span><span>${format(duration * 1000)} ms</span></div><span></span></div></section>`;
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "快门 · 同一时间轴对照", title: "滚动与全局快门的曝光窗口",
+    element, signal, session, kicker: "快门 · 同一时间轴对照", title: "滚动与全局快门的曝光窗口",
     intro: "两个窗口使用相同的每行曝光时间和时间刻度。拖动当前时刻，比较同一行何时开始、何时结束，以及此时其他行的状态。",
     controls: [
       { key: "scanMs", label: "滚动快门首末行时间差", min: 0, max: 40, step: .001, value: 17.272, format: x => `${format(x)} ms` },

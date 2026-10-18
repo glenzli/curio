@@ -37,9 +37,9 @@ function frame(scan, exposure, speed, frequency, progress) {
   return `<div class="shutter-scenes"><figure><figcaption>恒定光照 · 匀速竖杆</figcaption><svg role="img" aria-label="已完成曝光的各行中，匀速竖杆的运动积分" viewBox="0 0 370 176" preserveAspectRatio="none"><defs><linearGradient id="rod">${gradient}</linearGradient></defs><rect width="370" height="176" fill="currentColor" opacity=".045"/>${rods}</svg><small>横向全宽：${format(extent)} px</small></figure><figure><figcaption>静止表面 · 频闪</figcaption><svg role="img" aria-label="静止均匀表面逐行曝光后的频闪条带" viewBox="0 0 146 176" preserveAspectRatio="none"><rect width="146" height="176" fill="currentColor" opacity=".045"/>${bands}</svg><small>灰阶上限：1.8 L₀</small></figure></div>`;
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "快门 · 曝光时序", title: "逐行曝光、运动与频闪",
+    element, signal, session, kicker: "快门 · 曝光时序", title: "逐行曝光、运动与频闪",
     intro: "拖动时间查看各行的曝光进度，也可播放一次慢速回放。改变曝光时间，分别观察竖杆的模糊宽度、倾斜量和右侧的照明条带。",
     controls: [
       { key: "scanMs", label: "顶行到底行的起始时间差", min: 0, max: 40, step: 0.001, value: 17.272, format: (x) => `${format(x, 3)} ms` },

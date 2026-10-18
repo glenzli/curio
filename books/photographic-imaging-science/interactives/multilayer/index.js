@@ -3,10 +3,10 @@ import { alternatingStack, stackMatrix, stackRecursion, quarterWaveTruth } from 
 const blue = "#448b98", gold = "#b47b43";
 const pct = (x) => `${(100 * x).toFixed(4)}%`;
 const complex = (a) => `${a[0].toFixed(6)} ${a[1] < 0 ? "−" : "+"} ${Math.abs(a[1]).toFixed(6)}i`;
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey = "", spectrum = [];
   return experiment({
-    element, signal, kicker: "多层膜 · 特征矩阵与界面递推", title: "膜层次序、厚度与反射谱",
+    element, signal, session, kicker: "多层膜 · 特征矩阵与界面递推", title: "膜层次序、厚度与反射谱",
     intro: "先看两层四分之一波膜，再倒转次序、增加层数或改变末层厚度。层数相同，反射谱也可能相差很大。",
     controls: [
       { key: "pairs", label: "膜层对数", min: 1, max: 3, step: 1, value: 1, format: (x) => `${x} 对 · ${x * 2} 层` },

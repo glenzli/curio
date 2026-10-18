@@ -33,7 +33,7 @@ function rayDiagram(m) {
   out += `<text x="260" y="267" text-anchor="middle">轴向位置 z / mm</text>`;
   return `<svg role="img" aria-label="三组变焦光线与固定在200毫米的像面" viewBox="0 0 520 275">${out}</svg>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   const design = Array.from({ length: 121 }, (_, i) => {
     const v = 10 + i * 0.5;
     return [v, compensationTruth(v)[0]];
@@ -41,6 +41,7 @@ export function mount({ element, signal }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "变焦 · 固定像面与移动镜组",
     title: "改变焦距后，把光线重新聚到原来的像面",
     intro:

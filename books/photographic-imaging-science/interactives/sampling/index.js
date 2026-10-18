@@ -1,9 +1,10 @@
 import { samplingModel } from "./model.js";
 import { experiment, plot, points, legend } from "../common/ui.js";
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "第七章 · 连续条纹与离散采样",
     title: "像素采样与混叠",
     intro:

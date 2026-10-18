@@ -1,0 +1,6 @@
+import {writeFile} from 'node:fs/promises';
+import {spectrumFigures} from './figures.js';
+import {spectralAt} from './model.js';
+const f=spectrumFigures(),m=spectralAt();
+const svg='<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="互动示意：两条谱线的点像强度与复 OTF 在同一像面尺度上合成" width="1120" height="620" viewBox="0 0 1120 620" style="color:#263c33;font-family:sans-serif"><rect width="1120" height="620" fill="#fafbf9"/><text x="40" y="42" font-size="25">双波长点像与复 OTF · 非相干强度合成</text><text x="40" y="76" font-size="16">f/8；A=500 nm，B=650 nm；各占50%探测信号；B 横移5 µm</text><g transform="translate(20 110)">'+f.psf.replace('<svg ','<svg width="530" height="380" ')+'</g><g transform="translate(570 110)">'+f.otf.replace('<svg ','<svg width="530" height="380" ')+'</g><text x="40" y="510" font-size="14" fill="#528aa6">蓝：A 单色 PSF</text><text x="220" y="510" font-size="14" fill="#b28143">橙：B 单色 PSF</text><text x="400" y="510" font-size="14" fill="#4b8066">绿：合成</text><text x="590" y="510" font-size="14">OTF：绿 MTF / 蓝 Re / 紫 Im / 橙 错误平均</text><text x="40" y="535" font-size="17">100 lp/mm：合成 MTF = '+m.mtf.toFixed(4)+'；先取模再平均 = '+m.wrongAverage.toFixed(4)+'</text><text x="40" y="572" font-size="15">PSF 为二维归一化密度的横截面；OTF 在相同物理频率上合成。实线保留复 OTF 的实部与虚部。</text></svg>';
+await writeFile(new URL('./fallback.svg',import.meta.url),svg);

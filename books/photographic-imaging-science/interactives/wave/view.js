@@ -114,7 +114,7 @@ function overlap(rho, aberrated, z) {
   return `<svg viewBox="0 0 260 260" role="img" aria-label="圆瞳及其平移副本的几何重叠，平移量为两倍归一化频率"><circle cx="${130 - d / 2}" cy="121" r="55" fill="#648cac" fill-opacity=".35" stroke="#648cac"/><circle cx="${130 + d / 2}" cy="121" r="55" fill="#ad844d" fill-opacity=".35" stroke="#ad844d"/><path d="M${130 - d / 2} 196H${130 + d / 2}" stroke="currentColor"/><text x="130" y="219" text-anchor="middle">平移 ${fmt(2 * rho, 2)} 个瞳半径</text><text x="130" y="247" text-anchor="middle">重叠面积 / π = ${fmt(circularOtf(rho), 3)}</text></svg>`;
 }
 
-export function mountWave({ element, signal, aberrations = false }) {
+export function mountWave({ element, signal, session, aberrations = false }) {
   let cachedKey,
     g,
     truth,
@@ -221,6 +221,7 @@ export function mountWave({ element, signal, aberrations = false }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: aberrations ? "第十三章 · 波前与成像" : "第十二章 · 标量衍射",
     title: aberrations
       ? "波前改变后，点像和 OTF 怎样变化"
@@ -233,6 +234,7 @@ export function mountWave({ element, signal, aberrations = false }) {
     content: `${localStyle}<p class="wave-process"></p><div class="wave-grid"><section class="wave-card" data-stage="0"><h4>① 复瞳 P</h4><canvas class="pupil-map" role="img" aria-label="均匀圆瞳内的相位，瞳外振幅为零"></canvas><p class="pupil-reading"></p></section><section class="wave-card" data-stage="1"><h4>② 复振幅 U</h4><div class="phasor"></div><p class="amplitude-reading number"></p></section><section class="wave-card" data-stage="2"><h4>③ 点像强度 PSF</h4><canvas class="psf-map" role="img" aria-label="固定参考峰值刻度下的衍射点扩散函数"></canvas><p class="psf-reading"></p></section><section class="wave-card" data-stage="3"><h4>④ 复传递函数 OTF</h4><div class="overlap"></div><p class="otf-reading number"></p></section></div><button class="wave-display" type="button">切换为线性强度</button><p class="wave-map-scale"></p><div class="stats"></div><div class="wave-plots"><div class="chart psf-chart"></div><div class="legend psf-legend"></div><p class="wave-profile-note"></p><div class="chart otf-chart"></div><div class="legend otf-legend"></div></div><div class="wave-truth" aria-label="独立真值对照"></div>`,
     note: "单色、标量、近轴后焦面；均匀完整圆瞳，物点之间按非相干强度相加。瞳径 64 格，补零至 256×256；补零细化像面间隔，不提高瞳面精度。相位系数以当前波长为单位；未加入遮挡、像素孔径、色差或真实镜头处方。横轴均为像面坐标，x、y 是本演示固定方向，不代表厂商的全像场 S/T 曲线。",
     update(root, s) {
+      enhanced = s.enhanced !== false;
       const p = aberrations
         ? {
             ...zero,
@@ -413,11 +415,11 @@ export function mountWave({ element, signal, aberrations = false }) {
         stage: String(stage),
       });
     },
-    setup({ root, state, render }) {
+    setup({ root, state, render, restored }) {
       root.querySelector(".wave-display").addEventListener(
         "click",
         () => {
-          enhanced = !enhanced;
+          state.enhanced = !enhanced;
           render();
         },
         { signal },
@@ -432,7 +434,7 @@ export function mountWave({ element, signal, aberrations = false }) {
         start: aberrations ? -0.25 : 0,
         end: aberrations ? 0.25 : 100,
         label: aberrations ? "回放离焦扫描" : "回放计算步骤",
-        startOnFirstPlay: aberrations,
+        startOnFirstPlay: aberrations && !restored,
         durationMs: 8000,
       });
     },

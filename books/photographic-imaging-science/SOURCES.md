@@ -183,3 +183,8 @@
 ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码标准的完整
 规范受版权或获取条件约束。本书只重述主线所需定义和可公开核验部分，不复制标准
 文本。标准中的合格性测试、容差和设备认证不属于本书内部闭包。
+
+## 本轮展示的补充来源
+
+- MIT 2.71/2.710, [Lecture 6: Aperture stop, entrance and exit pupils](https://ocw.mit.edu/courses/2-71-optics-spring-2009/4579ef815b0fa56546a2c3861ff1a76b_MIT2_71S09_lec06.pdf), 2009-02-23, slides 3–6：光阑、两侧瞳像与主/边缘光线。第11章使用定义并自行推导两薄组共轭式；互动光路由本书模型生成，未复制讲义图。
+- Ansys Optics, [How to model colored and Tristimulus Sources](https://optics.ansys.com/hc/en-us/articles/43071101853331-How-to-model-colored-and-Tristimulus-Sources), “Source modeling using measured spectra”：多谱线和权重的输入约定。第12章的探测信号权重、同一像面上的 PSF/OTF 合成和位移相位由书内式 (12.9a)–(12.9b) 推出；不复现商业软件的追迹算法。

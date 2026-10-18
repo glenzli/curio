@@ -56,10 +56,11 @@ function lattice(channel) {
   return `<svg role="img" aria-label="RGGB 格点中选中的 ${channel} 通道位置" viewBox="0 0 256 240">${cells}<text x="128" y="235" text-anchor="middle">原始像素坐标；每格间距为 1</text></svg>`;
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "Bayer · 二维采样方向",
     title: "Bayer 采样：方向、相位与伪色",
     intro:

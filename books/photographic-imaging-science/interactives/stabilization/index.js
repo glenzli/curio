@@ -23,10 +23,11 @@ function diagram(sample) {
   out += `<path d="M${x(0)} 85V205" stroke="${blue}" stroke-width="3"/><path d="M${x(50)} ${y(sample.delta) - 60}V${y(sample.delta) + 60}" stroke="${gold}" stroke-width="3"/><path d="M${x(150)} ${y(sample.sensor) - 45}V${y(sample.sensor) + 45}" stroke="${purple}" stroke-width="4"/><path d="M${x(150) - 7} ${y(sample.sensor)}h14" stroke="${purple}" stroke-width="2"/><circle cx="${x(150)}" cy="${y(sample.image)}" r="4" fill="${gold}"/><text x="${x(0)}" y="43" text-anchor="middle">前组 +10 D</text><text x="${x(50)}" y="62" text-anchor="middle">防抖组 −10 D</text><text x="${x(150)}" y="43" text-anchor="end">传感器</text><text x="28" y="242">蓝线：实际光路 · 淡虚线：未补偿光路</text><text x="28" y="263">横、纵比例不同；金点为光束交点，紫短线为传感器参考中心</text>`;
   return `<svg role="img" aria-label="防抖组和传感器位移对光束交点相对位置的影响" viewBox="0 0 520 278">${out}</svg>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "防抖 · 光学位移与相对像移",
     title: "镜组补偿和传感器补偿如何分担位移",
     intro:

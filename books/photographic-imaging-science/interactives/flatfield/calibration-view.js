@@ -27,11 +27,12 @@ function paint(canvas, values, side, limit) {
   c.putImageData(image, 0, 0);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey, data;
   return experiment({
     element,
     signal,
+    session,
     kicker: "平场统计 · 空间相关与共享校准",
     title: "行列噪声与反复使用的平均暗场",
     intro:

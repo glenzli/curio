@@ -6,10 +6,11 @@ function psf(m) {
     ry = m.tangentialSigma * scale;
   return `<svg viewBox="0 0 150 150" role="img" aria-label="椭圆高斯 PSF 的一倍与两倍标准差轮廓"><path d="M15 75H135M75 15V135" stroke="currentColor" opacity=".2"/><ellipse cx="75" cy="75" rx="${2 * rx}" ry="${2 * ry}" fill="none" stroke="#426d58" opacity=".5"/><ellipse cx="75" cy="75" rx="${rx}" ry="${ry}" fill="#426d5815" stroke="#426d58"/><circle cx="75" cy="75" r="1.5" fill="currentColor"/><text x="130" y="89" font-size="10" fill="currentColor">R</text><text x="81" y="22" font-size="10" fill="currentColor">T</text></svg><p>PSF 等强度轮廓：1σ、2σ<br>横向 R，纵向 T；框宽 46.9 µm</p>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "第十三 / 十七章 · 高斯 PSF 模型",
     title: "场曲与像散对 MTF 的影响",
     intro:

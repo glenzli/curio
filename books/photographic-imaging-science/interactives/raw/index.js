@@ -3,10 +3,11 @@ import { replay } from "../common/replay.js";
 import { packingDemo, payloadRate } from "./model.js";
 const hex = (x, d = 3) => `0x${x.toString(16).padStart(d, "0")}`,
   bin = (x) => x.toString(2).padStart(8, "0");
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "RAW · 样本、字节与解码约定",
     title: "两个 12-bit 样本怎样装进三个字节",
     intro:

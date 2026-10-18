@@ -61,12 +61,13 @@ function layer(state, m) {
   return svg("单层膜的传播光程和往返相位", content, 300, 250);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey = "",
     values = [];
   return experiment({
     element,
     signal,
+    session,
     kicker: "增透膜 · 传播相位与复振幅",
     title: "膜厚改变了反射光怎样相加",
     intro:

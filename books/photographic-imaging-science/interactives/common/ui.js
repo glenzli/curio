@@ -1,9 +1,15 @@
 const style = `
 :host{display:block;color:var(--text,#263c33);font:13px/1.7 ui-sans-serif,-apple-system,"PingFang SC",sans-serif}*{box-sizing:border-box}.lab{padding:24px}.kicker{font-size:10px;letter-spacing:.09em;opacity:.6}h3{font-size:22px;line-height:1.4;margin:8px 0}p{margin:8px 0;opacity:.72}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}.controls label{font-size:11px;display:grid;gap:8px}.controls output{float:right;font-variant-numeric:tabular-nums;font-weight:600}input{width:100%;accent-color:#426d58}button{font:inherit;color:inherit;background:transparent;border:1px solid #9caea2;border-radius:5px;padding:6px 10px;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:3px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chart{margin:16px 0;min-width:0}.chart svg{width:100%;height:auto;display:block}.chart text{font-family:inherit;fill:currentColor;font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:10px;margin:8px 0}.legend i{display:inline-block;width:18px;border-top:2px solid;vertical-align:middle;margin-right:5px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-block:1px solid #9caea244;padding:15px 0;margin:18px 0}.stats small{font-size:10px;opacity:.65}.stats strong{font-size:22px;line-height:1.5;font-variant-numeric:tabular-nums;display:block}.stats em{font-style:normal;font-size:10px;opacity:.65}.note{font-size:10px;line-height:1.85;opacity:.65}.reading{font-size:12px}.stripes{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stripes svg{width:100%;height:54px;border-radius:4px;display:block}.stripes small{font-size:10px}.field-grid{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:14px;align-items:center}.psf svg{width:100%;height:auto}.psf p{font-size:10px;text-align:center}.chart-wrap{border-radius:6px;background:color-mix(in srgb,currentColor 3%,transparent);padding:10px}.criterion{font-size:12px;font-weight:600}@media(max-width:550px){.lab{padding:18px}h3{font-size:19px}.controls{grid-template-columns:1fr;gap:12px}.stats strong{font-size:18px}.stripes{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.psf{max-width:180px;margin:auto}}`;
 
+// Preserve derived values and paused animation positions; step="any" is not numeric.
+export function restoredControlValue(control, value) {
+  return Number.isFinite(value) ? Math.max(control.min, Math.min(control.max, value)) : control.value;
+}
+
 export function experiment({
   element,
   signal,
+  session,
   kicker,
   title,
   intro,
@@ -13,11 +19,17 @@ export function experiment({
   presets = [],
   update,
   setup,
+  version = 1,
 }) {
   const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
   root.innerHTML = `<style>${style}</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div>${content}<p class="note">${note}</p></section>`;
-  const state = {},
-    fields = new Map();
+  const saved = session?.load();
+  const restored = saved?.version === version && saved.parameters && typeof saved.parameters === "object";
+  const state = restored ? Object.fromEntries(Object.entries(saved.parameters).filter(([k,v]) => k.length < 64 && (["number","string","boolean"].includes(typeof v)) && (typeof v !== "number" || Number.isFinite(v)))) : {};
+  let presetLabel = restored ? saved.preset ?? null : null;
+  const fields = new Map();
+  let snapshot;
+  session?.describe(() => snapshot);
   for (const control of controls) {
     const label = document.createElement("label"),
       name = document.createElement("span"),
@@ -33,12 +45,14 @@ export function experiment({
     name.append(output);
     label.append(name, input);
     root.querySelector(".controls").append(label);
-    state[control.key] = control.value;
+    const previous = state[control.key];
+    state[control.key] = restoredControlValue(control, previous);
     fields.set(control.key, { input, output, control });
     input.addEventListener(
       "input",
       () => {
         state[control.key] = Number(input.value);
+        presetLabel = null;
         render();
       },
       { signal },
@@ -52,10 +66,25 @@ export function experiment({
         : String(state[key]);
     }
     update(root, state);
+    const parameters = Object.fromEntries(Object.entries(state).filter(([,v]) => ["number","boolean","string"].includes(typeof v) && (typeof v !== "number" || Number.isFinite(v))));
+    session?.save({ version, parameters, preset: presetLabel });
+    snapshot = {
+      title,
+      preset: presetLabel,
+      parameters: [...fields.values()].map(({control}) => ({ label: control.label, value: control.format ? control.format(state[control.key]) : String(state[control.key]) })),
+      options: Object.fromEntries(Object.entries(parameters).filter(([key]) => !fields.has(key))),
+      readings: {
+        stats: [...root.querySelectorAll("small")].filter(node=>node.parentElement?.querySelector(":scope > strong")).map(node=>({label:node.textContent,value:node.parentElement.querySelector(":scope > strong").textContent,detail:node.parentElement.querySelector(":scope > em")?.textContent ?? ""})),
+        notes: [...root.querySelectorAll(".reading,[data-reading],[data-truth],.wave-truth")].map(node=>node.textContent.replace(/\s+/g," ").trim()).join("\n").slice(0,1800),
+      },
+      assumptions: note,
+    };
+    for (const button of root.querySelectorAll(".actions button[data-preset]")) button.setAttribute("aria-pressed", String(button.dataset.preset === presetLabel));
   }
   for (const preset of presets) {
     const button = document.createElement("button");
     button.textContent = preset.label;
+    button.dataset.preset = preset.label;
     button.addEventListener(
       "click",
       () => {
@@ -65,15 +94,28 @@ export function experiment({
             ? preset.values(state)
             : preset.values,
         );
+        presetLabel = typeof preset.values === "function" ? null : preset.label;
         render();
       },
       { signal },
     );
     root.querySelector(".actions").append(button);
   }
-  if (!presets.length) root.querySelector(".actions").remove();
+  if (session) {
+    const reset = document.createElement("button");
+    reset.type = "button";
+    reset.textContent = "重置参数";
+    reset.addEventListener("click",()=>{
+      for (const key of Object.keys(state)) delete state[key];
+      for (const control of controls) state[control.key]=control.value;
+      presetLabel=null;
+      render();
+    },{signal});
+    root.querySelector(".actions").append(reset);
+  }
+  if (!presets.length && !session) root.querySelector(".actions").remove();
   render();
-  const teardown = setup?.({ root, state, render });
+  const teardown = setup?.({ root, state, render, restored });
   let disposed = false;
   function dispose() {
     if (disposed) return;

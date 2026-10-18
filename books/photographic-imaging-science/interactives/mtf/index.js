@@ -1,9 +1,10 @@
 import { transfer } from "./model.js";
 import { experiment, plot, points, legend, stripe } from "../common/ui.js";
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "第十二章 · 衍射与像素孔径",
     title: "光圈、像素节距与 MTF",
     intro: "调整光圈、像素节距和条纹频率，观察 MTF 曲线和输出条纹的变化。",

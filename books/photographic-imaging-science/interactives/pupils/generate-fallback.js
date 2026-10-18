@@ -1,0 +1,4 @@
+import {writeFile} from 'node:fs/promises';
+import {pupilFigure} from './figures.js';
+const svg='<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="互动示意：光阑经前后两薄镜组分别形成入瞳与出瞳" width="1120" height="530" viewBox="0 0 1120 530" style="color:#263c33;font-family:sans-serif"><rect width="1120" height="530" fill="#fafbf9"/><text x="40" y="42" font-size="25">光阑经前组、后组形成的入瞳与出瞳</text><text x="40" y="76" font-size="16">前组10 D，后组20 D，间距100 mm；光阑 z=25 mm，直径2 mm</text><g transform="translate(20 105)">'+pupilFigure().replace('<svg ','<svg width="530" height="332" ')+'</g><g transform="translate(570 105)">'+pupilFigure({},'exit').replace('<svg ','<svg width="530" height="332" ')+'</g><text x="40" y="469" font-size="17">入瞳：z=33.333 mm，虚像，直径2.667 mm；出瞳：z=250 mm，实像，直径4 mm。</text><text x="40" y="505" font-size="15">两图分别构造同一光阑上边缘的像；虚线为反向延长。横纵比例不同，采用空气中的近轴薄镜组模型。</text></svg>';
+await writeFile(new URL('./fallback.svg',import.meta.url),svg);

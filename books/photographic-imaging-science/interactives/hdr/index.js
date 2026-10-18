@@ -78,11 +78,12 @@ function weightStrip(canvas, result) {
   context.putImageData(image, 0, 0);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey, frames, estimatedKey, registration;
   return experiment({
     element,
     signal,
+    session,
     kicker: "HDR · 从观测估计位移",
     title: "先估计两帧的错位，再比较融合结果",
     intro:

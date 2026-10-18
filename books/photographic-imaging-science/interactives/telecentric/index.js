@@ -39,10 +39,11 @@ function diagram(p, m) {
   out += `<text x="260" y="270" text-anchor="middle">轴向位置 z / mm · 第一组位于0</text>`;
   return `<svg role="img" aria-label="两透镜、光阑、主光线及边缘光线构成的远心光路" viewBox="0 0 520 280">${out}</svg>`;
 }
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "远心光路 · 光阑与瞳",
     title: "移动光阑，分别观察两侧的主光线",
     intro:

@@ -71,12 +71,13 @@ function focusRegion(m, plane) {
   return svg("四条谱线的光束交点及像面位置", content, 224);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   const initial = doublet(),
     solution = initial.solutionRatio;
   return experiment({
     element,
     signal,
+    session,
     kicker: "材料色散 · 接触薄透镜",
     title: "两片镜怎样让 F、C 两线同焦",
     intro:

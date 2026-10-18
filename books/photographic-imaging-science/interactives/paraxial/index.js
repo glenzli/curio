@@ -46,9 +46,9 @@ function diagram(p, m) {
   return { markup: `<svg role="img" aria-label="两薄镜组的近轴光线、主平面、像面和实虚交点" viewBox="0 0 520 ${ruler ? 430 : 355}">${drawing}</svg>`, offscreen: imageX !== null && (imageX < min || imageX > max) };
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "近轴镜组 · ABCD 与逐面追迹", title: "焦距从主平面量起，后焦距从后组量起",
+    element, signal, session, kicker: "近轴镜组 · ABCD 与逐面追迹", title: "焦距从主平面量起，后焦距从后组量起",
     intro: "用正、负两组拼出望远型或反望远型。改变组间距后，观察主平面和交点怎样移动，再调节像面位置。",
     controls: [
       { key: "power1", label: "前组光焦度", min: -20, max: 20, step: 0.5, value: 10, format: (x) => `${x.toFixed(1)} D` },

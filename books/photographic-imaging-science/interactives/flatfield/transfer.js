@@ -103,11 +103,12 @@ function transferChart(data, fit, method, state) {
   };
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey, data;
   return experiment({
     element,
     signal,
+    session,
     kicker: "平场统计 · 均值与方差",
     title: "从成对平场估计系统增益",
     intro:

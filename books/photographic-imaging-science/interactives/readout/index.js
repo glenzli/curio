@@ -14,9 +14,9 @@ function stairs(bits, gain, maximum) {
   return result;
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
-    element, signal, kicker: "CMOS · 读出与量化", title: "增益放在 ADC 前后",
+    element, signal, session, kicker: "CMOS · 读出与量化", title: "增益放在 ADC 前后",
     intro: "两个通道接收相同的电子数。一个先放大再量化，另一个先量化再做等倍数字乘法。拖动增益，比较暗部码阶和高光上限。",
     controls: [
       { key: "gainEV", label: "增益", min: 0, max: 4, step: 0.25, value: 2, format: (x) => `${number(2 ** x)}×` },

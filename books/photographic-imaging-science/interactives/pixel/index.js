@@ -76,12 +76,13 @@ function noisePlot(samples, budget) {
   return svg("固定电荷重复读出的单次估计与 CDS 误差", content, 184);
 }
 
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   let cachedKey = "",
     samples = [];
   return experiment({
     element,
     signal,
+    session,
     kicker: "4T 像素 · 电荷与采样",
     title: "先读参考电平，再转移信号电荷",
     intro:

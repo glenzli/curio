@@ -12,10 +12,11 @@ const p = (s) => ({
   reduceExposure: s.reduceExposure ?? false,
   seed: s.seed ?? 20261018,
 });
-export function mount({ element, signal }) {
+export function mount({ element, signal, session }) {
   return experiment({
     element,
     signal,
+    session,
     kicker: "ISO · 曝光量、模拟增益与转换增益",
     title: "固定曝光和少收光，是两种不同的增益比较",
     intro:
