@@ -231,8 +231,8 @@ def main() -> None:
                 images.append((alt, raw_target))
             else:
                 resolved = validate_interactive_fallback(path, text, match, components)
-                if resolved in referenced_fallbacks:
-                    fail(f"interactive fallback is referenced more than once: {raw_target}")
+                # A shared experiment may appear in several chapters. Each placement
+                # still checks its declared entry, caption and exact SVG title above.
                 referenced_fallbacks.add(resolved)
         expected_figures = EXPECTED_FIGURES[number]
         if len(images) != expected_figures:

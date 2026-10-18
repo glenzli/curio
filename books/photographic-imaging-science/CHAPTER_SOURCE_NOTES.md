@@ -8,11 +8,11 @@
 | 0 | Holst--Lomheim；Goodman | 成像链分层由本书组织；完整相机工程不在序章展开 |
 | 1 | Born--Wolf；Smith；Gardner 1947 §§II、IV.1与表1 | 辐射度学、有限出瞳与cos⁴θ边界；圆锥/圆瞳积分和圆周闭式由书内推导，另核对Gardner表值；近摄限于瞳放大率1；实际暗角需具体瞳与机械模型 |
 | 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim；MIT Probability Lectures 22/23 | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
-| 3 | Fossum；Janesick；EMVA 1288 | 单斜坡机制另核对Kleinfelder等2001 slide 7；列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
+| 3 | Fossum；Janesick；EMVA 1288 | 单斜坡机制另核对Kleinfelder等2001 slide 7；ADC误差另核MT-010 pp. 4–7；列偏置、二次斜坡与DNL/INL采用声明模型及固定端点参考；列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
 | 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | PTC 用 N−1 样本方差及成对差分/2；另用 Gaussian 行列随机效应模型推导 ROI 平均、方差分解与共享暗场校准下限，不冒充标准的固定空间非均匀性测量 |
-| 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和 DCG 权衡书内计算 |
+| 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和DCG权衡书内计算；EI监看另核ARRI SUP 1.1 §9.4，教学链固定传感器与模拟读出 |
 | 6 | Sony 2012堆栈发布、Pregius S及开发访谈；Hamamatsu qCMOS；Guenter et al. 2017 | BSI/DTI/堆栈/曲面具体制造为外部输入；分层图按功能层序核对，不模拟器件性能；时序畸变书内推导 |
-| 7 | Bayer US3971065A；Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | RGGB 布局来自公开原始专利；同色格、倒格、起点相位与双线性示例书内计算；四波段响应为声明教学输入，同色异谱、精确色度映射与协方差传播书内论证 |
+| 7 | Bayer US3971065A；Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | RGGB 布局来自公开原始专利；同色格、倒格、起点相位与双线性示例书内计算；四波段响应和噪声混合矩阵为教学输入；同色异谱、精确色度映射、独立噪声源与协方差传播书内论证，未把输出称为标定XYZ |
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；另用水平梯度与二维强度相关教学搜索，不冒充 HDR+ 的 FFT 配准 |
 | 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
@@ -135,3 +135,17 @@ ISO 演示采用正文给定的教学电压/电容尺度，观测统计只读取
 约定；独立递推使用完整电场Fresnel系数，再转换p基矢符号与切向分量。Byrnes v5
 §§2--4及附录A用于核对场、功率和符号约定，未复制外部实现。当前只含实常数折射率、
 无损传播波和半无限基底，临界角、倏逝波、吸收及色散均需扩展模型后另验。
+
+## 本轮补充：列ADC、白平衡协方差与EI监看
+
+第三章MT-010用于区分码宽与参考直线约定；二次斜坡、固定12列电压图样、16 LSB基座
+和无噪声暗场为本书声明输入。逐阈值搜索与独立交叉根核对，DNL/INL另由解析式验证；
+未模拟随机校准误差、比较器延迟或缺码。
+
+第七章式 (7.7a)—(7.7b) 是未裁切Gaussian高计数例。输入独立通道项与共同项明确，
+矩阵乘积另对照潜在源展开，样本分析只读观测。中性轴保持不等于XYZ标定；1σ椭圆
+不等于均值置信区间。去马赛克空间相关、饱和和增益估计误差未进入该例。
+
+第五、九章共用固定传感器的EI实验，按曝光、记录位置和监看分层；物理档位真值
+不读取显示码。ARRI的SUP 1.1 §9.4与LogC4 2023 §§3.1、4.1提供实际术语边界，
+教学Log、Gamma硬白点、14 bit RAW及满阱参数均另行声明，未复制厂商硬件公式。

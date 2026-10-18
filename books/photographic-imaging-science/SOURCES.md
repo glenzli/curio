@@ -220,6 +220,16 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
 
 ## 本轮展示的补充来源
 
+- Analog Devices, [MT-010: The Importance of Data Converter Static Specifications](https://www.analog.com/media/en/training-seminars/tutorials/mt-010.pdf),
+  pp. 4–7, Figures 5–8: INL reference-line choices and DNL code widths. Chapter 3
+  declares its own monotone quadratic ramp, fixed-endpoint threshold reference and
+  column offsets, then derives exact code-width and threshold errors. No measured ADC
+  performance or missing-code behavior is inferred from that example.
+- ARRI, [ALEXA 35 SUP 1.1 User Manual](https://www.arri.com/resource/blob/282238/84d1df5e5269a799515446d37d10876a/user-manual-alexa-35-sup-1-0-data.pdf),
+  §9.4, p. 39: EI, exposure normalization and middle-gray placement. Together with
+  the May 2023 LogC4 specification §§3.1 and 4.1, this fixes the distinction between
+  hardware gain and scene-linear decoding. Chapters 5/9 use a separate fixed-sensor,
+  teaching-Log and hard-white Gamma chain; it is not an ARRI LUT or hardware reproduction.
 - Irvine C. Gardner, [Validity of the Cosine-Fourth-Power Law of Illumination](https://nvlpubs.nist.gov/nistpubs/jres/39/jresv39n3p213_A1b.pdf),
   *Journal of Research of the National Bureau of Standards* 39 (1947), pp. 213–219,
   RP1824, especially §§II, IV.1 and Table 1. Finite uniform-pupil illumination and the
