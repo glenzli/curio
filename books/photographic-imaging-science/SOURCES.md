@@ -136,13 +136,25 @@
   Its four-band metamerism example declares ideal box responses rather than borrowing
   measured sensitivities or CIE functions. Null-space construction, changed illuminant
   and response comparisons, and quadrature checks belong to this teaching model.
-- ITU-R, [Recommendation BT.2100](https://www.itu.int/rec/R-REC-BT.2100/en),
-  for the distinction between PQ and HLG in HDR television; Chapter 9 uses only
-  their roles, not a complete HDR mastering specification.
+- ITU-R, [Recommendation BT.2100-3](https://www.itu.int/dms_pubrec/itu-r/rec/bt/R-REC-BT.2100-3-202502-I!!PDF-E.pdf),
+  February 2025, Tables 4–5 and Annex 1: PQ display-light units, HLG relative
+  scene encoding, and the roles of OETF, EOTF and OOTF. Chapter 9 distinguishes
+  these signal paths without specifying a complete HDR mastering workflow.
 - Apple, [Apple ProRes RAW White Paper](https://www.apple.com/final-cut-pro/docs/Apple_ProRes_RAW.pdf).
 - Charles Poynton, *Digital Video and HD: Algorithms and Interfaces*, 2nd ed.,
   Morgan Kaufmann, 2012.
 - R. W. G. Hunt and M. R. Pointer, *Measuring Colour*, 4th ed., Wiley, 2011.
+
+## Fourier 分析的数学工具
+
+- MIT, [18.103 Fourier Integrals on L²(R) and L¹(R)](https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/d95e4644254e96ffe92a970c5ed65b0e_MIT18_103F13_fourierint1.pdf),
+  Fall 2013, pp. 1–2, Corollaries 1–2 and Proposition 1: Plancherel extension and
+  agreement with the integral transform on L¹∩L². The notes use angular frequency;
+  Appendix A uses cycles per unit length, removing the 2π norm factor by a change
+  of variable. Applying the one-dimensional result in both coordinates gives the
+  two-dimensional identity used here; its inner-product form follows by polarization.
+  The theorem is an external input. Chapter 12 derives pupil autocorrelation from
+  it and the translation identity, with its own physical scaling and sign convention.
 
 ## 重复实验与统计
 

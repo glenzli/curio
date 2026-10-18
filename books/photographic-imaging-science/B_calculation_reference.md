@@ -70,7 +70,7 @@ $$
 
 $$
 d_\mathrm{Airy}[\mu\mathrm m]
-=2.44\lambda N\approx1.342N,
+\approx2.44\lambda N\approx1.342N,
 $$
 
 $$

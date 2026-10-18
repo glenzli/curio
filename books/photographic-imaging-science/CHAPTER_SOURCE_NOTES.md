@@ -14,10 +14,10 @@
 | 6 | Sony 2012堆栈发布、Pregius S及开发访谈；Hamamatsu qCMOS；Guenter et al. 2017 | BSI/DTI/堆栈/曲面具体制造为外部输入；分层图按功能层序核对，不模拟器件性能；时序畸变书内推导 |
 | 7 | Bayer US3971065A；Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | RGGB 布局来自公开原始专利；同色格、倒格、起点相位与双线性示例书内计算；四波段响应和噪声混合矩阵为教学输入；同色异谱、精确色度映射、独立噪声源与协方差传播书内论证，未把输出称为标定XYZ |
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；本书的水平梯度搜索与二维强度相关算法分别定义，HDR+ 的 FFT 配准保留为外部背景 |
-| 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明 |
+| 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100-3 表4–5、附录1 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明；PQ按绝对显示亮度定义，HLG相对场景编码与显示变换分开 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
 | 11 | Born--Wolf；Smith；Kingslake--Johnson；MIT 6.161 §2.2；Ansys BFL 定义；Edmund Optics 瞳定义；MIT 2.71 Lecture 6 slides 3–6 | 真实处方追迹外置；近轴矩阵、主平面和有限共轭书内推导；孔径逐面截光另对照ABCD三圆投影与圆弧面积，不把面积比当照度 |
-| 12 | Goodman；MIT 2.71 2014 Lecture 25；Zeiss MTF notes | 标量 Fourier 模型为外部物理框架；物理瞳坐标、OTF 自相关与圆盘重叠计算在正文展开，宽谱合成注明条件；复瞳传播分别对照 Airy、圆盘重叠、直接自相关、Parseval 与网格收敛 |
+| 12 | Goodman；MIT 2.71 2014 Lecture 25；MIT 18.103 2013 Fourier Integrals pp.1–2；Zeiss MTF notes | 标量 Fourier 模型与Plancherel定理为外部输入；平移内积、物理尺度与OTF自相关书内推导，宽谱合成注明条件；传播分别对照Airy、圆盘重叠、直接自相关、Parseval与网格收敛 |
 | 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；轴上比的 RMS 小相位近似及四项圆瞳模式正交归一在正文推导；Mahajan 1982/1985 的摘要与表格用于核对参考点/峰值约定；波前演示以连续圆瞳积分和纯离焦精确式另核固定原点 S₀ |
 | 14 | Nikon Research Report 2022；SCHOTT N-BK7/N-F2 数据表；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；互动使用目录 Sellmeier 系数与谱线数据；书内推导接触薄片的消色差和二级光谱，完整镜头处方另需曲率、厚度与间隔 |
 | 15 | Born--Wolf；Macleod；Erteza 1995 §2.1.2；Byrnes v5 §§2--4、附录A；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 逐段 Fourier 积分、连续极限及交替四分之一波层导纳书内推导；正/斜入射s/p矩阵与完整电场递推比较；区分切向振幅和能流，不含吸收或倏逝波 |

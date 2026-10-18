@@ -26,5 +26,5 @@
 <line x1="600.00" y1="295.00" x2="875.00" y2="295.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
 <line x1="600.00" y1="330.00" x2="875.00" y2="330.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
 <line x1="600.00" y1="365.00" x2="875.00" y2="365.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<text x="740.00" y="440.00" fill="#bd5b54" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">xj = x0 + v(t0 + jΔt)</text>
+<text x="740.00" y="440.00" fill="#bd5b54" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">xj = x0 + v(t0 + jΔt + Te/2)</text>
 </svg>

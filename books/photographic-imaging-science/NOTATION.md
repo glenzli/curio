@@ -20,6 +20,8 @@ $\sigma_\alpha^2,\sigma_\beta^2,\sigma_\varepsilon^2$ 为三层生成方差，$M
 | $E_{e,\lambda}$ | 光谱辐照度 | W m$^{-2}$ m$^{-1}$ |
 | $H_{e,\lambda}$ | 光谱曝光量，$\int E_{e,\lambda}dt$ | J m$^{-2}$ m$^{-1}$ |
 | $t$ | 曝光时间 | s |
+| $E(x,y,t),H_j(x)$（第六章） | 像面辐照度与第 $j$ 行曝光量；$H_j=\int E\,dt$ | W/m²，J/m² |
+| $t_j,T_e,\Delta t$（第六章） | 第 $j$ 行曝光起点、曝光时长、相邻行起点间隔；窗口中点为 $t_j+T_e/2$ | s |
 | $f$ | 有效焦距 | m 或 mm |
 | $D$ | 入瞳直径 | 与 $f$ 同单位 |
 | $N=f/D$ | 工作条件另行说明时的相对孔径数（f-number） | 无量纲 |

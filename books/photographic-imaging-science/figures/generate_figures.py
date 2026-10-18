@@ -341,18 +341,29 @@ def figure_02_4t_pixel() -> None:
 
 
 def figure_02_shot_noise() -> None:
-    s = SVG("图 2.2  散粒噪声与信号电子数")
-    box = (120, 100, 720, 370)
-    s.axes(*box, "平均电子数 μe", "电子数或 SNR")
-    xs = [i * 50 for i in range(201)]
-    signal = [(x, x / 100) for x in xs]
-    root = [(x, math.sqrt(x)) for x in xs]
-    domain = (0, 10000, 0, 105)
-    s.plot(signal, box, domain, color=BLUE, width=3)
-    s.plot(root, box, domain, color=RED, width=3)
-    s.text(765, 125, "信号 μ/100", size=17, color=BLUE)
-    s.text(705, 260, "σshot = √μ", size=17, color=RED)
-    s.text(500, 545, "散粒噪声标准差和 shot-noise-limited SNR 都按 √μ 增长", size=20, anchor="middle")
+    s = SVG("图 2.2  散粒噪声的绝对幅度与相对幅度")
+    samples = [100, 400, 1600, 6400]
+    for box, label, ylabel, fn, ymax, color, yticks in [
+        ((110, 140, 355, 290), "绝对噪声", "标准差 σshot [e⁻ rms]",
+         lambda mu: math.sqrt(mu), 85, BLUE, [0, 20, 40, 60, 80]),
+        ((600, 140, 355, 290), "相对噪声", "标准差 / 平均信号 [%]",
+         lambda mu: 100 / math.sqrt(mu), 10.5, RED, [0, 2.5, 5, 7.5, 10]),
+    ]:
+        x, y, w, h = box
+        s.text(x + w / 2, 102, label, size=21, anchor="middle", weight="600")
+        s.axes(*box, "平均电子数 μe（对数刻度）", ylabel)
+        s.grid(box, (0, 3, 0, ymax), xticks=[0, 1, 2, 3],
+               yticks=yticks, xfmt=lambda u: str(round(100 * 4 ** u)))
+        values = [(3 * i / 180, fn(100 * 4 ** (3 * i / 180))) for i in range(181)]
+        s.plot(values, box, (0, 3, 0, ymax), color=color)
+        for i, mu in enumerate(samples):
+            value = fn(mu)
+            px, py = x + i * w / 3, y + h - h * value / ymax
+            s.circle(px, py, 4.5, fill=color, stroke="#fff", sw=1)
+            s.text(px, py - 13, f"{value:g}" + ("%" if color == RED else ""),
+                   size=17, color=color, anchor="middle")
+    s.text(500, 526, "均值增至4倍：标准差增至2倍，相对噪声减半", size=22, anchor="middle", weight="600")
+    s.text(500, 562, "Poisson模型；仅含散粒噪声，SNR = μe / σshot = √μe", size=18, color=GRAY, anchor="middle")
     s.save("02_shot_noise.svg")
 
 
@@ -538,7 +549,7 @@ def figure_06_rolling_skew() -> None:
     s.polygon([(620, 180), (680, 180), (850, 390), (790, 390)], fill=PALE_RED, stroke=RED, sw=4)
     for y in range(190, 390, 35):
         s.line(600, y, 875, y, color=LIGHT, width=1)
-    s.text(740, 440, "xj = x0 + v(t0 + jΔt)", size=19, color=RED, anchor="middle")
+    s.text(740, 440, "xj = x0 + v(t0 + jΔt + Te/2)", size=19, color=RED, anchor="middle")
     s.save("06_rolling_skew.svg")
 
 
@@ -923,7 +934,7 @@ def figure_12_airy_psf() -> None:
     xs=[i/500*18 for i in range(501)]
     s.plot([(x,airy_intensity(x)) for x in xs],box,(0,18,0,1.05),color=BLUE,width=3)
     s.line(530+3.8317/18*350,120,530+3.8317/18*350,410,color=AMBER,width=1.5,dash="5 4")
-    s.text(705,488,"第一暗环：r = 1.22 λN",size=18,color=AMBER,anchor="middle")
+    s.text(705,488,"第一暗环：r ≈ 1.22 λN",size=18,color=AMBER,anchor="middle")
     s.text(500,548,"点像与剖面使用同一Airy函数；左图增强弱环，右图按线性强度绘制",size=19,anchor="middle")
     s.save("12_airy_psf.svg")
 

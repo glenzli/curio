@@ -136,6 +136,22 @@ $$
 
 右端就是 $\widehat f\widehat g$。$\square$
 
+### 平方可积函数的能量与内积
+
+本书另引用 Plancherel 定理作为 Fourier 分析的外部数学输入：按上面的负号与
+$2\pi$ 约定，Fourier 变换从可积且平方可积函数延拓到 $L^2(\mathbb R^2)$，并保持内积：
+
+$$
+\int \widehat f(\boldsymbol\nu)\widehat g^{\,*}(\boldsymbol\nu)\,d^2\boldsymbol\nu
+=\int f(\boldsymbol r)g^*(\boldsymbol r)\,d^2\boldsymbol r.
+$$
+
+取 $g=f$ 就得到能量恒等式 $\int|\widehat f|^2=\int|f|^2$；两侧内积均由
+Cauchy–Schwarz 不等式保证绝对可积。对有限面积、平方可积的瞳，
+$\int|P|\le\sqrt{\text{瞳面积}}\sqrt{\int|P|^2}<\infty$，所以积分定义与
+$L^2$ 延拓一致。第十二章据此推导归一化 PSF 与 OTF 自相关。定理的证明和
+Fourier 归一化换算见[资料源中的数学讲义](SOURCES.md#fourier-分析的数学工具)。
+
 宽度 $p$、高度 $1/p$ 的归一化矩形
 $a(x)=p^{-1}\mathbf1_{[-p/2,p/2]}(x)$ 的 Fourier 变换为
 
@@ -151,7 +167,7 @@ $$
 
 方差传播既可按输出协方差计算，也可追溯到独立输入源。第七章的
 [同色插值实验](07_color_filter_sampling_and_demosaicing.md)给出四点平均的两条计算路径；
-第四章的[旧校准实验](04_noise_snr_full_well_and_dynamic_range.md)则保留跨整套重复与
+第四章的[校准漂移实验](04_noise_snr_full_well_and_dynamic_range.md)则保留跨整套重复与
 固定主暗场条件分布的区别。第八章还比较已知方差固定权重和观测依赖权重，后者
 不能仅凭权重和为一就继承前者的无偏结论。
 

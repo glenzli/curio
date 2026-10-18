@@ -34,7 +34,7 @@ function frame(scan, exposure, speed, frequency, progress) {
     rods += `<rect x="${X(sample.position - span / 2)}" y="${y}" width="${rectangleWidth}" height="2.8" fill="url(#rod)"/>`;
     bands += `<rect x="0" y="${y}" width="146" height="2.8" fill="rgb(${value} ${value} ${value})"/>`;
   }
-  return `<div class="shutter-scenes"><figure><figcaption>恒定光照 · 匀速竖杆</figcaption><svg role="img" aria-label="已完成曝光的各行中，匀速竖杆的运动积分" viewBox="0 0 370 176" preserveAspectRatio="none"><defs><linearGradient id="rod">${gradient}</linearGradient></defs><rect width="370" height="176" fill="currentColor" opacity=".045"/>${rods}</svg><small>横向全宽：${format(extent)} px</small></figure><figure><figcaption>静止表面 · 频闪</figcaption><svg role="img" aria-label="静止均匀表面逐行曝光后的频闪条带" viewBox="0 0 146 176" preserveAspectRatio="none"><rect width="146" height="176" fill="currentColor" opacity=".045"/>${bands}</svg><small>灰阶上限：1.8 L₀</small></figure></div>`;
+  return `<div class="shutter-scenes"><figure><figcaption>恒定光照 · 匀速竖杆</figcaption><svg role="img" aria-label="已完成曝光的各行中，匀速竖杆的运动积分" viewBox="0 0 370 176" preserveAspectRatio="none"><defs><linearGradient id="rod">${gradient}</linearGradient></defs><rect width="370" height="176" fill="currentColor" opacity=".045"/>${rods}</svg><small>横向全宽：${format(extent)} px</small></figure><figure><figcaption>静止表面 · 频闪</figcaption><svg role="img" aria-label="静止均匀表面逐行曝光后的频闪条带" viewBox="0 0 146 176" preserveAspectRatio="none"><rect width="146" height="176" fill="currentColor" opacity=".045"/>${bands}</svg><small>灰阶上限：1.8 E₀</small></figure></div>`;
 }
 
 export function mount({ element, signal, session }) {
@@ -53,9 +53,10 @@ export function mount({ element, signal, session }) {
       { label: "1/4000 秒", values: { scanMs: 17.272, exposureMs: 0.25, speed: 12000, progress: 100 } },
       { label: "全局曝光", values: { scanMs: 0, exposureMs: 2, speed: 12000, progress: 100 } },
       { label: "100 Hz · 10 ms", values: { scanMs: 17.272, frequency: 100, exposureMs: 10, progress: 100 } },
+      { label: "100 Hz · 15 ms · 反相", values: { scanMs: 17.272, frequency: 100, exposureMs: 15, progress: 100 } },
     ],
-    content: `<style>.shutter-scenes{display:grid;grid-template-columns:2fr 1fr;gap:20px}.shutter-scenes figure{margin:0;min-width:0}.shutter-scenes figcaption,.scene-label{font-size:11px;margin:0 0 9px;opacity:.85}.shutter-scenes svg{height:176px;border-radius:3px}.shutter-scenes small,.time-scale{font-size:10px;opacity:.75}.time-scale{display:flex;justify-content:space-between;margin-top:5px}@media(max-width:550px){.shutter-scenes{gap:12px}.shutter-scenes figcaption{min-height:22px}.shutter-scenes small{display:block;margin-top:6px}}</style><div class="stats"><div><small>顶行到底行的位移差</small><strong data-skew></strong><em>px，等于速度 × 扫描时间差</em></div><div><small>单行运动模糊长度</small><strong data-blur></strong><em>px，等于速度 × 曝光时间</em></div><div><small>曝光后剩余调制系数</small><strong data-flicker></strong><em>原照明调制幅度的比例</em></div></div><div class="chart" data-timeline></div><div class="chart" data-frame></div><p class="reading" data-reading></p>`,
-    note: "模型：匀速水平运动，竖杆宽 6 px；每行有相同的矩形曝光窗口，扫描方向从顶到底。默认 17.272 ms 对应 2160 行、行间隔 8 μs，画面用 64 条代表性行显示。左图在恒定照明下积分；右图是静止均匀表面，照明为 L₀[1+0.8 cos(2πft)]，按式 (6.2a) 精确平均。两图是分开的实验条件。左图透明度表示积分权重，右图统一作 Gamma 2.2 显示，均不模拟器材的噪声、读出带宽或色彩。未完成曝光的行暂不显示。播放仅将一帧回放拉长到 6 秒，离开视区或页面后自动暂停。",
+    content: `<style>.shutter-scenes{display:grid;grid-template-columns:2fr 1fr;gap:20px}.shutter-scenes figure{margin:0;min-width:0}.shutter-scenes figcaption,.scene-label{font-size:11px;margin:0 0 9px;opacity:.85}.shutter-scenes svg{height:176px;border-radius:3px}.shutter-scenes small,.time-scale{font-size:10px;opacity:.75}.time-scale{display:flex;justify-content:space-between;margin-top:5px}@media(max-width:550px){.shutter-scenes{gap:12px}.shutter-scenes figcaption{min-height:22px}.shutter-scenes small{display:block;margin-top:6px}}</style><div class="stats"><div><small>顶行到底行的位移差</small><strong data-skew></strong><em>px，等于速度 × 扫描时间差</em></div><div><small>单行运动模糊长度</small><strong data-blur></strong><em>px，等于速度 × 曝光时间</em></div><div><small>调制幅度保留率</small><strong data-flicker></strong><em>原照明调制幅度的比例</em></div></div><div class="chart" data-timeline></div><div class="chart" data-frame></div><p class="reading" data-reading></p>`,
+    note: "模型：匀速水平运动，竖杆宽 6 px；每行有相同的矩形曝光窗口，扫描方向从顶到底。默认 17.272 ms 对应 2160 行、行间隔 8 μs，画面用 64 条代表性行显示。左图在恒定照明下积分；右图是静止均匀表面，照明为 E₀[1+0.8 cos(2πft)]，按式 (6.2a) 精确平均。两图是分开的实验条件。左图透明度表示积分权重，右图统一作 Gamma 2.2 显示，均不模拟器材的噪声、读出带宽或色彩。未完成曝光的行暂不显示。播放仅将一帧回放拉长到 6 秒，离开视区或页面后自动暂停。",
     update(root, state) {
       const scan = state.scanMs / 1000, exposure = state.exposureMs / 1000;
       root.querySelector("[data-skew]").textContent = format(state.speed * scan, 3);
@@ -63,9 +64,10 @@ export function mount({ element, signal, session }) {
       root.querySelector("[data-flicker]").textContent = `${format(100 * Math.abs(sinc(Math.PI * state.frequency * exposure)))}%`;
       root.querySelector("[data-timeline]").innerHTML = timeline(scan, exposure, state.progress / 100);
       root.querySelector("[data-frame]").innerHTML = frame(scan, exposure, state.speed, state.frequency, state.progress / 100);
-      root.querySelector("[data-reading]").textContent = state.scanMs === 0 ?
+      const phaseNote = sinc(Math.PI * state.frequency * exposure) < -1e-9 ? " 当前曝光平均后的调制反相；上方幅度读数取绝对值。" : "";
+      root.querySelector("[data-reading]").textContent = (state.scanMs === 0 ?
         "各行同时开始、同时结束曝光，因此没有逐行位移差。运动物体在曝光期间仍会模糊；这里不演示曝光结束后的串行读出。" :
-        "缩短每行曝光会收窄运动模糊；顶行到底行的时间差不变，竖杆的倾斜量也不变。照明频闪的条带还取决于调制周期与曝光窗口。";
+        "缩短每行曝光会收窄运动模糊；顶行到底行的时间差不变，竖杆的倾斜量也不变。照明频闪的条带还取决于调制周期与曝光窗口。") + phaseNote;
     },
     setup: ({ root, state, render }) => playback({ root, state, render, element, signal }),
   });

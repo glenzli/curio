@@ -32,6 +32,19 @@ test("global exposure removes row skew while keeping motion blur", () => {
   assert.equal(motion(1, 0, 0.01, 500).blur, 5);
 });
 
+test("finite exposure places the rod center at the exposure midpoint", () => {
+  near(motion(0, .017272, .002, 12000).position, 12);
+  near(motion(1, .017272, .002, 12000).position, 219.264);
+  near(motion(0, .017272, .00025, 12000).position, 1.5);
+  for (const row of [0, .37, 1]) {
+    const sample = motion(row, .017272, .015, 500), count = 4000;
+    let meanPosition = 0;
+    for (let i = 0; i < count; i++)
+      meanPosition += 500 * (sample.start + (i + .5) * .015 / count) / count;
+    near(sample.position, meanPosition);
+  }
+});
+
 test("whole illumination periods cancel the sinusoidal term", () => {
   near(sinc(0), 1);
   near(sinc(Math.PI * 100 * 0.001), 0.983631643083466);

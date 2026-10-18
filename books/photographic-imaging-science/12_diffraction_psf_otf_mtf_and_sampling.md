@@ -73,21 +73,32 @@ P^*(\boldsymbol\xi+\lambda f\boldsymbol\nu)\,d^2\boldsymbol\xi}
 {\int|P(\boldsymbol\xi)|^2\,d^2\boldsymbol\xi}.            \tag{12.4}
 $$
 
-**证明.** 像面振幅可写成
+**证明.** 令 $\boldsymbol a=\lambda f\boldsymbol\nu$，并将瞳函数平移为
+$P_{\boldsymbol a}(\boldsymbol\xi)=P(\boldsymbol\xi+\boldsymbol a)$。
+由 Fourier 定义中的变量替换，
 
 $$
-U(\boldsymbol r)=
-\int P(\boldsymbol\xi)
-e^{-2\pi i\boldsymbol r\cdot\boldsymbol\xi/(\lambda f)}
-\,d^2\boldsymbol\xi.
+\widehat{P_{\boldsymbol a}}(\boldsymbol q)
+=e^{2\pi i\boldsymbol q\cdot\boldsymbol a}\widehat P(\boldsymbol q).
 $$
 
-把 $h\propto UU^*$ 展开为关于
-$\boldsymbol\xi,\boldsymbol\eta$ 的二重积分，再对 $\boldsymbol r$ 作 Fourier
-变换。按附录 A 的负号 Fourier 约定，内层积分给出
-$\delta[(\boldsymbol\xi-\boldsymbol\eta)/(\lambda f)+\boldsymbol\nu]$，
-从而令 $\boldsymbol\eta=\boldsymbol\xi+\lambda f\boldsymbol\nu$；由
-$H(0)=1$ 归一化即得式 (12.4)。$\square$
+对式 (12.2) 作 Fourier 变换，再令 $\boldsymbol r=\lambda f\boldsymbol q$。
+分子、分母中的面积因子 $(\lambda f)^2$ 抵消，故
+
+$$
+\begin{aligned}
+H(\boldsymbol\nu)
+&=\frac{\int |\widehat P(\boldsymbol q)|^2
+e^{-2\pi i\boldsymbol q\cdot\boldsymbol a}\,d^2\boldsymbol q}
+{\int |\widehat P(\boldsymbol q)|^2\,d^2\boldsymbol q}\\
+&=\frac{\int\widehat P(\boldsymbol q)
+\widehat{P_{\boldsymbol a}}^{\,*}(\boldsymbol q)\,d^2\boldsymbol q}
+{\int |\widehat P(\boldsymbol q)|^2\,d^2\boldsymbol q}.
+\end{aligned}
+$$
+
+用附录 A 的 Plancherel 恒等式把分子、分母分别换回瞳面，便得到式 (12.4)。
+平方可积保证这些内积存在，也给出 $H(0)=1$。$\square$
 
 无像差圆瞳中 $P$ 是圆盘指示函数，式 (12.4) 的分子就是两个平移圆盘的重叠面积；
 有波像差时相位因子也进入相关积分，因而不能只看几何孔径面积。
@@ -117,7 +128,7 @@ MTF 衡量某频率的对比传递，不是单一“锐度”。低频影响大�
 理想圆瞳产生 Airy 图样。第一暗环半径为
 
 $$
-r_1=1.22\lambda N,
+r_1\approx1.22\lambda N,
 $$
 
 更完整的径向强度为
@@ -141,7 +152,7 @@ $r_1=(3.8317/\pi)\lambda N=1.2197\ldots\lambda N$。
 左图将峰值归一化强度作平方根映射以增强弱环，右图按线性强度绘制；能量需对
 线性强度积分。两图使用同一Airy函数，橙圈、橙虚线标出同一第一暗环。*
 
-第一暗环直径为 $2.44\lambda N$。非相干圆孔 OTF 的截止频率为
+第一暗环直径约为 $2.44\lambda N$。非相干圆孔 OTF 的截止频率为
 
 $$
 \nu_c=\frac1{\lambda N}.                                 \tag{12.8}
@@ -214,7 +225,8 @@ $$
 $H_B(\nu_x,\nu_y)=H_{B,0}(\nu_x,\nu_y)\exp(-2\pi i\nu_x\delta)$。
 若 $\nu_x$ 用 lp/mm，$\delta$ 就必须换成 mm。
 
-取相同的550 nm圆瞳、f/8、等权两谱线，在100 lp/mm处令 $\delta=5$ µm。
+为核对取模与求和的顺序，先令两个非相干分量都取550 nm、圆瞳f/8，并赋予相同权重；
+在100 lp/mm处令 $\delta=5$ µm。
 此时 $\nu_x\delta=1/2$，两个 OTF 符号相反，正确合成值为零；分别取模后平均却
 保持单色 MTF。这里的相位是空间图样位移在 OTF 中的相位，不是两种颜色光场的
 相干干涉。PSF 强度仍是两个非负点像的和。
@@ -305,7 +317,8 @@ FFT算法先把两数组补零到 $128\times128$，足以容纳 $48+33-1=80$ 格
 令三条谱线的焦面为 $z_j$，共同观察面为 $z$，离焦量 $\Delta_j=z-z_j$，长度用μm。
 在均匀圆瞳、近轴标量模型中，忽略与强度无关的活塞相位，可定义
 $P_j(\rho)=\exp(i\beta_j\rho^2)$，其中
-$\beta_j=\pi\Delta_j/(4N^2\lambda_j)$，$\lambda_j$ 此处也换算为μm。
+$\beta_j=-\pi\Delta_j/(4N^2\lambda_j)$，$\lambda_j$ 此处也换算为μm。
+这个符号由近轴传播相位随像面后移而减小得到，推导见§13.7。
 圆瞳上等面积径向变量 $s=\rho^2$ 均匀分布，因此归一化轴上振幅为
 
 $$
@@ -313,7 +326,9 @@ A_j(0)=\int_0^1e^{i\beta_js}\,ds
 =e^{i\beta_j/2}\frac{\sin(\beta_j/2)}{\beta_j/2}.
 $$
 
-零离焦按连续极限取1。归一化为全平面单位能量后，轴上PSF密度为
+零离焦按连续极限取1。本节均匀圆瞳只含纯离焦，反转离焦量会使复瞳共轭；圆对称性
+又使PSF和实OTF保持不变。第十三章加入固定符号的球差后，焦点两侧则可能不同。
+归一化为全平面单位能量后，轴上PSF密度为
 $\pi|A_j(0)|^2/[4(\lambda_jN)^2]$，单位μm$^{-2}$。离轴剖面另用
 $\int_0^1e^{i\beta_js}J_0(\pi r\sqrt{s}/(\lambda_jN))\,ds$ 的复振幅积分，
 再取模平方；这与轴上闭式独立核对。
@@ -397,7 +412,7 @@ Nyquist 的连续条纹可以存在，但其离散样点要用第七章的频谱
 ### 贯穿算例：在同一像面尺度上比较
 
 对[参数表](00_preface_scope_and_measurement.md)的 550 nm、$f/8$、4 μm 满填充
-像素，Airy 第一暗环直径为 $2.44\lambda N=10.736$ μm，衍射截止频率约为
+像素，Airy 第一暗环直径约为 $2.44\lambda N=10.736$ μm，衍射截止频率约为
 227.27 lp/mm，Nyquist 频率为 125 lp/mm。
 
 在 40 lp/mm 处，式 (12.9) 的圆瞳衍射 MTF 约为 0.7771，式 (12.10) 的像素孔径
@@ -439,8 +454,9 @@ S/M 或 S/T 标记两组方向，但图例有时描述条纹线条，有时描�
 **练习 12.2.** 像素节距 $4\ \mu$m，求 Nyquist 频率和矩形满填充像素在 Nyquist
 处的 MTF。
 
-**练习 12.3.** 某频率处镜头、OLPF、像素 MTF 分别为 $0.60,0.85,0.64$。在线性
-独立模型下求系统 MTF；说明为什么不能用该乘积预测锐化 JPEG 的最终 MTF。
+**练习 12.3.** 某频率处镜头、OLPF、像素 MTF 分别为 $0.60,0.85,0.64$。假设各
+环节线性、空间不变且可依次用卷积表示，求系统 MTF；说明为什么不能用该乘积
+预测锐化 JPEG 的最终 MTF。
 
 **练习 12.4.** 一维无像差矩形瞳宽度为 $D$，瞳函数在
 $[-D/2,D/2]$ 内为 1，外部为 0。用式 (12.4) 证明归一化 OTF 为
