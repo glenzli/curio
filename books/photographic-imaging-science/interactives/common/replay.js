@@ -11,6 +11,7 @@ export function replay({
   end = 100,
   durationMs = 8000,
   label = "播放演示",
+  startOnFirstPlay = false,
 }) {
   const button = document.createElement("button");
   button.dataset.replay = "true";
@@ -19,7 +20,8 @@ export function replay({
     running = false,
     previous = 0,
     drawn = 0,
-    disposed = false;
+    disposed = false,
+    played = false;
   function pause() {
     running = false;
     cancelAnimationFrame(frame);
@@ -44,7 +46,9 @@ export function replay({
   pause();
   const onPlay = () => {
     if (running) return pause();
-    if (state[key] >= end || state[key] < start) state[key] = start;
+    if ((startOnFirstPlay && !played) || state[key] >= end || state[key] < start)
+      state[key] = start;
+    played = true;
     running = true;
     previous = performance.now();
     drawn = 0;

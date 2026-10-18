@@ -107,6 +107,8 @@ export function plot({
   bottomPadding = 40,
   leftPadding = 48,
   rightPadding = 18,
+  topLabelY = 12,
+  bottomLabelPadding = 2,
 }) {
   const W = width,
     H = height,
@@ -142,7 +144,7 @@ export function plot({
     inner += `<path d="${path(curve.points)}" fill="none" stroke="${curve.color}" stroke-width="2.1" ${curve.dashed ? 'stroke-dasharray="6 4"' : ""}/>`;
   for (const [a, b] of samples)
     inner += `<circle cx="${x(a)}" cy="${y(b)}" r="3.6" fill="#9b703c" stroke="white" stroke-width="1"/>`;
-  inner += `<text x="${left}" y="12">${escape(yLabel)}</text><text x="${(left + W - right) / 2}" y="${H - 2}" text-anchor="middle">${escape(xLabel)}</text>`;
+  inner += `<text x="${left}" y="${topLabelY}">${escape(yLabel)}</text><text x="${(left + W - right) / 2}" y="${H - bottomLabelPadding}" text-anchor="middle">${escape(xLabel)}</text>`;
   return `<svg role="img" aria-label="${escape(title)}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${inner}</svg>`;
 }
 export const points = (max, fn, count = 200) =>
