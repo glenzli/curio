@@ -179,7 +179,7 @@ export const spec = {
         `被选中的观测最大值：${number(selection.observedMean, 6)}`,
         `选中位置的生成响应：${number(selection.selectedTruthMean, 6)}`,
         `选中位置的独立复测：${number(selection.validationMean, 6)}`,
-        `生成曲线真正峰值：${number(selection.truePeak, 6)}`,
+        `生成曲线峰值真值：${number(selection.truePeak, 6)}`,
       ],
       table: `<div class="table-scroll"><table><thead><tr><th>分量（MTF²）</th><th>生成方差</th><th>原始矩估计</th><th>均方：观测 / 期望</th></tr></thead><tbody>${[
         ["样品", "lens"],
@@ -196,7 +196,7 @@ export const spec = {
         ["被选中的观测最大值", selection.observedMean],
         ["选中位置的生成响应", selection.selectedTruthMean],
         ["选中位置的独立复测", selection.validationMean],
-        ["生成曲线真正峰值", selection.truePeak],
+        ["生成曲线峰值真值", selection.truePeak],
       ]
         .map(
           ([label, v]) => `<tr><td>${label}</td><td>${number(v, 6)}</td></tr>`,

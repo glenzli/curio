@@ -152,7 +152,7 @@ export function mount({ element, signal, session }) {
       { label: "对焦无穷远", values: { focusVergence: 0 } },
     ],
     content: `<style>.actions button{font-size:11px;padding:4px 8px}.truth{font-size:11px;border:1px solid #9caea244;border-radius:6px;padding:12px;margin:14px 0}.stats strong{font-size:20px}.criterion{font-weight:400}.disc-row{display:flex;gap:16px;align-items:center;margin:16px 0}.disc-row svg{width:120px;max-width:35%;height:auto;flex-shrink:0}.disc-row p{font-size:12px}.chart text{font-size:11px}@media(max-width:550px){.chart text{font-size:17px}.stats{grid-template-columns:1fr}.stats>div{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.stats strong{font-size:18px}}</style><div class="stats" data-stats></div><div class="chart" data-chart></div><div class="disc-row" data-disc></div><p class="criterion" data-reading aria-live="polite"></p><div class="truth" data-truth></div>`,
-    note: "空气中正薄透镜，光阑与透镜共面，物距从透镜量起。近远界和超焦距用两条孔径边缘光线的像面间距作二分求解，另与式(16.2a)—(16.4)解析值比较。∞是真正的零入射倾角，不用一个很远的有限距离代替。图横轴采用倒数距离，纵轴是弥散圈相对容许直径；探测物体可能位于局部曲线图外，数值仍完整报告。光斑仅为均匀几何圆盘，不含衍射、像差或锐化，容许值由读者指定。",
+    note: "空气中正薄透镜，光阑与透镜共面，物距从透镜量起。近远界和超焦距用两条孔径边缘光线的像面间距作二分求解，另与式(16.2a)—(16.4)解析值比较。∞采用零入射倾角的平行束边界。图横轴采用倒数距离，纵轴是弥散圈相对容许直径；探测物体可能位于局部曲线图外，数值仍完整报告。光斑仅为均匀几何圆盘，不含衍射、像差或锐化，容许值由读者指定。",
     update(root, s) {
       const m = depthOfField(params(s)),
         { limits: l, truth: t, p } = m;

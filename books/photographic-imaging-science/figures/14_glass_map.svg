@@ -3,23 +3,46 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 14.1  折射率--Abbe 数玻璃图</text>
-<line x1="130.00" y1="470.00" x2="830.00" y2="470.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="130.00" y1="470.00" x2="130.00" y2="100.00" stroke="#17202a" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow)"/>
-<text x="480.00" y="505.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Abbe 数 Vd</text>
-<text x="88.00" y="285.00" fill="#17202a" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif" transform="rotate(-90 88 285.0)">折射率 nd</text>
-<circle cx="173.75" cy="135.24" r="8.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
-<text x="183.75" y="125.24" fill="#c44536" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">高折射 Flint</text>
-<circle cx="261.25" cy="223.33" r="8.00" fill="#d18f00" stroke="#d18f00" stroke-width="2" opacity="1.0"/>
-<text x="271.25" y="213.33" fill="#d18f00" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Flint</text>
-<circle cx="348.75" cy="276.19" r="8.00" fill="#7353ba" stroke="#7353ba" stroke-width="2" opacity="1.0"/>
-<text x="358.75" y="266.19" fill="#7353ba" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Dense crown</text>
-<circle cx="480.00" cy="364.29" r="8.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
-<text x="490.00" y="354.29" fill="#2364aa" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Crown</text>
-<circle cx="611.25" cy="390.71" r="8.00" fill="#2a9d6f" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
-<text x="621.25" y="380.71" fill="#2a9d6f" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">低色散玻璃</text>
-<circle cx="786.25" cy="443.57" r="8.00" fill="#188a9a" stroke="#188a9a" stroke-width="2" opacity="1.0"/>
-<text x="796.25" y="433.57" fill="#188a9a" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">CaF₂</text>
-<text x="500.00" y="545.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">位置为教学示意；实际设计必须查材料目录与完整色散曲线</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 14.1  折射率--Abbe 数玻璃图</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<defs><marker id="arrow-25303b-1.8" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L8 4.5L1 8Z" fill="#25303b"/></marker></defs>
+<line x1="130.00" y1="470.00" x2="830.00" y2="470.00" stroke="#25303b" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow-25303b-1.8)"/>
+<line x1="130.00" y1="470.00" x2="130.00" y2="100.00" stroke="#25303b" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow-25303b-1.8)"/>
+<text x="480.00" y="512.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Abbe 数 Vd</text>
+<text x="64.00" y="285.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif" transform="rotate(-90 64 285.0)">折射率 nd</text>
+<line x1="130.00" y1="100.00" x2="130.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="130.00" y="491.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">20</text>
+<line x1="305.00" y1="100.00" x2="305.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="305.00" y="491.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">40</text>
+<line x1="480.00" y1="100.00" x2="480.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="480.00" y="491.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">60</text>
+<line x1="655.00" y1="100.00" x2="655.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="655.00" y="491.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">80</text>
+<line x1="830.00" y1="100.00" x2="830.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="830.00" y="491.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">100</text>
+<line x1="130.00" y1="470.00" x2="830.00" y2="470.00" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="118.00" y="475.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1.4</text>
+<line x1="130.00" y1="381.90" x2="830.00" y2="381.90" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="118.00" y="386.90" fill="#7a8590" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1.5</text>
+<line x1="130.00" y1="293.81" x2="830.00" y2="293.81" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="118.00" y="298.81" fill="#7a8590" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1.6</text>
+<line x1="130.00" y1="205.71" x2="830.00" y2="205.71" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="118.00" y="210.71" fill="#7a8590" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1.7</text>
+<line x1="130.00" y1="117.62" x2="830.00" y2="117.62" stroke="#7a8590" stroke-width="0.8" opacity="0.14"/>
+<text x="118.00" y="122.62" fill="#7a8590" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1.8</text>
+<circle cx="173.75" cy="135.24" r="8.00" fill="#bd5b54" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<text x="183.75" y="125.24" fill="#bd5b54" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">高折射 Flint</text>
+<circle cx="261.25" cy="223.33" r="8.00" fill="#be8a39" stroke="#be8a39" stroke-width="2" opacity="1.0"/>
+<text x="271.25" y="213.33" fill="#be8a39" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Flint</text>
+<circle cx="348.75" cy="276.19" r="8.00" fill="#8971ac" stroke="#8971ac" stroke-width="2" opacity="1.0"/>
+<text x="358.75" y="266.19" fill="#8971ac" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Dense crown</text>
+<circle cx="480.00" cy="364.29" r="8.00" fill="#316fa4" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<text x="490.00" y="354.29" fill="#316fa4" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Crown</text>
+<circle cx="611.25" cy="390.71" r="8.00" fill="#3c9168" stroke="#3c9168" stroke-width="2" opacity="1.0"/>
+<text x="621.25" y="380.71" fill="#3c9168" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">低色散玻璃</text>
+<circle cx="786.25" cy="443.57" r="8.00" fill="#388e9f" stroke="#388e9f" stroke-width="2" opacity="1.0"/>
+<text x="796.25" y="433.57" fill="#388e9f" font-size="14" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">CaF₂</text>
+<text x="500.00" y="545.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">位置采用教学参数；材料选择需结合目录和完整色散曲线</text>
 </svg>

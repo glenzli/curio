@@ -1,7 +1,7 @@
 import { scales } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "把单位代入后再比较尺度",
+  title: "像素、衍射与信噪比的单位换算",
   alt: "互动示意：光子预算、采样频率、衍射尺度与SNR判据换算",
   intro:
     "输入统一的像素、波长、孔径和噪声条件，计算各自的物理尺度。光学截止、Nyquist频率和SNR下端分别报告。",
@@ -13,7 +13,7 @@ export const spec = {
     control("fNumber", "f数", 2, 16, 0.5, 8, "", 1),
     control(
       "exposure",
-      "曝光量的10进对数",
+      "曝光量（log₁₀）",
       -6,
       -2,
       0.25,
@@ -95,7 +95,7 @@ export const spec = {
           `SNR下端 ${number(m.noise.minimum, 3)} e⁻`,
         ],
       ],
-      reading: `p=${s.pixel} μm=${s.pixel * 1e-3} mm；λ=${s.wavelength} nm=${s.wavelength * 1e-6} mm。fNyquist=1/(2p)，fc=1/(λN)，两者比 ${number(m.ratio, 4)}。指定SNR下端到32000 e⁻的范围为 ${number(m.noise.stops, 3)}档；它与32000/读噪的工程比不同。`,
+      reading: `p=${s.pixel} μm=${number(s.pixel * 1e-3, 4)} mm；λ=${s.wavelength} nm=${number(s.wavelength * 1e-6, 6)} mm。fNyquist=1/(2p)，fc=1/(λN)，两者比 ${number(m.ratio, 4)}。指定SNR下端到32000 e⁻的范围为 ${number(m.noise.stops, 3)}档；它与32000/读噪的工程比不同。`,
     };
   },
 };

@@ -3,29 +3,69 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 8.3  多曝光运动导致鬼影</text>
-<rect x="50.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="185.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">短曝光 t₁</text>
-<rect x="365.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="500.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">长曝光 t₂</text>
-<rect x="680.00" y="90.00" width="270.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="815.00" y="117.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">直接融合</text>
-<circle cx="150.00" cy="215.00" r="32.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.8"/>
-<rect x="116.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.8"/>
-<line x1="130.00" y1="377.00" x2="110.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="1.0"/>
-<line x1="170.00" y1="377.00" x2="190.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="1.0"/>
-<circle cx="500.00" cy="215.00" r="32.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.8"/>
-<rect x="466.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.8"/>
-<line x1="480.00" y1="377.00" x2="460.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="1.0"/>
-<line x1="520.00" y1="377.00" x2="540.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="1.0"/>
-<circle cx="755.00" cy="215.00" r="32.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.45"/>
-<rect x="721.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="0.45"/>
-<line x1="735.00" y1="377.00" x2="715.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="0.45"/>
-<line x1="775.00" y1="377.00" x2="795.00" y2="445.00" stroke="#2364aa" stroke-width="12" opacity="0.45"/>
-<circle cx="865.00" cy="215.00" r="32.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.45"/>
-<rect x="831.00" y="247.00" width="68.00" height="130.00" rx="4" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="0.45"/>
-<line x1="845.00" y1="377.00" x2="825.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="0.45"/>
-<line x1="885.00" y1="377.00" x2="905.00" y2="445.00" stroke="#c44536" stroke-width="12" opacity="0.45"/>
-<text x="815.00" y="465.00" fill="#7353ba" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">两个时刻不能自动成为同一时刻</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 8.3  多曝光运动导致鬼影</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="35.00" y="100.00" width="270.00" height="390.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="170.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">短曝光 t₁</text>
+<rect x="57.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="67.00" y1="206.00" x2="102.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="67.00" y1="239.00" x2="102.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="67.00" y1="272.00" x2="102.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<rect x="210.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="220.00" y1="206.00" x2="255.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="220.00" y1="239.00" x2="255.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="220.00" y1="272.00" x2="255.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="52.00" y1="394.00" x2="288.00" y2="394.00" stroke="#7a8590" stroke-width="1.2" opacity="0.5"/>
+<circle cx="138.00" cy="247.00" r="18.00" fill="#316fa4" stroke="none" stroke-width="2" opacity="1"/>
+<path d="M125,272 Q138,260 153,276 L147,330 L123,330 Z" fill="#316fa4" opacity="1"/>
+<polyline points="128.00,279.00 107.00,305.00 119.00,325.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="150.00,280.00 173.00,301.00 186.00,284.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="130.00,327.00 109.00,365.00 91.00,392.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="145.00,327.00 160.00,364.00 186.00,379.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<text x="170.00" y="451.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">背景与主体处于 t₁</text>
+<rect x="365.00" y="100.00" width="270.00" height="390.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="500.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">长曝光 t₂</text>
+<rect x="387.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="397.00" y1="206.00" x2="432.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="397.00" y1="239.00" x2="432.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="397.00" y1="272.00" x2="432.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<rect x="540.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="550.00" y1="206.00" x2="585.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="550.00" y1="239.00" x2="585.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="550.00" y1="272.00" x2="585.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="382.00" y1="394.00" x2="618.00" y2="394.00" stroke="#7a8590" stroke-width="1.2" opacity="0.5"/>
+<circle cx="522.00" cy="247.00" r="18.00" fill="#bd5b54" stroke="none" stroke-width="2" opacity="1"/>
+<path d="M509,272 Q522,260 537,276 L531,330 L507,330 Z" fill="#bd5b54" opacity="1"/>
+<polyline points="512.00,279.00 491.00,305.00 503.00,325.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="534.00,280.00 557.00,301.00 570.00,284.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="514.00,327.00 493.00,365.00 475.00,392.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<polyline points="529.00,327.00 544.00,364.00 570.00,379.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="1"/>
+<text x="500.00" y="451.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">背景不变，主体已位移</text>
+<rect x="695.00" y="100.00" width="270.00" height="390.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="830.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">直接叠加</text>
+<rect x="717.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="727.00" y1="206.00" x2="762.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="727.00" y1="239.00" x2="762.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="727.00" y1="272.00" x2="762.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<rect x="870.00" y="188.00" width="55.00" height="126.00" rx="3" fill="#edf0f4" stroke="none" stroke-width="2" opacity="1.0"/>
+<line x1="880.00" y1="206.00" x2="915.00" y2="206.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="880.00" y1="239.00" x2="915.00" y2="239.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="880.00" y1="272.00" x2="915.00" y2="272.00" stroke="#fff" stroke-width="4" opacity="1.0"/>
+<line x1="712.00" y1="394.00" x2="948.00" y2="394.00" stroke="#7a8590" stroke-width="1.2" opacity="0.5"/>
+<circle cx="798.00" cy="247.00" r="18.00" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M785,272 Q798,260 813,276 L807,330 L783,330 Z" fill="#316fa4" opacity="0.45"/>
+<polyline points="788.00,279.00 767.00,305.00 779.00,325.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="810.00,280.00 833.00,301.00 846.00,284.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="790.00,327.00 769.00,365.00 751.00,392.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="805.00,327.00 820.00,364.00 846.00,379.00" fill="none" stroke="#316fa4" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<circle cx="852.00" cy="247.00" r="18.00" fill="#bd5b54" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M839,272 Q852,260 867,276 L861,330 L837,330 Z" fill="#bd5b54" opacity="0.45"/>
+<polyline points="842.00,279.00 821.00,305.00 833.00,325.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="864.00,280.00 887.00,301.00 900.00,284.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="844.00,327.00 823.00,365.00 805.00,392.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<polyline points="859.00,327.00 874.00,364.00 900.00,379.00" fill="none" stroke="#bd5b54" stroke-width="9" stroke-linejoin="round" stroke-linecap="round" opacity="0.45"/>
+<text x="830.00" y="451.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">静态背景重合，主体出现双像</text>
+<text x="500.00" y="548.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">两种线色标识拍摄时刻；叠加示意不指定实际HDR融合权重</text>
 </svg>

@@ -1,7 +1,7 @@
 import { calibration, snrThreshold } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "旧暗场能减掉什么，哪些误差会留下",
+  title: "旧暗场的校准残差",
   alt: "互动示意：有限暗场复用、偏置漂移与SNR下端判据",
   intro:
     "目标帧增加时，独立噪声继续下降；同一张主暗场的误差和校准后的漂移会留下。下方同时计算指定SNR的最低信号。",

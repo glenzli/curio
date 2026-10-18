@@ -52,10 +52,10 @@ export const spec = {
           i = yy * width + xx,
           channel = cfa[(yy % 2) * 2 + (xx % 2)],
           selected = i === s.selected;
-        cells += `<rect x="${8 + col * 156}" y="${45 + row * 58}" width="150" height="54" fill="currentColor" fill-opacity="${selected ? 0.14 : 0.025}" stroke="currentColor" stroke-opacity="${selected ? 0.8 : 0.2}"/><text x="${16 + col * 156}" y="${65 + row * 58}" style="font-size:20px">${channel} (${xx},${yy})</text><text x="${16 + col * 156}" y="${88 + row * 58}">${m.decoded[i]}</text>`;
+        cells += `<rect x="${8 + col * 156}" y="${45 + row * 58}" width="150" height="54" rx="5" fill="${{ R: "#c56b61", G: "#539a74", B: "#4f83b7" }[channel]}" fill-opacity="${selected ? 0.25 : 0.11}" stroke="${selected ? "currentColor" : { R: "#c56b61", G: "#539a74", B: "#4f83b7" }[channel]}" stroke-opacity="${selected ? 0.8 : 0.3}"/><text x="${16 + col * 156}" y="${65 + row * 58}" style="font-size:16px">${channel} (${xx},${yy})</text><text x="${16 + col * 156}" y="${88 + row * 58}">${m.decoded[i]}</text>`;
       }
     return {
-      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" role="img" aria-label="所选样本附近的CFA码值"><text x="10" y="25">CFA标签与原始DN（行优先）</text>${cells}</svg>`,
+      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" role="img" aria-label="所选样本附近的CFA码值"><text x="10" y="25">CFA通道与原始DN（行优先；底色标识滤色通道）</text>${cells}</svg>`,
       stats: [
         [
           "所选样本",

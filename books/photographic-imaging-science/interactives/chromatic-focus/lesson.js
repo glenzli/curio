@@ -1,5 +1,6 @@
-import { chromaticFocus, defocusedOtf } from "./model.js";
+import { chromaticFocus, defocusedOtf, radialDensity } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
+import { focusPlanes, spectralColors } from "./figures.js";
 let cachedKey = "",
   cached;
 export const spec = {
@@ -45,6 +46,9 @@ export const spec = {
         0,
       );
     return {
+      figureMinWidth: 560,
+      figureHeight: 280,
+      figure: focusPlanes(s, m),
       panels: [
         {
           title: "同一物理坐标的PSF径向剖面",
@@ -52,9 +56,29 @@ export const spec = {
           xLabel: "距轴心 / μm",
           yLabel: "PSF / 共同合焦参考轴上值",
           curves: [
+            ...m.lines
+              .map((l, i) => ({
+                ...curve(
+                  `${l.nm} nm（含权重）`,
+                  grid(
+                    0,
+                    12,
+                    (r) =>
+                      (l.weight *
+                        radialDensity(r, s.focus - l.focus, l.nm, s.fNumber)) /
+                      m.idealAxis,
+                    48,
+                  ),
+                  i,
+                ),
+                color: spectralColors[i],
+              }))
+              .filter((_, i) => m.lines[i].weight > 0),
             curve(
               "合成强度剖面",
               grid(0, 12, (r) => m.psf(r) / m.idealAxis, 48),
+              3,
+              true,
             ),
           ],
         },

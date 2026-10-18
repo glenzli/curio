@@ -1,3 +1,4 @@
+import { thinGroup } from "../common/optics-drawing.js";
 import { experiment, plot, legend } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import { focusSystem, floatingTruth } from "./model.js";
@@ -8,7 +9,7 @@ const distance = (w) => (w === 0 ? "∞" : `${(1 / w).toFixed(3)} m`);
 const percent = (v) => (Math.abs(v) < 0.005 ? 0 : v).toFixed(2);
 const mm = (x) => `${x.toFixed(3)} mm`;
 
-function diagram(m) {
+export function diagram(m) {
   const { v, c } = m.active,
     x = (z) => 44 + z * 2.1;
   const extent = Math.max(
@@ -31,7 +32,7 @@ function diagram(m) {
     [c, "组 3 +20 D", blue, 43],
     [200, "固定像面", purple, 65],
   ])
-    s += `<path d="M${x(z)} 85V208" stroke="${color}" stroke-width="3"/><text x="${x(z)}" y="${row}" text-anchor="${z === 0 ? "start" : z === 200 ? "end" : "middle"}">${label}</text>`;
+    s += (z===200?`<path d="M${x(z)} 85V208" stroke="${color}" stroke-width="3"/>`:thinGroup(x(z),146.5,61.5,z===0?10:z===v?-20:20,color))+`<text x="${x(z)}" y="${row}" text-anchor="${z === 0 ? "start" : z === 200 ? "end" : "middle"}">${label}</text>`;
   for (const z of [0, 50, 100, 150, 200])
     s += `<text x="${x(z)}" y="232" text-anchor="middle">${z}</text>`;
   return `<svg role="img" aria-label="浮动对焦的镜组位置和固定像面" viewBox="0 0 510 259">${s}<text x="255" y="254" text-anchor="middle">z / mm</text></svg>`;

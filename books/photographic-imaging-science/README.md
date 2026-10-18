@@ -107,13 +107,16 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 python3 books/photographic-imaging-science/figures/generate_figures.py
 ```
 
-20张静态图和教学DNG由
-[generate-lessons.mjs](interactives/generate-lessons.mjs)统一确定性生成；运行
-`node books/photographic-imaging-science/interactives/generate-lessons.mjs`。其他互动图的入口随模型保存，例如
-[列ADC误差图](interactives/adc-errors/generate-fallback.js)、
-[白平衡传播图](interactives/white-balance/generate-fallback.js)和
-[EI监看图](interactives/ei-monitor/generate-fallback.js)生成，从仓库根目录用Node运行
-对应文件即可。它们与互动共用输入和绘图，但真值计算另列；修改模型时应同步生成回退图。
+互动静态图和教学DNG可统一重新生成：
+
+```bash
+node books/photographic-imaging-science/interactives/generate-all.mjs
+```
+
+[统一入口](interactives/generate-all.mjs)调用各模型的生成器：23组教学页、
+[浮动对焦、变焦和远心图](interactives/generate-optics.mjs)，以及各目录中的专用
+生成器。光路图直接复用互动绘图函数，静态输入写在生成器中；RAW位流与景深页
+保留固定数值图。独立真值计算继续与主算法分开。
 
 执行教材闭环检查：
 

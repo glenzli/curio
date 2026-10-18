@@ -1,7 +1,8 @@
 import { thermalFocus, secondarySpectrum } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
+import { thermalPositions } from "./figures.js";
 export const spec = {
-  title: "温度改变的是玻璃，还是传感器位置",
+  title: "折射率温漂与镜筒伸长",
   alt: "互动示意：折射率温漂、玻璃膨胀与镜筒伸长的分离",
   intro:
     "一片100 mm薄透镜和一段100 mm镜筒分别计算。比较镜片焦距变化、传感器位置变化，以及两者相减后的离焦。",
@@ -47,6 +48,9 @@ export const spec = {
         return [v.residual, v.linear];
       });
     return {
+      figureMinWidth: 560,
+      figureHeight: 270,
+      figure: thermalPositions(m),
       panels: [
         {
           title: "焦点相对传感器的位置",

@@ -1,10 +1,11 @@
+import { thinGroup } from "../common/optics-drawing.js";
 import { experiment, plot, legend } from "../common/ui.js";
 import { zoomSystem, compensationTruth, SENSOR } from "./model.js";
 const blue = "#448b98",
   gold = "#b47b43",
   purple = "#8b78aa";
 const mm = (v) => (v === null ? "无有限值" : `${v.toFixed(3)} mm`);
-function rayDiagram(m) {
+export function rayDiagram(m) {
   const p = m.active,
     x = (z) => 40 + ((z + 15) / 230) * 440;
   const bound = Math.max(
@@ -27,7 +28,7 @@ function rayDiagram(m) {
     [p.compensator, "补偿组 +20 D", blue, 44],
     [SENSOR, "固定像面", purple, 64],
   ])
-    out += `<path d="M${x(z)} 88V220" stroke="${color}" stroke-width="3"/><text x="${x(z)}" y="${row}" text-anchor="${z === 0 ? "start" : z === SENSOR ? "end" : "middle"}">${label}</text>`;
+    out += (z===SENSOR?`<path d="M${x(z)} 88V220" stroke="${color}" stroke-width="3"/>`:thinGroup(x(z),154,66,z===0?10:z===p.variator?-20:20,color))+`<text x="${x(z)}" y="${row}" text-anchor="${z === 0 ? "start" : z === SENSOR ? "end" : "middle"}">${label}</text>`;
   for (const z of [0, 50, 100, 150, 200])
     out += `<text x="${x(z)}" y="243" text-anchor="middle">${z}</text>`;
   out += `<text x="260" y="267" text-anchor="middle">轴向位置 z / mm</text>`;

@@ -3,29 +3,31 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 1.2  f 数与像面辐照度</text>
-<rect x="80.00" y="80.00" width="385.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="272.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">大入瞳：较小 f 数</text>
-<line x1="220.00" y1="160.00" x2="220.00" y2="400.00" stroke="#17202a" stroke-width="3" opacity="1.0"/>
-<line x1="405.00" y1="150.00" x2="405.00" y2="410.00" stroke="#66717e" stroke-width="5" opacity="1.0"/>
-<line x1="220.00" y1="205.00" x2="405.00" y2="280.00" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
-<line x1="220.00" y1="355.00" x2="405.00" y2="280.00" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
-<line x1="110.00" y1="205.00" x2="220.00" y2="205.00" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
-<line x1="110.00" y1="355.00" x2="220.00" y2="355.00" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
-<line x1="220.00" y1="190.00" x2="220.00" y2="370.00" stroke="#2364aa" stroke-width="8" opacity="1.0"/>
-<text x="220.00" y="430.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入瞳 D</text>
-<text x="405.00" y="435.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像面</text>
-<rect x="535.00" y="80.00" width="385.00" height="390.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="727.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">小入瞳：较大 f 数</text>
-<line x1="675.00" y1="160.00" x2="675.00" y2="400.00" stroke="#17202a" stroke-width="3" opacity="1.0"/>
-<line x1="860.00" y1="150.00" x2="860.00" y2="410.00" stroke="#66717e" stroke-width="5" opacity="1.0"/>
-<line x1="675.00" y1="242.50" x2="860.00" y2="280.00" stroke="#c44536" stroke-width="3" opacity="1.0"/>
-<line x1="675.00" y1="317.50" x2="860.00" y2="280.00" stroke="#c44536" stroke-width="3" opacity="1.0"/>
-<line x1="565.00" y1="242.50" x2="675.00" y2="242.50" stroke="#c44536" stroke-width="2" opacity="1.0"/>
-<line x1="565.00" y1="317.50" x2="675.00" y2="317.50" stroke="#c44536" stroke-width="2" opacity="1.0"/>
-<line x1="675.00" y1="227.50" x2="675.00" y2="332.50" stroke="#c44536" stroke-width="8" opacity="1.0"/>
-<text x="675.00" y="430.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入瞳 D</text>
-<text x="860.00" y="435.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像面</text>
-<text x="500.00" y="535.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Eimage ∝ D²/f² = 1/N²</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 1.2  f 数与像面辐照度</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="80.00" y="80.00" width="385.00" height="390.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="272.50" y="109.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">大入瞳：较小 f 数</text>
+<line x1="220.00" y1="160.00" x2="220.00" y2="400.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="405.00" y1="150.00" x2="405.00" y2="410.00" stroke="#7a8590" stroke-width="5" opacity="1.0"/>
+<line x1="220.00" y1="205.00" x2="405.00" y2="280.00" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<line x1="220.00" y1="355.00" x2="405.00" y2="280.00" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<line x1="110.00" y1="205.00" x2="220.00" y2="205.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="110.00" y1="355.00" x2="220.00" y2="355.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="220.00" y1="190.00" x2="220.00" y2="370.00" stroke="#316fa4" stroke-width="8" opacity="1.0"/>
+<text x="220.00" y="430.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入瞳 D</text>
+<text x="405.00" y="435.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像面</text>
+<rect x="535.00" y="80.00" width="385.00" height="390.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="727.50" y="109.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">小入瞳：较大 f 数</text>
+<line x1="675.00" y1="160.00" x2="675.00" y2="400.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="860.00" y1="150.00" x2="860.00" y2="410.00" stroke="#7a8590" stroke-width="5" opacity="1.0"/>
+<line x1="675.00" y1="242.50" x2="860.00" y2="280.00" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<line x1="675.00" y1="317.50" x2="860.00" y2="280.00" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<line x1="565.00" y1="242.50" x2="675.00" y2="242.50" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<line x1="565.00" y1="317.50" x2="675.00" y2="317.50" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<line x1="675.00" y1="227.50" x2="675.00" y2="332.50" stroke="#bd5b54" stroke-width="8" opacity="1.0"/>
+<text x="675.00" y="430.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">入瞳 D</text>
+<text x="860.00" y="435.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像面</text>
+<text x="500.00" y="535.00" fill="#25303b" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Eimage ∝ D²/f² = 1/N²</text>
 </svg>

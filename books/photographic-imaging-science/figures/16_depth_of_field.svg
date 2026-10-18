@@ -3,29 +3,31 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 16.2  对焦平面前后的弥散圈</text>
-<line x1="70.00" y1="300.00" x2="930.00" y2="300.00" stroke="#66717e" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
-<ellipse cx="300.00" cy="300.00" rx="25.00" ry="130.00" fill="#dcecf7" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
-<line x1="760.00" y1="120.00" x2="760.00" y2="480.00" stroke="#17202a" stroke-width="5" opacity="1.0"/>
-<text x="760.00" y="510.00" fill="#17202a" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">传感器</text>
-<line x1="300.00" y1="205.00" x2="795.00" y2="376.00" stroke="#c44536" stroke-width="2.2" opacity="1.0"/>
-<line x1="300.00" y1="395.00" x2="795.00" y2="224.00" stroke="#c44536" stroke-width="2.2" opacity="1.0"/>
-<circle cx="575.00" cy="300.00" r="3.00" fill="#c44536" stroke="#c44536" stroke-width="2" opacity="1.0"/>
-<line x1="760.00" y1="236.09" x2="760.00" y2="363.91" stroke="#c44536" stroke-width="5" opacity="1.0"/>
-<line x1="752.00" y1="236.09" x2="768.00" y2="236.09" stroke="#c44536" stroke-width="3" opacity="1.0"/>
-<line x1="752.00" y1="363.91" x2="768.00" y2="363.91" stroke="#c44536" stroke-width="3" opacity="1.0"/>
-<text x="575.00" y="90.00" fill="#c44536" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">远物：焦点在前</text>
-<line x1="300.00" y1="205.00" x2="795.00" y2="307.23" stroke="#2a9d6f" stroke-width="2.2" opacity="1.0"/>
-<line x1="300.00" y1="395.00" x2="795.00" y2="292.77" stroke="#2a9d6f" stroke-width="2.2" opacity="1.0"/>
-<circle cx="760.00" cy="300.00" r="3.00" fill="#2a9d6f" stroke="#2a9d6f" stroke-width="2" opacity="1.0"/>
-<text x="760.00" y="120.00" fill="#2a9d6f" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">对焦物：焦点在面上</text>
-<line x1="300.00" y1="205.00" x2="900.00" y2="300.00" stroke="#2364aa" stroke-width="2.2" opacity="1.0"/>
-<line x1="300.00" y1="395.00" x2="900.00" y2="300.00" stroke="#2364aa" stroke-width="2.2" opacity="1.0"/>
-<circle cx="900.00" cy="300.00" r="3.00" fill="#2364aa" stroke="#2364aa" stroke-width="2" opacity="1.0"/>
-<line x1="760.00" y1="277.83" x2="760.00" y2="322.17" stroke="#2364aa" stroke-width="5" opacity="1.0"/>
-<line x1="752.00" y1="277.83" x2="768.00" y2="277.83" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
-<line x1="752.00" y1="322.17" x2="768.00" y2="322.17" stroke="#2364aa" stroke-width="3" opacity="1.0"/>
-<text x="890.00" y="150.00" fill="#2364aa" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">近物：焦点在后</text>
-<text x="500.00" y="555.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">景深是弥散圈低于所选阈值 c₀ 的物距范围</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 16.2  对焦平面前后的弥散圈</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<line x1="70.00" y1="300.00" x2="930.00" y2="300.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
+<ellipse cx="300.00" cy="300.00" rx="25.00" ry="130.00" fill="#e7eff7" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<line x1="760.00" y1="120.00" x2="760.00" y2="480.00" stroke="#25303b" stroke-width="5" opacity="1.0"/>
+<text x="760.00" y="510.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">传感器</text>
+<line x1="300.00" y1="205.00" x2="795.00" y2="376.00" stroke="#bd5b54" stroke-width="2.2" opacity="1.0"/>
+<line x1="300.00" y1="395.00" x2="795.00" y2="224.00" stroke="#bd5b54" stroke-width="2.2" opacity="1.0"/>
+<circle cx="575.00" cy="300.00" r="3.00" fill="#bd5b54" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<line x1="760.00" y1="236.09" x2="760.00" y2="363.91" stroke="#bd5b54" stroke-width="5" opacity="1.0"/>
+<line x1="752.00" y1="236.09" x2="768.00" y2="236.09" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<line x1="752.00" y1="363.91" x2="768.00" y2="363.91" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<text x="575.00" y="90.00" fill="#bd5b54" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">远物：焦点在前</text>
+<line x1="300.00" y1="205.00" x2="795.00" y2="307.23" stroke="#3c9168" stroke-width="2.2" opacity="1.0"/>
+<line x1="300.00" y1="395.00" x2="795.00" y2="292.77" stroke="#3c9168" stroke-width="2.2" opacity="1.0"/>
+<circle cx="760.00" cy="300.00" r="3.00" fill="#3c9168" stroke="#3c9168" stroke-width="2" opacity="1.0"/>
+<text x="760.00" y="120.00" fill="#3c9168" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">对焦物：焦点在面上</text>
+<line x1="300.00" y1="205.00" x2="900.00" y2="300.00" stroke="#316fa4" stroke-width="2.2" opacity="1.0"/>
+<line x1="300.00" y1="395.00" x2="900.00" y2="300.00" stroke="#316fa4" stroke-width="2.2" opacity="1.0"/>
+<circle cx="900.00" cy="300.00" r="3.00" fill="#316fa4" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="760.00" y1="277.83" x2="760.00" y2="322.17" stroke="#316fa4" stroke-width="5" opacity="1.0"/>
+<line x1="752.00" y1="277.83" x2="768.00" y2="277.83" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<line x1="752.00" y1="322.17" x2="768.00" y2="322.17" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<text x="890.00" y="150.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">近物：焦点在后</text>
+<text x="500.00" y="555.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">景深是弥散圈低于所选阈值 c₀ 的物距范围</text>
 </svg>

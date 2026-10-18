@@ -1,7 +1,7 @@
 import { asphere } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "把非球面的矢高差和斜率分开读",
+  title: "非球面的矢高差与斜率",
   alt: "互动示意：非球面矢高差、单位与边缘斜率的数值对照",
   intro:
     "基准球面与非球面使用相同顶点曲率。直接画微米级差值，不靠夸大镜片厚度表示面形作用。",

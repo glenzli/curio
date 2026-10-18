@@ -1,3 +1,4 @@
+import { thinGroup } from "../common/optics-drawing.js";
 import { experiment, plot, legend } from "../common/ui.js";
 import { relaySystem, relayTruth, F1, F2, STOP_RADIUS } from "./model.js";
 const blue = "#448b98",
@@ -5,7 +6,7 @@ const blue = "#448b98",
   purple = "#8b78aa";
 const fixed = (v, n = 3) => (Math.abs(v) < 1e-10 ? 0 : v).toFixed(n);
 const pupil = (v) => (v === null ? "无穷远" : `z=${fixed(v)} mm`);
-function diagram(p, m) {
+export function diagram(p, m) {
   const s = F1 + p.objectOffset,
     v = F2 + p.imageOffset;
   const left = -s - 12,
@@ -25,7 +26,7 @@ function diagram(p, m) {
   m.rays.forEach((r, i) => {
     out += `<path d="M${x(-s)} ${y(p.height)}L${x(0)} ${y(r.y1)}L${x(p.stop)} ${y(r.atStop)}L${x(p.gap)} ${y(r.y2)}L${x(p.gap + v)} ${y(r.image)}" fill="none" stroke="${i === 1 ? blue : gold}" stroke-width="${i === 1 ? 2.3 : 1.3}" opacity="${i === 1 ? 1 : 0.65}"/>`;
   });
-  out += `<path d="M${x(0)} 82V225M${x(p.gap)} 82V225" stroke="${blue}" stroke-width="2"/><path d="M${x(p.stop)} 82V${y(STOP_RADIUS)}M${x(p.stop)} ${y(-STOP_RADIUS)}V225" stroke="${purple}" stroke-width="4"/><path d="M${x(p.gap + v)} 82V225" stroke="${purple}" stroke-width="2" opacity=".6"/><circle cx="${x(-s)}" cy="${y(p.height)}" r="3.5" fill="${blue}"/>`;
+  out += thinGroup(x(0),153.5,71.5,1000/F1,blue)+thinGroup(x(p.gap),153.5,71.5,1000/F2,blue)+`<path d="M${x(p.stop)} 82V${y(STOP_RADIUS)}M${x(p.stop)} ${y(-STOP_RADIUS)}V225" stroke="${purple}" stroke-width="4"/><path d="M${x(p.gap + v)} 82V225" stroke="${purple}" stroke-width="2" opacity=".6"/><circle cx="${x(-s)}" cy="${y(p.height)}" r="3.5" fill="${blue}"/>`;
   for (const [z, label, row] of [
     [-s, "物点", 43],
     [0, "f₁=50 mm", 61],

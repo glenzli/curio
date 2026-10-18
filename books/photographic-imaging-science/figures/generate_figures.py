@@ -5,30 +5,36 @@ from __future__ import annotations
 
 import html
 import math
+import base64
+import struct
+import zlib
 from pathlib import Path
 
 
 OUT = Path(__file__).resolve().parent
 W, H = 1000, 600
-INK = "#17202a"
-BLUE = "#2364aa"
-CYAN = "#188a9a"
-GREEN = "#2a9d6f"
-RED = "#c44536"
-AMBER = "#d18f00"
-PURPLE = "#7353ba"
-GRAY = "#66717e"
-LIGHT = "#e8edf2"
-PALE_BLUE = "#dcecf7"
-PALE_GREEN = "#dff2e9"
-PALE_RED = "#f7e2df"
-PALE_AMBER = "#f7efd8"
+INK = "#25303b"
+BLUE = "#316fa4"
+CYAN = "#388e9f"
+GREEN = "#3c9168"
+RED = "#bd5b54"
+AMBER = "#be8a39"
+PURPLE = "#8971ac"
+GRAY = "#7a8590"
+LIGHT = "#edf0f4"
+PALE_BLUE = "#e7eff7"
+PALE_GREEN = "#e9f3ed"
+PALE_RED = "#f7eae7"
+PALE_AMBER = "#f7f0e1"
 
 
 class SVG:
     def __init__(self, title: str, width: int = W, height: int = H) -> None:
         self.width = width
         self.height = height
+        self.axes_boxes = set()
+        self.grids = set()
+        self.arrow_markers = set()
         self.parts = [
             f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
             f'viewBox="0 0 {width} {height}" role="img" aria-label="{html.escape(title)}">',
@@ -38,9 +44,11 @@ class SVG:
             '<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" '
             'orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>',
             "</defs>",
-            f'<rect x="0" y="0" width="{width}" height="{height}" fill="#ffffff"/>',
+            f'<rect width="{width}" height="{height}" fill="#fafbfc"/>',
+            f'<rect x="8" y="8" width="{width-16}" height="{height-16}" rx="12" fill="#fff" stroke="#e6e9ed"/>',
         ]
-        self.text(width / 2, 35, title, size=24, weight="700", anchor="middle")
+        self.text(36, 39, title, size=25, weight="600")
+        self.line(36, 60, width-36, 60, color=LIGHT, width=1)
 
     def add(self, source: str) -> None:
         self.parts.append(source)
@@ -79,7 +87,14 @@ class SVG:
         opacity: float = 1.0,
     ) -> None:
         d = f' stroke-dasharray="{dash}"' if dash else ""
-        marker = ' marker-end="url(#arrow)"' if arrow else ""
+        marker = ""
+        if arrow:
+            marker_id = f'arrow-{color.lstrip("#")}-{width:g}'
+            if marker_id not in self.arrow_markers:
+                self.arrow_markers.add(marker_id)
+                size = min(15, max(9, 5+width*2))
+                self.add(f'<defs><marker id="{marker_id}" markerWidth="{size}" markerHeight="{size}" refX="{size-1}" refY="{size/2}" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L{size-1} {size/2}L1 {size-1}Z" fill="{color}"/></marker></defs>')
+            marker = f' marker-end="url(#{marker_id})"'
         self.add(
             f'<line x1="{x1:.2f}" y1="{y1:.2f}" x2="{x2:.2f}" y2="{y2:.2f}" '
             f'stroke="{color}" stroke-width="{width}" opacity="{opacity}"{d}{marker}/>'
@@ -172,10 +187,34 @@ class SVG:
         self.line(x1, y1, x2, y2, color=color, width=width, arrow=True)
 
     def axes(self, x: float, y: float, width: float, height: float, xlabel: str, ylabel: str) -> None:
+        self.axes_boxes.add((x,y,width,height))
         self.arrow(x, y + height, x + width, y + height, color=INK, width=1.8)
         self.arrow(x, y + height, x, y, color=INK, width=1.8)
-        self.text(x + width / 2, y + height + 35, xlabel, size=15, anchor="middle")
-        self.text(x - 42, y + height / 2, ylabel, size=15, anchor="middle", rotate=-90)
+        self.text(x + width / 2, y + height + 42, xlabel, size=16, anchor="middle")
+        self.text(x - 66, y + height / 2, ylabel, size=16, anchor="middle", rotate=-90)
+
+    def grid(self, box, domain, xticks=None, yticks=None, xfmt=None, yfmt=None):
+        x,y,w,h = box
+        xmin,xmax,ymin,ymax = domain
+        def readable_ticks(lo, hi):
+            target = (hi - lo) / 4
+            magnitude = 10 ** math.floor(math.log10(target))
+            step = min((1, 2, 2.5, 5, 10), key=lambda v: abs(math.log(v * magnitude / target))) * magnitude
+            first = math.ceil(lo / step - 1e-10)
+            last = math.floor(hi / step + 1e-10)
+            return [i * step for i in range(first, last + 1)]
+
+        xticks = xticks if xticks is not None else readable_ticks(xmin, xmax)
+        yticks = yticks if yticks is not None else readable_ticks(ymin, ymax)
+        for v in xticks:
+            px=x+(v-xmin)/(xmax-xmin)*w
+            self.line(px,y,px,y+h,color=GRAY,width=.8,opacity=.14)
+            self.text(px,y+h+21,xfmt(v) if xfmt else f'{v:g}',size=15,color=GRAY,anchor='middle')
+        for v in yticks:
+            py=y+h-(v-ymin)/(ymax-ymin)*h
+            self.line(x,py,x+w,py,color=GRAY,width=.8,opacity=.14)
+            self.text(x-12,py+5,yfmt(v) if yfmt else f'{v:g}',size=15,color=GRAY,anchor='end')
+        self.grids.add(tuple(box))
 
     def plot(
         self,
@@ -189,6 +228,8 @@ class SVG:
     ) -> None:
         x, y, w, h = box
         xmin, xmax, ymin, ymax = domain
+        if tuple(box) in self.axes_boxes and tuple(box) not in self.grids:
+            self.grid(box,domain)
         # Reject a sampling-range mistake before it can become a misleading plot.
         xtol, ytol = (xmax - xmin) * 1e-9, (ymax - ymin) * 1e-9
         if any(not (math.isfinite(px) and math.isfinite(py)
@@ -203,8 +244,8 @@ class SVG:
         self.polyline(mapped, color=color, width=width, dash=dash)
 
     def panel(self, x: float, y: float, width: float, height: float, title: str) -> None:
-        self.rect(x, y, width, height, fill="#fbfcfe", stroke="#bcc6d0", sw=1.5, radius=5)
-        self.text(x + width / 2, y + 27, title, size=17, weight="700", anchor="middle")
+        self.rect(x, y, width, height, fill="#fbfcfd", stroke="#d5dce4", sw=1, radius=9)
+        self.text(x + width / 2, y + 29, title, size=18, weight="600", anchor="middle")
 
     def save(self, filename: str) -> None:
         self.parts.append("</svg>")
@@ -271,28 +312,31 @@ def figure_02_photon_electron_chain() -> None:
 
 def figure_02_4t_pixel() -> None:
     s = SVG("图 2.3  典型 4T 钉扎光电二极管像素")
-    s.rect(70, 230, 190, 150, fill=PALE_BLUE, stroke=BLUE, sw=3)
-    s.text(165, 290, "PPD", size=28, color=BLUE, anchor="middle", weight="700")
-    s.text(165, 330, "积累电子", size=18, anchor="middle")
-    s.rect(295, 260, 95, 90, fill=PALE_AMBER, stroke=AMBER, sw=3)
-    s.text(342, 315, "TX", size=24, anchor="middle", weight="700")
-    s.rect(425, 230, 150, 150, fill=PALE_RED, stroke=RED, sw=3)
-    s.text(500, 285, "FD", size=28, color=RED, anchor="middle", weight="700")
-    s.text(500, 330, "CFD", size=20, anchor="middle")
-    s.arrow(260, 305, 295, 305, color=BLUE, width=3)
-    s.arrow(390, 305, 425, 305, color=AMBER, width=3)
-    s.rect(640, 120, 120, 75, fill=LIGHT, stroke=GRAY)
-    s.text(700, 167, "RST", size=22, anchor="middle", weight="700")
-    s.arrow(640, 158, 545, 230, color=GRAY)
-    s.rect(640, 255, 120, 75, fill=PALE_GREEN, stroke=GREEN)
-    s.text(700, 302, "SF", size=22, anchor="middle", weight="700")
-    s.arrow(575, 305, 640, 292, color=GREEN)
-    s.rect(820, 255, 110, 75, fill=LIGHT, stroke=GRAY)
-    s.text(875, 302, "SEL", size=21, anchor="middle", weight="700")
-    s.arrow(760, 292, 820, 292, color=GRAY)
-    s.arrow(930, 292, 965, 292, color=INK)
-    s.text(900, 360, "列线", size=18, anchor="middle")
-    s.text(500, 500, "转换增益 K ≈ q/CFD；小 CFD 提高 V/e⁻，也压缩电压容量", size=21, anchor="middle")
+    s.panel(35, 90, 545, 335, "积累电荷 → 转移到浮动扩散区")
+    s.panel(615, 90, 350, 335, "缓冲电压 → 选择列读出")
+    s.rect(65, 225, 485, 145, fill=PALE_BLUE, stroke=BLUE, sw=1, radius=8)
+    s.rect(90, 263, 180, 75, fill="#c5daec", stroke=BLUE, radius=22)
+    s.text(180, 291, "PPD", size=23, color=BLUE, anchor="middle", weight="600")
+    s.text(180, 320, "存储光生电荷", size=16, anchor="middle")
+    s.rect(303, 210, 74, 25, fill=PALE_AMBER, stroke=AMBER, radius=2)
+    s.text(340, 197, "TX 转移门", size=18, color=AMBER, anchor="middle")
+    s.arrow(280, 284, 402, 284, color=AMBER, width=3)
+    s.circle(435, 284, 25, fill=PALE_RED, stroke=RED, sw=2)
+    s.text(435, 291, "FD", size=19, color=RED, anchor="middle", weight="600")
+    s.text(435, 339, "电荷 → 电压", size=16, anchor="middle")
+    s.rect(395, 144, 80, 40, fill=LIGHT, stroke=GRAY)
+    s.text(435, 170, "RST", size=18, anchor="middle", weight="600")
+    s.arrow(435, 184, 435, 251, color=GRAY)
+    for x,label,fill,color in [(650,"SF",PALE_GREEN,GREEN),(817,"SEL",PALE_BLUE,BLUE)]:
+        s.rect(x,241,106,86,fill=fill,stroke=color,radius=8)
+        s.text(x+53,279,label,size=22,color=color,anchor="middle",weight="600")
+        s.text(x+53,309,"源跟随" if label=="SF" else "行选通",size=16,anchor="middle")
+    s.arrow(464,284,638,284,color=GRAY)
+    s.arrow(756,284,805,284,color=GRAY)
+    s.arrow(923,284,950,284,color=GRAY)
+    s.text(932,360,"列线",size=17,anchor="middle")
+    s.text(500,493,"转换增益 K ≈ q/CFD：较小的FD电容给出较大的单位电荷电压变化",size=20,anchor="middle")
+    s.text(500,548,"功能连接示意；RST复位FD，TX控制电荷转移，SF与SEL完成电压读出",size=18,color=GRAY,anchor="middle")
     s.save("02_4t_pixel.svg")
 
 
@@ -337,8 +381,8 @@ def figure_03_readout_chain() -> None:
 
 def figure_03_quantization_gain() -> None:
     s = SVG("图 3.2  量化步长、系统增益与电子刻度")
-    box = (130, 95, 700, 390)
-    s.axes(*box, "输入电压", "输出码值")
+    box = (130, 95, 700, 365)
+    s.axes(*box, "归一化输入电压", "归一化输出码值")
     steps: list[tuple[float, float]] = []
     levels = 8
     for k in range(levels):
@@ -359,12 +403,13 @@ def figure_03_quantization_gain() -> None:
 def figure_04_noise_budget() -> None:
     s = SVG("图 4.1  信号电平变化时的噪声预算")
     box = (130, 100, 700, 370)
-    s.axes(*box, "信号电子 μe（对数刻度示意）", "噪声 rms（对数刻度示意）")
+    s.axes(*box, "信号电子 μe / e⁻（对数刻度）", "噪声 rms / e⁻（对数刻度）")
     ts = [i / 500 * 5 for i in range(501)]
     read = [(t, math.log10(3)) for t in ts]
     shot = [(t, math.log10(math.sqrt(10**t))) for t in ts]
     prnu = [(t, math.log10(0.01 * 10**t)) for t in ts]
     domain = (0, 5, -2.2, 3.2)
+    s.grid(box, domain, xticks=[0,1,2,3,4,5], yticks=[-2,-1,0,1,2,3], xfmt=lambda v:f"10^{v:g}", yfmt=lambda v:f"10^{v:g}")
     s.plot(read, box, domain, color=RED)
     s.plot(shot, box, domain, color=BLUE)
     s.plot(prnu, box, domain, color=GREEN)
@@ -427,7 +472,7 @@ def figure_05_gain_placement() -> None:
 def figure_05_dual_conversion_gain() -> None:
     s = SVG("图 5.2  双转换增益的容量--读噪权衡")
     box = (130, 100, 700, 370)
-    s.axes(*box, "输入电子数", "FD 输出电压")
+    s.axes(*box, "相对输入电子数", "相对FD输出电压")
     hcg = [(0, 0), (0.32, 1)]
     lcg = [(0, 0), (1, 0.63)]
     s.plot(hcg, box, (0, 1, 0, 1), color=RED, width=4)
@@ -498,25 +543,40 @@ def figure_06_rolling_skew() -> None:
 
 
 def figure_06_sensor_structures() -> None:
-    s = SVG("图 6.3  FSI、BSI 与逻辑堆栈的层次区别")
-    panels = [(35, "FSI"), (350, "BSI"), (665, "BSI + 逻辑堆栈")]
-    for x, title in panels:
-        s.panel(x, 80, 285, 420, title)
-        if title == "FSI":
-            layers = [(155, 65, "微透镜", PALE_BLUE), (220, 80, "金属布线", PALE_AMBER), (300, 130, "光敏硅", PALE_GREEN)]
-            arrow_top, arrow_bottom = 120, 440
-        elif title == "BSI":
-            layers = [(155, 65, "微透镜", PALE_BLUE), (220, 130, "减薄光敏硅", PALE_GREEN), (350, 80, "金属布线", PALE_AMBER)]
-            arrow_top, arrow_bottom = 120, 345
+    s=SVG("图 6.3  FSI、BSI 与逻辑堆栈的层次区别")
+    for x,title,back,stacked in [(35,"FSI",False,False),(350,"BSI",True,False),(665,"BSI + 逻辑堆栈",True,True)]:
+        s.panel(x,85,285,410,title)
+        for j in range(3):
+            a=x+46+j*64
+            s.add(f'<path d="M{a},163 Q{a+24},127 {a+48},163 Z" fill="{PALE_BLUE}" stroke="{BLUE}" stroke-width="1.4"/>')
+            s.rect(a,170,48,15,fill=[RED,GREEN,BLUE][j],stroke="none",radius=1,opacity=.45)
+        sy,sh=(268,126) if not back else ((211,100) if stacked else (211,128))
+        my=211 if not back else (321 if stacked else 354)
+        s.rect(x+32,sy,221,sh,fill=PALE_BLUE,stroke=BLUE,sw=1,radius=3)
+        s.text(x+222,sy+23,"光敏硅",size=15,color=BLUE,anchor="end")
+        pd=sy+sh*.63
+        for center in [x+70,x+142,x+215]:
+            s.rect(center-22,pd-12,44,24,fill="#b7d4e5",stroke=BLUE,sw=1,radius=11)
+        s.text(x+143,pd+33,"PPD",size=15,color=BLUE,anchor="middle")
+        s.rect(x+32,my,221,40,fill=PALE_AMBER,stroke=AMBER,sw=1,radius=3)
+        for yy in [my+9,my+26]:
+            s.rect(x+37,yy,74,6,fill=AMBER,stroke="none",radius=0)
+            s.rect(x+173,yy,74,6,fill=AMBER,stroke="none",radius=0)
+        s.text(x+221,my+57 if not back else my-7,"布线 / 晶体管",size=14,color=AMBER,anchor="end")
+        s.arrow(x+143,137,x+143,pd-17,color=AMBER,width=2.5)
+        target=432 if stacked else my+20
+        s.polyline([(x+173,pd),(x+240,pd),(x+240,target)],color=BLUE,width=2,dash="5 4")
+        s.circle(x+240,target,3,fill=BLUE,stroke=BLUE)
+        if stacked:
+            s.rect(x+32,369,221,19,fill="#eee6f4",stroke=PURPLE,sw=1)
+            for a in [x+70,x+143,x+225]:s.line(a,369,a,388,color=PURPLE,width=4)
+            s.rect(x+32,398,221,64,fill=PALE_GREEN,stroke=GREEN,sw=1)
+            s.text(x+142,441,"逻辑 / ADC",size=16,anchor="middle")
+            s.text(x+53,384,"键合",size=12,color=PURPLE)
         else:
-            layers = [(145, 55, "微透镜", PALE_BLUE), (200, 105, "像素晶圆", PALE_GREEN), (305, 35, "键合互连", LIGHT), (340, 105, "逻辑 / ADC", PALE_RED)]
-            arrow_top, arrow_bottom = 112, 285
-        for y, h, label, fill in layers:
-            s.rect(x + 35, y, 215, h, fill=fill, stroke=GRAY, sw=1.5, radius=1)
-            s.text(x + 142, y + h / 2 + 6, label, size=16, anchor="middle")
-        for dx in [85, 142, 199]:
-            s.arrow(x + dx, arrow_top, x + dx, arrow_bottom, color=BLUE, width=2.5)
-    s.text(500, 555, "结构名称规定层次关系，不直接给出读噪、动态范围或扫描时间", size=20, anchor="middle")
+            s.text(x+142,470,"像素与读出同片",size=16,anchor="middle")
+    s.text(500,535,"FSI/BSI 区分入光侧；堆栈区分像素与逻辑的晶圆分工",size=20,anchor="middle")
+    s.text(500,565,"橙线：入光；蓝线：电信号。功能层序示意，非工艺比例。",size=17,color=GRAY,anchor="middle")
     s.save("06_sensor_structures.svg")
 
 
@@ -589,7 +649,7 @@ def figure_07_spectral_channels() -> None:
     s.text(730, 210, "R", size=20, color=RED)
     s.text(530, 135, "G", size=20, color=GREEN)
     s.text(315, 180, "B", size=20, color=BLUE)
-    s.text(500, 545, "曲线为机制示意，不是某一相机的实测响应", size=19, anchor="middle")
+    s.text(500, 545, "曲线为示意函数，峰值与带宽由本例指定", size=19, anchor="middle")
     s.save("07_spectral_channels.svg")
 
 
@@ -599,6 +659,7 @@ def figure_08_stack_snr() -> None:
     s.axes(*box, "帧数 m", "相对 SNR")
     xs = list(range(1, 65))
     pts = [(x, math.sqrt(x)) for x in xs]
+    s.grid(box,(1,64,0,8.5),xticks=[1,16,32,48,64],yticks=[0,2,4,6,8])
     s.plot(pts, box, (1, 64, 0, 8.5), color=BLUE, width=4)
     for x in [1, 4, 16, 64]:
         y = math.sqrt(x)
@@ -630,22 +691,24 @@ def figure_08_hdr_exposure_windows() -> None:
 
 
 def figure_08_hdr_ghosting() -> None:
-    s = SVG("图 8.3  多曝光运动导致鬼影")
-    s.panel(50, 90, 270, 390, "短曝光 t₁")
-    s.panel(365, 90, 270, 390, "长曝光 t₂")
-    s.panel(680, 90, 270, 390, "直接融合")
-    positions = [150, 500]
-    for panel_x, cx, color in [(50, positions[0], BLUE), (365, positions[1], RED)]:
-        s.circle(cx, 215, 32, fill=color, stroke=color, opacity=0.8)
-        s.rect(cx - 34, 247, 68, 130, fill=color, stroke=color, opacity=0.8)
-        s.line(cx - 20, 377, cx - 40, 445, color=color, width=12)
-        s.line(cx + 20, 377, cx + 40, 445, color=color, width=12)
-    for cx, color, opacity in [(755, BLUE, 0.45), (865, RED, 0.45)]:
-        s.circle(cx, 215, 32, fill=color, stroke=color, opacity=opacity)
-        s.rect(cx - 34, 247, 68, 130, fill=color, stroke=color, opacity=opacity)
-        s.line(cx - 20, 377, cx - 40, 445, color=color, width=12, opacity=opacity)
-        s.line(cx + 20, 377, cx + 40, 445, color=color, width=12, opacity=opacity)
-    s.text(815, 465, "两个时刻不能自动成为同一时刻", size=16, anchor="middle", color=PURPLE)
+    s=SVG("图 8.3  多曝光运动导致鬼影")
+    def person(cx,color,opacity=1):
+        s.circle(cx,247,18,fill=color,stroke="none",opacity=opacity)
+        s.add(f'<path d="M{cx-13},272 Q{cx},260 {cx+15},276 L{cx+9},330 L{cx-15},330 Z" fill="{color}" opacity="{opacity}"/>')
+        for points in [[(cx-10,279),(cx-31,305),(cx-19,325)],[(cx+12,280),(cx+35,301),(cx+48,284)],[(cx-8,327),(cx-29,365),(cx-47,392)],[(cx+7,327),(cx+22,364),(cx+48,379)]]:
+            s.polyline(points,color=color,width=9,opacity=opacity)
+    for i,(x,title) in enumerate([(35,"短曝光 t₁"),(365,"长曝光 t₂"),(695,"直接叠加")]):
+        s.panel(x,100,270,390,title)
+        for dx in [22,175]:
+            s.rect(x+dx,188,55,126,fill=LIGHT,stroke="none",radius=3)
+            for yy in [206,239,272]:s.line(x+dx+10,yy,x+dx+45,yy,color="#fff",width=4)
+        s.line(x+17,394,x+253,394,color=GRAY,width=1.2,opacity=.5)
+        if i==0:person(x+103,BLUE)
+        elif i==1:person(x+157,RED)
+        else:
+            person(x+103,BLUE,.45);person(x+157,RED,.45)
+        s.text(x+135,451,["背景与主体处于 t₁","背景不变，主体已位移","静态背景重合，主体出现双像"][i],size=16,anchor="middle")
+    s.text(500,548,"两种线色标识拍摄时刻；叠加示意不指定实际HDR融合权重",size=19,anchor="middle")
     s.save("08_hdr_ghosting.svg")
 
 
@@ -667,21 +730,20 @@ def figure_09_transfer_curves() -> None:
 
 
 def figure_09_codes_per_stop() -> None:
-    s = SVG("图 9.2  线性与 Log 的每档码值分配")
-    s.text(90, 125, "线性编码", size=20, weight="700")
-    widths = [12, 24, 48, 96, 192, 384]
-    x = 170
-    for i, width in enumerate(widths):
-        s.rect(x, 90, width, 75, fill=BLUE, stroke="#ffffff", sw=1, radius=0, opacity=0.72)
-        s.text(x + width / 2, 137, f"{i+1}", size=14, color="#ffffff", anchor="middle")
-        x += width
-    s.text(90, 310, "Log 编码", size=20, weight="700")
-    x = 170
-    for i in range(6):
-        s.rect(x, 275, 126, 75, fill=RED, stroke="#ffffff", sw=1, radius=0, opacity=0.72)
-        s.text(x + 63, 322, f"第{i+1}档", size=14, color="#ffffff", anchor="middle")
-        x += 126
-    s.text(500, 475, "Log 近似让相邻曝光档获得相同码值宽度", size=22, anchor="middle")
+    s=SVG("图 9.2  线性与 Log 的每档码值分配")
+    s.text(188,116,"六档等宽曝光区间，由低信号向高信号排列",size=19,color=GRAY)
+    for y,logarithmic,color,label in [(170,False,BLUE,"线性编码"),(340,True,RED,"Log 编码")]:
+        s.text(55,y+42,label,size=21,weight="600")
+        start=188
+        for i in range(6):
+            share=1 if logarithmic else 2**i
+            width=744*(share/(6 if logarithmic else 63))
+            s.rect(start,y,width,72,fill=color,stroke="#fff",sw=1,radius=0,opacity=.58+.06*i)
+            s.text(start+width/2,y+44,str(share),size=15,color="#fff",anchor="middle",weight="600")
+            start+=width
+        s.text(188,y+108,"码宽比 1 : 1 : 1 : 1 : 1 : 1" if logarithmic else "码宽比 1 : 2 : 4 : 8 : 16 : 32",size=19,color=color)
+    s.text(500,520,"色块长度表示各曝光档占用的码宽；数字为归一化比例",size=20,anchor="middle")
+    s.text(500,555,"Log在对数区近似均匀分配码字；有限位深与曲线参数决定实际分配",size=18,color=GRAY,anchor="middle")
     s.save("09_codes_per_stop.svg")
 
 
@@ -714,28 +776,34 @@ def figure_10_raw_pipeline() -> None:
     s.line(160, 375, 580, 375, color=GREEN, width=3)
     s.text(790, 400, "输出决定逐步烘焙", size=18, color=AMBER, anchor="middle")
     s.line(640, 375, 940, 375, color=AMBER, width=3)
-    s.text(500, 500, "RAW 是数据契约，不是“零处理”的同义词", size=22, anchor="middle")
+    s.text(500, 500, "RAW 的含义由文件字段与已经执行的处理共同规定", size=22, anchor="middle")
     s.save("10_raw_pipeline.svg")
 
 
 def figure_10_raw_bit_packing() -> None:
-    s = SVG("图 10.2  两个 12-bit 样本打包为三个字节")
-    s.text(115, 130, "像素 A（12 bit）", size=19, color=BLUE)
-    s.text(560, 130, "像素 B（12 bit）", size=19, color=RED)
-    bitw = 26
-    for i in range(12):
-        s.rect(110 + i * bitw, 160, bitw, 55, fill=PALE_BLUE, stroke=BLUE, sw=1, radius=0)
-        s.text(123 + i * bitw, 195, str(11 - i), size=12, anchor="middle")
-        s.rect(555 + i * bitw, 160, bitw, 55, fill=PALE_RED, stroke=RED, sw=1, radius=0)
-        s.text(568 + i * bitw, 195, str(11 - i), size=12, anchor="middle")
-    byte_x = [125, 365, 605]
-    for j, x in enumerate(byte_x):
-        s.rect(x, 340, 210, 75, fill=[PALE_BLUE, "#eee8f8", PALE_RED][j], stroke=[BLUE, PURPLE, RED][j], sw=2)
-        s.text(x + 105, 385, f"Byte {j}", size=20, anchor="middle", weight="700")
-    s.arrow(265, 230, 230, 330, color=BLUE)
-    s.arrow(425, 230, 470, 330, color=PURPLE)
-    s.arrow(710, 230, 710, 330, color=RED)
-    s.text(500, 505, "容器按 8 bit 传输；样本的有效位深仍是 12 bit", size=20, anchor="middle")
+    s=SVG("图 10.2  两个 12-bit 样本打包为三个字节")
+    a,b=0xabc,0x123
+    for x,value,label,color in [(100,a,"A = 0xabc",BLUE),(550,b,"B = 0x123",RED)]:
+        s.text(x,119,label,size=21,color=color,weight="600")
+        for j in range(12):
+            bit=11-j
+            s.text(x+j*27+13.5,151,str(bit),size=12,color=GRAY,anchor="middle")
+            s.rect(x+j*27,162,27,46,fill=PALE_BLUE if color==BLUE else PALE_RED,stroke=color,sw=.8,radius=0)
+            s.text(x+j*27+13.5,192,str((value>>bit)&1),size=18,anchor="middle")
+    byte_values=[a&255,((b&15)<<4)|((a>>8)&15),(b>>4)&255]
+    for i,(x,value) in enumerate(zip([100,390,680],byte_values)):
+        s.text(x,310,f"Byte {i} = 0x{value:02x}",size=20,weight="600")
+        for j in range(8):
+            color=BLUE if i==0 or (i==1 and j>=4) else RED
+            s.rect(x+j*27,330,27,54,fill=PALE_BLUE if color==BLUE else PALE_RED,stroke=color,sw=.8,radius=0)
+            s.text(x+j*27+13.5,364,str((value>>(7-j))&1),size=18,anchor="middle")
+        s.text(x+108,414,["A 的低8位","B低4位 | A高4位","B 的高8位"][i],size=17,anchor="middle")
+    s.arrow(250,224,208,286,color=BLUE)
+    s.arrow(160,224,485,286,color=BLUE)
+    s.arrow(825,224,523,286,color=RED)
+    s.arrow(710,224,788,286,color=RED)
+    s.text(500,491,"按式(10.1)的教学格式排列：每个字节从左到右为 bit 7 → bit 0",size=20,anchor="middle")
+    s.text(500,545,"蓝色来自样本A，红色来自样本B；存储顺序由所采用的像素格式规定",size=18,color=GRAY,anchor="middle")
     s.save("10_raw_bit_packing.svg")
 
 
@@ -797,8 +865,9 @@ def figure_11_pupils() -> None:
     s.line(50, 305, 950, 305, color=GRAY, width=1.5, dash="8 6")
     draw_lens(s, 280, 305, 270, BLUE)
     draw_lens(s, 720, 305, 250, GREEN)
-    s.line(500, 220, 500, 390, color=INK, width=10)
-    s.text(500, 420, "孔径光阑", size=18, anchor="middle")
+    s.line(500, 145, 500, 220, color=INK, width=8)
+    s.line(500, 390, 500, 465, color=INK, width=8)
+    s.text(500, 493, "孔径光阑", size=18, anchor="middle")
     entrance_y = 305 + 85 * 110 / 220
     exit_y = 305 + 85 * 115 / 220
     s.line(170, 610 - entrance_y, 170, entrance_y, color=RED, width=5, dash="6 4")
@@ -835,23 +904,27 @@ def airy_intensity(x: float) -> float:
 
 
 def figure_12_airy_psf() -> None:
-    s = SVG("图 12.1  理想圆孔的 Airy 点扩散函数")
-    cx, cy = 275, 290
-    for radius in range(124, 1, -2):
-        x = radius / 125 * 18
-        opacity = min(1.0, 0.01 + 2.0 * math.sqrt(airy_intensity(x)))
-        s.circle(cx, cy, radius, stroke=BLUE, sw=2.2, opacity=opacity)
-    first_zero_radius = 125 * 3.8317 / 18
-    s.circle(cx, cy, first_zero_radius, stroke=RED, sw=1.5, opacity=0.8)
-    s.circle(cx, cy, 2.5, fill=BLUE, stroke=BLUE, sw=1)
-    s.text(cx, 470, "环纹示意（亮度增强）", size=18, anchor="middle")
-    box = (500, 110, 390, 330)
-    s.axes(*box, "归一化半径 u = πr/(λN)", "归一化强度")
-    xs = [i / 500 * 18 for i in range(501)]
-    pts = [(x, airy_intensity(x)) for x in xs]
-    s.plot(pts, box, (0, 18, 0, 1.05), color=BLUE, width=3)
-    s.line(500 + 3.8317 / 18 * 390, 110, 500 + 3.8317 / 18 * 390, 440, color=RED, width=2, dash="6 5")
-    s.text(590, 465, "第一暗环：r = 1.22 λN", size=16, color=RED, anchor="middle")
+    s=SVG("图 12.1  理想圆孔的 Airy 点扩散函数")
+    n=256
+    raw=bytearray()
+    for j in range(n):
+        raw.append(0)
+        for i in range(n):
+            u=18*math.hypot((i+.5-n/2)/(n/2),(j+.5-n/2)/(n/2))
+            intensity=airy_intensity(min(18,u)) if u<=18 else 0
+            raw.append(round(255*math.sqrt(max(0,min(1,intensity)))))
+    def chunk(kind,data):return struct.pack('>I',len(data))+kind+data+struct.pack('>I',zlib.crc32(kind+data))
+    png=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',n,n,8,0,0,0,0))+chunk(b'IDAT',zlib.compress(bytes(raw),9))+chunk(b'IEND',b'')
+    s.add(f'<image x="92" y="136" width="310" height="310" href="data:image/png;base64,{base64.b64encode(png).decode()}"/>')
+    s.circle(247,291,155*3.8317/18,stroke=AMBER,sw=1.4)
+    s.text(247,488,"点像显示：√I，峰值归一",size=18,anchor="middle")
+    box=(530,120,350,290)
+    s.axes(*box,"归一化半径 u = πr/(λN)","归一化强度 I")
+    xs=[i/500*18 for i in range(501)]
+    s.plot([(x,airy_intensity(x)) for x in xs],box,(0,18,0,1.05),color=BLUE,width=3)
+    s.line(530+3.8317/18*350,120,530+3.8317/18*350,410,color=AMBER,width=1.5,dash="5 4")
+    s.text(705,488,"第一暗环：r = 1.22 λN",size=18,color=AMBER,anchor="middle")
+    s.text(500,548,"点像与剖面使用同一Airy函数；左图增强弱环，右图按线性强度绘制",size=19,anchor="middle")
     s.save("12_airy_psf.svg")
 
 
@@ -914,15 +987,19 @@ def spot_cluster(cx: float, cy: float, kind: str) -> list[tuple[float, float]]:
 
 
 def figure_13_aberration_spots() -> None:
-    s = SVG("图 13.1  典型像差的点列形态示意")
-    panels = [(35, "球差", "spherical"), (280, "彗差", "coma"), (525, "弧矢像散", "astig_s"), (770, "切向像散", "astig_t")]
-    for x, title, kind in panels:
-        s.panel(x, 105, 195, 365, title)
-        cx, cy = x + 98, 300
-        for px, py in spot_cluster(cx, cy, kind):
-            s.circle(px, py, 2.2, fill=BLUE, stroke=BLUE, sw=0.4, opacity=0.65)
-        s.circle(cx, cy, 50, stroke=GRAY, sw=1, opacity=0.5)
-    s.text(500, 535, "点列为机制示意；真实形状由完整处方、光阑和波长决定", size=19, anchor="middle")
+    s=SVG("图 13.1  典型像差的点列形态示意")
+    panels=[(35,"球差","spherical",BLUE),(280,"彗差","coma",AMBER),(525,"弧矢像散","astig_s",PURPLE),(770,"切向像散","astig_t",GREEN)]
+    for x,title,kind,color in panels:
+        s.panel(x,120,195,310,title)
+        cx,cy=x+98,280
+        s.line(cx-76,cy,cx+76,cy,color=GRAY,width=.8,opacity=.25)
+        s.line(cx,cy-76,cx,cy+76,color=GRAY,width=.8,opacity=.25)
+        s.circle(cx,cy,75,stroke=GRAY,sw=1,opacity=.3)
+        for px,py in spot_cluster(cx,cy,kind):
+            s.circle(cx+1.5*(px-cx),cy+1.5*(py-cy),2.8,fill=color,stroke="none",opacity=.72)
+        s.text(cx,401,["旋转对称","单侧拖尾","沿一方向拉长","在另一焦面拉长"][len([p for p in panels if p[0]<x])],size=16,color=color,anchor="middle")
+    s.text(500,495,"各图保持相同坐标比例；颜色区分像差类型",size=20,anchor="middle")
+    s.text(500,548,"点列为形态示意；实际点像取决于处方、物距、像高、光阑和波长",size=18,color=GRAY,anchor="middle")
     s.save("13_aberration_spots.svg")
 
 
@@ -977,12 +1054,13 @@ def figure_14_glass_map() -> None:
         (45, 1.62, "Dense crown", PURPLE), (60, 1.52, "Crown", BLUE),
         (75, 1.49, "低色散玻璃", GREEN), (95, 1.43, "CaF₂", CYAN),
     ]
+    s.grid(box,(20,100,1.4,1.82),xticks=[20,40,60,80,100],yticks=[1.4,1.5,1.6,1.7,1.8])
     for vx, nd, label, color in points:
         px = box[0] + (vx - 20) / 80 * box[2]
         py = box[1] + box[3] - (nd - 1.4) / 0.42 * box[3]
         s.circle(px, py, 8, fill=color, stroke=color)
         s.text(px + 10, py - 10, label, size=14, color=color)
-    s.text(500, 545, "位置为教学示意；实际设计必须查材料目录与完整色散曲线", size=19, anchor="middle")
+    s.text(500, 545, "位置采用教学参数；材料选择需结合目录和完整色散曲线", size=19, anchor="middle")
     s.save("14_glass_map.svg")
 
 
@@ -993,8 +1071,8 @@ def figure_14_achromat() -> None:
     s.ellipse(430, axis, 35, 165, fill=PALE_BLUE, stroke=BLUE, sw=3)
     s.add(f'<path d="M470,165 Q512,310 470,455 L530,455 Q488,310 530,165 Z" '
           f'fill="{PALE_RED}" stroke="{RED}" stroke-width="3"/>')
-    s.text(430, 500, "+Φ₁ / 高 V₁", size=17, color=BLUE, anchor="middle")
-    s.text(500, 535, "−Φ₂ / 低 V₂", size=17, color=RED, anchor="middle")
+    s.text(430, 500, "Φ₁ > 0 · 高 V₁", size=17, color=BLUE, anchor="middle")
+    s.text(500, 535, "Φ₂ < 0 · 低 V₂", size=17, color=RED, anchor="middle")
     for y, color, focus_y in [(210, BLUE, 310), (255, RED, 310)]:
         after_positive = axis + (y - axis) * (1 - 70 / 200)
         s.line(80, y, 430, y, color=color, width=2.5)
@@ -1053,20 +1131,27 @@ def figure_15_pf_dispersion() -> None:
 
 
 def figure_15_ar_coating() -> None:
-    s = SVG("图 15.3  四分之一波长增透膜的反射相消")
-    s.rect(150, 300, 700, 180, fill=PALE_BLUE, stroke=BLUE, sw=2)
-    s.text(500, 450, "玻璃 ns", size=22, color=BLUE, anchor="middle")
-    s.rect(150, 230, 700, 70, fill=PALE_GREEN, stroke=GREEN, sw=2)
-    s.text(500, 275, "膜层 nc，光学厚度 λ/4", size=20, color=GREEN, anchor="middle")
-    s.text(500, 120, "空气 n₀", size=20, anchor="middle")
-    s.arrow(340, 90, 340, 230, color=AMBER, width=4)
-    s.arrow(340, 230, 340, 145, color=RED, width=3)
-    s.arrow(620, 90, 620, 300, color=AMBER, width=4)
-    s.arrow(620, 300, 620, 145, color=BLUE, width=3)
-    s.text(185, 170, "上界面反射", size=16, color=RED)
-    s.text(650, 170, "膜内往返后反射", size=16, color=BLUE)
-    s.text(500, 510, "两条正入射光程并列示意；出射反射波叠加", size=17, anchor="middle")
-    s.text(500, 550, "设计波长正入射时，nc² = n₀ns 使总反射振幅为零", size=19, anchor="middle")
+    s=SVG("图 15.3  四分之一波长增透膜的反射相消")
+    s.panel(35,95,475,375,"代表反射路径")
+    s.panel(540,95,425,375,"反射振幅分子的两项")
+    s.rect(65,260,415,45,fill=PALE_GREEN,stroke=GREEN,sw=1)
+    s.rect(65,305,415,125,fill=PALE_BLUE,stroke=BLUE,sw=1)
+    s.text(450,233,"空气 n₀",size=17,anchor="end")
+    s.text(450,288,"膜层 nc · nc d = λ/4",size=17,color=GREEN,anchor="end")
+    s.text(450,402,"玻璃 ns",size=18,color=BLUE,anchor="end")
+    for xx,deep,color in [(150,260,AMBER),(245,305,BLUE)]:
+        s.arrow(xx,170,xx,deep,color=GRAY,width=1.8)
+        s.line(xx,deep,xx,177,color=color,width=2.3,dash="5 4")
+        s.arrow(xx,203,xx,175,color=color,width=2.3)
+    s.text(155,454,"橙：膜面反射；蓝：膜底反射",size=16)
+    for yy,label,color,sign in [(220,"r₀c",AMBER,1),(325,"r_cs exp(−2iδ)",BLUE,-1)]:
+        pts=[(580+i*1.55,yy-sign*27*math.sin(i/200*4*math.pi)) for i in range(201)]
+        s.line(575,yy,920,yy,color=GRAY,width=.8,opacity=.3)
+        s.polyline(pts,color=color,width=2.7)
+        s.text(575,yy-46,label,size=17,color=color)
+    s.text(750,427,"设计点两项等幅反相 → 分子为零",size=18,anchor="middle")
+    s.text(500,520,"正入射、设计波长、nc² = n₀ns；图中两条路径来自同一波长",size=20,anchor="middle")
+    s.text(500,555,"多次反射由振幅公式的分母合计；路径颜色标识反射位置，层厚为示意",size=17,color=GRAY,anchor="middle")
     s.save("15_ar_coating.svg")
 
 
@@ -1082,13 +1167,21 @@ def figure_16_lens_architectures() -> None:
         gx = x + 28
         for symbol, color in groups:
             if symbol == "|":
-                s.line(gx + 15, 210, gx + 15, 350, color=INK, width=5)
+                s.line(gx+15,190,gx+15,246,color=INK,width=5)
+                s.line(gx+15,314,gx+15,370,color=INK,width=5)
             else:
-                s.ellipse(gx + 15, 280, 16, 70 if symbol == "+" else 55, fill=PALE_BLUE if symbol == "+" else PALE_RED, stroke=color, sw=3)
-                s.text(gx + 15, 288, symbol, size=22, color=color, anchor="middle", weight="700")
+                cx,top,bottom=gx+15,210,350
+                s.rect(cx-7,top,14,bottom-top,fill=color,stroke="none",radius=6,opacity=.10)
+                s.line(cx,top,cx,bottom,color=color,width=2)
+                for y,direction in [(top,1),(bottom,-1)]:
+                    tip=y if symbol=="+" else y+12*direction
+                    base=y+12*direction if symbol=="+" else y
+                    s.polyline([(cx-6,base),(cx,tip),(cx+6,base)],color=color,width=2)
+                s.text(cx,389,symbol,size=22,color=color,anchor="middle",weight="600")
             gx += 42
         s.line(x + 15, 280, x + 235, 280, color=GRAY, width=1, dash="5 4")
-    s.text(500, 520, "符号只表示一阶光焦度；真实镜片形状和像差校正远更复杂", size=19, anchor="middle")
+    s.text(500, 520, "箭头向外：正薄组；向内：负薄组；黑色开口：光阑", size=19, anchor="middle")
+    s.text(500,555,"薄组符号定位等效平面，实际玻璃外形由处方给出",size=17,color=GRAY,anchor="middle")
     s.save("16_lens_architectures.svg")
 
 
@@ -1176,6 +1269,9 @@ def figure_17_slanted_edge_pipeline() -> None:
     s.plot(mtf, box3, (0, 1, 0, 1), color=GREEN, width=3)
     for x in [230, 475, 720]:
         s.arrow(x, 275, x + 38, 275, color=GRAY)
+    s.text(377, 414, "x/σ", size=16, anchor="middle")
+    s.text(622, 414, "x/σ", size=16, anchor="middle")
+    s.text(867, 414, "νσ", size=16, anchor="middle")
     s.text(500, 525, "测试得到的是相机系统响应；RAW 解码和锐化必须记录", size=20, anchor="middle")
     s.save("17_slanted_edge_pipeline.svg")
 

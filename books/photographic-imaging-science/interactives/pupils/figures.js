@@ -1,3 +1,4 @@
+import {thinGroup} from "../common/optics-drawing.js";
 import {pupils} from './model.js';
 export function pupilFigure(input={},side='entrance') {
  const m=pupils(input),p=m.p,left=side==='entrance',image=left?m.entrance:m.exit,trace=left?m.entranceTrace:m.exitTrace;
@@ -7,7 +8,7 @@ export function pupilFigure(input={},side='entrance') {
  const color=left?'#528aa6':'#b28143';
  const ready=p.progress>=(left?35:85),rays=p.progress>=(left?10:60);
  let s='<defs><clipPath id="pupil-'+side+'"><rect x="34" y="51" width="452" height="170"/></clipPath></defs><path d="M35 135H485" stroke="currentColor" opacity=".25"/>';
- for(const [z,label] of [[0,'前组'],[p.gap,'后组']])s+='<path d="M'+x(z)+' 75V195" stroke="currentColor" stroke-width="2" opacity=".45"/><text x="'+x(z)+'" y="43" text-anchor="middle">'+label+'</text>';
+ for(const [z,label] of [[0,'前组'],[p.gap,'后组']])s+=thinGroup(x(z),135,60,z===0?p.power1:p.power2,'#6f98b0')+'<text x="'+x(z)+'" y="43" text-anchor="middle">'+label+'</text>';
  s+='<path d="M'+x(p.stop)+' 59V'+y(p.diameter/2)+'M'+x(p.stop)+' '+y(-p.diameter/2)+'V211" stroke="#60836a" stroke-width="4"/><circle cx="'+x(p.stop)+'" cy="'+y(p.diameter/2)+'" r="3" fill="#60836a"/><text x="'+x(p.stop)+'" y="233" text-anchor="middle">光阑</text>';
  if(rays) {
   s+='<g clip-path="url(#pupil-'+side+')">';

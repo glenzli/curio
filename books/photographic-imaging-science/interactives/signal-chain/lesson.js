@@ -1,7 +1,7 @@
 import { signalChain } from "./model.js";
 import { control, number, escape } from "../common/lesson-view.js";
 export const spec = {
-  title: "沿着同一次曝光往后看",
+  title: "同一次曝光的成像链",
   alt: "互动示意：同一次曝光从能量、光子、电子到码值与显示",
   intro:
     "每一步保留自己的单位。播放只逐步突出处理环节；数值始终对应一次完整曝光的期望值。",
@@ -62,9 +62,17 @@ export const spec = {
     return {
       figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 310" role="img" aria-label="六个处理环节与各自的单位">${stages
         .map(([label, value], i) => {
+          const color = [
+            "#8e76ae",
+            "#be8a39",
+            "#4d8ba7",
+            "#4c9470",
+            "#bf7152",
+            "#79838d",
+          ][i];
           const x = 10 + (i % 3) * 212,
             y = 12 + Math.floor(i / 3) * 148;
-          return `<rect x="${x}" y="${y}" width="196" height="126" rx="7" fill="currentColor" fill-opacity="${i === active ? 0.12 : 0.025}" stroke="currentColor" stroke-opacity="${i === active ? 0.8 : 0.2}"/><text x="${x + 12}" y="${y + 32}">${escape(label)}</text><text x="${x + 12}" y="${y + 76}">${escape(value)}</text><text x="${x + 12}" y="${y + 108}">${i + 1} / 6</text>`;
+          return `<rect x="${x}" y="${y}" width="196" height="126" rx="7" fill="${color}" fill-opacity="${i === active ? 0.15 : 0.04}" stroke="${color}" stroke-opacity="${i === active ? 1 : 0.35}"/><path d="M${x + 12} ${y + 3}H${x + 184}" stroke="${color}" stroke-width="3"/><text x="${x + 12}" y="${y + 32}" style="font-size:16px;font-weight:600">${escape(label)}</text><text x="${x + 12}" y="${y + 76}" style="font-size:21px">${escape(value)}</text><text x="${x + 12}" y="${y + 108}" style="font-size:13px" fill="${color}">${i + 1} / 6</text>`;
         })
         .join("")}</svg>`,
       stats: [

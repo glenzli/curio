@@ -1,3 +1,4 @@
+import { thinGroup } from "../common/optics-drawing.js";
 import { experiment } from "../common/ui.js";
 import { lensSystem } from "./model.js";
 const blue = "#448b98", gold = "#b47b43", purple = "#8b78aa";
@@ -28,7 +29,7 @@ function diagram(p, m) {
   });
   drawing += `</g>`;
   for (const [z, power, color, label] of [[0, p.power1, blue, "前组"], [p.gap, p.power2, gold, "后组"]])
-    drawing += `<path d="M${x(z)} 106V214" stroke="${color}" stroke-width="3"/><text x="${x(z)}" y="${label === "前组" ? 43 : 61}" text-anchor="middle">${label} ${power > 0 ? "+" : ""}${power.toFixed(1)} D</text>`;
+    drawing += thinGroup(x(z),160,54,power,color)+`<text x="${x(z)}" y="${label === "前组" ? 43 : 61}" text-anchor="middle">${label} ${power > 0 ? "+" : ""}${power.toFixed(1)} D</text>`;
   if (imageX !== null && imageX >= min && imageX <= max) {
     drawing += `<circle cx="${x(imageX)}" cy="${y(m.imageHeight)}" r="3.6" fill="${gold}"/><path d="M${x(imageX)} 234V290" stroke="${gold}" stroke-dasharray="2 3"/><text x="${x(imageX)}" y="299" text-anchor="middle">${m.imageDistance < 0 ? "虚像" : p.finite ? "实像" : "后焦点"}</text>`;
   }
@@ -66,7 +67,7 @@ export function mount({ element, signal, session }) {
       { label: "两组重合", values: { gap: 0 } },
     ],
     content: `<style>.actions button{font-size:11px;padding:4px 8px}.ray-view svg{display:block;width:100%;height:auto}.ray-view text{fill:currentColor;font:11px ui-sans-serif,sans-serif}.ray-details{display:grid;grid-template-columns:1fr 1.2fr;gap:18px}.ray-details>section{min-width:0}.ray-details h4{font-size:12px;font-weight:500;margin:12px 0 8px}.matrix{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-inline:1px solid #9caea2;padding:7px 12px;font-size:13px;font-variant-numeric:tabular-nums}.matrix small{font-size:10px;opacity:.65}.truth{font-size:11px;line-height:1.9;border:1px solid #9caea255;border-radius:6px;padding:12px 14px;margin:14px 0;overflow-wrap:anywhere}.cardinal{font-size:11px;line-height:1.9}.stats strong{font-size:20px}@media(max-width:650px){.ray-details{grid-template-columns:1fr}.stats{gap:6px}.stats strong{font-size:16px}.stats small,.stats em{font-size:9px}.ray-view{margin-inline:-8px}.ray-view text{font-size:13px}}</style><p class="reading" data-mode></p><div class="stats" data-stats></div><div class="ray-view" data-diagram></div><p class="reading" data-reading aria-live="polite"></p><div class="ray-details"><section><h4>前组入射面 → 后组出射面的矩阵</h4><div class="matrix" data-matrix></div><p class="note">A、D 无量纲；B 为 mm；C 为 mm⁻¹。主平面虚线只标位置，不是镜片。</p></section><section><h4>主平面与像面</h4><div class="cardinal" data-cardinal></div></section></div><div class="truth" data-truth></div>`,
-    note: "空气中的两薄镜组，轴对称、小角度、无像差；D = m⁻¹，换算到 mm⁻¹ 后作矩阵运算。前组截面取 y = −0.5…0.5 mm 的五条光线，有限物点高度为 0.25 mm。竖线标出薄镜组位置，口径与机械截光在孔径实验中另算。图中虚像由出射线反向延长得到；视窗外的交点和主平面仍在读数中报告。计算限于近轴成像，色差、衍射与瞳像另见对应实验。",
+    note: "空气中的两薄镜组，轴对称、小角度、无像差；D = m⁻¹，换算到 mm⁻¹ 后作矩阵运算。前组截面取 y = −0.5…0.5 mm 的五条光线，有限物点高度为 0.25 mm。带箭头的符号定位薄组平面（向外为正，向内为负），口径与机械截光在孔径实验中另算。图中虚像由出射线反向延长得到；视窗外的交点和主平面仍在读数中报告。计算限于近轴成像，色差、衍射与瞳像另见对应实验。",
     update(root, state) {
       const p = { ...state, sensor: state.gap + state.rearDistance };
       const m = lensSystem(p), d = diagram(p, m);

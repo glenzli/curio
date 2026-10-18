@@ -1,11 +1,11 @@
 import { crossSection, routePoint } from "./model.js";
 const colors = {
-  optics: "#a7bfae",
-  silicon: "#6ba1ba",
-  metal: "#c19c71",
+  optics: "#829fb5",
+  silicon: "#5798be",
+  metal: "#b79258",
   support: "#9caaa5",
   bond: "#bda2bd",
-  logic: "#85aa94",
+  logic: "#71a58b",
 };
 export function structureFigure(input) {
   const m = crossSection(input),
@@ -45,5 +45,5 @@ export function structureFigure(input) {
     })
     .join(
       "",
-    )}<path d="M${m.photonRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#c89235" stroke-width="2" stroke-dasharray="4 3" opacity=".65"/><path d="M${m.signalRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#40879a" stroke-width="2" stroke-dasharray="3 3" opacity=".6"/>${p <= 40 ? `<circle cx="${light[0]}" cy="${light[1]}" r="5" fill="#c89235"/>` : p < 60 ? `<circle cx="${m.diode.x}" cy="${m.diode.y}" r="${7 + (p - 40) / 3}" fill="#c89235" fill-opacity=".3"/>` : `<circle cx="${electronic[0]}" cy="${electronic[1]}" r="5" fill="#40879a"/>`}<text x="30" y="398">${m.stacked ? "电信号跨键合界面到逻辑晶圆" : "本图读出链留在像素晶圆"}</text><text x="30" y="416">非工艺比例 · 不计算QE或读速</text></svg>`;
+    )}<path d="M${m.photonRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#c89235" stroke-width="2" stroke-dasharray="4 3" opacity=".65"/><path d="M${m.signalRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#40879a" stroke-width="2" stroke-dasharray="3 3" opacity=".6"/>${p <= 40 ? `<circle cx="${light[0]}" cy="${light[1]}" r="5" fill="#c89235"/>` : p < 60 ? `<circle cx="${m.diode.x}" cy="${m.diode.y}" r="${7 + (p - 40) / 3}" fill="#c89235" fill-opacity=".3"/>` : `<circle cx="${electronic[0]}" cy="${electronic[1]}" r="5" fill="#40879a"/>`}<text x="30" y="398">${m.stacked ? "电信号跨键合界面到逻辑晶圆" : "本图读出链留在像素晶圆"}</text><text x="30" y="416">功能层序示意 · 非工艺比例</text></svg>`;
 }

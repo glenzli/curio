@@ -1,3 +1,4 @@
+import { thinGroup } from "../common/optics-drawing.js";
 import { experiment, plot, legend } from "../common/ui.js";
 import {
   motionExperiment,
@@ -20,7 +21,7 @@ function diagram(sample) {
     const base = traceShift(sample.theta, 0, r.height);
     out += `<path d="M${x(-20)} ${y(r.height - 20 * sample.theta)}L${x(0)} ${y(r.height)}L${x(50)} ${y(base.y2)}L${x(150)} ${y(base.image)}" stroke="currentColor" opacity=".15" fill="none" stroke-dasharray="4 4"/><path d="M${x(-20)} ${y(r.height - 20 * sample.theta)}L${x(0)} ${y(r.height)}L${x(50)} ${y(r.y2)}L${x(150)} ${y(r.image)}" fill="none" stroke="${blue}" stroke-width="${r.height === 0 ? 2 : 1.3}"/>`;
   }
-  out += `<path d="M${x(0)} 85V205" stroke="${blue}" stroke-width="3"/><path d="M${x(50)} ${y(sample.delta) - 60}V${y(sample.delta) + 60}" stroke="${gold}" stroke-width="3"/><path d="M${x(150)} ${y(sample.sensor) - 45}V${y(sample.sensor) + 45}" stroke="${purple}" stroke-width="4"/><path d="M${x(150) - 7} ${y(sample.sensor)}h14" stroke="${purple}" stroke-width="2"/><circle cx="${x(150)}" cy="${y(sample.image)}" r="4" fill="${gold}"/><text x="${x(0)}" y="43" text-anchor="middle">前组 +10 D</text><text x="${x(50)}" y="62" text-anchor="middle">防抖组 −10 D</text><text x="${x(150)}" y="43" text-anchor="end">传感器</text><text x="28" y="242">蓝线：实际光路 · 淡虚线：未补偿光路</text><text x="28" y="263">横、纵比例不同；金点为光束交点，紫短线为传感器参考中心</text>`;
+  out += thinGroup(x(0),145,60,10,blue)+thinGroup(x(50),y(sample.delta),60,-10,gold)+`<path d="M${x(150)} ${y(sample.sensor) - 45}V${y(sample.sensor) + 45}" stroke="${purple}" stroke-width="4"/><path d="M${x(150) - 7} ${y(sample.sensor)}h14" stroke="${purple}" stroke-width="2"/><circle cx="${x(150)}" cy="${y(sample.image)}" r="4" fill="${gold}"/><text x="${x(0)}" y="43" text-anchor="middle">前组 +10 D</text><text x="${x(50)}" y="62" text-anchor="middle">防抖组 −10 D</text><text x="${x(150)}" y="43" text-anchor="end">传感器</text><text x="28" y="242">蓝线：实际光路 · 淡虚线：未补偿光路</text><text x="28" y="263">横、纵比例不同；金点为光束交点，紫短线为传感器参考中心</text>`;
   return `<svg role="img" aria-label="防抖组和传感器位移对光束交点相对位置的影响" viewBox="0 0 520 278">${out}</svg>`;
 }
 export function mount({ element, signal, session }) {

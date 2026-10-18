@@ -3,33 +3,39 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 9.2  线性与 Log 的每档码值分配</text>
-<text x="90.00" y="125.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">线性编码</text>
-<rect x="170.00" y="90.00" width="12.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="176.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
-<rect x="182.00" y="90.00" width="24.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="194.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">2</text>
-<rect x="206.00" y="90.00" width="48.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="230.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">3</text>
-<rect x="254.00" y="90.00" width="96.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="302.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">4</text>
-<rect x="350.00" y="90.00" width="192.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="446.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">5</text>
-<rect x="542.00" y="90.00" width="384.00" height="75.00" rx="0" fill="#2364aa" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="734.00" y="137.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">6</text>
-<text x="90.00" y="310.00" fill="#17202a" font-size="20" font-weight="700" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log 编码</text>
-<rect x="170.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="233.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第1档</text>
-<rect x="296.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="359.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第2档</text>
-<rect x="422.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="485.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第3档</text>
-<rect x="548.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="611.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第4档</text>
-<rect x="674.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="737.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第5档</text>
-<rect x="800.00" y="275.00" width="126.00" height="75.00" rx="0" fill="#c44536" stroke="#ffffff" stroke-width="1" opacity="0.72"/>
-<text x="863.00" y="322.00" fill="#ffffff" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">第6档</text>
-<text x="500.00" y="475.00" fill="#17202a" font-size="22" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log 近似让相邻曝光档获得相同码值宽度</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 9.2  线性与 Log 的每档码值分配</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<text x="188.00" y="116.00" fill="#7a8590" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">六档等宽曝光区间，由低信号向高信号排列</text>
+<text x="55.00" y="212.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">线性编码</text>
+<rect x="188.00" y="170.00" width="11.81" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.58"/>
+<text x="193.90" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="199.81" y="170.00" width="23.62" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.6399999999999999"/>
+<text x="211.62" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">2</text>
+<rect x="223.43" y="170.00" width="47.24" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.7"/>
+<text x="247.05" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">4</text>
+<rect x="270.67" y="170.00" width="94.48" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.76"/>
+<text x="317.90" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">8</text>
+<rect x="365.14" y="170.00" width="188.95" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.82"/>
+<text x="459.62" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">16</text>
+<rect x="554.10" y="170.00" width="377.90" height="72.00" rx="0" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="0.8799999999999999"/>
+<text x="743.05" y="214.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">32</text>
+<text x="188.00" y="278.00" fill="#316fa4" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">码宽比 1 : 2 : 4 : 8 : 16 : 32</text>
+<text x="55.00" y="382.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log 编码</text>
+<rect x="188.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.58"/>
+<text x="250.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="312.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.6399999999999999"/>
+<text x="374.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="436.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.7"/>
+<text x="498.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="560.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.76"/>
+<text x="622.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="684.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.82"/>
+<text x="746.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<rect x="808.00" y="340.00" width="124.00" height="72.00" rx="0" fill="#bd5b54" stroke="#fff" stroke-width="1" opacity="0.8799999999999999"/>
+<text x="870.00" y="384.00" fill="#fff" font-size="15" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">1</text>
+<text x="188.00" y="448.00" fill="#bd5b54" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">码宽比 1 : 1 : 1 : 1 : 1 : 1</text>
+<text x="500.00" y="520.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">色块长度表示各曝光档占用的码宽；数字为归一化比例</text>
+<text x="500.00" y="555.00" fill="#7a8590" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Log在对数区近似均匀分配码字；有限位深与曲线参数决定实际分配</text>
 </svg>

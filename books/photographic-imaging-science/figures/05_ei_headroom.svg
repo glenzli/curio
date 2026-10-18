@@ -3,19 +3,21 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 5.3  EI 对中灰上下余量的重新分配</text>
-<line x1="110.00" y1="190.00" x2="890.00" y2="190.00" stroke="#17202a" stroke-width="14" opacity="1.0"/>
-<line x1="590.00" y1="150.00" x2="590.00" y2="230.00" stroke="#d18f00" stroke-width="5" opacity="1.0"/>
-<text x="590.00" y="132.00" fill="#d18f00" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">18% 中灰</text>
-<text x="110.00" y="255.00" fill="#c44536" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">噪声端</text>
-<text x="890.00" y="255.00" fill="#2364aa" font-size="16" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">饱和端</text>
-<text x="500.00" y="295.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">较低 EI：更多传感器曝光</text>
-<line x1="110.00" y1="380.00" x2="890.00" y2="380.00" stroke="#17202a" stroke-width="14" opacity="1.0"/>
-<line x1="430.00" y1="340.00" x2="430.00" y2="420.00" stroke="#d18f00" stroke-width="5" opacity="1.0"/>
-<text x="430.00" y="322.00" fill="#d18f00" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">18% 中灰</text>
-<text x="110.00" y="445.00" fill="#c44536" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">噪声端</text>
-<text x="890.00" y="445.00" fill="#2364aa" font-size="16" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">饱和端</text>
-<text x="500.00" y="485.00" fill="#17202a" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">较高 EI：更少传感器曝光</text>
-<text x="500.00" y="535.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">总传感器范围可不变；场景相对中灰的高光/阴影余量改变</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 5.3  EI 对中灰上下余量的重新分配</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<line x1="110.00" y1="190.00" x2="890.00" y2="190.00" stroke="#25303b" stroke-width="14" opacity="1.0"/>
+<line x1="590.00" y1="150.00" x2="590.00" y2="230.00" stroke="#be8a39" stroke-width="5" opacity="1.0"/>
+<text x="590.00" y="132.00" fill="#be8a39" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">18% 中灰</text>
+<text x="110.00" y="255.00" fill="#bd5b54" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">噪声端</text>
+<text x="890.00" y="255.00" fill="#316fa4" font-size="16" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">饱和端</text>
+<text x="500.00" y="295.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">较低 EI：更多传感器曝光</text>
+<line x1="110.00" y1="380.00" x2="890.00" y2="380.00" stroke="#25303b" stroke-width="14" opacity="1.0"/>
+<line x1="430.00" y1="340.00" x2="430.00" y2="420.00" stroke="#be8a39" stroke-width="5" opacity="1.0"/>
+<text x="430.00" y="322.00" fill="#be8a39" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">18% 中灰</text>
+<text x="110.00" y="445.00" fill="#bd5b54" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">噪声端</text>
+<text x="890.00" y="445.00" fill="#316fa4" font-size="16" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">饱和端</text>
+<text x="500.00" y="485.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">较高 EI：更少传感器曝光</text>
+<text x="500.00" y="535.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">总传感器范围可不变；场景相对中灰的高光/阴影余量改变</text>
 </svg>

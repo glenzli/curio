@@ -1,7 +1,8 @@
 import { absorption } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
+import { depthFigure } from "./figures.js";
 export const spec = {
-  title: "吸收发生在哪里，电荷又能收集多少",
+  title: "吸收深度与电荷收集",
   alt: "互动示意：吸收深度、入口失效层与收集概率的分离",
   intro:
     "改变穿透长度和收集条件，比较光子被吸收的比例与最终电子产额。深度探针只累计到所选截面。",
@@ -46,6 +47,9 @@ export const spec = {
       partial =
         probe > 0 ? absorption({ ...s, depth: probe }) : { qe: 0, absorbed: 0 };
     return {
+      figureMinWidth: 560,
+      figureHeight: 250,
+      figure: depthFigure(s, m, probe),
       panels: [
         {
           title: "入射光子的存活与累计吸收",

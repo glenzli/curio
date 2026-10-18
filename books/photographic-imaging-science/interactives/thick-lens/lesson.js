@@ -1,7 +1,8 @@
 import { thickLens } from "./model.js";
-import { control, curve, number, colors } from "../common/lesson-view.js";
+import { control, number } from "../common/lesson-view.js";
+import { thickFigure } from "./figures.js";
 export const spec = {
-  title: "一片厚玻璃的焦距从哪里量",
+  title: "厚透镜的焦距与后焦距",
   alt: "互动示意：球面厚透镜内部传播、主平面与后焦距",
   intro:
     "光线在第一面折射、玻璃内传播，再在第二面折射。焦距与后焦距各有自己的起点，删去厚度会同时改变这两项。",
@@ -30,32 +31,10 @@ export const spec = {
   evaluate(s) {
     const m = thickLens(s),
       focal = s.thickness + m.bfd;
-    const rays = [-1, -0.5, 0.5, 1].map((y, i) =>
-      curve(
-        `${i === 0 ? "光线高度 ±1 mm" : i === 1 ? "±0.5 mm" : ""}`,
-        [[-8, y], ...m.trace(y).points],
-        i % 2,
-      ),
-    );
     return {
-      panels: [
-        {
-          title: "逐面近轴光线（两表面间为玻璃）",
-          xMin: -8,
-          xMax: Math.max(60, focal + 8),
-          xLabel: "从第一顶点量起 / mm",
-          yLabel: "光线高度 / mm",
-          yMin: -1.3,
-          yMax: 1.3,
-          curves: rays,
-          markers: [
-            { value: 0, label: "", color: colors[3] },
-            { value: s.thickness, label: "", color: colors[3] },
-            { value: m.h1, label: "", color: colors[2] },
-            { value: m.h2, label: "", color: colors[2] },
-          ],
-        },
-      ],
+      figureMinWidth: 560,
+      figureHeight: 345,
+      figure: thickFigure(s, m),
       stats: [
         [
           "有效焦距",
@@ -69,7 +48,7 @@ export const spec = {
         ],
         ["忽略厚度", number(m.thinF, 3) + " mm", "只加两表面光焦度"],
       ],
-      reading: `厚制镜者公式 ${number(m.referenceF, 6)} mm；矩阵焦距 ${number(m.f, 6)} mm。高度1 mm的独立逐面光线交点 x=${number(m.trace(1).focus, 6)} mm，后顶点加BFD为 ${number(focal, 6)} mm。det(M)=${number(m.det, 9)}；紫标线为主平面，灰标线为表面顶点。`,
+      reading: `厚制镜者公式 ${number(m.referenceF, 6)} mm；矩阵焦距 ${number(m.f, 6)} mm。高度1 mm的独立逐面光线交点 x=${number(m.trace(1).focus, 6)} mm，后顶点加BFD为 ${number(focal, 6)} mm。det(M)=${number(m.det, 9)}；紫色虚线为主平面，蓝色实线为表面顶点。`,
     };
   },
 };

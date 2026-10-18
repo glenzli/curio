@@ -3,42 +3,89 @@
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect x="0" y="0" width="1000" height="600" fill="#ffffff"/>
-<text x="500.00" y="35.00" fill="#17202a" font-size="24" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.3  FSI、BSI 与逻辑堆栈的层次区别</text>
-<rect x="35.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="177.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FSI</text>
-<rect x="70.00" y="155.00" width="215.00" height="65.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="177.00" y="193.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
-<rect x="70.00" y="220.00" width="215.00" height="80.00" rx="1" fill="#f7efd8" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="177.00" y="266.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">金属布线</text>
-<rect x="70.00" y="300.00" width="215.00" height="130.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="177.00" y="371.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光敏硅</text>
-<line x1="120.00" y1="120.00" x2="120.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="177.00" y1="120.00" x2="177.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="234.00" y1="120.00" x2="234.00" y2="440.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<rect x="350.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="492.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI</text>
-<rect x="385.00" y="155.00" width="215.00" height="65.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="492.00" y="193.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
-<rect x="385.00" y="220.00" width="215.00" height="130.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="492.00" y="291.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">减薄光敏硅</text>
-<rect x="385.00" y="350.00" width="215.00" height="80.00" rx="1" fill="#f7efd8" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="492.00" y="396.00" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">金属布线</text>
-<line x1="435.00" y1="120.00" x2="435.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="492.00" y1="120.00" x2="492.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="549.00" y1="120.00" x2="549.00" y2="345.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<rect x="665.00" y="80.00" width="285.00" height="420.00" rx="5" fill="#fbfcfe" stroke="#bcc6d0" stroke-width="1.5" opacity="1.0"/>
-<text x="807.50" y="107.00" fill="#17202a" font-size="17" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI + 逻辑堆栈</text>
-<rect x="700.00" y="145.00" width="215.00" height="55.00" rx="1" fill="#dcecf7" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="807.00" y="178.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">微透镜</text>
-<rect x="700.00" y="200.00" width="215.00" height="105.00" rx="1" fill="#dff2e9" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="807.00" y="258.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像素晶圆</text>
-<rect x="700.00" y="305.00" width="215.00" height="35.00" rx="1" fill="#e8edf2" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="807.00" y="328.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">键合互连</text>
-<rect x="700.00" y="340.00" width="215.00" height="105.00" rx="1" fill="#f7e2df" stroke="#66717e" stroke-width="1.5" opacity="1.0"/>
-<text x="807.00" y="398.50" fill="#17202a" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">逻辑 / ADC</text>
-<line x1="750.00" y1="112.00" x2="750.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="807.00" y1="112.00" x2="807.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<line x1="864.00" y1="112.00" x2="864.00" y2="285.00" stroke="#2364aa" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow)"/>
-<text x="500.00" y="555.00" fill="#17202a" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">结构名称规定层次关系，不直接给出读噪、动态范围或扫描时间</text>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.3  FSI、BSI 与逻辑堆栈的层次区别</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="35.00" y="85.00" width="285.00" height="410.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="177.50" y="114.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FSI</text>
+<path d="M81,163 Q105,127 129,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="81.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#bd5b54" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M145,163 Q169,127 193,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="145.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#3c9168" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M209,163 Q233,127 257,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="209.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.45"/>
+<rect x="67.00" y="268.00" width="221.00" height="126.00" rx="3" fill="#e7eff7" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="257.00" y="291.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光敏硅</text>
+<rect x="83.00" y="335.38" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="155.00" y="335.38" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="228.00" y="335.38" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="178.00" y="380.38" fill="#316fa4" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">PPD</text>
+<rect x="67.00" y="211.00" width="221.00" height="40.00" rx="3" fill="#f7f0e1" stroke="#be8a39" stroke-width="1" opacity="1.0"/>
+<rect x="72.00" y="220.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="208.00" y="220.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="72.00" y="237.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="208.00" y="237.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="256.00" y="268.00" fill="#be8a39" font-size="14" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">布线 / 晶体管</text>
+<defs><marker id="arrow-be8a39-2.5" markerWidth="10.0" markerHeight="10.0" refX="9.0" refY="5.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L9.0 5.0L1 9.0Z" fill="#be8a39"/></marker></defs>
+<line x1="178.00" y1="137.00" x2="178.00" y2="330.38" stroke="#be8a39" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow-be8a39-2.5)"/>
+<polyline points="208.00,347.38 275.00,347.38 275.00,231.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0" stroke-dasharray="5 4"/>
+<circle cx="275.00" cy="231.00" r="3.00" fill="#316fa4" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<text x="177.00" y="470.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像素与读出同片</text>
+<rect x="350.00" y="85.00" width="285.00" height="410.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="492.50" y="114.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI</text>
+<path d="M396,163 Q420,127 444,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="396.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#bd5b54" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M460,163 Q484,127 508,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="460.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#3c9168" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M524,163 Q548,127 572,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="524.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.45"/>
+<rect x="382.00" y="211.00" width="221.00" height="128.00" rx="3" fill="#e7eff7" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="572.00" y="234.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光敏硅</text>
+<rect x="398.00" y="279.64" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="470.00" y="279.64" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="543.00" y="279.64" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="493.00" y="324.64" fill="#316fa4" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">PPD</text>
+<rect x="382.00" y="354.00" width="221.00" height="40.00" rx="3" fill="#f7f0e1" stroke="#be8a39" stroke-width="1" opacity="1.0"/>
+<rect x="387.00" y="363.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="523.00" y="363.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="387.00" y="380.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="523.00" y="380.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="571.00" y="347.00" fill="#be8a39" font-size="14" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">布线 / 晶体管</text>
+<line x1="493.00" y1="137.00" x2="493.00" y2="274.64" stroke="#be8a39" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow-be8a39-2.5)"/>
+<polyline points="523.00,291.64 590.00,291.64 590.00,374.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0" stroke-dasharray="5 4"/>
+<circle cx="590.00" cy="374.00" r="3.00" fill="#316fa4" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<text x="492.00" y="470.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像素与读出同片</text>
+<rect x="665.00" y="85.00" width="285.00" height="410.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="807.50" y="114.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">BSI + 逻辑堆栈</text>
+<path d="M711,163 Q735,127 759,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="711.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#bd5b54" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M775,163 Q799,127 823,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="775.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#3c9168" stroke="none" stroke-width="2" opacity="0.45"/>
+<path d="M839,163 Q863,127 887,163 Z" fill="#e7eff7" stroke="#316fa4" stroke-width="1.4"/>
+<rect x="839.00" y="170.00" width="48.00" height="15.00" rx="1" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.45"/>
+<rect x="697.00" y="211.00" width="221.00" height="100.00" rx="3" fill="#e7eff7" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="887.00" y="234.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光敏硅</text>
+<rect x="713.00" y="262.00" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="785.00" y="262.00" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="858.00" y="262.00" width="44.00" height="24.00" rx="11" fill="#b7d4e5" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<text x="808.00" y="307.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">PPD</text>
+<rect x="697.00" y="321.00" width="221.00" height="40.00" rx="3" fill="#f7f0e1" stroke="#be8a39" stroke-width="1" opacity="1.0"/>
+<rect x="702.00" y="330.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="838.00" y="330.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="702.00" y="347.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="838.00" y="347.00" width="74.00" height="6.00" rx="0" fill="#be8a39" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="886.00" y="314.00" fill="#be8a39" font-size="14" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">布线 / 晶体管</text>
+<line x1="808.00" y1="137.00" x2="808.00" y2="257.00" stroke="#be8a39" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow-be8a39-2.5)"/>
+<polyline points="838.00,274.00 905.00,274.00 905.00,432.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0" stroke-dasharray="5 4"/>
+<circle cx="905.00" cy="432.00" r="3.00" fill="#316fa4" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<rect x="697.00" y="369.00" width="221.00" height="19.00" rx="4" fill="#eee6f4" stroke="#8971ac" stroke-width="1" opacity="1.0"/>
+<line x1="735.00" y1="369.00" x2="735.00" y2="388.00" stroke="#8971ac" stroke-width="4" opacity="1.0"/>
+<line x1="808.00" y1="369.00" x2="808.00" y2="388.00" stroke="#8971ac" stroke-width="4" opacity="1.0"/>
+<line x1="890.00" y1="369.00" x2="890.00" y2="388.00" stroke="#8971ac" stroke-width="4" opacity="1.0"/>
+<rect x="697.00" y="398.00" width="221.00" height="64.00" rx="4" fill="#e9f3ed" stroke="#3c9168" stroke-width="1" opacity="1.0"/>
+<text x="807.00" y="441.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">逻辑 / ADC</text>
+<text x="718.00" y="384.00" fill="#8971ac" font-size="12" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">键合</text>
+<text x="500.00" y="535.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">FSI/BSI 区分入光侧；堆栈区分像素与逻辑的晶圆分工</text>
+<text x="500.00" y="565.00" fill="#7a8590" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">橙线：入光；蓝线：电信号。功能层序示意，非工艺比例。</text>
 </svg>
