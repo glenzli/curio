@@ -7,8 +7,8 @@
 |---|---|---|
 | 0 | Holst--Lomheim；Goodman | 成像链分层由本书组织；完整相机工程不在序章展开 |
 | 1 | Born--Wolf；Smith | 辐射度学与近轴像面照度；互动另用同面圆光阑的有限角积分及解析值互核，近摄限于瞳放大率1；实际镜头暗角需具体瞳和机械模型 |
-| 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
-| 3 | Fossum；Janesick；EMVA 1288 | 列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
+| 2 | Fossum；Fossum--Hondongwa 2014；Janesick；Holst--Lomheim；MIT Probability Lectures 22/23 | 硅吸收、PPD 工艺为器件物理输入；Beer--Lambert、响应度和 Poisson 稀疏化书内推导；4T/CDS 互动为完整转移、线性 FD 的功能时序模型 |
+| 3 | Fossum；Janesick；EMVA 1288 | 单斜坡机制另核对Kleinfelder等2001 slide 7；列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
 | 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | PTC 用 N−1 样本方差及成对差分/2；另用 Gaussian 行列随机效应模型推导 ROI 平均、方差分解与共享暗场校准下限，不冒充标准的固定空间非均匀性测量 |
 | 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和 DCG 权衡书内计算 |
 | 6 | Sony Pregius S；Hamamatsu qCMOS；Guenter et al. 2017 | BSI/DTI/堆栈/曲面具体制造为外部输入；时序畸变书内推导 |
@@ -90,3 +90,18 @@ ISO 演示采用正文给定的教学电压/电容尺度，观测统计只读取
 第11章的入瞳/出瞳定义另核对 MIT 2.71/2.710 (2009) Lecture 6，slides 3–6，链接见资料源。两薄组的有向坐标、带符号放大率与无穷远边界由式 (11.9a) 及逐面光线自行计算。
 
 第12章的宽谱输入参考 Ansys Optics 的 “Source modeling using measured spectra”，只采用波长与权重这一输入概念。式 (12.9b) 是式 (12.9a) 的离散两谱线情形；横向位移的相位由 Fourier 变量代换推导。Airy密度、直接瞳积分及有限网格误差分别保留，未引入真实相机测量或商业软件输出。
+
+## 计数、单斜坡与共享电荷的补充
+
+第2章的Poisson/二项计数均有书内推导；MIT 2018概率讲义用于核对到达间隔和稀疏化
+框架。直方图采用指数事件生成，概率曲线采用递推/卷积，全方差与直接混合求和另作检验。
+时间连线仅表示筛选关系，不代表硅中的吸收深度或载流子运动。
+
+第3章只采用Stanford 2001材料的斜坡、比较器和锁存机制，原资料的逐像素ADC与格雷
+计数器没有被改称列并行结构。列示意和二进制显示由本书自行构造，锁存边沿、中点重建、
+越界与完整扫描的2ᵇ周期均在正文声明，未借用该器件的帧率或测得精度。
+
+第5章的同次信号顺序双增益机制核对Canon 2020白皮书第3—5页；共同Poisson电荷、
+共同前级Gaussian噪声和两独立路径噪声为本书声明模型。式 (5.2b)—(5.2c) 自行推导，
+噪声源矩阵与条件协方差独立互核。观测只读H、L与融合输出；权重使用已知生成参数，
+不声称完成未知实拍权重估计。发生裁切后保留偏差及失效计数，不外推线性真值。

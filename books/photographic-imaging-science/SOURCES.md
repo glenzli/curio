@@ -5,6 +5,19 @@
 
 ## 成像物理与传感器
 
+- John Tsitsiklis and Patrick Jaillet, MIT *Introduction to Probability*, Spring 2018,
+  [Lecture 22: The Poisson Process](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/d92a00a2bc9d20d84ad11d43be0e7ae0_MITRES_6_012S18_L22.pdf)
+  and [Lecture 23: More on the Poisson Process](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/5dc3b904bffcf92b4e5ec6c67d603414_MITRES_6_012S18_L23.pdf),
+  topics “Distribution of interarrival times” and “Merging and splitting”. Chapter 2
+  derives thinning and conditional variance in the text; the simulation samples
+  independent exponential waiting times and Bernoulli marks rather than Gaussian counts.
+- Stuart Kleinfelder, SukHwan Lim, Xinqiao Liu and Abbas El Gamal,
+  [A 10k FPS 0.18 µm CMOS Digital Pixel Sensor with Pixel-Level Memory](https://isl.stanford.edu/~abbas/group/papers_and_pub/isscc2001slides.pdf),
+  ISSCC 2001 slides, slide 7, “Single Slope ADC Operation”. The source fixes the ramp,
+  comparator and latch mechanism. It describes pixel-level ADCs with Gray counters;
+  Chapter 3's shared-column drawing and binary counter are an ideal teaching model,
+  not a reproduction of that architecture or its measured performance.
+
 - James R. Janesick, *Photon Transfer*, SPIE Press, 2007.
 - James R. Janesick, *Scientific Charge-Coupled Devices*, SPIE Press, 2001.
 - Gerald C. Holst and Terrence S. Lomheim, *CMOS/CCD Sensors and Camera
@@ -58,7 +71,11 @@
 - Sony Semiconductor Solutions, [Hybrid Frame-HDR](https://www.sony-semicon.com/en/technology/mobile/hf-hdr.html),
   for a concrete combination of conversion-gain and multi-frame HDR.
 - Canon, [Dual Gain Output Sensor White Paper](https://downloads.canon.com/cinemaeos/DGO-Sensor-White-Paper.pdf),
-  2020, as a concrete dual-readout implementation.
+  2020, printed pp. 3–5, especially Figure 4 and “Implementation of the Dual Gain
+  Settings on Each Photodiode Output”, as a concrete sequential dual-readout
+  implementation. Chapter 5 derives its own shared-charge covariance and fusion
+  equations; its Gaussian noise levels, voltage limits and clipping selector are
+  declared teaching assumptions, not measured Canon parameters.
 
 ## Log、RAW 与色彩编码
 
