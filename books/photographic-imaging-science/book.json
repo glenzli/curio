@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；33 个组件涵盖光子计数与 QE、4T/CDS、单斜坡 ADC、双增益共享噪声、采样与校准、HDR 与斜边估计，以及复瞳、双波长 PSF/OTF、瞳成像和镜组运动。",
+  "description": "从光子、曝光和 CMOS 读出，到噪声、RAW、镜头与整套成像系统。25 个阅读页面、62 道练习答案与资料索引；36 个组件涵盖光子计数与 QE、4T/CDS、单斜坡 ADC、双增益共享噪声、FSI/BSI 与堆栈、光谱响应与同色异谱、二维配准、采样与校准，以及复瞳、双波长 PSF/OTF、瞳成像和镜组运动。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [
@@ -237,6 +237,15 @@
     },
     "dual-readout": {
       "entry": "interactives/dual-readout/index.js"
+    },
+    "metamerism": {
+      "entry": "interactives/metamerism/index.js"
+    },
+    "registration2d": {
+      "entry": "interactives/registration2d/index.js"
+    },
+    "sensor-stack": {
+      "entry": "interactives/sensor-stack/index.js"
     }
   },
   "source": {

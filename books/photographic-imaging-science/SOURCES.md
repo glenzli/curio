@@ -47,6 +47,13 @@
 - Hamamatsu Photonics, [Photon Number Resolving Camera Technology](https://camera.hamamatsu.com/content/dam/hamamatsu-photonics/sites/documents/99_SALES_LIBRARY/sys/SCAS0149E_qCMOS_whitepaper.pdf),
   sections on BSI, DTI, QE, noise and MTF.
 - Sony Semiconductor Solutions, [Pregius/Pregius S Global Shutter Technology](https://www.sony-semicon.com/en/technology/industry/pregius.html).
+- Sony Corporation, [Next-generation Back-Illuminated CMOS Image Sensor](https://www.sony.com/en/SonyInfo/News/Press/201201/12-009E/),
+  23 January 2012, “About stacked CMOS image sensors”; and Sony Semiconductor
+  Solutions, [Pregius S development interview](https://www.sony-semicon.com/en/feature/2021020201.html),
+  2 February 2021, “Schematic cross section of chip”. Checked 18 October 2026.
+  These fix the depicted light-entry side, front-side wiring and separate pixel/
+  logic chip relation in Chapter 6. The animated cross sections are functional
+  teaching drawings, not process masks, measured optical paths or performance models.
 - Brian Guenter et al., [“Highly curved image sensors: a practical approach for
   improved optical performance”](https://www.microsoft.com/en-us/research/publication/highly-curved-image-sensors-practical-approach-improved-optical-performance/),
   *Optics Express* 25(12), 2017, pp. 13010--13023.
@@ -65,6 +72,10 @@
   *ACM Transactions on Graphics* 35(6), 2016.
   The book's horizontal gradient-correlation example is a separate teaching algorithm;
   it does not reproduce this paper's constant-exposure FFT alignment and burst pipeline.
+  The added two-dimensional example directly searches normalized intensity correlation
+  on a fixed common support, with bilinear observation sampling. Equation (8.2b),
+  sign conventions, failure cases and known-shift comparisons are derived and checked
+  in this book; it is not an implementation of the paper's alignment method.
 - Paul E. Debevec and Jitendra Malik, [“Recovering High Dynamic Range Radiance
   Maps from Photographs”](https://people.eecs.berkeley.edu/~malik/papers/debevec-malik97.pdf),
   SIGGRAPH 1997.
@@ -101,6 +112,9 @@
   of Vora-Value for Making a Camera more Colorimetric”](https://arxiv.org/abs/2005.06421),
   2020 preprint, introduction and §2, for the Luther condition and spectral
   sensitivity subspaces. Chapter 7 gives its own integral-form matrix criterion and proof.
+  Its four-band metamerism example declares ideal box responses rather than borrowing
+  measured sensitivities or CIE functions. Null-space construction, changed illuminant
+  and response comparisons, and quadrature checks belong to this teaching model.
 - ITU-R, [Recommendation BT.2100](https://www.itu.int/rec/R-REC-BT.2100/en),
   for the distinction between PQ and HLG in HDR television; Chapter 9 uses only
   their roles, not a complete HDR mastering specification.

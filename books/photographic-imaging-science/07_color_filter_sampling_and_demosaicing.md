@@ -53,6 +53,52 @@ $H_0$ 与 $H_0+\varepsilon q$ 是两个不同的非负光谱，且它们的三�
 光谱与相应响应函数的积分。有限个积分会保留光谱歧义；曲线是否重叠本身不决定
 能否准确匹配人眼色度。*
 
+把命题7.1中的零方向写成四个波段的数字，光谱歧义会更具体。以下取
+400–700 nm内四个等宽的75 nm波段，区间外响应为零，声明一个教学相机的响应矩阵
+
+$$
+S_0=\begin{pmatrix}0&0&1&1\\0&1&1&0\\1&1&0&0\end{pmatrix},
+\qquad \boldsymbol q=(1,-1,1,-1)^{\mathsf T},\qquad S_0\boldsymbol q=0.
+                                                               \tag{7.1a}
+$$
+
+行依次为R、G、B，列从短波到长波。这些理想方窗不是实测CFA响应，也不是人眼
+配色函数。取两块不发光、不荧光的材料，其分段反射率为
+$\boldsymbol\varrho_A=\tfrac12\boldsymbol1+a\boldsymbol q$、
+$\boldsymbol\varrho_B=\tfrac12\boldsymbol1-a\boldsymbol q$，$0\le a\le\tfrac12$，
+因此每项都在 $[0,1]$ 内。照明和几何比例固定时，像面相对谱曝光密度与反射率成正比。
+把照明四波段的相对谱曝光密度记为 $\boldsymbol e$，每通道积分再除以75 nm，则
+
+$$
+\boldsymbol c_A=S_0\operatorname{diag}(\boldsymbol e)\boldsymbol\varrho_A,
+\qquad
+\boldsymbol c_A-\boldsymbol c_B
+=2aS_0\operatorname{diag}(\boldsymbol e)\boldsymbol q.             \tag{7.1b}
+$$
+
+等宽、分段常值的积分直接给出这个矩阵乘法。当 $\boldsymbol e=\boldsymbol1$ 时，
+两块材料的相对线性响应均为 $(1,1,1)^{\mathsf T}$，尽管 $a>0$ 时反射率不同。
+改用非均匀照明，$S_0\boldsymbol q=0$ 一般不能保证
+$S_0\operatorname{diag}(\boldsymbol e)\boldsymbol q=0$。换相机响应也可能打破这对
+材料原有的匹配。白平衡或固定色彩矩阵对相同输入只能给出相同输出，不能从已丢失
+的光谱信息中区分它们。
+
+<div data-mb-component="metamerism">
+
+![互动示意：四波段相机同色异谱及换照明后的响应差](interactives/metamerism/fallback.svg)
+
+*互动示意：四波段相机同色异谱及换照明后的响应差。参照照明下，两条反射率在
+三个相机通道内分别积分到相同值；改变照明形状或R通道的短波响应，原有匹配可能
+消失。图中响应是相对值，不作为显示RGB，也未计算人眼色差。*
+
+</div>
+
+回放按波长累加积分，条形轮廓始终保留完整结果；这只是把求和过程展开，并不表示
+相机依次曝光各个波段。独立波长积分与矩阵点积核对读数，三阶子式则核对零方向。
+例如 $a=0.35$，把照明改为 $(0.4,0.8,1.2,1.6)$，总和仍为4，
+两块材料的相机响应差成为 $(-0.28,0.28,-0.28)$。差别来自光谱形状，不是照明总和。
+本例没有人眼配色函数，因而不能把这些差值称为感知色差。
+
 ## 7.2 Bayer 阵列与空间采样
 
 常见 Bayer 单元为
