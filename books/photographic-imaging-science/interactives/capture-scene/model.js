@@ -1,7 +1,7 @@
 import { pipeline, FULL_WELL, GRAY } from "../ei-monitor/model.js";
 import { shoulder } from "../tone-map/model.js";
-export const WIDTH = 48,
-  HEIGHT = 32;
+import { WIDTH, HEIGHT, sceneEV } from "./scene.js";
+export { WIDTH, HEIGHT, sceneEV, probePixel } from "./scene.js";
 export function parameters(input = {}) {
   const p = {
     exposure: 0,
@@ -33,21 +33,6 @@ export function parameters(input = {}) {
   )
     throw RangeError("Invalid discrete capture scene mode");
   return p;
-}
-export function sceneEV(x, y) {
-  if (
-    !Number.isInteger(x) ||
-    !Number.isInteger(y) ||
-    x < 0 ||
-    x >= WIDTH ||
-    y < 0 ||
-    y >= HEIGHT
-  )
-    throw RangeError("Invalid scene coordinate");
-  if ((x - 40) ** 2 + (y - 25) ** 2 < 18) return 6.3 + 0.1 * (x % 3);
-  if (x >= 26 && x < 45 && y >= 4 && y < 21) return (x + y) % 4 < 2 ? 4.2 : 4.7;
-  if (x >= 5 && x < 22 && y >= 16 && y < 29) return -3.5 + 0.5 * (x % 3);
-  return -4 + (10 * x) / (WIDTH - 1) + 0.3 * Math.cos((2 * Math.PI * y) / 8);
 }
 function display(linear, mapping) {
   return mapping ? shoulder(linear, 0.6) : Math.min(1, Math.max(0, linear));

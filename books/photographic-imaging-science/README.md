@@ -206,7 +206,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 跨章共用的三组展示：
 
 - 第十二、十三章 `psf-image`：已知二维点阵与细线、有限PSF线性卷积、像素面积采样，探针的空间求和另核FFT结果；截取能量与画面裁剪分开。
-- 第五、九、十章 `capture-scene`：同一场景的满阱、RAW、Log与监看；降低监看与未裁切参考并列，保留每层码值、单位与剪切位置。
+- 第五、九、十章 `capture-scene`：窗边静物的满阱、RAW、Log与监看；288×192已知EV场景包含亮窗、织物和杯沿高光，六幅图分组对照，保留每层码值、单位与剪切位置。
 - 第十七章 `repeatability`：平衡嵌套采集、原始矩估计与256次完整重复的均值分布；对焦包围另比选择读数、独立复测及生成峰值。
 
 三组都保留静态图、真值和可暂停回放；恢复时保持暂停。具体定义及复核入口见[展示分析](INTERACTIVE_REVIEW.md)。
