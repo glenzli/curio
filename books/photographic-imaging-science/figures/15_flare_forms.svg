@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 15.4  鬼影、面纱眩光与衍射星芒">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 15.4  鬼影、面纱眩光与衍射星芒</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="36.00" y="100.00" width="276.00" height="368.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="174.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">额外反射像</text>
+<rect x="54.00" y="155.00" width="240.00" height="215.00" rx="5" fill="#23313d" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="66.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="87.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="108.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="129.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="150.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="171.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="192.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="213.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="234.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="255.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<circle cx="247.00" cy="192.00" r="9.00" fill="#fff9dd" stroke="#be8a39" stroke-width="2" opacity="1.0"/>
+<polygon points="178.00,276.00 162.00,303.71 130.00,303.71 114.00,276.00 130.00,248.29 162.00,248.29" fill="#388e9f" stroke="#388e9f" stroke-width="2" opacity="0.45"/>
+<polygon points="121.00,315.00 112.50,329.72 95.50,329.72 87.00,315.00 95.50,300.28 112.50,300.28" fill="#388e9f" stroke="#388e9f" stroke-width="2" opacity="0.45"/>
+<text x="174.00" y="408.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">亮斑轮廓随光源与光阑改变</text>
+<text x="174.00" y="438.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">用额外反射路径解释</text>
+<rect x="362.00" y="100.00" width="276.00" height="368.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="500.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">背景抬升</text>
+<rect x="380.00" y="155.00" width="240.00" height="215.00" rx="5" fill="#23313d" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="392.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="413.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="434.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="455.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="476.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="497.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="518.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="539.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="560.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="581.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<circle cx="573.00" cy="192.00" r="9.00" fill="#fff9dd" stroke="#be8a39" stroke-width="2" opacity="1.0"/>
+<rect x="380.00" y="155.00" width="240.00" height="215.00" rx="5" fill="#e9e3c5" stroke="none" stroke-width="2" opacity="0.3"/>
+<text x="500.00" y="408.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">暗区与亮区同时增加背景</text>
+<text x="500.00" y="438.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">以固定标尺比较局部对比</text>
+<rect x="688.00" y="100.00" width="276.00" height="368.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="826.00" y="129.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">孔径衍射</text>
+<rect x="706.00" y="155.00" width="240.00" height="215.00" rx="5" fill="#23313d" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="718.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="739.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="760.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="781.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="802.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="823.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="844.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="865.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="886.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#334451" stroke="none" stroke-width="2" opacity="1.0"/>
+<rect x="907.00" y="260.00" width="16.00" height="80.00" rx="0" fill="#6e7b86" stroke="none" stroke-width="2" opacity="1.0"/>
+<circle cx="899.00" cy="192.00" r="9.00" fill="#fff9dd" stroke="#be8a39" stroke-width="2" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="941.00" y2="192.00" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="928.70" y2="221.70" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="899.00" y2="234.00" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="869.30" y2="221.70" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="857.00" y2="192.00" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="869.30" y2="162.30" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="899.00" y2="150.00" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<line x1="899.00" y1="192.00" x2="928.70" y2="162.30" stroke="#f7f0e1" stroke-width="1.6" opacity="1.0"/>
+<text x="826.00" y="408.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">点源被孔径的频谱展开</text>
+<text x="826.00" y="438.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">由复瞳与PSF计算形状</text>
+<text x="500.00" y="518.00" fill="#25303b" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">三类机制可能同时出现，先记录光源位置、曝光、光圈和附件</text>
+<text x="500.00" y="555.00" fill="#7a8590" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">形态示意；颜色不代表波长，图案不用于估计真实能量比例</text>
+</svg>

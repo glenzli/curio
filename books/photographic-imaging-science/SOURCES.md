@@ -316,3 +316,47 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
   1.076 at 40° with sinα=0.25. The demonstration is not a real-lens vignetting prediction.
 - MIT 2.71/2.710, [Lecture 6: Aperture stop, entrance and exit pupils](https://ocw.mit.edu/courses/2-71-optics-spring-2009/4579ef815b0fa56546a2c3861ff1a76b_MIT2_71S09_lec06.pdf), 2009-02-23, slides 3–6：光阑、两侧瞳像与主/边缘光线。第11章使用定义并自行推导两薄组共轭式、实际孔径约束和入口圆盘交集；互动光路由本书模型生成，未复制讲义图。
 - Ansys Optics, [How to model colored and Tristimulus Sources](https://optics.ansys.com/hc/en-us/articles/43071101853331-How-to-model-colored-and-Tristimulus-Sources), “Source modeling using measured spectra”：多谱线和权重的输入约定。第12章的探测信号权重、同一像面上的 PSF/OTF 合成和位移相位由书内式 (12.9a)–(12.9b) 推出；不复现商业软件的追迹算法。
+
+## 镜头结构、附件与驱动的补充
+
+以下技术页与说明书于2026年10月19日核对。它们固定结构名称、实际执行器类型或
+具体产品的补偿条件；本书的薄组数值、裁切模型和质量预算由正文另行给定。
+
+- Nikon, Haruo Sato, [The Thousand and One Nights No.81: GN Auto NIKKOR
+  45mm f/2.8](https://imaging.nikon.com/imaging/information/story/0081/),
+  sections IV and VIII; [No.37: W-Nikkor 3.5cm f/2.5](https://imaging.nikon.com/imaging/information/story/0037/index.html),
+  section II; and [No.89](https://imaging.nikon.com/imaging/information/story/0089/).
+  Used for triplet/Tessar, six-element four-group double Gauss, and Sonnar/Gauss
+  construction distinctions in Chapter 16. The interactive uses locally specified
+  equivalent powers and spacings, without copying a glass prescription or claiming
+  those groups predict the source lenses' aberrations.
+- Nikon, [The Thousand and One Nights No.1: NIKKOR-O 2.1cm f/4](https://imaging.nikon.com/imaging/information/story/0001/).
+  Construction background for the near-symmetric wide-angle discussion.
+- Sony, [Breathing Compensation](https://helpguide.sony.net/ilc/2630/v1/en/contents/breathing.html)
+  and [Catalyst Prepare: Lens breathing compensation](https://helpguide.sony.net/di-app/cpv3/v1/en/contents/0403_lens_breathing.html).
+  The documented implementations use cropping and lens correction metadata, with
+  model/mode limitations. Chapter 16 derives a separate planar affine example,
+  provides estimation errors as controls, and distinguishes inverse image mapping
+  from integration blur. It is not an implementation of either product's estimator.
+- Nikon, [Using Teleconverters](https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/using-teleconverters);
+  [Macro Adapter Ring BR-2A/BR-5 instruction sheet](https://cdn-1.nikon-cdn.com/kdb/lensacc/BR2ABR5UM.pdf),
+  one page, English block. Used for multiplier/aperture conventions and reverse
+  mounting. Chapter 18 derives its own negative thin-group converter and conjugate
+  reversal; the parameters do not specify a manufactured accessory.
+- Edmund Optics, [Schneider Macro Imaging Lenses](https://www.edmundoptics.com/f/schneider-macro-imaging-lenses/13668/)
+  and [14.6 mm imaging-lens specification](https://www.edmundoptics.com/document/download/506550),
+  fields “Focusing Range (image plane ~ object)” and “W.D (object ~ G1 lens)”.
+  Used to distinguish sensor-referenced focusing distance, front-referenced working
+  distance and conjugate-dependent macro use. Actual working distance needs its
+  stated mechanical reference; it does not follow from focal length alone.
+- Canon, [RF Lens World: Technology](https://files.canon-europe.com/files/webcontent/rf-lens-world/features/technology/index.html?pop=pop05),
+  sections “Ring-type USM”, “Nano USM”, “STM”, “Voice Coil Motor (VCM)” and “DO Lenses”;
+  [RF Super-telephoto Zoom Lens](https://global.canon/en/technology/canon-tech/tech/rf/),
+  section “Achieving a faster, smoother AF drive”. Used for rotary versus linear
+  ultrasonic output, leadscrew/geared STM and magnetic-force VCM, plus an example
+  with independently driven focusing groups. No general brand ranking is inferred.
+- Texas Instruments, [How to Improve Motion Smoothness and Accuracy of Stepper
+  Motors, SLOA293A](https://www.ti.com/lit/an/sloa293a/sloa293a.pdf),
+  September 2020, revised October 2021, §2.2.3, pp. 6–7. Used for microstep command
+  resolution versus stopping accuracy and available incremental torque. The book's
+  0.5 mm lead, 200 steps, 16 subdivisions and 8 μm backlash are teaching inputs.

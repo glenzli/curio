@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 18.3  延长管与反装时的物像共轭">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 18.3  延长管与反装时的物像共轭</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<text x="90.00" y="133.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">空延长管：50 mm薄镜，从无穷远位置增加25 mm像距</text>
+<line x1="82.00" y1="209.00" x2="908.00" y2="209.00" stroke="#7a8590" stroke-width="1" opacity="1.0"/>
+<line x1="630.00" y1="161.00" x2="630.00" y2="257.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="625.00,170.00 630.00,161.00 635.00,170.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="625.00,248.00 630.00,257.00 635.00,248.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<defs><marker id="arrow-8971ac-3" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L10 5.5L1 10Z" fill="#8971ac"/></marker></defs>
+<line x1="90.00" y1="209.00" x2="90.00" y2="153.00" stroke="#8971ac" stroke-width="3" opacity="1.0" marker-end="url(#arrow-8971ac-3)"/>
+<defs><marker id="arrow-be8a39-3" markerWidth="11" markerHeight="11" refX="10" refY="5.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L10 5.5L1 10Z" fill="#be8a39"/></marker></defs>
+<line x1="900.00" y1="209.00" x2="900.00" y2="237.00" stroke="#be8a39" stroke-width="3" opacity="1.0" marker-end="url(#arrow-be8a39-3)"/>
+<polyline points="90.00,153.00 630.00,237.00 900.00,237.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="90.00,153.00 630.00,209.00 900.00,237.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="90.00,153.00 630.00,181.00 900.00,237.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="90.00" y="278.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">s=150 mm</text>
+<text x="900.00" y="278.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">b=75 mm；m=-0.5</text>
+<text x="70.00" y="350.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">原缩小共轭</text>
+<line x1="62.00" y1="426.00" x2="463.00" y2="426.00" stroke="#7a8590" stroke-width="1" opacity="1.0"/>
+<line x1="390.83" y1="378.00" x2="390.83" y2="474.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="385.83,387.00 390.83,378.00 395.83,387.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="385.83,465.00 390.83,474.00 395.83,465.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="70.00" y1="426.00" x2="70.00" y2="370.00" stroke="#8971ac" stroke-width="3" opacity="1.0" marker-end="url(#arrow-8971ac-3)"/>
+<line x1="455.00" y1="426.00" x2="455.00" y2="437.20" stroke="#be8a39" stroke-width="3" opacity="1.0" marker-end="url(#arrow-be8a39-3)"/>
+<polyline points="70.00,370.00 390.83,454.00 455.00,437.20" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="70.00,370.00 390.83,426.00 455.00,437.20" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="70.00,370.00 390.83,398.00 455.00,437.20" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="70.00" y="495.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">s=300 mm</text>
+<text x="455.00" y="495.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">b=60 mm；m=-0.2</text>
+<text x="555.00" y="350.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">交换共轭并倒转</text>
+<line x1="547.00" y1="426.00" x2="938.00" y2="426.00" stroke="#7a8590" stroke-width="1" opacity="1.0"/>
+<line x1="617.50" y1="378.00" x2="617.50" y2="474.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="612.50,387.00 617.50,378.00 622.50,387.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="612.50,465.00 617.50,474.00 622.50,465.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="555.00" y1="426.00" x2="555.00" y2="414.80" stroke="#8971ac" stroke-width="3" opacity="1.0" marker-end="url(#arrow-8971ac-3)"/>
+<line x1="930.00" y1="426.00" x2="930.00" y2="482.00" stroke="#be8a39" stroke-width="3" opacity="1.0" marker-end="url(#arrow-be8a39-3)"/>
+<polyline points="555.00,414.80 617.50,454.00 930.00,482.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="555.00,414.80 617.50,426.00 930.00,482.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="555.00,414.80 617.50,398.00 930.00,482.00" fill="none" stroke="#316fa4" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="555.00" y="495.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">s=60 mm</text>
+<text x="930.00" y="495.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">b=300 mm；m=-5</text>
+<text x="500.00" y="540.00" fill="#25303b" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">延长管改变像距；光路倒转且交换共轭，使倍率成为倒数</text>
+<text x="500.00" y="574.00" fill="#7a8590" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">反装不改变理想薄镜焦距；实际倍率还需安装距离、主平面和对焦状态</text>
+</svg>

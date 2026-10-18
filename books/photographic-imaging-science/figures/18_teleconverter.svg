@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 18.2  负增距组改变会聚角与像面位置">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 18.2  负增距组改变会聚角与像面位置</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<text x="500.00" y="104.00" fill="#25303b" font-size="24" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">100 mm f/4 → 理想2倍增距 → 200 mm f/8</text>
+<line x1="55.00" y1="282.00" x2="917.00" y2="282.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="5 5"/>
+<line x1="100.00" y1="157.00" x2="100.00" y2="407.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="95.00,166.00 100.00,157.00 105.00,166.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="95.00,398.00 100.00,407.00 105.00,398.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="202.00" x2="580.00" y2="362.00" stroke="#8971ac" stroke-width="2" opacity="1.0"/>
+<polyline points="575.00,202.00 580.00,211.00 585.00,202.00" fill="none" stroke="#8971ac" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="575.00,362.00 580.00,353.00 585.00,362.00" fill="none" stroke="#8971ac" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="58.00,372.00 100.00,372.00 580.00,300.00 820.00,282.00" fill="none" stroke="#316fa4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="300.00" x2="700.00" y2="282.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="4 4"/>
+<polyline points="58.00,327.00 100.00,327.00 580.00,291.00 820.00,282.00" fill="none" stroke="#316fa4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="291.00" x2="700.00" y2="282.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="4 4"/>
+<polyline points="58.00,282.00 100.00,282.00 580.00,282.00 820.00,282.00" fill="none" stroke="#316fa4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="282.00" x2="700.00" y2="282.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="4 4"/>
+<polyline points="58.00,237.00 100.00,237.00 580.00,273.00 820.00,282.00" fill="none" stroke="#316fa4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="273.00" x2="700.00" y2="282.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="4 4"/>
+<polyline points="58.00,192.00 100.00,192.00 580.00,264.00 820.00,282.00" fill="none" stroke="#316fa4" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="580.00" y1="264.00" x2="700.00" y2="282.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="4 4"/>
+<defs><marker id="arrow-316fa4-2.5" markerWidth="10.0" markerHeight="10.0" refX="9.0" refY="5.0" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L9.0 5.0L1 9.0Z" fill="#316fa4"/></marker></defs>
+<line x1="268.00" y1="282.00" x2="352.00" y2="282.00" stroke="#316fa4" stroke-width="2.5" opacity="1.0" marker-end="url(#arrow-316fa4-2.5)"/>
+<line x1="700.00" y1="160.00" x2="700.00" y2="425.00" stroke="#7a8590" stroke-width="2" opacity="1.0" stroke-dasharray="6 4"/>
+<line x1="820.00" y1="160.00" x2="820.00" y2="425.00" stroke="#be8a39" stroke-width="4" opacity="1.0"/>
+<text x="100.00" y="460.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">主镜 0</text>
+<text x="580.00" y="460.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">负组 80</text>
+<text x="700.00" y="460.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">原焦面100</text>
+<text x="820.00" y="460.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">新焦面120</text>
+<text x="500.00" y="503.00" fill="#25303b" font-size="22" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">负组焦距−40 mm；原余下20 mm像程增加为40 mm</text>
+<text x="500.00" y="550.00" fill="#7a8590" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">蓝实线为实际传播，灰虚线为不加负组的参考；z用mm，横纵比例不同</text>
+</svg>

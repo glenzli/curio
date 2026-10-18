@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 16.2  常见镜组的等效光焦度与胶合分组">
+<defs>
+<marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
+<marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
+</defs>
+<rect width="1000" height="600" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 16.2  常见镜组的等效光焦度与胶合分组</text>
+<line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<rect x="36.00" y="88.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="174.00" y="117.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">三片式</text>
+<line x1="56.00" y1="189.00" x2="292.00" y2="189.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="4 4"/>
+<line x1="80.00" y1="151.00" x2="80.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="75.00,160.00 80.00,151.00 85.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="75.00,218.00 80.00,227.00 85.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="80.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="174.00" y1="151.00" x2="174.00" y2="227.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="169.00,151.00 174.00,160.00 179.00,151.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="169.00,227.00 174.00,218.00 179.00,227.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="174.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="268.00" y1="151.00" x2="268.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="263.00,160.00 268.00,151.00 273.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="263.00,218.00 268.00,227.00 273.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="268.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="221.00" y1="141.00" x2="221.00" y2="174.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="221.00" y1="204.00" x2="221.00" y2="237.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<text x="174.00" y="263.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">三片分离；正—负—正</text>
+<rect x="362.00" y="88.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="500.00" y="117.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Tessar式</text>
+<line x1="382.00" y1="189.00" x2="618.00" y2="189.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="4 4"/>
+<line x1="406.00" y1="151.00" x2="406.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="401.00,160.00 406.00,151.00 411.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="401.00,218.00 406.00,227.00 411.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="406.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="500.00" y1="151.00" x2="500.00" y2="227.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="495.00,151.00 500.00,160.00 505.00,151.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="495.00,227.00 500.00,218.00 505.00,227.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="500.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="594.00" y1="151.00" x2="594.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="589.00,160.00 594.00,151.00 599.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="589.00,218.00 594.00,227.00 599.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="594.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="547.00" y1="141.00" x2="547.00" y2="174.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="547.00" y1="204.00" x2="547.00" y2="237.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<text x="500.00" y="263.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">后胶合双片合成一个等效组</text>
+<rect x="688.00" y="88.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="826.00" y="117.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">双高斯式</text>
+<line x1="708.00" y1="189.00" x2="944.00" y2="189.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="4 4"/>
+<line x1="732.00" y1="151.00" x2="732.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="727.00,160.00 732.00,151.00 737.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="727.00,218.00 732.00,227.00 737.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="732.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="794.67" y1="151.00" x2="794.67" y2="227.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="789.67,151.00 794.67,160.00 799.67,151.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="789.67,227.00 794.67,218.00 799.67,227.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="794.67" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="857.33" y1="151.00" x2="857.33" y2="227.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="852.33,151.00 857.33,160.00 862.33,151.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="852.33,227.00 857.33,218.00 862.33,227.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="857.33" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="920.00" y1="151.00" x2="920.00" y2="227.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="915.00,160.00 920.00,151.00 925.00,160.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="915.00,218.00 920.00,227.00 925.00,218.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="920.00" y="247.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="826.00" y1="141.00" x2="826.00" y2="174.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="826.00" y1="204.00" x2="826.00" y2="237.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<text x="826.00" y="263.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光阑两侧近对称</text>
+<rect x="36.00" y="293.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="174.00" y="322.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">反望远式</text>
+<line x1="56.00" y1="394.00" x2="292.00" y2="394.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="4 4"/>
+<line x1="80.00" y1="356.00" x2="80.00" y2="432.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="75.00,356.00 80.00,365.00 85.00,356.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="75.00,432.00 80.00,423.00 85.00,432.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="80.00" y="452.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="268.00" y1="356.00" x2="268.00" y2="432.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="263.00,365.00 268.00,356.00 273.00,365.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="263.00,423.00 268.00,432.00 273.00,423.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="268.00" y="452.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="174.00" y1="346.00" x2="174.00" y2="379.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="174.00" y1="409.00" x2="174.00" y2="442.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<text x="174.00" y="468.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">前负后正，保留后焦空间</text>
+<rect x="362.00" y="293.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="500.00" y="322.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">望远式</text>
+<line x1="382.00" y1="394.00" x2="618.00" y2="394.00" stroke="#7a8590" stroke-width="1" opacity="1.0" stroke-dasharray="4 4"/>
+<line x1="406.00" y1="356.00" x2="406.00" y2="432.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<polyline points="401.00,365.00 406.00,356.00 411.00,365.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="401.00,423.00 406.00,432.00 411.00,423.00" fill="none" stroke="#316fa4" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="406.00" y="452.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">+</text>
+<line x1="594.00" y1="356.00" x2="594.00" y2="432.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
+<polyline points="589.00,356.00 594.00,365.00 599.00,356.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="589.00,432.00 594.00,423.00 599.00,432.00" fill="none" stroke="#bd5b54" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="594.00" y="452.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">−</text>
+<line x1="500.00" y1="346.00" x2="500.00" y2="379.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<line x1="500.00" y1="409.00" x2="500.00" y2="442.00" stroke="#25303b" stroke-width="3" opacity="1.0"/>
+<text x="500.00" y="468.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">前正后负，缩短轴向像程</text>
+<rect x="688.00" y="293.00" width="276.00" height="188.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="826.00" y="322.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">“片”与“组”分别计数</text>
+<rect x="726.00" y="351.00" width="77.00" height="60.00" rx="0" fill="#e7eff7" stroke="#316fa4" stroke-width="1" opacity="1.0"/>
+<rect x="803.00" y="351.00" width="77.00" height="60.00" rx="0" fill="#f7f0e1" stroke="#be8a39" stroke-width="1" opacity="1.0"/>
+<text x="765.00" y="388.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">玻璃1</text>
+<text x="841.00" y="388.00" fill="#25303b" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">玻璃2</text>
+<text x="826.00" y="440.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">两片胶合 → 一个胶合组</text>
+<text x="826.00" y="467.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">再按一阶作用选取等效平面</text>
+<text x="500.00" y="531.00" fill="#25303b" font-size="21" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">薄组符号定位一阶作用；箭头向外为正，向内为负</text>
+<text x="500.00" y="566.00" fill="#7a8590" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">结构名称与示意组序不能替代曲率、玻璃、厚度和物距组成的完整处方</text>
+</svg>

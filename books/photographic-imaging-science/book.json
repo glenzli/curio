@@ -3,7 +3,7 @@
   "formatVersion": 1,
   "id": "photographic-imaging-science",
   "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
-  "description": "从光子、曝光和CMOS读出，到噪声、RAW、镜头与整套成像系统。25个阅读页面、70道练习答案；65个组件贯通成像链、吸收收集、校准漂移、采样与颜色、局部HDR、DNG、厚透镜、宽谱衍射、焦面测量与光学结构。含二维列校准残差、重复PTC估计散布、多频Bayer采样，以及亚像素重建、双反射鬼影和等面积光阑的离焦PSF对照。保留已知真值、静态图和可恢复的实验参数。",
+  "description": "从光子、曝光和CMOS读出，到噪声、颜色、RAW与整套镜头成像。序章及18章正文配有可恢复参数的实验、光路回放和静态图，涵盖常见镜组、眩光、数字稳像与呼吸补偿、尺寸减重、增距和近摄附件及对焦驱动。计算保留已知输入与独立对照，练习均附答案。",
   "author": "glenzli",
   "language": "zh-CN",
   "chapters": [
@@ -96,6 +96,11 @@
       "id": "system-testing",
       "title": "第十七章：怎样读 MTF、测试镜头并分析整套成像系统",
       "file": "17_lens_testing_and_system_analysis.md"
+    },
+    {
+      "id": "lens-engineering",
+      "title": "第十八章：镜头尺寸、近摄附件与对焦驱动",
+      "file": "18_lens_size_accessories_and_focus_drives.md"
     },
     {
       "id": "appendix-a",
@@ -333,6 +338,21 @@
     },
     "bayer-texture": {
       "entry": "interactives/bayer-texture/index.js"
+    },
+    "lens-layouts": {
+      "entry": "interactives/lens-layouts/index.js"
+    },
+    "pupil-size": {
+      "entry": "interactives/pupil-size/index.js"
+    },
+    "optical-accessories": {
+      "entry": "interactives/optical-accessories/index.js"
+    },
+    "digital-framing": {
+      "entry": "interactives/digital-framing/index.js"
+    },
+    "veiling-flare": {
+      "entry": "interactives/veiling-flare/index.js"
     }
   },
   "source": {

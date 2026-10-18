@@ -52,6 +52,7 @@ EXPECTED_EXERCISES = {
     15: 5,
     16: 3,
     17: 5,
+    18: 5,
 }
 EXPECTED_FIGURES = {
     0: 0,
@@ -69,9 +70,10 @@ EXPECTED_FIGURES = {
     12: 4,
     13: 3,
     14: 2,
-    15: 3,
-    16: 3,
+    15: 4,
+    16: 4,
     17: 3,
+    18: 4,
 }
 FORBIDDEN = (
     "TODO",
@@ -130,8 +132,8 @@ def validate_interactive_fallback(path: Path, text: str, match: re.Match, compon
 def main() -> None:
     markdown = sorted(ROOT.glob("*.md"))
     chapters = [path for path in markdown if CHAPTER_RE.match(path.name)]
-    if len(chapters) != 18:
-        fail(f"expected 18 numbered chapters, found {len(chapters)}")
+    if len(chapters) != 19:
+        fail(f"expected 19 numbered chapters, found {len(chapters)}")
 
     for path in markdown:
         text = path.read_text(encoding="utf-8")
@@ -306,8 +308,8 @@ def main() -> None:
                 fail(f"unknown equation reference ({reference}) in {path.name}")
 
     figure_paths = sorted(path.resolve() for path in FIGURE_ROOT.glob("*.svg"))
-    if len(figure_paths) != 49:
-        fail(f"expected 49 generated SVG figures, found {len(figure_paths)}")
+    if len(figure_paths) != 55:
+        fail(f"expected 55 generated SVG figures, found {len(figure_paths)}")
     if set(figure_paths) != set(referenced_figures):
         missing = sorted(
             str(path.relative_to(ROOT))

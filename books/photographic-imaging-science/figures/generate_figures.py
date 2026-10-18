@@ -1249,7 +1249,7 @@ def figure_16_lens_architectures() -> None:
 
 
 def figure_16_depth_of_field() -> None:
-    s = SVG("图 16.2  对焦平面前后的弥散圈")
+    s = SVG("图 16.3  对焦平面前后的弥散圈")
     lens_x, sensor_x, axis = 300, 760, 300
     s.line(70, axis, 930, axis, color=GRAY, width=1.5, dash="8 6")
     draw_lens(s, lens_x, axis, 260)
@@ -1273,7 +1273,7 @@ def figure_16_depth_of_field() -> None:
 
 
 def figure_16_stabilization() -> None:
-    s = SVG("图 16.3  角抖动、像移与防抖补偿")
+    s = SVG("图 16.4  角抖动、像移与防抖补偿")
     s.panel(55, 95, 420, 390, "未补偿")
     s.panel(525, 95, 420, 390, "移动光学组 / 传感器补偿")
     for base_x, compensated in [(55, False), (525, True)]:
@@ -1357,6 +1357,193 @@ def figure_17_test_protocol() -> None:
     s.save("17_test_protocol.svg")
 
 
+def engineering_thin_group(s, x, y, half, positive=True, color=BLUE):
+    s.line(x, y-half, x, y+half, color=color, width=2)
+    for yy, sign in [(y-half, 1), (y+half, -1)]:
+        tip = yy if positive else yy+9*sign
+        base = yy+9*sign if positive else yy
+        s.polyline([(x-5,base),(x,tip),(x+5,base)],color=color,width=2)
+
+
+def figure_15_flare_forms():
+    s=SVG("图 15.4  鬼影、面纱眩光与衍射星芒")
+    for x,label,kind in [(36,"额外反射像","ghost"),(362,"背景抬升","veil"),(688,"孔径衍射","star")]:
+        s.panel(x,100,276,368,label)
+        s.rect(x+18,155,240,215,fill="#23313d",stroke="none",radius=5)
+        for i in range(10):
+            s.rect(x+30+i*21,260,16,80,fill="#6e7b86" if i%2 else "#334451",stroke="none",radius=0)
+        s.circle(x+211,192,9,fill="#fff9dd",stroke=AMBER,sw=2)
+        if kind=="ghost":
+            for cx,cy,r in [(x+110,276,32),(x+68,315,17)]:
+                pts=[(cx+r*math.cos(j*math.pi/3),cy+r*math.sin(j*math.pi/3)) for j in range(6)]
+                s.polygon(pts,fill=CYAN,stroke=CYAN,opacity=.45)
+            desc=["亮斑轮廓随光源与光阑改变","用额外反射路径解释"]
+        elif kind=="veil":
+            s.rect(x+18,155,240,215,fill="#e9e3c5",stroke="none",opacity=.30,radius=5)
+            desc=["暗区与亮区同时增加背景","以固定标尺比较局部对比"]
+        else:
+            for j in range(8):
+                angle=j*math.pi/4
+                s.line(x+211,192,x+211+42*math.cos(angle),192+42*math.sin(angle),color=PALE_AMBER,width=1.6)
+            desc=["点源被孔径的频谱展开","由复瞳与PSF计算形状"]
+        for j,line in enumerate(desc):s.text(x+138,408+j*30,line,size=17,anchor="middle")
+    s.text(500,518,"三类机制可能同时出现，先记录光源位置、曝光、光圈和附件",size=21,anchor="middle")
+    s.text(500,555,"形态示意；颜色不代表波长，图案不用于估计真实能量比例",size=18,color=GRAY,anchor="middle")
+    s.save("15_flare_forms.svg")
+
+
+def figure_16_classical_layouts():
+    s=SVG("图 16.2  常见镜组的等效光焦度与胶合分组")
+    cases=[("三片式",[1,-1,1],"三片分离；正—负—正"),
+           ("Tessar式",[1,-1,1],"后胶合双片合成一个等效组"),
+           ("双高斯式",[1,-1,-1,1],"光阑两侧近对称"),
+           ("反望远式",[-1,1],"前负后正，保留后焦空间"),
+           ("望远式",[1,-1],"前正后负，缩短轴向像程")]
+    for i,(title,powers,caption) in enumerate(cases):
+        x=36+(i%3)*326;y=88+(i//3)*205
+        s.panel(x,y,276,188,title)
+        yc=y+101
+        s.line(x+20,yc,x+256,yc,color=GRAY,width=1,dash="4 4")
+        xs=[x+44+j*188/(len(powers)-1) for j in range(len(powers))]
+        for xx,p in zip(xs,powers):
+            engineering_thin_group(s,xx,yc,38,p>0,BLUE if p>0 else RED)
+            s.text(xx,yc+58,"+" if p>0 else "−",size=18,anchor="middle")
+        stop=(xs[1]+xs[2])/2 if len(xs)==3 else (xs[1]+xs[2])/2 if len(xs)==4 else (xs[0]+xs[1])/2
+        s.line(stop,yc-48,stop,yc-15,width=3)
+        s.line(stop,yc+15,stop,yc+48,width=3)
+        s.text(x+138,y+175,caption,size=15,anchor="middle")
+    x,y=688,293
+    s.panel(x,y,276,188,"“片”与“组”分别计数")
+    s.rect(x+38,y+58,77,60,fill=PALE_BLUE,stroke=BLUE,sw=1,radius=0)
+    s.rect(x+115,y+58,77,60,fill=PALE_AMBER,stroke=AMBER,sw=1,radius=0)
+    s.text(x+77,y+95,"玻璃1",size=16,anchor="middle")
+    s.text(x+153,y+95,"玻璃2",size=16,anchor="middle")
+    s.text(x+138,y+147,"两片胶合 → 一个胶合组",size=17,anchor="middle")
+    s.text(x+138,y+174,"再按一阶作用选取等效平面",size=15,anchor="middle")
+    s.text(500,531,"薄组符号定位一阶作用；箭头向外为正，向内为负",size=21,anchor="middle")
+    s.text(500,566,"结构名称与示意组序不能替代曲率、玻璃、厚度和物距组成的完整处方",size=17,color=GRAY,anchor="middle")
+    s.save("16_classical_layouts.svg")
+
+
+def figure_18_pupil_clearance():
+    s=SVG("图 18.1  入瞳、实际光孔与前部通光空间")
+    diameter=100;length=40;angle=math.radians(8)
+    front=diameter+2*length*math.tan(angle)
+    x0,x1,axis=155,545,286
+    sy=2.0
+    s.text(350,106,"空前部空间：ℓ=40 mm，半视场8°",size=21,anchor="middle")
+    s.line(65,axis,655,axis,color=GRAY,width=1,dash="5 5")
+    for a,color in [(-angle,AMBER),(0,BLUE),(angle,PURPLE)]:
+        for sign in [-1,1]:
+            y1=sign*diameter/2
+            y0=y1-length*math.tan(a)
+            s.line(x0,axis-sy*y0,x1,axis-sy*y1,color=color,width=2.4,arrow=True,opacity=.8)
+    for lo,hi in [(137,axis-sy*front/2),(axis+sy*front/2,435)]:
+        s.line(x0,lo,x0,hi,width=6)
+    s.line(x1,axis-sy*diameter/2,x1,axis+sy*diameter/2,color=BLUE,width=4)
+    s.text(x0,470,"前开口≥111.24 mm",size=20,anchor="middle")
+    s.text(x1,470,"入瞳100 mm",size=20,color=BLUE,anchor="middle")
+    s.text(x0,139,"前部开口",size=18,anchor="middle")
+    s.text(x1,139,"入瞳参考面",size=18,anchor="middle")
+    s.rect(706,135,246,325,fill="#fafbfc",stroke=LIGHT,sw=1,radius=8)
+    s.text(829,171,"另看瞳与实际光孔",size=19,anchor="middle")
+    s.circle(829,265,64,fill=PALE_BLUE,stroke=BLUE,sw=2)
+    s.circle(829,265,64/1.5,fill=PALE_AMBER,stroke=AMBER,sw=2)
+    s.text(829,367,"M入瞳=1.5",size=20,anchor="middle")
+    s.text(829,400,"实际光孔66.67 mm",size=18,anchor="middle")
+    s.text(500,526,"开孔大小、入瞳大小与前筒通光余量，需要分别计算",size=22,anchor="middle")
+    s.text(500,563,"前部模型限定为空气且无折射面；右图比较直径，不是前组光路",size=18,color=GRAY,anchor="middle")
+    s.save("18_pupil_clearance.svg")
+
+
+def figure_18_teleconverter():
+    s=SVG("图 18.2  负增距组改变会聚角与像面位置")
+    px=lambda z:100+6*z
+    py=lambda y:282-15*y
+    s.text(500,104,"100 mm f/4 → 理想2倍增距 → 200 mm f/8",size=24,anchor="middle")
+    s.line(55,282,917,282,color=GRAY,width=1,dash="5 5")
+    engineering_thin_group(s,px(0),282,125,True,BLUE)
+    engineering_thin_group(s,px(80),282,80,False,PURPLE)
+    for y in [-6,-3,0,3,6]:
+        y2=y*(1-80/100)
+        s.polyline([(px(-7),py(y)),(px(0),py(y)),(px(80),py(y2)),(px(120),py(0))],color=BLUE,width=2.5)
+        s.line(px(80),py(y2),px(100),py(0),color=GRAY,width=1.5,dash="4 4")
+    s.arrow(px(28),282,px(42),282,color=BLUE,width=2.5)
+    s.line(px(100),160,px(100),425,color=GRAY,width=2,dash="6 4")
+    s.line(px(120),160,px(120),425,color=AMBER,width=4)
+    for z,label in [(0,"主镜 0"),(80,"负组 80"),(100,"原焦面100"),(120,"新焦面120")]:
+        s.text(px(z),460,label,size=18,anchor="middle")
+    s.text(500,503,"负组焦距−40 mm；原余下20 mm像程增加为40 mm",size=22,anchor="middle")
+    s.text(500,550,"蓝实线为实际传播，灰虚线为不加负组的参考；z用mm，横纵比例不同",size=18,color=GRAY,anchor="middle")
+    s.save("18_teleconverter.svg")
+
+
+def figure_18_macro_conjugates():
+    s=SVG("图 18.3  延长管与反装时的物像共轭")
+    def conjugate(x,y,width,a,b,height,label):
+        px=lambda z:x+width*z/(a+b)
+        sy=14
+        s.text(x,y-76,label,size=19)
+        s.line(x-8,y,x+width+8,y,color=GRAY,width=1)
+        engineering_thin_group(s,px(a),y,48,True,BLUE)
+        s.arrow(px(0),y,px(0),y-sy*height,color=PURPLE,width=3)
+        s.arrow(px(a+b),y,px(a+b),y+sy*height*b/a,color=AMBER,width=3)
+        for h in [-2,0,2]:
+            s.polyline([(px(0),y-sy*height),(px(a),y-sy*h),(px(a+b),y+sy*height*b/a)],color=BLUE,width=1.8)
+        s.text(x,y+69,f"s={a:g} mm",size=17)
+        s.text(x+width,y+69,f"b={b:g} mm；m={-b/a:g}",size=17,anchor="end")
+    conjugate(90,209,810,150,75,4,"空延长管：50 mm薄镜，从无穷远位置增加25 mm像距")
+    conjugate(70,426,385,300,60,4,"原缩小共轭")
+    conjugate(555,426,375,60,300,.8,"交换共轭并倒转")
+    s.text(500,540,"延长管改变像距；光路倒转且交换共轭，使倍率成为倒数",size=21,anchor="middle")
+    s.text(500,574,"反装不改变理想薄镜焦距；实际倍率还需安装距离、主平面和对焦状态",size=17,color=GRAY,anchor="middle")
+    s.save("18_macro_conjugates.svg")
+
+
+def figure_18_focus_drives():
+    s=SVG("图 18.4  转动传动、音圈直驱与超声摩擦驱动")
+    for x,title in [(30,"旋转 → 丝杠位移"),(354,"音圈：电磁力直驱"),(678,"超声：振动与摩擦")]:
+        s.panel(x,105,292,382,title)
+    s.circle(105,242,39,fill=PALE_BLUE,stroke=BLUE,sw=2)
+    for j in range(4):
+        a=j*math.pi/2
+        s.line(105+15*math.cos(a),242+15*math.sin(a),105+32*math.cos(a),242+32*math.sin(a),color=BLUE,width=5)
+    s.arrow(76,192,133,192,color=AMBER,width=2.5)
+    s.text(105,322,"转子",size=18,anchor="middle")
+    s.text(243,327,"镜组滑块",size=16,color=GREEN,anchor="middle")
+    s.line(149,242,295,242,color=GRAY,width=9)
+    for x in range(157,295,11):s.line(x-4,251,x+4,233,color=INK,width=1.4)
+    s.rect(221,217,43,50,fill=PALE_GREEN,stroke=GREEN,sw=2)
+    s.arrow(221,292,279,292,color=GREEN,width=3)
+    s.text(176,366,"导程 p / 每转",size=19,anchor="middle")
+    s.text(176,418,"指令细分 ≠ 实际位置精度",size=17,anchor="middle")
+    s.rect(425,186,146,28,fill=PALE_RED,stroke=RED,sw=2)
+    s.rect(425,316,146,28,fill=PALE_BLUE,stroke=BLUE,sw=2)
+    s.text(498,207,"N",size=18,anchor="middle")
+    s.text(498,337,"S",size=18,anchor="middle")
+    s.arrow(451,225,451,303,color=GRAY,width=2.5)
+    s.text(432,266,"B",size=19,anchor="end")
+    s.rect(490,236,81,53,fill=PALE_GREEN,stroke=GREEN,sw=2)
+    s.circle(514,261,12,stroke=INK,sw=2)
+    s.circle(514,261,3,fill=INK,stroke=INK)
+    s.arrow(547,261,613,261,color=GREEN,width=3)
+    s.text(604,242,"F",size=19,color=GREEN,anchor="middle")
+    s.text(575,307,"镜组滑块",size=16,color=GREEN,anchor="middle")
+    s.text(500,372,"有效线段电流朝纸外",size=17,anchor="middle")
+    s.text(500,418,"F ≈ K_F I；位置另由反馈控制",size=16,anchor="middle")
+    wave=[(706+i,270+10*math.sin(i/243*6*math.pi)) for i in range(244)]
+    s.polyline(wave,color=BLUE,width=4)
+    s.rect(716,235,218,25,fill=PALE_AMBER,stroke=AMBER,sw=2,radius=2)
+    s.arrow(894,210,760,210,color=AMBER,width=3)
+    s.arrow(721,319,928,319,color=BLUE,width=2.5)
+    s.text(824,346,"行波传播",size=17,color=BLUE,anchor="middle")
+    s.text(824,372,"接触面振动带动上方滑块/转子",size=15,anchor="middle")
+    s.text(824,418,"图示为局部侧视，不按振幅比例",size=15,anchor="middle")
+    s.text(500,535,"镜组质量、传动、位置传感与伺服共同决定到位过程",size=22,anchor="middle")
+    s.text(500,572,"功能示意：直线输出既可来自电磁力，也可来自压电超声驱动",size=18,color=GRAY,anchor="middle")
+    s.save("18_focus_drives.svg")
+
+
 FIGURES = [
     figure_01_radiance_geometry,
     figure_01_fnumber_exposure,
@@ -1401,12 +1588,18 @@ FIGURES = [
     figure_15_asphere_profile,
     figure_15_pf_dispersion,
     figure_15_ar_coating,
+    figure_15_flare_forms,
     figure_16_lens_architectures,
+    figure_16_classical_layouts,
     figure_16_depth_of_field,
     figure_16_stabilization,
     figure_17_mtf_chart,
     figure_17_slanted_edge_pipeline,
     figure_17_test_protocol,
+    figure_18_pupil_clearance,
+    figure_18_teleconverter,
+    figure_18_macro_conjugates,
+    figure_18_focus_drives,
 ]
 
 

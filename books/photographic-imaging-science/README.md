@@ -8,7 +8,7 @@
 
 许可：[CC BY-NC-ND 4.0](../../LICENSE)。
 
-状态：修订稿。全书含序章及 17 章正文、49 幅可复现技术图、70 道练习及逐题答案。
+状态：修订稿。全书含序章及 18 章正文、55 幅可复现技术图、75 道练习及逐题答案。
 本轮修订重写叙述、补充技术推导，并核对关键公式与一手资料；尚无真实器材数据集的
 实验验证。具体审校范围见 [修订与核验记录](CONTENT_CLOSURE_AUDIT.md)。
 
@@ -30,7 +30,7 @@ $$
 写作约束见 [SKILL.md](SKILL.md)，符号见 [NOTATION.md](NOTATION.md)，资料源见
 [SOURCES.md](SOURCES.md)，逐章来源用途见 [CHAPTER_SOURCE_NOTES.md](CHAPTER_SOURCE_NOTES.md)。
 习题答案见 [SOLUTIONS.md](SOLUTIONS.md)，术语检索见 [TERM_INDEX.md](TERM_INDEX.md)。
-49 幅编号技术图由 [generate_figures.py](figures/generate_figures.py) 生成，SVG 源文件位于
+55 幅编号技术图由 [generate_figures.py](figures/generate_figures.py) 生成，SVG 源文件位于
 [figures](figures/)；图版按模型参数生成，器材测量数据另行注明。
 
 ## 第一部分：光、曝光与传感器
@@ -59,6 +59,7 @@ $$
 15. [第十五章：非球面、Fresnel、PF/DO 与镀膜](15_aspheres_fresnel_diffractive_optics_and_coatings.md)
 16. [第十六章：镜头结构、对焦、变焦、防抖与远心性](16_lens_architectures_focus_zoom_and_stabilization.md)
 17. [第十七章：怎样读 MTF、测试镜头并分析整套成像系统](17_lens_testing_and_system_analysis.md)
+18. [第十八章：镜头尺寸、近摄附件与对焦驱动](18_lens_size_accessories_and_focus_drives.md)
 
 ## 附录
 
@@ -76,10 +77,10 @@ $$
 ## 图版与校验
 
 全书已接入 [Markdown Book](https://github.com/glenzli/markdown-book) 格式 v1。
-[book.json](book.json) 按阅读顺序列出序章、17 章正文、两篇附录、符号表、答案、术语
-与资料页，共 25 个阅读页面。Markdown、49 幅 SVG 和互动模型仍是仓库中的源文件，
-阅读器从同一套源文件生成本地预览和静态网站。当前有 65 个组件、73 处章节插入，
-17 章正文均有演示；另外保留44张组件自带的无编号静态回退。
+[book.json](book.json) 按阅读顺序列出序章、18 章正文、两篇附录、符号表、答案、术语
+与资料页，共 26 个阅读页面。Markdown、55 幅 SVG 和互动模型仍是仓库中的源文件，
+阅读器从同一套源文件生成本地预览和静态网站。当前有 70 个组件、78 处章节插入，
+18 章正文均有演示；另外保留49张组件自带的无编号静态回退。
 从光子计数与 QE、单斜坡 ADC、双增益共享噪声，到曝光积累、4T/CDS、平场校准、采样与配准，以及
 浮动对焦、呼吸、景深和其他光学演示。演示按内容采用条件比较、可暂停回放或三维光路。模型与测试位于
 [interactives](interactives/)；逐章选择理由及后续安排见
@@ -101,7 +102,7 @@ node ../markdown-book/bin/markdown-book.js build books/photographic-imaging-scie
 `open_reader`，传入本书目录的绝对路径。侧栏和会话面板复用同一阅读器，支持章节
 导航、公式、静态图和各组互动；修改源文件后会更新预览。
 
-重新生成49幅编号图：
+重新生成55幅编号图：
 
 ```bash
 python3 books/photographic-imaging-science/figures/generate_figures.py
@@ -187,7 +188,13 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十六章 `telecentric`：光阑位置、入瞳/出瞳、两侧主光线与物/像面轴向偏移；独立几何和矩阵追迹互核，离焦跨度单列。
 - 第十七章 `edge`：逐行差分质心与直边拟合，再做法向投影、ESF、LSF、DFT 及差分修正；拟合几何、已知几何与解析 MTF 分别对照，无效拟合与空箱停止报告。
 
-以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。全书另有49幅编号技术图和44张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
+- 第十五章 veiling-flare：固定电子刻度下的面纱眩光、Michelson对比与理想扣均值后的散粒噪声。
+- 第十六章 lens-layouts：三片式、Tessar、双高斯、反望远和望远型的等效组；局部/完整光路与矩阵、逐线对照。
+- 第十六章 digital-framing：帧间平移、呼吸尺度、共同裁切及曝光内拖影；缺失画幅和给定估计误差单列。
+- 第十八章 pupil-size：入瞳、实际光孔、空前部通光包络与圆柱毛坯质量。
+- 第十八章 optical-accessories：空延长管、负组增距镜与交换共轭的反装；各页签保留自己的参数和静态对照。
+
+以上模型均属于本书；`interactives/common/` 只共用展示、控件、会话适配、页签与有限回放生命周期。各组件保留 SVG 回退，正常阅读无需脚本。全书另有55幅编号技术图和49张组件自带的无编号静态示意。图中的教学模型与厂商数据分开，不能用来评价某支真实镜头。`make check` 包含解析模型的边界、单位及数值积分检验。
 
 静态实验示意采用 `互动示意：` 开头的替代文本与相邻图注，放在对应的
 `data-mb-component` 容器中，图源为组件入口旁的 `fallback.svg`。书稿检查单独核对
