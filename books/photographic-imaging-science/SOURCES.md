@@ -284,7 +284,7 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
 规范受版权或获取条件约束。本书只重述主线所需定义和可公开核验部分，不复制标准
 文本。标准中的合格性测试、容差和设备认证不属于本书内部闭包。
 
-## 本轮展示的补充来源
+## 互动演示的补充来源
 
 - Analog Devices, [MT-010: The Importance of Data Converter Static Specifications](https://www.analog.com/media/en/training-seminars/tutorials/mt-010.pdf),
   pp. 4–7, Figures 5–8: INL reference-line choices and DNL code widths. Chapter 3

@@ -31,7 +31,7 @@ $$
 [SOURCES.md](SOURCES.md)，逐章来源用途见 [CHAPTER_SOURCE_NOTES.md](CHAPTER_SOURCE_NOTES.md)。
 习题答案见 [SOLUTIONS.md](SOLUTIONS.md)，术语检索见 [TERM_INDEX.md](TERM_INDEX.md)。
 48 幅编号技术图由 [generate_figures.py](figures/generate_figures.py) 生成，SVG 源文件位于
-[figures](figures/)；它们是机制图或解析曲线，不冒充具体器材实测。
+[figures](figures/)；图版按模型参数生成，器材测量数据另行注明。
 
 ## 第一部分：光、曝光与传感器
 
@@ -152,7 +152,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第六章 `sensor-stack`：分层展开FSI、BSI与逻辑堆栈，回放入光与电子路径，独立核对层序和功能晶圆归属。
 - 第六章 `shutter`：逐行曝光的慢速回放、匀速物体的行内模糊与行间倾斜，以及静止场景的正弦照明条带。
 - 第六章 `shutter-timing`：滚动与全局快门共用毫秒时间轴，联动当前时刻、代表行和曝光状态；与 `shutter` 共用物理时序及播放生命周期。
-- 第七章 `metamerism`：四波段反射率、相机响应与积分回放，比较换照明和换响应；点积、波长积分及独立零方向互核，不冒充人眼色差。
+- 第七章 `metamerism`：四波段反射率、相机响应与积分回放，比较换照明和换响应；点积、波长积分及独立零方向互核，读数采用相机通道差，感知色差另需人眼配色函数。
 - 第七章 `white-balance`：同批三通道观测的均值、标准差和相关性；白平衡后接教学矩阵，协方差乘积与潜在噪声源展开独立对照。
 - 第七章 `sampling`：连续正弦、像素盒积分、采样相位与基带折返；0.50 cycles/pixel 的边界相位单独展示。
 - 第七章 `bayer`：RGGB 的方形/菱形频率单元、方向和格点相位；双线性插值只读 CFA 观测，输入真值和每通道等效基带正弦独立保留。
@@ -175,7 +175,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第十五章 `pf`：等宽相位量化、非设计波长与深度误差；逐段 Fourier 积分、中点积分及设计效率真值对照，图外级次余量单列。
 - 第十五章 `coating`：单层相消与多层膜两个页签。保留精确单层复振幅，新增两/四/六层次序及厚度误差；特征矩阵、界面递推、理想四分之一波导纳相互核对。
 - 第十五章 `oblique-coating`：回放入射角扫描，按Snell重新计算s/p导纳和相位；矩阵与完整电场Fresnel递推比较复振幅和能流，保留Brewster、零膜厚与正入射匹配。
-- 第十五章 `ghost`：两片完整球面教学处方的指定双反射路径，逐段展示往返折射、孔径截断和s/p功率；独立近轴矩阵与正入射乘积对照。
+- 第十五章 `ghost`：S1–S2与S3–S4分别围成两片玻璃，预设、①②反射标号和步骤框直接对应；蓝色的去程、返程、再次向右行程与灰色主光路并列，保留孔径截断、s/p功率和独立近轴对照。
 - 第十六章 `focus`：近轴薄透镜、光束与弥散圈的三维对焦；容许直径、景深近远界和独立边缘追迹读数。
 - 第十六章 `floating`：有限对焦下的两组协同与固定远景方向，比较只移动后组与同时约束角尺度；独立二次消元、矩阵和逐面求解对照，行程不足时停止自动运动。
 - 第十六章 `dof`：近远界、超焦距、无穷远和输出判据；边缘光线二分求解与解析式独立核对，收紧判据不改变光束。
@@ -193,7 +193,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 第3章的列ADC误差、第7章的白平衡噪声传播，以及第5、9章共用的EI监看链均已纳入当前展示。支持会话接口的阅读器会恢复控件、种子、预设与播放步骤；恢复后暂停。讨论草稿可附上打开时的实验参数、读数和模型条件。
 
 
-本轮全书分析后的补充：
+按章节组织的展示：
 
 - 序章与附录B：成像链分步展示、带单位的光子/采样/衍射/SNR换算。
 - 第2、4、7、8章：吸收与收集深度、旧校准漂移、插值空间协方差、局部运动与观测权重。
@@ -203,7 +203,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 - 第1、3、5、16章补条件比较与阅读步骤，复用已充分覆盖的演示。完整逐章取舍见
   [展示分析](INTERACTIVE_REVIEW.md)，没有为凑数量重复已有模型。
 
-本轮补充三组展示，共增加六处插入：
+跨章共用的三组展示：
 
 - 第十二、十三章 `psf-image`：已知二维点阵与细线、有限PSF线性卷积、像素面积采样，探针的空间求和另核FFT结果；截取能量与画面裁剪分开。
 - 第五、九、十章 `capture-scene`：同一场景的满阱、RAW、Log与监看；降低监看与未裁切参考并列，保留每层码值、单位与剪切位置。
@@ -211,7 +211,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 
 三组都保留静态图、真值和可暂停回放；恢复时保持暂停。具体定义及复核入口见[展示分析](INTERACTIVE_REVIEW.md)。
 
-随后补充三组观测展示，沿用原模型的ADC、平场采集与RGGB格点：
+观测与估计的三组展示，沿用原模型的ADC、平场采集与RGGB格点：
 
 - 第三章 `column-stripes`：二维列条带、均匀校准帧与固定尺度残差；逐行核对，零偏置参考列和无偏置真值分开。
 - 第四章 `ptc-repeat`：24套完整PTC的增益和读噪估计散布；同一观测比较成对差分与空间方差，保留真值、有效次数及样本标准差。

@@ -12,6 +12,7 @@ import {
   paraxial,
   normalWeight,
 } from "./model.js";
+import { glassProfiles, pathProjection } from "./figures.js";
 const near = (a, b, e = 1e-9) => assert.ok(Math.abs(a - b) < e, `${a} vs ${b}`);
 test("ghost spherical intersections lie on the intended cap, not the opposite sphere wall", () => {
   for (const s of surfaces)
@@ -125,4 +126,67 @@ test("ghost rejects invalid geometry controls", () => {
     { progress: 2 },
   ])
     assert.throws(() => parameters(p));
+});
+
+test("ghost glass fills join the intended front and rear caps with positive material thickness", () => {
+  for (const lens of glassProfiles()) {
+    const front = surfaces[lens.front],
+      back = surfaces[lens.back];
+    near(lens.n, front.right);
+    near(lens.n, back.left);
+    assert.equal(lens.points.length, 162);
+    for (let i = 0; i < 81; i++) {
+      const a = lens.points[i],
+        b = lens.points[161 - i];
+      near(a[1], b[1]);
+      near(a[0], sag(front, a[1]));
+      near(b[0], sag(back, b[1]));
+      assert.ok(b[0] > a[0]);
+    }
+    near(lens.points[40][0], front.z);
+    near(lens.points[121][0], back.z);
+  }
+});
+test("ghost displayed propagation legs preserve actual endpoints and change direction only after each reflection", () => {
+  for (const pair of [0, 1, 2]) {
+    const ray = ghost({ pair, angle: 0, stop: 6 }).secondary[20],
+      n = ray.points.length - 1;
+    const whole = pathProjection(ray, 1);
+    assert.equal(whole.segments.length, n);
+    for (const s of whole.segments) {
+      assert.equal(s.from, ray.points[s.index]);
+      assert.equal(s.to, ray.points[s.index + 1]);
+      assert.equal(
+        s.leg,
+        ray.interactions.filter(
+          (e) => e.kind === "R" && ray.points.indexOf(e.point) <= s.index,
+        ).length,
+      );
+      assert.equal(Math.sign(s.to[0] - s.from[0]), s.leg === 1 ? -1 : 1);
+    }
+    let ordinal = 0;
+    for (const e of ray.interactions.filter((e) => e.kind === "R")) {
+      const boundary = ray.points.indexOf(e.point) / n;
+      assert.equal(pathProjection(ray, boundary - 1e-6).currentLeg, ordinal);
+      assert.equal(pathProjection(ray, boundary + 1e-6).currentLeg, ++ordinal);
+    }
+    const midway = pathProjection(ray, 2.5 / n).segments.at(-1);
+    for (let axis = 0; axis < 2; axis++)
+      near(midway.to[axis], (ray.points[2][axis] + ray.points[3][axis]) / 2);
+    assert.equal(pathProjection(ray, 0).segments.length, 0);
+  }
+});
+test("ghost partial display ends at the physical obstruction without fabricating the selected reflections", () => {
+  const ray = ghost({ angle: 4, stop: 0.5 }).secondary[20],
+    full = pathProjection(ray, 1);
+  assert.equal(ray.reason, "光阑截断");
+  near(full.segments.at(-1).to[0], 8);
+  assert.equal(full.currentLeg, 0);
+  assert.ok(full.reached.every((e) => e.kind === "T"));
+  assert.equal(full.location, ray.reason);
+  for (const progress of [0.1, 0.5, 0.9]) {
+    const p = pathProjection(ray, progress);
+    assert.ok(p.segments.every((s) => s.to[0] <= 8));
+    assert.equal(p.currentLeg, 0);
+  }
 });

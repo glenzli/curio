@@ -60,7 +60,7 @@ export function mount({ element, signal, session }) {
       },
     ],
     content: `<style>.actions button{font-size:11px;padding:4px 8px}.actions button[aria-pressed="true"]{background:#448b981c;border-color:#448b98}.controls{grid-template-columns:1fr 1fr}.truth{font-size:11px;border:1px solid #9caea244;border-radius:6px;padding:12px;margin:14px 0}.stats strong{font-size:20px}.measurements{font-size:12px;line-height:1.9}.measurements strong{font-variant-numeric:tabular-nums}.equation{font-family:ui-monospace,monospace;font-size:11px;overflow-wrap:anywhere}@media(max-width:550px){.chart text{font-size:18px}.chart svg>text:nth-last-of-type(2){transform:translateY(6px)}.chart svg>text:last-of-type{transform:translateY(-6px)}.controls,.stats{grid-template-columns:1fr}.stats>div{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}}</style><p class="reading" data-mode></p><div class="stats" data-stats></div><div class="chart" data-chart></div><div class="legend" data-key></div><p class="measurements" data-observed></p><p class="reading" data-reading aria-live="polite"></p><div class="truth" data-truth></div>`,
-    note: "教学电路：PPD满阱40,000 e⁻，LCG=20 µV/e⁻、HCG=80 µV/e⁻，可用电压摆幅0.8 V。上游噪声1.5 e⁻，模拟增益后的电压噪声80 µV，均独立于Poisson光电子。显示1024次有符号、减黑后的模拟读数，未加ADC量化，不预裁负值；电荷满阱和电压上限分别裁切。曲线仅在远离裁切时表示线性SNR；接近上限时以观测裁切比例判断。LCG/HCG不是任何相机的通用ISO档位，这里也不模拟DGO同次读出融合。",
+    note: "教学电路：PPD满阱40,000 e⁻，LCG=20 µV/e⁻、HCG=80 µV/e⁻，可用电压摆幅0.8 V。上游噪声1.5 e⁻，模拟增益后的电压噪声80 µV，均独立于Poisson光电子。显示1024次有符号、减黑后的模拟读数，未加ADC量化，不预裁负值；电荷满阱和电压上限分别裁切。曲线仅在远离裁切时表示线性SNR；接近上限时以观测裁切比例判断。LCG/HCG表示此电路的两种转换增益，具体ISO档位需由相机读出链确定；同次双读出融合见下一组实验。",
     update(root, s) {
       const input = p(s),
         m = gainMetrics(input),

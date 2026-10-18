@@ -33,7 +33,7 @@ export function mount({ element, signal, session }) {
       { label: "输入超出白点", values: { probeEV: 1 } },
     ],
     content: `<div class="chart" data-chart></div><div class="legend" data-legend></div><div class="stats" data-stats></div><p class="reading">暗部渐变：线性输入 0 → 1/64，三条均反解为线性值，统一提升 6 档并用 Gamma 2.2 显示。</p><div class="stripes" data-ramps style="grid-template-columns:1fr"></div><p class="reading" data-probe aria-live="polite"></p><p class="reading" data-clipping></p>`,
-    note: "模型只隔离编码量化，不模拟噪声、色彩、上游 ADC 或真实显示器。满量程前的线性输入先裁到 [0,1]；量化取最近整数码，码域为 0…2ᵇ−1。教学 Log 采用式 (9.3) 的连续一阶导数拼接：xₜ = s = 2⁻¹²，并归一化为 f(0)=0、f(1)=1；它不是任何厂商的 Log 曲线。码值跨度可以是小数，不等于该区间内不同整数码的数量。渐变仅用于观察编码误差，屏幕自身的量化也会影响外观。",
+    note: "模型只隔离编码量化，不模拟噪声、色彩、上游 ADC 或真实显示器。满量程前的线性输入先裁到 [0,1]；量化取最近整数码，码域为 0…2ᵇ−1。教学 Log 采用式 (9.3) 的连续一阶导数拼接：xₜ = s = 2⁻¹²，并归一化为 f(0)=0、f(1)=1；曲线参数与式 (9.3) 一致。码值跨度可以是小数，不等于该区间内不同整数码的数量。渐变仅用于观察编码误差，屏幕自身的量化也会影响外观。",
     update(root, state) {
       const maximum = 2 ** state.bits - 1;
       const lines = curves.map((curve) => ({ ...curve,

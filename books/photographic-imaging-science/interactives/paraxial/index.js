@@ -66,7 +66,7 @@ export function mount({ element, signal, session }) {
       { label: "两组重合", values: { gap: 0 } },
     ],
     content: `<style>.actions button{font-size:11px;padding:4px 8px}.ray-view svg{display:block;width:100%;height:auto}.ray-view text{fill:currentColor;font:11px ui-sans-serif,sans-serif}.ray-details{display:grid;grid-template-columns:1fr 1.2fr;gap:18px}.ray-details>section{min-width:0}.ray-details h4{font-size:12px;font-weight:500;margin:12px 0 8px}.matrix{display:grid;grid-template-columns:1fr 1fr;gap:8px;border-inline:1px solid #9caea2;padding:7px 12px;font-size:13px;font-variant-numeric:tabular-nums}.matrix small{font-size:10px;opacity:.65}.truth{font-size:11px;line-height:1.9;border:1px solid #9caea255;border-radius:6px;padding:12px 14px;margin:14px 0;overflow-wrap:anywhere}.cardinal{font-size:11px;line-height:1.9}.stats strong{font-size:20px}@media(max-width:650px){.ray-details{grid-template-columns:1fr}.stats{gap:6px}.stats strong{font-size:16px}.stats small,.stats em{font-size:9px}.ray-view{margin-inline:-8px}.ray-view text{font-size:13px}}</style><p class="reading" data-mode></p><div class="stats" data-stats></div><div class="ray-view" data-diagram></div><p class="reading" data-reading aria-live="polite"></p><div class="ray-details"><section><h4>前组入射面 → 后组出射面的矩阵</h4><div class="matrix" data-matrix></div><p class="note">A、D 无量纲；B 为 mm；C 为 mm⁻¹。主平面虚线只标位置，不是镜片。</p></section><section><h4>主平面与像面</h4><div class="cardinal" data-cardinal></div></section></div><div class="truth" data-truth></div>`,
-    note: "空气中的两薄镜组，轴对称、小角度、无像差；D = m⁻¹，换算到 mm⁻¹ 后作矩阵运算。前组截面取 y = −0.5…0.5 mm 的五条光线，有限物点高度为 0.25 mm。竖线仅标镜组位置，不代表真实口径、光阑或机械截光。图中虚像由出射线反向延长得到；视窗外的交点和主平面仍在读数中报告。本例不计算色差、衍射、瞳或实际镜头处方。",
+    note: "空气中的两薄镜组，轴对称、小角度、无像差；D = m⁻¹，换算到 mm⁻¹ 后作矩阵运算。前组截面取 y = −0.5…0.5 mm 的五条光线，有限物点高度为 0.25 mm。竖线标出薄镜组位置，口径与机械截光在孔径实验中另算。图中虚像由出射线反向延长得到；视窗外的交点和主平面仍在读数中报告。计算限于近轴成像，色差、衍射与瞳像另见对应实验。",
     update(root, state) {
       const p = { ...state, sensor: state.gap + state.rearDistance };
       const m = lensSystem(p), d = diagram(p, m);
@@ -86,7 +86,7 @@ export function mount({ element, signal, session }) {
         + (d.offscreen ? " 交点位于绘图窗口之外，保留数值读数。" : "")
         + (m.maxAngle > 0.1 ? " 当前角度偏大，应重新评估近轴近似。" : "");
       const delta = m.imageDistance === null || m.tracedDistance === null ? "两条路径均无有限交点" : `交距差 = ${Math.abs(m.imageDistance - m.tracedDistance).toExponential(2)} mm`;
-      root.querySelector("[data-truth]").innerHTML = `<strong>独立对照</strong><br>矩阵成像条件：q = ${mm(m.imageDistance)}；逐面改变倾角并求交：q = ${mm(m.tracedDistance)}。${delta}。<br>解析光焦度 Φ₁ + Φ₂ − dΦ₁Φ₂ = ${m.analyticPower.toFixed(6)} D；矩阵 −C = ${m.matrixPower.toFixed(6)} D。<br>AD − BC = ${m.determinant.toFixed(9)}。逐面追迹未读取总矩阵；二者都使用同一近轴物理假设，吻合不代表已校正真实镜头的像差。`;
+      root.querySelector("[data-truth]").innerHTML = `<strong>独立对照</strong><br>矩阵成像条件：q = ${mm(m.imageDistance)}；逐面改变倾角并求交：q = ${mm(m.tracedDistance)}。${delta}。<br>解析光焦度 Φ₁ + Φ₂ − dΦ₁Φ₂ = ${m.analyticPower.toFixed(6)} D；矩阵 −C = ${m.matrixPower.toFixed(6)} D。<br>AD − BC = ${m.determinant.toFixed(9)}。逐面追迹未读取总矩阵；两种算法采用相同的近轴假设；像差校正还需高阶光线追迹。`;
       [...root.querySelectorAll(".actions button")][4].textContent = state.finite ? "还原平行入射" : "有限物距";
     },
   });
