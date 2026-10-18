@@ -40,6 +40,10 @@
   The paired-flat-field interactive also uses §2.5, Eqs. (16)--(18), for mean
   subtraction and half the difference variance. It uses the N−1 sample denominator
   for its small ROI and declares its own simulation and fit-selection conditions.
+  The repeated-PTC lesson uses the same recorded moments across 24 independently
+  resampled acquisitions conditional on one fixed ROI response map. Its parameter
+  sample SD, observed-only refitting and known-truth comparisons are book-local
+  calculations, not confidence intervals or a standard conformity evaluation.
   The correlation/calibration tab is a separate Gaussian random-effects teaching
   model. Its per-frame row/column noise, two-way variance estimates and shared-dark
   covariance are derived in Chapter 4; they are not presented as the standard's
@@ -104,6 +108,10 @@
   Chapter 7 derives its RGGB sampling cosets, reciprocal-lattice frequency cells
   and phase corrections directly; the neutral-sinusoid and bilinear examples
   do not reproduce a proprietary demosaicing pipeline.
+  The multi-frequency extension superposes three declared sinusoidal components,
+  derives Gaussian/box responses, and constructs channel-specific effective-image
+  aliases after filtering. Equality is checked on every actual CFA sample, while
+  interpolation error is evaluated separately on a common interior region.
 - ARRI, [ARRI LogC4 Logarithmic Color Space Specification](https://www.arri.com/resource/blob/278790/db65b86066de1f74852edb8f15acf082/2023-05-arri-logc4-specification-data.pdf),
   May 2023, §3.1 hardware EI gain and §4.1 EI-independent decoding curve.
 - ARRI, [Dynamic Range White Paper](https://www.arri.com/resource/blob/295460/e10ff8a5b3abf26c33f8754379b57442/2022-09-28-arri-dynamic-range-whitepaper-data.pdf),

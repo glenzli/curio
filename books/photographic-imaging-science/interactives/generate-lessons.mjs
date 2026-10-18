@@ -22,6 +22,9 @@ const ids = [
   "subpixel",
   "ghost",
   "defocus",
+  "column-stripes",
+  "ptc-repeat",
+  "bayer-texture",
 ];
 for (const id of ids) {
   const folder = new URL(`./${id}/`, import.meta.url);
