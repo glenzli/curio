@@ -264,3 +264,5 @@ test("wave rejects unsupported grids, invalid scales and nonfinite coefficients"
   );
   assert.throws(() => directCorrelation(pupil(), 0.2), RangeError);
 });
+
+import "./reading.test.js";

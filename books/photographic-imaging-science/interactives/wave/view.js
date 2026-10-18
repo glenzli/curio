@@ -2,124 +2,36 @@ import { experiment, plot, legend } from "../common/ui.js";
 import { replay } from "../common/replay.js";
 import {
   propagate,
-  amplitudeAt,
   indexAt,
   otfAt,
   directCorrelation,
   polarAmplitude,
-  airyRelative,
   circularOtf,
   defocusOnAxis,
-  phasorTrace,
 } from "./model.js";
-
+import { diskIntensity, diskAmplitude } from "./circle-reference.js";
+import {
+  readingPoint,
+  migratingSession,
+  HALF_FIELD_UM,
+  REFERENCE_SCALE_UM,
+  FOCAL_MM,
+} from "./reading.js";
+import { drawPupil, drawPsf, crosshair, phasors, overlap } from "./figures.js";
 const fmt = (v, n = 4) => (Math.abs(v) < 0.5 * 10 ** -n ? 0 : v).toFixed(n);
 const complex = (z) =>
   `${fmt(z[0])} ${z[1] < -0.00005 ? "−" : "+"} ${fmt(Math.abs(z[1]))}i`;
 const zero = { defocus: 0, astigmatism: 0, coma: 0, spherical: 0 };
-const localStyle = `<style>
-.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.wave-card{min-width:0;border:1px solid #9caea244;border-radius:7px;padding:14px}.wave-card h4{margin:0 0 8px;font-size:14px}.wave-card p{font-size:11px;min-height:3em}.wave-card canvas,.wave-card svg{display:block;width:100%;max-width:260px;aspect-ratio:1;margin:auto;border-radius:4px}.wave-card svg{height:auto}.wave-card canvas{background:#10171c}.wave-card svg text{fill:currentColor;font-size:12px}.wave-card.active{outline:2px solid #496c8c;outline-offset:1px}.wave-plots .chart text{font-size:13px}.wave-truth{padding:14px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px;font-size:11px;font-variant-numeric:tabular-nums}.wave-truth p{opacity:.85;margin:5px 0}.wave-truth strong{font-weight:600}.wave-process{font-size:12px;min-height:3.4em}.wave-display{margin:5px 0}.wave-map-scale{font-size:10px;text-align:center}.wave-grid .number{font-variant-numeric:tabular-nums}.wave-profile-note{font-size:11px}
-@media(max-width:550px){.wave-grid{grid-template-columns:1fr}.wave-card{padding:12px}.wave-plots .chart text{font-size:16px}.stats{grid-template-columns:1fr 1fr}.stats>div:last-child{grid-column:1/-1}.wave-truth{font-size:12px}.wave-truth p{overflow-wrap:anywhere}}
+const style = `<style>
+.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.wave-card{min-width:0;border:1px solid #9caea244;border-radius:7px;padding:14px}.wave-card h4{margin:0 0 8px;font-size:14px}.wave-card p{font-size:11px;min-height:3em}.wave-card canvas,.wave-card svg{display:block;width:100%;max-width:280px;aspect-ratio:1;margin:auto;border-radius:4px}.wave-card svg{height:auto}.wave-card canvas{background:#10171c}.wave-card svg text{fill:currentColor;font-size:12px}.wave-plots .chart text{font-size:13px}.wave-truth{padding:14px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px;font-size:11px;font-variant-numeric:tabular-nums}.wave-truth p{opacity:.85;margin:5px 0}.wave-process{font-size:12px;padding:12px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px}.wave-display{margin:5px 0}.wave-map-scale,.wave-profile-note{font-size:11px}.wave-map{position:relative;max-width:280px;margin:auto}.wave-map .probe-overlay{position:absolute;inset:0;pointer-events:none}.wave-sum-control{display:grid;gap:6px;font-size:11px;margin:10px 0}.wave-sum-control span{display:flex;justify-content:space-between}.wave-sum-control input{width:100%}.wave-how{font-size:11px;line-height:1.8;padding:10px 0}.wave-truth summary{cursor:pointer;font-weight:600}
+@media(max-width:550px){.wave-grid{grid-template-columns:1fr}.wave-card{padding:12px}.wave-plots .chart text{font-size:14px}.stats{grid-template-columns:1fr}.wave-truth{font-size:12px}.wave-truth p{overflow-wrap:anywhere}}
 </style>`;
-
-function mapPupil(canvas, g) {
-  const size = 160,
-    ctx = canvas.getContext("2d"),
-    image = ctx.createImageData(size, size);
-  for (let y = 0; y < size; y++)
-    for (let x = 0; x < size; x++) {
-      const i = Math.round((x / (size - 1) - 0.5) * g.p.diameter * 1.12),
-        j = Math.round((y / (size - 1) - 0.5) * g.p.diameter * 1.12);
-      const k = indexAt(g, i + g.size / 2, j + g.size / 2),
-        phase = Math.atan2(g.imaginary[k], g.real[k]) / Math.PI;
-      const inside = g.real[k] ** 2 + g.imaginary[k] ** 2 > 0.5,
-        at = (y * size + x) * 4;
-      // A cyclic phase palette: -pi and +pi meet at the same color, zero is pale.
-      const hue = (phase + 1) * Math.PI;
-      const color = inside
-        ? [
-            140 + 105 * Math.cos(hue),
-            140 + 105 * Math.cos(hue - (2 * Math.PI) / 3),
-            140 + 105 * Math.cos(hue + (2 * Math.PI) / 3),
-          ]
-        : [16, 23, 28];
-      color.forEach((v, c) => (image.data[at + c] = v));
-      image.data[at + 3] = 255;
-    }
-  canvas.width = size;
-  canvas.height = size;
-  ctx.putImageData(image, 0, 0);
-}
-function mapPsf(canvas, g, enhanced) {
-  const size = 160,
-    ctx = canvas.getContext("2d"),
-    image = ctx.createImageData(size, size);
-  const referencePeak = g.count / (g.size * g.size * g.imageStepUm ** 2);
-  for (let y = 0; y < size; y++)
-    for (let x = 0; x < size; x++) {
-      const i = (x / (size - 1) - 0.5) * 10 * g.p.padding,
-        j = (y / (size - 1) - 0.5) * 10 * g.p.padding;
-      const a = Math.floor(i),
-        b = Math.floor(j),
-        u = i - a,
-        v = j - b;
-      // Display interpolation only. All profiles, integrals and OTF use the original samples.
-      const value =
-        (1 - u) * (1 - v) * g.psf[indexAt(g, a, b)] +
-        u * (1 - v) * g.psf[indexAt(g, a + 1, b)] +
-        (1 - u) * v * g.psf[indexAt(g, a, b + 1)] +
-        u * v * g.psf[indexAt(g, a + 1, b + 1)];
-      const relative = value / referencePeak;
-      const gray = Math.round(
-        255 *
-          Math.max(
-            0,
-            Math.min(
-              1,
-              enhanced
-                ? Math.log1p(1000 * relative) / Math.log(1001)
-                : relative,
-            ),
-          ),
-      );
-      const at = (y * size + x) * 4;
-      image.data[at] = image.data[at + 1] = image.data[at + 2] = gray;
-      image.data[at + 3] = 255;
-    }
-  canvas.width = size;
-  canvas.height = size;
-  ctx.putImageData(image, 0, 0);
-}
-function phasors(trace, progress) {
-  const last = Math.max(
-    1,
-    Math.min(trace.length - 1, Math.ceil(progress * (trace.length - 1))),
-  );
-  const shown = trace.slice(0, last + 1),
-    x = (v) => 130 + v * 105,
-    y = (v) => 130 - v * 105;
-  const path = shown
-    .map((z, i) => `${i ? "L" : "M"}${x(z[0])},${y(z[1])}`)
-    .join(" ");
-  const end = shown.at(-1);
-  return `<svg viewBox="0 0 260 260" role="img" aria-label="按瞳面条带累计的复振幅相量"><path d="M20 130H242M130 240V18" stroke="currentColor" opacity=".25"/><circle cx="130" cy="130" r="105" fill="none" stroke="currentColor" opacity=".12"/><path d="${path}" fill="none" stroke="#648cac" stroke-width="2"/><path d="M130 130L${x(end[0])} ${y(end[1])}" stroke="#b78952" stroke-width="2"/><circle cx="${x(end[0])}" cy="${y(end[1])}" r="4" fill="#b78952"/><text x="242" y="149" text-anchor="end">Re</text><text x="139" y="21">Im</text><text x="18" y="254">累计 ${last} / 32 条带 · 圆半径 1</text></svg>`;
-}
-function overlap(rho, aberrated, z) {
-  if (aberrated) {
-    const x = 130 + 100 * z[0],
-      y = 130 - 100 * z[1];
-    return `<svg viewBox="0 0 260 260" role="img" aria-label="所选频率的复 OTF，保留实部、虚部和相位"><circle cx="130" cy="130" r="100" fill="none" stroke="currentColor" opacity=".2"/><path d="M20 130H244M130 240V15" stroke="currentColor" opacity=".25"/><path d="M130 130L${x} ${y}" stroke="#ad844d" stroke-width="3"/><circle cx="${x}" cy="${y}" r="4" fill="#ad844d"/><text x="239" y="149">Re</text><text x="140" y="21">Im</text><text x="130" y="254" text-anchor="middle">|H| = ${fmt(Math.hypot(...z), 3)}</text></svg>`;
-  }
-  const d = 110 * rho;
-  return `<svg viewBox="0 0 260 260" role="img" aria-label="圆瞳及其平移副本的几何重叠，平移量为两倍归一化频率"><circle cx="${130 - d / 2}" cy="121" r="55" fill="#648cac" fill-opacity=".35" stroke="#648cac"/><circle cx="${130 + d / 2}" cy="121" r="55" fill="#ad844d" fill-opacity=".35" stroke="#ad844d"/><path d="M${130 - d / 2} 196H${130 + d / 2}" stroke="currentColor"/><text x="130" y="219" text-anchor="middle">平移 ${fmt(2 * rho, 2)} 个瞳半径</text><text x="130" y="247" text-anchor="middle">重叠面积 / π = ${fmt(circularOtf(rho), 3)}</text></svg>`;
-}
-
 export function mountWave({ element, signal, session, aberrations = false }) {
   let cachedKey,
     g,
     truth,
-    enhanced = true,
-    drawnKey;
+    drawnKey,
+    enhanced = true;
   const controls = aberrations
     ? [
         ...[
@@ -141,7 +53,7 @@ export function mountWave({ element, signal, session, aberrations = false }) {
           label: "OTF 探针频率",
           min: 0,
           max: 1,
-          step: 1 / 64,
+          step: 1 / 128,
           value: 0.5,
           format: (v) => `${fmt(v, 3)} νc`,
         },
@@ -149,7 +61,7 @@ export function mountWave({ element, signal, session, aberrations = false }) {
     : [
         {
           key: "fNumber",
-          label: "光圈 f 数",
+          label: "光圈 f 数 · 看孔径和点像",
           min: 2,
           max: 22,
           step: 0.5,
@@ -158,7 +70,7 @@ export function mountWave({ element, signal, session, aberrations = false }) {
         },
         {
           key: "wavelengthNm",
-          label: "波长",
+          label: "波长 · 看衍射尺度",
           min: 400,
           max: 700,
           step: 10,
@@ -166,42 +78,33 @@ export function mountWave({ element, signal, session, aberrations = false }) {
           format: (v) => `${v} nm`,
         },
         {
-          key: "probe",
-          label: "像面探针位置",
+          key: "probeUm",
+          label: "像面取样位置 · 黄色十字",
           min: 0,
-          max: 3,
-          step: 0.25,
-          value: 1,
-          format: (v) => `${fmt(v, 2)} λN`,
+          max: 22,
+          step: 0.1,
+          value: 4.4,
+          format: (v) => `${fmt(v, 1)} μm`,
         },
         {
-          key: "rho",
-          label: "OTF 探针频率",
+          key: "frequencyLpMm",
+          label: "要传递的纹理频率",
           min: 0,
-          max: 1,
-          step: 1 / 64,
-          value: 0.5,
-          format: (v) => `${fmt(v, 3)} νc`,
-        },
-        {
-          key: "progress",
-          label: "计算步骤",
-          min: 0,
-          max: 100,
-          step: 1,
-          value: 100,
-          format: (v) => `${Math.round(v)}%`,
+          max: 400,
+          step: 0.01,
+          value: 60,
+          format: (v) => `${fmt(v, 2)} lp/mm`,
         },
       ];
   const presets = aberrations
     ? [
         { label: "理想圆瞳", values: zero },
-        ...[
-          ["defocus", "离焦"],
-          ["astigmatism", "像散"],
-          ["coma", "彗差"],
-          ["spherical", "球差"],
-        ].map(([key, label]) => ({
+        ...Object.entries({
+          defocus: "离焦",
+          astigmatism: "像散",
+          coma: "彗差",
+          spherical: "球差",
+        }).map(([key, label]) => ({
           label: `${label} 0.12 λ`,
           values: { ...zero, [key]: 0.12 },
         })),
@@ -213,181 +116,245 @@ export function mountWave({ element, signal, session, aberrations = false }) {
         },
       ]
     : [
-        { label: "从复瞳开始", values: { progress: 0 } },
-        { label: "查看全部", values: { progress: 100 } },
-        { label: "第一暗环附近", values: { probe: 1.25, progress: 100 } },
-        { label: "截止频率", values: { rho: 1, progress: 100 } },
+        { label: "f/4：大孔径", values: { fNumber: 4, sumProgress: 1 } },
+        { label: "f/16：小孔径", values: { fNumber: 16, sumProgress: 1 } },
+        { label: "中心：同相相加", values: { probeUm: 0, sumProgress: 1 } },
+        {
+          label: "第一暗环：相互抵消",
+          values: (s) => ({
+            probeUm: 1.2196698912665 * s.wavelengthNm * 0.001 * s.fNumber,
+            sumProgress: 1,
+          }),
+        },
+        {
+          label: "f/8半截止",
+          values: {
+            frequencyLpMm: 113.64,
+            fNumber: 8,
+            wavelengthNm: 550,
+            sumProgress: 1,
+          },
+        },
+        {
+          label: "细纹理超过截止",
+          values: { frequencyLpMm: 350, fNumber: 16, sumProgress: 1 },
+        },
       ];
   return experiment({
     element,
     signal,
-    session,
-    kicker: aberrations ? "第十三章 · 波前与成像" : "第十二章 · 标量衍射",
+    session: migratingSession(session, aberrations),
+    version: 2,
+    kicker: aberrations
+      ? "第十三章 · 波前与成像"
+      : "第十二章 · 孔径、点像与纹理",
     title: aberrations
       ? "波前改变后，点像和 OTF 怎样变化"
       : "复瞳 → 复振幅 → PSF → OTF",
     intro: aberrations
-      ? "四项系数分别控制一组归一化圆瞳模式。可回放离焦扫描，也可直接比较相同 RMS 的不同像差。"
-      : "播放四步计算，查看瞳面各部分的复振幅如何相加，再由点像强度得到传递函数。播放顺序表示计算步骤。",
+      ? "四项系数分别控制一组归一化圆瞳模式。先看相位怎样改变，再比较固定像面上的点像与传递函数。"
+      : "先切换f/4和f/16：左图孔径缩小，下方点像在同一微米窗口内展开。再移动“像面取样位置”滑块，黄色十字会跟着移动；右侧相量图显示该点的复振幅怎样由各条瞳带相加。",
     controls,
     presets,
-    content: `${localStyle}<p class="wave-process"></p><div class="wave-grid"><section class="wave-card" data-stage="0"><h4>① 复瞳 P</h4><canvas class="pupil-map" role="img" aria-label="均匀圆瞳内的相位，瞳外振幅为零"></canvas><p class="pupil-reading"></p></section><section class="wave-card" data-stage="1"><h4>② 复振幅 U</h4><div class="phasor"></div><p class="amplitude-reading number"></p></section><section class="wave-card" data-stage="2"><h4>③ 点像强度 PSF</h4><canvas class="psf-map" role="img" aria-label="固定参考峰值刻度下的衍射点扩散函数"></canvas><p class="psf-reading"></p></section><section class="wave-card" data-stage="3"><h4>④ 复传递函数 OTF</h4><div class="overlap"></div><p class="otf-reading number"></p></section></div><button class="wave-display" type="button">切换为线性强度</button><p class="wave-map-scale"></p><div class="stats"></div><div class="wave-plots"><div class="chart psf-chart"></div><div class="legend psf-legend"></div><p class="wave-profile-note"></p><div class="chart otf-chart"></div><div class="legend otf-legend"></div></div><div class="wave-truth" aria-label="独立真值对照"></div>`,
-    note: "单色、标量、近轴后焦面；均匀完整圆瞳，物点之间按非相干强度相加。瞳径 64 格，补零至 256×256；补零细化像面间隔，不提高瞳面精度。相位系数以当前波长为单位；未加入遮挡、像素孔径、色差或真实镜头处方。横轴均为像面坐标，x、y 是本演示固定方向，不代表厂商的全像场 S/T 曲线。",
+    content: `${style}<p class="wave-process"></p><div class="wave-grid"><section class="wave-card"><h4>${aberrations ? "① 复瞳 P · 相位" : "① 圆孔 · 固定毫米尺度"}</h4><canvas class="pupil-map" role="img" aria-label="连续圆瞳轮廓与相位，橙色为当前求和条带"></canvas><p class="pupil-reading"></p></section><section class="wave-card"><h4>② 这个像点的复振幅 U</h4><div class="phasor"></div>${aberrations ? "" : '<label class="wave-sum-control"><span>已累计条带<output class="sum-count">32/32</output></span><input class="sum-slider" aria-label="已累计条带数" type="range" min="0" max="32" step="1" value="32"></label>'}<p class="amplitude-reading"></p></section><section class="wave-card"><h4>③ 点像 PSF · 固定微米尺度</h4><div class="wave-map"><canvas class="psf-map" role="img" aria-label="固定48微米窗口与共同白点的点像强度"></canvas><div class="probe-overlay"></div></div><p class="psf-reading"></p></section><section class="wave-card"><h4>④ 这组纹理的 OTF</h4><div class="overlap"></div><p class="otf-reading"></p></section></div><p class="wave-how"></p><button class="wave-display" type="button">切换为线性强度</button><p class="wave-map-scale"></p><div class="stats"></div><div class="wave-plots"><div class="chart psf-chart"></div><div class="legend psf-legend"></div><p class="wave-profile-note"></p><div class="chart otf-chart"></div><div class="legend otf-legend"></div></div><details class="wave-truth" aria-label="独立真值对照"><summary>独立真值与数值精度</summary><div class="truth-body"></div></details>`,
+    note: aberrations
+      ? "单色、标量、近轴，均匀圆瞳；相位图按瞳半径归一。波前系数用当前波长，128格瞳、4倍补零；点像固定48 μm窗口，使用550 nm、f/8参考白点。离散Parseval、瞳自相关及连续积分保留作核对。横纵是固定方向；未加入像素、光谱平均或具体镜头处方。"
+      : "单色、标量、近轴后焦面，均匀完整圆瞳；物点按非相干强度相加。孔径示例固定焦距50 mm，D=f/N，图幅30 mm；点像图幅固定48 μm，白点固定在550 nm、f/8的单位通量理想峰值。圆孔图按连续Airy积分，像差图用128格瞳、4倍补零的FFT；连续相位图与离散数值网格分开。相量条带按采样瞳面积归一，顺序是求和过程；点像和OTF均显示完整孔径的结果。未加入像素、色差或实际镜头处方。",
     update(root, s) {
       enhanced = s.enhanced !== false;
       const p = aberrations
         ? {
             ...zero,
             ...Object.fromEntries(Object.keys(zero).map((k) => [k, s[k]])),
+            diameter: 128,
           }
-        : { fNumber: s.fNumber, wavelengthNm: s.wavelengthNm };
-      const key = JSON.stringify(p),
-        probe = aberrations ? 1 : s.probe;
+        : { fNumber: s.fNumber, wavelengthNm: s.wavelengthNm, diameter: 128 };
+      const key = JSON.stringify(p);
       if (key !== cachedKey) {
         g = propagate(p);
-        truth = polarAmplitude(p);
+        truth = aberrations ? polarAmplitude(p) : [1, 0];
         cachedKey = key;
       }
-      const progress = aberrations ? 100 : s.progress,
-        stage = Math.min(3, Math.floor(progress / 25));
-      const shift = Math.round(s.rho * g.p.diameter),
-        rho = shift / g.p.diameter;
-      const h = otfAt(g, shift),
-        direct = directCorrelation(g, shift),
-        sample = amplitudeAt(g, Math.round(probe * g.p.padding));
-      const trace = phasorTrace(g, probe),
-        part = Math.max(0, Math.min(1, (progress - 25) / 25));
-      root.querySelectorAll(".wave-card").forEach((card, i) => {
-        card.classList.toggle("active", i === stage);
-        card.style.opacity = i > stage ? ".38" : "1";
-      });
+      const point = readingPoint(g, s, aberrations),
+        q = point.q,
+        full = point.full,
+        part = point.partial,
+        h = point.h;
       root.querySelector(".wave-process").textContent = aberrations
-        ? "固定像面比较：离焦项保留在 RMS 中。波前图给相位，PSF 给强度，OTF 还保留了方向与相位信息。"
-        : [
-            "① 瞳内振幅为 1，瞳外为 0；本章的圆瞳相位为零。",
-            "② 对所选像面位置，逐条带累加复振幅。相量方向由传播相位决定。",
-            "③ 对总复振幅取模平方，再按全像面能量归一化。条带强度不能先相加。",
-            "④ 对归一化 PSF 作 Fourier 变换；也可直接计算两份复瞳的自相关。由 OTF 取模才得到 MTF。",
-          ][stage];
-      root.querySelector(".pupil-reading").textContent =
-        "颜色表示 arg P：−π 与 +π 为同色；瞳内 |P| = 1，暗底为瞳外。";
-      root.querySelector(".phasor").innerHTML = phasors(
-        trace,
-        progress >= 50 ? 1 : part,
-      );
+        ? "固定像面比较：相位变化送入复瞳，点像给强度，OTF另保留方向和相位。"
+        : `焦距固定${FOCAL_MM} mm，f/${s.fNumber}的孔径直径${fmt(point.diameterMm, 2)} mm；${s.wavelengthNm} nm下，第一暗环半径${fmt(point.airyRadiusUm, 2)} μm。图幅保持不变。`;
+      root.querySelector(".pupil-reading").textContent = aberrations
+        ? "颜色表示相位，圆周按连续几何绘制；波前系数以当前波长为单位。"
+        : `图宽30 mm，圆孔直径${fmt(point.diameterMm, 2)} mm。${point.strips < 32 ? "橙带标出求和位置，右侧暗罩表示尚未累加的部分；实际孔径没有改变。" : "完整孔径参与成像；缩小光圈会改变这个实际直径。"}`;
+      drawPupil(root.querySelector(".pupil-map"), g, point, aberrations);
+      root.querySelector(".phasor").innerHTML = phasors(point);
       root.querySelector(".amplitude-reading").textContent =
-        `像面 x = ${fmt(probe * g.scaleUm, 2)} µm，y = 0；完整 U / π = ${complex(sample)}。`;
-      root.querySelector(".psf-reading").textContent =
-        `范围 ±${fmt(5 * g.scaleUm, 1)} µm；与同孔径理想圆瞳共用峰值刻度。二维图作双线性显示插值；归一化使用完整数值像面。`;
-      root.querySelector(".overlap").innerHTML = overlap(rho, aberrations, h);
+        `固定像面x=${fmt(point.probeUm, 2)} μm。已累计${point.strips}/32条带：U/A=${complex(part)}；完整和为${complex(full)}。`;
+      const slider = root.querySelector(".sum-slider");
+      if (slider) {
+        slider.value = point.strips;
+        root.querySelector(".sum-count").value = `${point.strips}/32`;
+      }
+      root.querySelector(".probe-overlay").innerHTML = crosshair(point);
+      root.querySelector(".psf-reading").textContent = aberrations
+        ? `横纵固定为±${HALF_FIELD_UM} μm，黄色十字与复振幅取样点对应；各波前共用同一白点。`
+        : `横纵始终为±${HALF_FIELD_UM} μm；黄色十字与复振幅取样点、下方剖面竖线对应。缩小光圈后，点像的物理范围变宽。`;
+      root.querySelector(".overlap").innerHTML = overlap(
+        point.rho,
+        aberrations,
+        h,
+      );
       root.querySelector(".otf-reading").textContent =
-        `ν = ${fmt(rho * g.cutoff, 2)} lp/mm；H = ${complex(h)}，${Math.hypot(...h) < 1e-6 ? "模接近零，相位不读数" : `arg H = ${fmt((Math.atan2(h[1], h[0]) * 180) / Math.PI, 1)}°`}。`;
+        `ν=${fmt(point.frequency, 1)} lp/mm，ν/νc=${fmt(point.rho, 3)}；H=${complex(h)}，${Math.hypot(...h) < 1e-6 ? "该纹理没有可用调制度" : `MTF=${fmt(Math.hypot(...h), 3)}`}。`;
+      root.querySelector(".wave-how").textContent = aberrations
+        ? "相位图、点像和两方向剖面使用同一波前；纯彗差反号时可比较OTF虚部与点像的位置。"
+        : "条带回放只解释“一个像点的振幅如何相加”。蓝线依次连接各条带贡献，橙线是当前总和；中心同相增长，第一暗环附近会互相抵消。PSF对完整振幅取模平方，OTF则比较整幅点像对纹理的传递。";
       const drawKey = `${key}:${enhanced}`;
       if (drawKey !== drawnKey) {
-        mapPupil(root.querySelector(".pupil-map"), g);
-        mapPsf(root.querySelector(".psf-map"), g, enhanced);
+        drawPsf(root.querySelector(".psf-map"), g, enhanced, aberrations);
         drawnKey = drawKey;
       }
       root.querySelector(".wave-display").textContent = enhanced
         ? "切换为线性强度"
         : "增强暗环显示";
       root.querySelector(".wave-map-scale").textContent = enhanced
-        ? "显示映射 log(1 + 1000 h/h参考峰值) / log(1001)，仅便于看暗环；不能用图中亮度读能量。"
-        : "线性显示 h/h参考峰值；像差前后不单独拉伸峰值。";
-      root.querySelector(".stats").innerHTML =
-        `<div><small>轴上强度比 S₀</small><strong>${fmt(g.onAxisRatio)}</strong><em>固定原点 / 同孔径理想轴上值</em></div><div><small>连续圆瞳 RMS</small><strong>${fmt(g.rms, 3)} λ</strong><em>去 piston、tilt；保留 defocus</em></div><div><small>物理刻度</small><strong>${fmt(g.imageStepUm, 3)} µm</strong><em>像面间隔 · νc = ${fmt(g.cutoff, 2)} lp/mm</em></div>`;
-      const refPeak = g.count / (g.size * g.size * g.imageStepUm ** 2);
-      const profiles = [
-        {
-          name: "PSF x 截面",
-          color: "#648cac",
-          points: Array.from({ length: 41 }, (_, i) => [
-            (i - 20) * g.imageStepUm,
-            g.psf[indexAt(g, i - 20)] / refPeak,
-          ]),
-        },
-        {
-          name: aberrations ? "PSF y 截面" : "Airy 解析值",
-          color: "#b78952",
-          dashed: true,
-          points: aberrations
-            ? Array.from({ length: 41 }, (_, i) => [
-                (i - 20) * g.imageStepUm,
-                g.psf[indexAt(g, 0, i - 20)] / refPeak,
-              ])
-            : Array.from({ length: 161 }, (_, i) => [
-                ((i - 80) * g.scaleUm) / 16,
-                airyRelative((i - 80) / 16),
+        ? "各图共用550 nm、f/8参考白点，以固定对数映射看暗环；增强显示不改变计算能量。"
+        : "线性强度，同一参考白点；超过白点的部分显示为白，数值仍保留。";
+      root.querySelector(".stats").innerHTML = aberrations
+        ? `<div><small>轴上强度比 S₀</small><strong>${fmt(g.onAxisRatio)}</strong><em>固定原点 / 同孔径理想轴上值</em></div><div><small>连续圆瞳 RMS</small><strong>${fmt(g.rms, 3)} λ</strong><em>去piston、tilt；保留defocus</em></div><div><small>截止频率</small><strong>${fmt(g.cutoff, 2)} lp/mm</strong><em>同一物理频率尺度</em></div>`
+        : `<div><small>孔径直径</small><strong>${fmt(point.diameterMm, 2)} mm</strong><em>50 mm / f数</em></div><div><small>第一暗环半径</small><strong>${fmt(point.airyRadiusUm, 2)} μm</strong><em>1.21967 λN</em></div><div><small>截止频率</small><strong>${fmt(g.cutoff, 1)} lp/mm</strong><em>1/(λN)，波长换成mm</em></div>`;
+      const peak = g.count / (g.size * g.size * g.imageStepUm ** 2),
+        count = Math.floor(HALF_FIELD_UM / g.imageStepUm);
+      const sampledProfile = Array.from({ length: 2 * count + 1 }, (_, i) => [
+        (i - count) * g.imageStepUm,
+        g.psf[indexAt(g, i - count)] / peak,
+      ]);
+      const profileX = Array.from(
+        { length: 241 },
+        (_, i) => ((i - 120) * HALF_FIELD_UM) / 120,
+      );
+      const profiles = aberrations
+        ? [
+            { name: "PSF x 截面", color: "#648cac", points: sampledProfile },
+            {
+              name: "PSF y 截面",
+              color: "#b78952",
+              dashed: true,
+              points: Array.from({ length: 2 * count + 1 }, (_, i) => [
+                (i - count) * g.imageStepUm,
+                g.psf[indexAt(g, 0, i - count)] / peak,
               ]),
-        },
-      ];
+            },
+          ]
+        : [
+            {
+              name: "当前Airy剖面",
+              color: "#648cac",
+              points: profileX.map((x) => [x, diskIntensity(x / g.scaleUm)]),
+            },
+            {
+              name: "550 nm、f/8参考",
+              color: "#b78952",
+              dashed: true,
+              points: profileX.map((x) => [
+                x,
+                diskIntensity(x / REFERENCE_SCALE_UM),
+              ]),
+            },
+          ];
       root.querySelector(".psf-chart").innerHTML = plot({
         curves: profiles,
-        xMin: -5 * g.scaleUm,
-        xMax: 5 * g.scaleUm,
-        xLabel: "像面位置 · µm",
-        yLabel: "强度 / 理想峰值",
-        title: "PSF 线性截面与参考值",
+        xMin: -HALF_FIELD_UM,
+        xMax: HALF_FIELD_UM,
+        xLabel: "像面位置 / μm · 图幅固定",
+        yLabel: "强度 / 本次理想峰值",
+        yMax: 1,
+        title: "固定物理尺度下的归一化点像剖面",
         height: 300,
         width: 480,
         rightPadding: 40,
         topLabelY: 22,
         bottomLabelPadding: 10,
-        topPadding: 34,
+        topPadding: 48,
         bottomPadding: 56,
-        yMax: 1,
+        markers: [{ value: point.probeUm, label: "黄色取样点" }],
+        samples: aberrations ? [] : sampledProfile,
       });
-      root.querySelector(".psf-legend").innerHTML = legend(profiles);
+      root.querySelector(".psf-legend").innerHTML =
+        legend(profiles) + (aberrations ? "" : "<span>● 独立FFT样点</span>");
       root.querySelector(".wave-profile-note").textContent =
-        "截面始终使用线性强度。相量按 π 归一化；离散值按采样瞳面积归一化，二者有有限网格误差。";
-      const curves = [
-        {
-          name: "MTF x",
-          color: "#648cac",
-          points: Array.from({ length: 65 }, (_, j) => [
-            j * g.frequencyStep,
-            Math.hypot(...otfAt(g, j)),
-          ]),
-        },
-        {
-          name: "Re H(x)",
-          color: "#b78952",
-          points: Array.from({ length: 65 }, (_, j) => [
-            j * g.frequencyStep,
-            otfAt(g, j)[0],
-          ]),
-        },
-        {
-          name: "Im H(x)",
-          color: "#9b627a",
-          dashed: true,
-          points: Array.from({ length: 65 }, (_, j) => [
-            j * g.frequencyStep,
-            otfAt(g, j)[1],
-          ]),
-        },
-        {
-          name: aberrations ? "MTF y" : "圆盘重叠解析值",
-          color: "#6e8766",
-          dashed: true,
-          points: Array.from({ length: 65 }, (_, j) => [
-            j * g.frequencyStep,
-            aberrations ? Math.hypot(...otfAt(g, 0, j)) : circularOtf(j / 64),
-          ]),
-        },
-      ];
-      const dots = [0, 8, 16, 24, 32, 40, 48, 56, 64].map((j) => [
-        j * g.frequencyStep,
-        Math.hypot(...directCorrelation(g, j)),
-      ]);
+        "剖面按本次理想峰值归一，便于比较宽度；上方点像图保留共同白点。取样点移动只改变读数与标记，不改变光学系统。";
+      const xmax = aberrations ? g.cutoff : 400;
+      const curves = aberrations
+        ? [
+            {
+              name: "MTF x",
+              color: "#648cac",
+              points: Array.from({ length: 129 }, (_, j) => [
+                j * g.frequencyStep,
+                Math.hypot(...otfAt(g, j)),
+              ]),
+            },
+            {
+              name: "Re H(x)",
+              color: "#b78952",
+              points: Array.from({ length: 129 }, (_, j) => [
+                j * g.frequencyStep,
+                otfAt(g, j)[0],
+              ]),
+            },
+            {
+              name: "Im H(x)",
+              color: "#9b627a",
+              dashed: true,
+              points: Array.from({ length: 129 }, (_, j) => [
+                j * g.frequencyStep,
+                otfAt(g, j)[1],
+              ]),
+            },
+            {
+              name: "MTF y",
+              color: "#6e8766",
+              dashed: true,
+              points: Array.from({ length: 129 }, (_, j) => [
+                j * g.frequencyStep,
+                Math.hypot(...otfAt(g, 0, j)),
+              ]),
+            },
+          ]
+        : [
+            {
+              name: "当前MTF",
+              color: "#648cac",
+              points: Array.from({ length: 201 }, (_, i) => [
+                2 * i,
+                circularOtf((2 * i) / g.cutoff),
+              ]),
+            },
+            {
+              name: "550 nm、f/8参考",
+              color: "#b78952",
+              dashed: true,
+              points: Array.from({ length: 201 }, (_, i) => [
+                2 * i,
+                circularOtf((2 * i) / (1000 / REFERENCE_SCALE_UM)),
+              ]),
+            },
+          ];
+      const dots = Array.from({ length: 17 }, (_, i) => i * 8)
+        .map((j) => [
+          j * g.frequencyStep,
+          Math.hypot(...directCorrelation(g, j)),
+        ])
+        .filter(([f]) => f <= xmax);
       root.querySelector(".otf-chart").innerHTML = plot({
         curves,
-        xMax: g.cutoff,
-        xLabel: "像面空间频率 · lp/mm",
-        yLabel: "OTF / MTF",
+        xMax: xmax,
+        xLabel: "像面空间频率 / lp/mm",
+        yLabel: aberrations ? "OTF / MTF" : "纹理调制度保留率",
         yMin: aberrations ? -0.5 : 0,
         yMax: 1,
-        title: "OTF 的实部、虚部与模；点为直接瞳相关",
+        title: "固定物理频率下的传递与独立参考",
         height: 310,
         width: 480,
         rightPadding: 40,
@@ -396,26 +363,29 @@ export function mountWave({ element, signal, session, aberrations = false }) {
         topPadding: 48,
         bottomPadding: 56,
         samples: dots,
-        markers: [{ value: rho * g.cutoff, label: "探针" }],
+        markers: [{ value: point.frequency, label: "当前纹理" }],
       });
       root.querySelector(".otf-legend").innerHTML =
         legend(curves) + "<span>● 直接瞳相关的模</span>";
-      const continuousRatio = truth[0] ** 2 + truth[1] ** 2,
-        pureDefocus = aberrations && !s.astigmatism && !s.coma && !s.spherical;
-      root.querySelector(".wave-truth").innerHTML =
-        `<strong>独立真值对照</strong><p>归一化前 Parseval 比 = ${fmt(g.parseval, 10)}；Σ h Δx² = ${fmt(g.integral, 10)}；H(0) = ${complex(otfAt(g, 0))}。</p><p>当前 H：PSF 的 FFT ${complex(h)}；直接瞳相关 ${complex(direct)}；差 ${Math.hypot(h[0] - direct[0], h[1] - direct[1]).toExponential(1)}。</p><p>轴上 S₀：离散传播 ${fmt(g.onAxisRatio)}；独立连续圆瞳积分 ${fmt(continuousRatio)}${pureDefocus ? `；纯离焦 sinc² 解析值 ${fmt(defocusOnAxis(s.defocus))}` : ""}。</p><p>${aberrations ? `Maréchal 小误差近似 exp[−(2πσ)²] = ${fmt(Math.exp(-((2 * Math.PI * g.rms) ** 2)))}；它不是精确真值。S₀ 比较固定原点，不把彗差下偏移后的最高峰混为同一指标。` : `Airy 首暗环 = ${fmt(1.2196698912665 * g.scaleUm, 3)} µm；圆盘重叠 H(ν/νc=${fmt(rho, 3)}) = ${fmt(circularOtf(rho))}。`}</p><p>瞳面积数值 ${fmt(g.area, 5)} / π；像面间隔 ${fmt(g.imageStepUm, 3)} µm，频率间隔 ${fmt(g.frequencyStep, 3)} lp/mm。笛卡尔圆边界与有限像面会留下网格误差，补零不能消除它。</p>`;
+      const ratio = truth[0] ** 2 + truth[1] ** 2,
+        pure = aberrations && !s.astigmatism && !s.coma && !s.spherical;
+      root.querySelector(".truth-body").innerHTML =
+        `<p>归一化前Parseval比=${fmt(g.parseval, 10)}；ΣhΔx²=${fmt(g.integral, 10)}；H(0)=${complex(otfAt(g, 0))}。</p><p>在数值网格频率${fmt(point.sampleRho * g.cutoff, 3)} lp/mm，PSF的FFT给${complex(point.sampled)}，直接瞳相关给${complex(point.direct)}，差${Math.hypot(point.sampled[0] - point.direct[0], point.sampled[1] - point.direct[1]).toExponential(1)}。</p><p>轴上S₀：离散${fmt(g.onAxisRatio)}，连续圆瞳积分${fmt(ratio)}${pure ? `，纯离焦sinc²解析值${fmt(defocusOnAxis(s.defocus))}` : ""}。</p><p>${aberrations ? `Maréchal小误差近似${fmt(Math.exp(-((2 * Math.PI * g.rms) ** 2)))}；S₀取固定原点，不替代偏移后的峰值搜索。` : `当前像点：条带完整和${complex(full)}，连续Airy振幅${fmt(diskAmplitude(q))}；OTF网格频率的圆盘重叠真值${fmt(circularOtf(point.sampleRho))}。`}</p><p>相量按采样瞳面积A归一，显示图按连续孔径或声明的FFT计算；瞳面积${fmt(g.area, 6)}，连续值π。128格瞳、4倍补零；补零不消除孔径离散误差。</p>`;
       Object.assign(root.querySelector(".lab").dataset, {
         onAxis: String(g.onAxisRatio),
-        continuous: String(continuousRatio),
+        continuous: String(ratio),
         rms: String(g.rms),
         parseval: String(g.parseval),
         integral: String(g.integral),
         otfReal: String(h[0]),
         otfImag: String(h[1]),
-        stage: String(stage),
+        probeUm: String(point.probeUm),
+        strips: String(point.strips),
       });
     },
-    setup({ root, state, render, restored }) {
+    setup({ root, state, render }) {
+      if (!aberrations && !Number.isFinite(state.sumProgress))
+        state.sumProgress = 1;
       root.querySelector(".wave-display").addEventListener(
         "click",
         () => {
@@ -424,17 +394,25 @@ export function mountWave({ element, signal, session, aberrations = false }) {
         },
         { signal },
       );
+      root.querySelector(".sum-slider")?.addEventListener(
+        "input",
+        (event) => {
+          state.sumProgress = Number(event.target.value) / 32;
+          render();
+        },
+        { signal },
+      );
+      render();
       return replay({
         root,
         state,
         render,
         element,
         signal,
-        key: aberrations ? "defocus" : "progress",
+        key: aberrations ? "defocus" : "sumProgress",
         start: aberrations ? -0.25 : 0,
-        end: aberrations ? 0.25 : 100,
-        label: aberrations ? "回放离焦扫描" : "回放计算步骤",
-        startOnFirstPlay: aberrations && !restored,
+        end: aberrations ? 0.25 : 1,
+        label: aberrations ? "回放离焦扫描" : "播放条带相加",
         durationMs: 8000,
       });
     },

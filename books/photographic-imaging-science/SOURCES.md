@@ -416,3 +416,9 @@ are outside these calculations.
 - Pharr、Jakob、Humphreys，*Physically Based Rendering*, 3rd ed., [§6.4，特别是§6.4.5](https://pbr-book.org/3ed-2018/Camera_Models/Realistic_Cameras)。用于逐界面截光与离轴有效瞳的背景；本书两圆复瞳的衍射计算沿用Goodman框架。
 - VGG，Hartley–Zisserman配套[多视几何原始代码](https://www.robots.ox.ac.uk/~vgg/hzbook/code/)，其中[相机与平面导出单应矩阵](https://www.robots.ox.ac.uk/~vgg/hzbook/code/vgg_multiview/vgg_H_from_2P_plane.m)用于核对平面映射；本书另给针孔投影、光线求交和遮挡判定。
 - Imatest，[Sharpening](https://www.imatest.com/imaging/sharpening/)。用于锐化、响应增益、过冲与噪声的测量背景；三点核公式、核DTFT和方差由本书直接计算。
+
+
+## 连续孔径积分
+
+- Wuttke，2021，[Numerically stable form factor of any polygon and polyhedron](https://pmc.ncbi.nlm.nih.gov/articles/PMC8056765/)，§2。用于连续孔径Fourier积分的逐边化简及可去奇点处理；本书按自己的Fourier符号约定给出实现与推导。
+- NIST DLMF，[§10.9，式10.9.2](https://dlmf.nist.gov/10.9#E2)。用于一阶Bessel函数的角积分，作为圆孔弱环的稳定连续参考；另保留幂级数、小参数极限和弦长面积积分检验。

@@ -55,3 +55,5 @@ test("FFT is checked by direct phasors and a square aperture by an independent s
   }
   assert.throws(() => starburst({ blades: 2 }), RangeError);
 });
+
+import "./continuous.test.js";

@@ -298,3 +298,32 @@ FFT同时核对直接相量、连续瞳积分、面积和Parseval能量。PBRT�
 权重和、DTFT、噪声能量与阶跃差分由书内推导。第18章Canon资料支持双光电二极管
 与两种AF机制；本书用均匀条带半瞳构造可积的两幅观测，再由相关峰驱动位置指令。
 相关器不读取生成偏移；镜组执行机构与三维动画的放大尺度另行标注。
+
+
+## 连续孔径与固定物理尺度
+
+星芒用连续孔径边界的面积Fourier积分。Wuttke（2021）§2给出由散度/Stokes定理
+化为逐边求和的方法；本书按 $e^{-i\boldsymbol k\cdot\boldsymbol u}$ 约定另推实现。
+归一化瞳坐标为 $\boldsymbol u$，第$j$条有向边为 $\boldsymbol e_j$、中点为
+$\boldsymbol m_j$，顶点按逆时针排列，$A$为面积。对非零二维波矢 $\boldsymbol k$，
+
+$$
+F(\boldsymbol k)=\frac{i}{|\boldsymbol k|^2}
+\sum_j(k_xe_{j,y}-k_ye_{j,x})
+ e^{-i\boldsymbol k\cdot\boldsymbol m_j}
+ \operatorname{sinc}\!\left(\frac{\boldsymbol k\cdot\boldsymbol e_j}{2}\right),
+\qquad F(0)=A,
+$$
+
+此处sinc为 $\sin x/x$。取向量场
+$i\boldsymbol k e^{-i\boldsymbol k\cdot\boldsymbol u}/|\boldsymbol k|^2$，其散度为
+被积函数；应用平面散度定理，再对每段直边积分即得上式。零频极限用面积，
+小参数的sinc和余弦减一分别作稳定展开。像面位移 $\boldsymbol r$ 用μm时，
+$\boldsymbol k=\pi\boldsymbol r/(\lambda N)$；单位通量密度为
+$|F|^2/[4(\lambda N)^2A]$。正方孔另与两个sinc的乘积核对，弯曲轮廓按每边32、64、128段
+检查收敛；完全圆孔用NIST DLMF 10.9.2的一阶Bessel积分，另与弦长面积积分核对。
+
+复瞳面板采用固定的毫米、微米与lp/mm视窗；50 mm固定焦距只用于孔径尺寸示例。
+连续圆孔PSF与离散128格瞳FFT分别标注，像差面板仍从同一波前传播；相位图连续绘制，
+并不据此宣称数值网格已无限精细。条带相量针对一个已选的物理像点，按采样瞳面积
+归一；旧的相对位置与归一化频率在会话升级时先换回物理单位，再按新控件范围恢复。
