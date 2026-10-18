@@ -360,3 +360,12 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
   September 2020, revised October 2021, §2.2.3, pp. 6–7. Used for microstep command
   resolution versus stopping accuracy and available incremental torque. The book's
   0.5 mm lead, 200 steps, 16 subdivisions and 8 μm backlash are teaching inputs.
+
+- V. Bolborici, F. P. Dawson and M. C. Pugh,
+  [A finite volume method and experimental study of a stator of a piezoelectric traveling wave rotary ultrasonic motor](https://www.math.utoronto.ca/mpugh/Prints/piezo_stator.pdf),
+  *Ultrasonics* 54 (2014), pp. 809–820, DOI 10.1016/j.ultras.2013.10.005,
+  §§1–2, especially p. 810 and Figures 1–3. Read 19 October 2026 for the piezoelectric/
+  elastic ring, quadrature drive and friction-contact mechanism. Chapter 18 specifies
+  its own six-order traveling wave and small-slope surface kinematics; it does not
+  reproduce the paper's USR60 geometry, measured resonance or finite-volume model.
+  Rotor motion uses a declared peak-contact no-slip reference, without a contact-load solver.

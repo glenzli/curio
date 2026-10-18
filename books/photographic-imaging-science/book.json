@@ -353,6 +353,12 @@
     },
     "veiling-flare": {
       "entry": "interactives/veiling-flare/index.js"
+    },
+    "focus-drives": {
+      "entry": "interactives/focus-drives/index.js"
+    },
+    "lens-motion": {
+      "entry": "interactives/lens-motion/index.js"
     }
   },
   "source": {

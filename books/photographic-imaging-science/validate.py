@@ -52,7 +52,7 @@ EXPECTED_EXERCISES = {
     15: 5,
     16: 3,
     17: 5,
-    18: 5,
+    18: 6,
 }
 EXPECTED_FIGURES = {
     0: 0,
