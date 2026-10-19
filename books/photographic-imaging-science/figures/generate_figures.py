@@ -289,27 +289,83 @@ def figure_01_fnumber_exposure() -> None:
     s.save("01_fnumber_exposure.svg")
 
 
-def figure_02_photon_electron_chain() -> None:
-    s = SVG("图 2.1  从光子到 RAW 码值的信号链")
-    labels = [
-        ("入射光子", "Nγ", PALE_AMBER, AMBER),
-        ("滤色片与 QE", "η(λ)", PALE_GREEN, GREEN),
-        ("信号电子", "Ne", PALE_BLUE, BLUE),
-        ("FD 转换", "q/CFD", PALE_RED, RED),
-        ("ADC", "g · Ne", "#eee8f8", PURPLE),
-        ("RAW", "DN", LIGHT, INK),
-    ]
-    x = 35
-    for i, (name, sub, fill, color) in enumerate(labels):
-        s.rect(x, 210, 130, 130, fill=fill, stroke=color, sw=2.5)
-        s.text(x + 65, 260, name, size=18, anchor="middle", weight="700")
-        s.text(x + 65, 305, sub, size=20, color=color, anchor="middle")
-        if i < len(labels) - 1:
-            s.arrow(x + 132, 275, x + 158, 275, color=GRAY)
-        x += 160
-    s.text(500, 430, "每一箭头都可能改变均值、方差、饱和点或单位", size=21, anchor="middle")
-    s.save("02_photon_electron_chain.svg")
+def signal_stage(s, x, y, width, index, title, subtitle, color, kind):
+    """Functional symbols inside a stage, not an electrical circuit schematic."""
+    s.rect(x, y, width, 207, fill="#fcfdfe", stroke="#dae2e8", sw=1, radius=8)
+    s.line(x+12,y+1,x+width-12,y+1,color=color,width=3)
+    s.circle(x+23,y+25,11,fill=color,stroke="none",opacity=.13)
+    s.text(x+23,y+29,str(index),size=13,color=color,anchor="middle",weight="600")
+    s.text(x+width/2,y+66,title,size=17,anchor="middle",weight="600")
+    cx, cy = x+width/2, y+120
+    if kind == "photons":
+        pts=[(cx-42+i*.7,cy+9*math.sin(i/8)) for i in range(121)]
+        s.polyline(pts,color=color,width=1.8)
+        s.circle(cx+41,cy+9*math.sin(15),3,fill=color,stroke="none")
+    elif kind == "filter":
+        s.rect(cx-8,cy-23,16,46,fill=color,stroke=color,sw=1,radius=2,opacity=.18)
+        for dy in [-15,0,15]:s.line(cx-43,cy+dy,cx-10,cy+dy,color=color,width=1.5)
+        for dy in [-15,15]:s.arrow(cx+10,cy+dy,cx+42,cy+dy,color=color,width=1.5)
+    elif kind == "electrons":
+        for i in range(3):
+            for j in range(4):s.circle(cx-27+18*j,cy-18+18*i,3.7,fill=color,stroke="none",opacity=.45+.1*j)
+    elif kind == "capacitor":
+        s.line(cx-10,cy-23,cx-10,cy+23,color=color,width=2.5)
+        s.line(cx+10,cy-23,cx+10,cy+23,color=color,width=2.5)
+        s.line(cx-42,cy,cx-10,cy,color=color,width=1.5)
+        s.line(cx+10,cy,cx+42,cy,color=color,width=1.5)
+    elif kind == "adc":
+        s.polyline([(cx-42,cy+23),(cx-24,cy+23),(cx-24,cy+8),(cx-6,cy+8),(cx-6,cy-7),(cx+12,cy-7),(cx+12,cy-22),(cx+42,cy-22)],color=color,width=2)
+        s.line(cx-42,cy+26,cx+42,cy-26,color=GRAY,width=.8,dash="3 3",opacity=.4)
+    elif kind == "bytes":
+        s.text(cx,cy-4,"0101 1010",size=16,color=color,anchor="middle")
+        s.text(cx,cy+19,"1001 0110",size=16,color=color,anchor="middle")
+    elif kind == "cds":
+        s.line(cx-40,cy-14,cx+40,cy-14,color=color,width=1.3)
+        s.line(cx-40,cy+16,cx+40,cy+16,color=color,width=1.3)
+        for dx,dy in [(-20,-14),(20,16)]:s.circle(cx+dx,cy+dy,4,fill=color,stroke="none")
+        s.line(cx+31,cy-14,cx+31,cy+16,color=color,width=1,arrow=True)
+    elif kind == "gain":
+        s.polygon([(cx-27,cy-26),(cx-27,cy+26),(cx+30,cy)],fill=color,stroke=color,sw=1.5,opacity=.12)
+        s.text(cx-7,cy+6,"a",size=22,color=color,anchor="middle")
+    elif kind == "levels":
+        s.line(cx-37,cy+22,cx+37,cy-22,color=color,width=1.8)
+        s.circle(cx-37,cy+22,4,fill=INK,stroke="none")
+        s.circle(cx+37,cy-22,4,fill="#fff",stroke=GRAY,sw=1)
+    elif kind == "rgb":
+        for i,(tint,height) in enumerate(zip([RED,GREEN,BLUE],[32,50,41])):
+            s.rect(cx-33+24*i,cy+25-height,18,height,fill=tint,stroke="none",radius=2,opacity=.64)
+    elif kind == "matrix":
+        s.polyline([(cx-28,cy-24),(cx-35,cy-24),(cx-35,cy+24),(cx-28,cy+24)],color=color,width=1.3)
+        s.polyline([(cx+28,cy-24),(cx+35,cy-24),(cx+35,cy+24),(cx+28,cy+24)],color=color,width=1.3)
+        for i in range(3):
+            for j in range(3):s.circle(cx-17+17*j,cy-16+16*i,2.5,fill=color,stroke="none",opacity=.3+.12*((i+j)%3))
+    elif kind == "cfa":
+        for j in range(4):
+            for i in range(4):
+                tint=[RED,GREEN,GREEN,BLUE][(j%2)*2+i%2]
+                s.rect(cx-31+16*i,cy-31+16*j,14,14,fill=tint,stroke="none",radius=1,opacity=.64)
+    elif kind == "curve":
+        s.polyline([(cx-40+i*.8,cy+25-50*(i/100)**.45) for i in range(101)],color=color,width=2)
+    else:
+        s.polyline([(cx-42+i*.7,cy+15*math.sin(i/20)*(.4+i/200)) for i in range(121)],color=color,width=1.7)
+    s.text(cx,y+184,subtitle,size=16,color=color,anchor="middle")
 
+
+def figure_02_photon_electron_chain() -> None:
+    s = SVG("图 2.1  从光子到 RAW 码值的信号链",height=610)
+    s.text(40,103,"光子数、电子数、电压和码值是不同的量",size=21,weight="600")
+    stages=[("入射光子","Nγ · 个",AMBER,"photons"),("滤光与收集","效率 η(λ)",GREEN,"filter"),("信号电子","Ne · e−",BLUE,"electrons"),("FD 电压转换","ΔV = q Ne / CFD",RED,"capacitor"),("模数转换","量化为整数码",PURPLE,"adc"),("RAW 样本","码值 · DN",INK,"bytes")]
+    for i,(title,sub,color,kind) in enumerate(stages):
+        x=35+i*158
+        signal_stage(s,x,156,139,i+1,title,sub,color,kind)
+        if i<5:s.arrow(x+141,270,x+154,270,color=GRAY,width=1.2)
+    for x,w,label,color in [(35,455,"入射光子 → 收集电子",BLUE),(509,139,"电荷 → 电压",RED),(667,297,"电压 → 数字样本",PURPLE)]:
+        s.line(x,394,x+w,394,color=color,width=1.2)
+        s.text(x+w/2,425,label,size=17,color=color,anchor="middle")
+    s.text(40,487,"QE 决定平均收集电子数；FD 将电荷转换为电压，ADC 再对电压量化。",size=19)
+    s.text(40,529,"后端增益改变电压或码值的尺度；已经收集的电子数保持不变。",size=19)
+    s.text(40,579,"功能顺序示意；增益、偏置与校正在第三章展开，实际 RAW 处理状态由文件字段说明。",size=17,color=GRAY)
+    s.save("02_photon_electron_chain.svg")
 
 def figure_02_4t_pixel() -> None:
     s = SVG("图 2.3  典型 4T 钉扎光电二极管像素")
@@ -369,27 +425,21 @@ def figure_02_shot_noise() -> None:
 
 
 def figure_03_readout_chain() -> None:
-    s = SVG("图 3.1  CMOS 读出链及噪声注入位置")
-    blocks = [
-        (80, "像素 SF", PALE_BLUE, BLUE),
-        (255, "列采样 / CDS", PALE_GREEN, GREEN),
-        (455, "模拟增益", PALE_AMBER, AMBER),
-        (630, "列 ADC", PALE_RED, RED),
-        (805, "数字校正", "#eee8f8", PURPLE),
-    ]
-    for i, (x, label, fill, color) in enumerate(blocks):
-        s.rect(x, 230, 140 if i != 1 else 165, 110, fill=fill, stroke=color, sw=2.5)
-        s.text(x + (70 if i != 1 else 82), 295, label, size=18, anchor="middle", weight="700")
-        if i < len(blocks) - 1:
-            next_x = blocks[i + 1][0]
-            s.arrow(x + (140 if i != 1 else 165), 285, next_x - 12, 285, color=GRAY)
-    s.text(150, 420, "R1：增益前噪声", size=18, color=BLUE)
-    s.arrow(190, 398, 190, 340, color=BLUE)
-    s.text(590, 420, "R2 / 量化：增益后噪声", size=18, color=RED)
-    s.arrow(670, 398, 670, 340, color=RED)
-    s.text(500, 505, "模拟增益只能压低其后噪声折算到输入端的贡献", size=21, anchor="middle")
+    s = SVG("图 3.1  CMOS 读出链及噪声注入位置",height=650)
+    s.text(40,104,"从像素电压到整数码，噪声在不同位置进入",size=21,weight="600")
+    stages=[("像素 SF","缓冲像素电压",BLUE,"voltage"),("列采样 / CDS","复位值 − 信号值",GREEN,"cds"),("模拟增益","放大电压差",AMBER,"gain"),("列 ADC","电压 → DN",RED,"adc"),("数字校正","黑值 / 列偏置等",PURPLE,"matrix")]
+    for i,(title,sub,color,kind) in enumerate(stages):
+        x=46+i*186
+        signal_stage(s,x,157,163,i+1,title,sub,color,kind)
+        if i<4:s.arrow(x+166,270,x+182,270,color=GRAY,width=1.3)
+    s.arrow(160,439,160,367,color=BLUE,width=1.5)
+    s.text(160,468,"增益前读噪 R1",size=17,color=BLUE,anchor="middle")
+    s.arrow(687,439,687,367,color=RED,width=1.5)
+    s.text(687,468,"增益后噪声 R2 与量化误差",size=17,color=RED,anchor="middle")
+    s.text(40,541,"前级噪声随信号一起放大；后级噪声折算到输入端的标准差为 σ2 / a。",size=20)
+    s.text(40,585,"CDS 对两次采样作差；它能抑制哪些噪声，取决于两次采样的相关性。",size=18)
+    s.text(40,624,"功能链示意；噪声箭头只标注相对于模拟增益的位置，未展开全部器件噪声。",size=16,color=GRAY)
     s.save("03_readout_chain.svg")
-
 
 def figure_03_quantization_gain() -> None:
     s = SVG("图 3.2  量化步长、系统增益与电子刻度")
@@ -541,75 +591,101 @@ def figure_06_shutter_timing() -> None:
 
 
 def figure_06_rolling_skew() -> None:
-    s = SVG("图 6.2  行间采样时间差造成运动倾斜")
-    s.panel(80, 90, 360, 390, "真实运动轨迹")
-    s.panel(560, 90, 360, 390, "滚动读出的单帧")
-    for i, x in enumerate([150, 220, 290, 360]):
-        s.rect(x, 180, 18, 210, fill=BLUE, stroke=BLUE, opacity=0.25 + i * 0.18)
-        s.text(x + 9, 420, f"t{i}", size=14, anchor="middle")
-    s.polygon([(620, 180), (680, 180), (850, 390), (790, 390)], fill=PALE_RED, stroke=RED, sw=4)
-    for y in range(190, 390, 35):
-        s.line(600, y, 875, y, color=LIGHT, width=1)
-    s.text(740, 440, "xj = x0 + v(t0 + jΔt + Te/2)", size=19, color=RED, anchor="middle")
+    s = SVG("图 6.2  行间采样时间差造成运动倾斜", height=650)
+    s.panel(35, 100, 425, 405, "同一竖杆在三个时刻的位置")
+    s.panel(490, 100, 475, 405, "一张图：每行使用自己的曝光窗口")
+    xmap = lambda origin, value: origin + value * 15
+    for origin in [80, 560]:
+        for x in [0, 5, 10, 15, 20]:
+            px = xmap(origin, x)
+            s.line(px, 180, px, 431, color=GRAY, width=.7, opacity=.14)
+            s.text(px, 460, str(x), size=14, color=GRAY, anchor="middle")
+        s.arrow(origin, 440, origin + 320, 440, color=GRAY, width=1)
+        s.text(origin + 160, 488, "水平位置 / pixel", size=16, anchor="middle")
+    for t, opacity in [(0, .3), (6, .55), (12, .88)]:
+        center = 3 + t
+        s.rect(xmap(80, center - 1), 205, 30, 215, fill=BLUE, stroke="none", radius=2, opacity=opacity)
+        s.text(xmap(80, center), 187, f"{t} ms", size=16, color=BLUE, anchor="middle")
+    s.arrow(110, 158, 330, 158, color=BLUE, width=1.5)
+    s.text(354, 163, "匀速", size=15, color=BLUE)
+    s.add(f'<defs><linearGradient id="row-profile"><stop offset="0" stop-color="{CYAN}" stop-opacity="0"/><stop offset=".333333" stop-color="{CYAN}"/><stop offset=".666667" stop-color="{CYAN}"/><stop offset="1" stop-color="{CYAN}" stop-opacity="0"/></linearGradient></defs>')
+    for j in range(7):
+        y = 190 + j * 35
+        start, center = 3 + 2*j, 3.5 + 2*j
+        s.line(560, y, 875, y, color=GRAY, width=.7, opacity=.18)
+        # A two-pixel rod convolved with one pixel of travel: trapezoidal row profile.
+        s.rect(xmap(560,start-1),y-10,45,24,fill="url(#row-profile)",stroke="none",radius=0)
+        s.circle(xmap(560,center),y+2,2.4,fill="#fff",stroke="none")
+        s.text(540,y+7,f"R{j}",size=14,color=GRAY,anchor="end")
+    s.text(40, 551, "短曝光缩小行内的拖影；相邻行在不同时间取样，仍会把竖杆记录成斜形。", size=19)
+    s.text(40, 589, "v = 1 pixel/ms，行间隔 2 ms，曝光 1 ms；杆宽 2 pixel，起始中心 x0 = 3 pixel。", size=18, color=GRAY)
+    s.text(40, 622, "右图条带的明暗按曝光积分计算，白点标出该行记录的位置中心。", size=16, color=GRAY)
     s.save("06_rolling_skew.svg")
 
-
 def figure_06_sensor_structures() -> None:
-    s=SVG("图 6.3  FSI、BSI 与逻辑堆栈的层次区别")
-    for x,title,back,stacked in [(35,"FSI",False,False),(350,"BSI",True,False),(665,"BSI + 逻辑堆栈",True,True)]:
-        s.panel(x,85,285,410,title)
-        for j in range(3):
-            a=x+46+j*64
-            s.add(f'<path d="M{a},163 Q{a+24},127 {a+48},163 Z" fill="{PALE_BLUE}" stroke="{BLUE}" stroke-width="1.4"/>')
-            s.rect(a,170,48,15,fill=[RED,GREEN,BLUE][j],stroke="none",radius=1,opacity=.45)
-        sy,sh=(268,126) if not back else ((211,100) if stacked else (211,128))
-        my=211 if not back else (321 if stacked else 354)
-        s.rect(x+32,sy,221,sh,fill=PALE_BLUE,stroke=BLUE,sw=1,radius=3)
-        s.text(x+222,sy+23,"光敏硅",size=15,color=BLUE,anchor="end")
-        pd=sy+sh*.63
-        for center in [x+70,x+142,x+215]:
-            s.rect(center-22,pd-12,44,24,fill="#b7d4e5",stroke=BLUE,sw=1,radius=11)
-        s.text(x+143,pd+33,"PPD",size=15,color=BLUE,anchor="middle")
-        s.rect(x+32,my,221,40,fill=PALE_AMBER,stroke=AMBER,sw=1,radius=3)
-        for yy in [my+9,my+26]:
-            s.rect(x+37,yy,74,6,fill=AMBER,stroke="none",radius=0)
-            s.rect(x+173,yy,74,6,fill=AMBER,stroke="none",radius=0)
-        s.text(x+221,my+57 if not back else my-7,"布线 / 晶体管",size=14,color=AMBER,anchor="end")
-        s.arrow(x+143,137,x+143,pd-17,color=AMBER,width=2.5)
-        target=432 if stacked else my+20
-        s.polyline([(x+173,pd),(x+240,pd),(x+240,target)],color=BLUE,width=2,dash="5 4")
-        s.circle(x+240,target,3,fill=BLUE,stroke=BLUE)
-        if stacked:
-            s.rect(x+32,369,221,19,fill="#eee6f4",stroke=PURPLE,sw=1)
-            for a in [x+70,x+143,x+225]:s.line(a,369,a,388,color=PURPLE,width=4)
-            s.rect(x+32,398,221,64,fill=PALE_GREEN,stroke=GREEN,sw=1)
-            s.text(x+142,441,"逻辑 / ADC",size=16,anchor="middle")
-            s.text(x+53,384,"键合",size=12,color=PURPLE)
-        else:
-            s.text(x+142,470,"像素与读出同片",size=16,anchor="middle")
-    s.text(500,535,"FSI/BSI 区分入光侧；堆栈区分像素与逻辑的晶圆分工",size=20,anchor="middle")
-    s.text(500,565,"橙线：入光；蓝线：电信号。功能层序示意，非工艺比例。",size=17,color=GRAY,anchor="middle")
-    s.save("06_sensor_structures.svg")
+    # The numbered plate, static fallback and live view share one layer drawing.
+    subprocess.run([
+        "node", str(OUT.parent / "interactives/sensor-stack/generate-fallback.js"), "--numbered"
+    ], check=True)
 
 
 def figure_06_curved_sensor() -> None:
-    s = SVG("图 6.4  平面传感器与弯曲最佳像面")
-    lens_x = 300
-    s.line(80, 300, 900, 300, color=GRAY, width=1.5, dash="8 6")
-    s.ellipse(lens_x, 300, 30, 160, fill=PALE_BLUE, stroke=BLUE, sw=3)
-    image_points = [(720, 210), (760, 300), (720, 390)]
-    object_points = [(80, 170), (80, 300), (80, 430)]
-    for op, ip, color in zip(object_points, image_points, [RED, GREEN, PURPLE]):
-        s.line(op[0], op[1], lens_x, 300, color=color, width=2)
-        s.line(lens_x, 300, ip[0], ip[1], color=color, width=2.5)
-    curve = [(720 + 40 * (1 - math.cos(t)), 300 + 150 * math.sin(t)) for t in [(-1.0 + i / 50 * 2.0) for i in range(51)]]
-    s.polyline(curve, color=BLUE, width=5)
-    s.line(790, 145, 790, 455, color=RED, width=5)
-    s.text(680, 130, "弯曲最佳像面", size=18, color=BLUE)
-    s.text(805, 130, "平面传感器", size=18, color=RED)
-    s.text(500, 535, "曲率必须与具体镜头的场曲和像散共同匹配", size=20, anchor="middle")
+    s = SVG("图 6.4  平面传感器与弯曲最佳像面", height=650)
+    s.panel(35, 90, 575, 420, "先让轴上合焦，再看边缘光束")
+    s.panel(635, 90, 330, 195, "平面传感器")
+    s.panel(635, 310, 330, 200, "曲面与最佳焦点匹配")
+    axis, pupil, plane = 310, 150, 515
+    best = lambda h: plane - 0.005 * h * h
+    s.line(60, axis, 590, axis, color=GRAY, width=1, dash="6 5", opacity=.5)
+    s.rect(79, 223, 51, 174, fill=LIGHT, stroke="#b7c3ce", sw=1, radius=8)
+    for x in [91, 104, 117]:
+        s.line(x, 239, x, 381, color=GRAY, width=1, opacity=.45)
+    s.text(105, 427, "镜组", size=16, color=GRAY, anchor="middle")
+    s.text(105, 450, "示意", size=14, color=GRAY, anchor="middle")
+    heights = [-120, 0, 120]
+    spans = []
+    for h, color in zip(heights, [BLUE, GREEN, PURPLE]):
+        fx, fy = best(h), axis + h
+        aperture = [axis - 65, axis, axis + 65]
+        ends = [yp + (fy - yp) * (plane - pupil) / (fx - pupil) for yp in aperture]
+        spans.append(max(ends) - min(ends))
+        s.polygon([(pupil, aperture[0]), (fx, fy), (pupil, aperture[-1])], fill=color, stroke="none", opacity=.065)
+        for yp, ey in zip(aperture, ends):
+            s.polyline([(pupil, yp), (fx, fy), (plane, ey)], color=color, width=1.5, opacity=.82)
+        # The central ray only marks propagation; width does not encode energy.
+        at = lambda x: axis + (fy - axis) * (x - pupil) / (fx - pupil)
+        s.arrow(294, at(294), 316, at(316), color=color, width=1.7)
+        s.circle(fx, fy, 4, fill=color, stroke="#fff", sw=1)
+        s.line(plane, min(ends), plane, max(ends), color=color, width=7)
+        mid = (min(ends) + max(ends)) / 2
+        s.circle(plane, mid, 2.5, fill=color, stroke="none")
+    assert spans[1] == 0 and spans[0] > 0 and math.isclose(spans[0], spans[2])
+    curve = [(best(h), axis + h) for h in range(-148, 149, 2)]
+    s.polyline(curve, color=CYAN, width=3.2)
+    s.line(plane, 151, plane, 469, color=RED, width=3)
+    s.text(323, 153, "逐像高的最佳焦点", size=16, color=CYAN, anchor="middle")
+    s.polyline([(389, 158), (421, 158), (best(-132), axis - 132)], color=CYAN, width=1)
+    s.circle(plane, axis, 4, fill=GREEN, stroke="#fff", sw=1)
+    s.text(549, 490, "平面", size=15, color=RED, anchor="middle")
+    s.line(537, 482, plane, 462, color=RED, width=1)
+    for row, y in enumerate([197, 418]):
+        for i, (label, color) in enumerate(zip(["上边缘", "轴上", "下边缘"], [BLUE, GREEN, PURPLE])):
+            cx = 698 + 102 * i
+            span = spans[i] if row == 0 else 0
+            s.line(cx, y - 31, cx, y + 31, color=GRAY, width=.8, opacity=.2)
+            if span:
+                s.rect(cx - 5, y - span / 2, 10, span, fill=color, stroke="none", radius=4, opacity=.18)
+                s.line(cx, y - span / 2, cx, y + span / 2, color=color, width=4)
+                for yy in [y - span / 2, y + span / 2]:
+                    s.line(cx - 6, yy, cx + 6, yy, color=color, width=1.2)
+            else:
+                s.circle(cx, y, 3, fill=color, stroke="none")
+            s.text(cx, y + 52, label, size=15, anchor="middle")
+        s.text(800, y + 76, "光束的纵向截宽 · 两图同尺度", size=14, color=GRAY, anchor="middle")
+    s.text(40, 551, "平面上：轴上光束已会聚，离轴光束在到达传感器前已越过焦点。", size=19)
+    s.text(40, 585, "匹配曲面可让这些光束在接收面上会聚；有像散时，还要比较两个主截面。", size=18)
+    s.text(40, 620, "颜色区分像高；最佳焦点轨迹为抛物线示意，未计衍射。", size=16, color=GRAY)
     s.save("06_curved_sensor.svg")
-
 
 def figure_07_bayer_sampling() -> None:
     s = SVG("图 7.2  Bayer CFA 的空间采样")
@@ -774,23 +850,23 @@ def figure_09_ei_allocation() -> None:
 
 
 def figure_10_raw_pipeline() -> None:
-    s = SVG("图 10.1  RAW 显影流程及可重新选择的步骤")
-    labels = ["打包 RAW", "黑/白电平", "去马赛克", "白平衡", "颜色矩阵", "色调/输出"]
-    colors = [GRAY, RED, BLUE, GREEN, PURPLE, AMBER]
-    x = 25
-    for i, (label, color) in enumerate(zip(labels, colors)):
-        s.rect(x, 220, 135, 105, fill=LIGHT if i == 0 else "#fbfcfe", stroke=color, sw=2.5)
-        s.text(x + 67.5, 280, label, size=17, anchor="middle", weight="700")
-        if i < len(labels) - 1:
-            s.arrow(x + 135, 272, x + 155, 272, color=GRAY)
-        x += 160
-    s.text(275, 400, "通常仍可重选", size=18, color=GREEN, anchor="middle")
-    s.line(160, 375, 580, 375, color=GREEN, width=3)
-    s.text(790, 400, "输出决定逐步烘焙", size=18, color=AMBER, anchor="middle")
-    s.line(640, 375, 940, 375, color=AMBER, width=3)
-    s.text(500, 500, "RAW 的含义由文件字段与已经执行的处理共同规定", size=22, anchor="middle")
+    s = SVG("图 10.1  RAW 显影流程及可重新选择的步骤",height=650)
+    s.text(40,104,"从文件样本到显示图像：每一步都改变数据的含义",size=21,weight="600")
+    stages=[("读取 RAW","解包 / 线性化",GRAY,"bytes"),("黑 / 白电平","减偏置 / 归一化",RED,"levels"),("去马赛克","CFA → 多通道",BLUE,"cfa"),("白平衡","线性通道增益",GREEN,"rgb"),("颜色矩阵","变换颜色坐标",PURPLE,"matrix"),("色调 / 输出","映射 / 编码",AMBER,"curve")]
+    for i,(title,sub,color,kind) in enumerate(stages):
+        x=35+i*158
+        signal_stage(s,x,157,139,i+1,title,sub,color,kind)
+        if i<5:s.arrow(x+141,270,x+154,270,color=GRAY,width=1.2)
+    s.rect(40,410,442,93,fill=PALE_BLUE,stroke="#d5e3ef",sw=1,radius=8)
+    s.rect(508,410,452,93,fill=PALE_AMBER,stroke="#eadfca",sw=1,radius=8)
+    s.text(61,441,"文件保留了原始样本与所需元数据",size=18,color=BLUE,weight="600")
+    s.text(61,476,"可从样本重新选择后续显影参数",size=17,color=BLUE)
+    s.text(529,441,"处理已在写入前不可逆完成",size=18,color=AMBER,weight="600")
+    s.text(529,476,"只能调整结果，不能重取原始输入",size=17,color=AMBER)
+    s.text(40,552,"先核对数据仍处在哪一步，再判断某项操作能否重新选择。",size=20)
+    s.text(40,592,"图中是典型逻辑顺序；白平衡、去马赛克与降噪的实际次序随流程而变。",size=18)
+    s.text(40,628,"RAW 的处理状态以文件字段和相机已经执行的处理为准。",size=16,color=GRAY)
     s.save("10_raw_pipeline.svg")
-
 
 def figure_10_raw_bit_packing() -> None:
     s=SVG("图 10.2  两个 12-bit 样本打包为三个字节")
@@ -1068,20 +1144,34 @@ def figure_13_aberration_spots() -> None:
 
 
 def figure_13_field_curvature() -> None:
-    s = SVG("图 13.2  场曲与同一平面测试")
-    s.line(80, 300, 920, 300, color=GRAY, width=1.5, dash="8 6")
-    draw_lens(s, 300, 300, 300)
-    curve = [(700 + 75 * (1 - math.cos(t)), 300 + 175 * math.sin(t)) for t in [(-1.1 + i / 60 * 2.2) for i in range(61)]]
-    s.polyline(curve, color=BLUE, width=5)
-    s.line(805, 105, 805, 495, color=RED, width=5)
-    for y in [145, 225, 300, 375, 455]:
-        target_x = 700 + 75 * (1 - math.cos((y - 300) / 175))
-        s.line(300, 300, target_x, y, color=GREEN, width=1.8)
-    s.text(660, 90, "逐像高最佳焦面", size=17, color=BLUE)
-    s.text(820, 90, "平面靶 / 传感器", size=17, color=RED)
-    s.text(500, 540, "边缘重新对焦后的性能可把场曲与局部像差分开", size=20, anchor="middle")
+    s = SVG("图 13.2  场曲与同一平面测试", height=650)
+    s.text(255, 105, "① 最佳焦点随像高移动", size=21, anchor="middle", weight="600")
+    s.text(744, 105, "② 固定焦面与逐点重新对焦", size=21, anchor="middle", weight="600")
+    left, right = (110, 155, 330, 285), (600, 155, 330, 285)
+    s.axes(*left, "像高 h / mm", "最佳焦面 z / μm")
+    s.axes(*right, "像高 h / mm", "MTF · 30 lp/mm")
+    s.grid(left, (0, 21.6, 0, 90), xticks=[0, 7.2, 14.4, 21.6], yticks=[0, 25, 50, 75])
+    s.grid(right, (0, 21.6, 0, 1), xticks=[0, 7.2, 14.4, 21.6], yticks=[0, .25, .5, .75, 1])
+    heights = [i * 21.6 / 180 for i in range(181)]
+    foci = [(h, 75 * (h / 21.6) ** 2) for h in heights]
+    mtf = lambda delta: math.exp(-2 * math.pi ** 2 * (1.8 ** 2 + (.08 * delta) ** 2) * (.03) ** 2)
+    s.plot(foci, left, (0, 21.6, 0, 90), color=BLUE, width=3)
+    s.line(110, 439, 440, 439, color=RED, width=2, dash="6 4")
+    s.text(123, 419, "固定平面 z = 0", size=16, color=RED)
+    s.plot([(h, mtf(z)) for h, z in foci], right, (0, 21.6, 0, 1), color=RED, width=3)
+    s.plot([(h, mtf(0)) for h in heights], right, (0, 21.6, 0, 1), color=GREEN, width=3, dash="7 4")
+    s.text(614, 193, "各像高重新对焦", size=16, color=GREEN)
+    s.text(765, 364, "固定中心焦面", size=16, color=RED)
+    for h in [0, 15.2735064736, 21.6]:
+        z = 75 * (h / 21.6) ** 2
+        px, py = 110 + h / 21.6 * 330, 440 - z / 90 * 285
+        s.circle(px, py, 4, fill=BLUE, stroke="#fff", sw=1)
+    s.text(423, 184, "75 μm", size=15, color=BLUE, anchor="end")
+    s.text(930, 317, f"{mtf(75):.3f}", size=15, color=RED, anchor="end")
+    s.text(40, 531, "场曲使边缘焦点离开中心焦面；逐像高重新对焦后，局部 MTF 恢复至本例的基准值。", size=19)
+    s.text(40, 568, "若重新对焦仍不能恢复，或两方向不能同时合焦，就要继续检查其他像差。", size=18)
+    s.text(40, 613, "本节高斯 PSF 模型：C = 75 μm，A = 0，σ0 = 1.8 μm；图中未加入像散。", size=17, color=GRAY)
     s.save("13_field_curvature.svg")
-
 
 def distorted_grid(panel_x: float, panel_y: float, k: float) -> list[list[tuple[float, float]]]:
     curves: list[list[tuple[float, float]]] = []
@@ -1129,24 +1219,39 @@ def figure_14_glass_map() -> None:
 
 
 def figure_14_achromat() -> None:
-    s = SVG("图 14.2  正低色散片与负高色散片组成消色差双片")
-    axis = 310
-    s.line(70, axis, 930, axis, color=GRAY, width=1.5, dash="8 6")
-    s.ellipse(430, axis, 35, 165, fill=PALE_BLUE, stroke=BLUE, sw=3)
-    s.add(f'<path d="M470,165 Q512,310 470,455 L530,455 Q488,310 530,165 Z" '
-          f'fill="{PALE_RED}" stroke="{RED}" stroke-width="3"/>')
-    s.text(430, 500, "Φ₁ > 0 · 高 V₁", size=17, color=BLUE, anchor="middle")
-    s.text(500, 535, "Φ₂ < 0 · 低 V₂", size=17, color=RED, anchor="middle")
-    for y, color, focus_y in [(210, BLUE, 310), (255, RED, 310)]:
-        after_positive = axis + (y - axis) * (1 - 70 / 200)
-        s.line(80, y, 430, y, color=color, width=2.5)
-        s.line(430, y, 500, after_positive, color=color, width=2.5)
-        s.line(500, after_positive, 820, focus_y, color=color, width=2.5)
-    s.circle(820, axis, 7, fill=GREEN, stroke=GREEN)
-    s.text(820, 350, "F、C 两线共焦", size=18, color=GREEN, anchor="middle")
-    s.text(670, 125, "Φ₁/V₁ + Φ₂/V₂ = 0", size=22, anchor="middle", weight="700")
+    import json
+    # Reuse the same catalogue dispersion and contact-thin-doublet model as the panel.
+    module = (OUT.parent / "interactives/achromat/model.js").as_uri()
+    js = f'''import {{doublet}} from "{module}";
+const a=doublet(), m=doublet({{ratio:a.solutionRatio}});
+console.log(JSON.stringify({{ratio:m.phi1/m.total,v1:m.a.abbe,v2:m.b.abbe,f:m.focuses}}));'''
+    m = json.loads(subprocess.check_output(["node", "--input-type=module", "-e", js], text=True))
+    assert math.isclose(m["f"]["F"], m["f"]["C"], abs_tol=1e-9)
+    s = SVG("图 14.2  正低色散片与负高色散片组成消色差双片", height=650)
+    s.text(40, 100, "接触薄片：正、负光焦度在同一等效平面相加", size=20, weight="600")
+    axis, lens = 275, 350
+    xmap = lambda z: lens + 4.9*z
+    s.line(65, axis, 935, axis, color=GRAY, width=1, dash="6 5", opacity=.6)
+    s.rect(lens-27, 146, 54, 250, fill=PALE_BLUE, stroke="#cedbe6", sw=1, radius=9)
+    engineering_thin_group(s,lens,axis,105,True,INK)
+    s.text(lens, 130, "双片合成光焦度", size=16, anchor="middle", color=GRAY)
+    for color, dash, wavelength in [(BLUE,None,"F"),(RED,"7 5","C")]:
+        for height in [-65,65]:
+            s.line(70,axis+height,lens,axis+height,color=color,width=2,dash=dash)
+            s.line(lens,axis+height,xmap(m["f"][wavelength]),axis,color=color,width=2,dash=dash)
+    focus = xmap(m["f"]["F"])
+    s.circle(focus,axis,5,fill=GREEN,stroke="#fff",sw=1)
+    s.text(focus,axis+40,"F、C 两线共焦",size=18,color=GREEN,anchor="middle")
+    s.text(88, 176, "F · 486.13 nm",size=16,color=BLUE)
+    s.text(88, 366, "C · 656.27 nm（虚线）",size=16,color=RED)
+    s.text(353, 427, "N-BK7：正光焦度 / 较高 Abbe 数",size=17,color=INK,anchor="middle")
+    s.text(353, 454, "N-F2：负光焦度 / 较低 Abbe 数",size=17,color=INK,anchor="middle")
+    s.rect(40,488,920,84,fill="#f6f8fa",stroke=LIGHT,sw=1,radius=8)
+    for x, title, value, color in [(62,"d 线总焦距","100 mm",INK),(293,"正片 / 总光焦度",f'{m["ratio"]:.4f}',BLUE),(524,"F、C 共焦位置",f'{m["f"]["F"]:.3f} mm',GREEN),(755,"d 线 Abbe 数",f'{m["v1"]:.2f} / {m["v2"]:.2f}',PURPLE)]:
+        s.text(x,514,title,size=15,color=GRAY)
+        s.text(x,548,value,size=22,color=color,weight="600")
+    s.text(40,612,"SCHOTT 目录色散；按 Φ1/V1 + Φ2/V2 = 0 配比。箭头标出双片合成的正光焦度。",size=17,color=GRAY)
     s.save("14_achromat.svg")
-
 
 def figure_15_asphere_profile() -> None:
     s = SVG("图 15.1  球面与非球面的矢高差")
@@ -1274,27 +1379,44 @@ def figure_16_depth_of_field() -> None:
 
 
 def figure_16_stabilization() -> None:
-    s = SVG("图 16.4  角抖动、像移与防抖补偿")
-    s.panel(55, 95, 420, 390, "未补偿")
-    s.panel(525, 95, 420, 390, "移动光学组 / 传感器补偿")
-    for base_x, compensated in [(55, False), (525, True)]:
-        lx, sx, axis = base_x + 150, base_x + 350, 300
-        lens_center = axis - (20 if compensated else 0)
-        s.ellipse(lx, lens_center, 22, 130, fill=PALE_BLUE, stroke=BLUE, sw=3)
-        s.line(sx, 155, sx, 445, color=INK, width=4)
-        s.line(base_x + 30, 263, lx, 275, color=RED, width=2.5)
-        target_y = 300 if compensated else 320
-        s.line(lx, 275, sx, target_y, color=RED, width=3)
-        s.circle(sx, target_y, 8, fill=RED, stroke=RED)
-        if compensated:
-            s.arrow(lx, 420, lx, 385, color=GREEN, width=4)
-            s.text(lx + 25, 420, "补偿位移", size=15, color=GREEN)
+    s = SVG("图 16.4  角抖动、像移与防抖补偿", height=650)
+    titles = ["① 关闭补偿","② 光学补偿：移等效薄组","③ 机身补偿：移传感器"]
+    for i, title in enumerate(titles):
+        x=30+i*325
+        s.panel(x,100,300,410,title)
+        lx,sx,axis=x+108,x+254,287
+        shift=34
+        lens_center=axis-shift if i==1 else axis
+        sensor_center=axis+shift if i==2 else axis
+        s.line(x+18,axis,x+280,axis,color=GRAY,width=.8,dash="5 4",opacity=.5)
+        engineering_thin_group(s,lx,lens_center,78,True,BLUE)
+        s.line(sx,sensor_center-113,sx,sensor_center+113,color=INK,width=3)
+        for aperture in [-58,0,58]:
+            y=lens_center+aperture
+            sy=y-shift/146*78
+            endpoint=lens_center+shift
+            s.line(x+30,sy,lx,y,color=AMBER,width=1.4)
+            s.line(lx,y,sx,endpoint,color=AMBER,width=1.6)
+        # All panels share the same ray law: y' = lens_center + f theta.
+        actual=lens_center+shift
+        residual=actual-sensor_center
+        assert residual == (shift if i==0 else 0)
+        s.line(sx-12,sensor_center,sx+12,sensor_center,color=GREEN,width=1.5)
+        s.circle(sx,actual,4,fill=RED if residual else GREEN,stroke="#fff",sw=1)
+        if i==0:
+            s.line(sx+15,axis,sx+15,actual,color=RED,width=1.2)
+            s.text(x+155,439,"像点偏离传感器中心",size=16,color=RED,anchor="middle")
+        elif i==1:
+            s.arrow(lx+24,axis,lx+24,lens_center,color=BLUE,width=2)
+            s.text(x+155,439,"改变出射光束的位置",size=16,color=BLUE,anchor="middle")
         else:
-            s.line(sx - 30, 300, sx + 30, 300, color=GREEN, width=3, dash="5 4")
-            s.text(sx - 40, 290, "理想位置", size=14, color=GREEN, anchor="end")
-    s.text(500, 545, "小角度像移 Δx ≈ fθ；防抖不冻结主体运动", size=20, anchor="middle")
+            s.line(sx+14,axis,sx+14,axis+shift,color=GREEN,width=2,arrow=True)
+            s.text(x+155,439,"传感器中心跟随像点",size=16,color=GREEN,anchor="middle")
+        s.text(x+150,478,"残余像移：34.9 μm" if i==0 else "理想补偿：残余为 0",size=18,anchor="middle",weight="600")
+    s.text(40,553,"同一瞬间：f = 100 mm，θ = 0.02°，像移 fθ ≈ 34.9 μm；三图使用同一方向的入射光。",size=18)
+    s.text(40,590,"横向位移放大显示。光学补偿用可平移的正薄组作等效例，实际组的补偿倍率需由处方求得。",size=17,color=GRAY)
+    s.text(40,623,"曝光中的模糊还取决于整段残余轨迹；相机防抖不能抵消主体自身的运动。",size=17,color=GRAY)
     s.save("16_stabilization.svg")
-
 
 def figure_17_mtf_chart() -> None:
     s = SVG("图 17.1  厂商像高 MTF 图的读法")

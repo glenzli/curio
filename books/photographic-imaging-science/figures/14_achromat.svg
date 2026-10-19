@@ -1,24 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 14.2  正低色散片与负高色散片组成消色差双片">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-label="图 14.2  正低色散片与负高色散片组成消色差双片">
 <defs>
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect width="1000" height="600" fill="#fafbfc"/>
-<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<rect width="1000" height="650" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="634" rx="12" fill="#fff" stroke="#e6e9ed"/>
 <text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 14.2  正低色散片与负高色散片组成消色差双片</text>
 <line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<line x1="70.00" y1="310.00" x2="930.00" y2="310.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
-<ellipse cx="430.00" cy="310.00" rx="35.00" ry="165.00" fill="#e7eff7" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
-<path d="M470,165 Q512,310 470,455 L530,455 Q488,310 530,165 Z" fill="#f7eae7" stroke="#bd5b54" stroke-width="3"/>
-<text x="430.00" y="500.00" fill="#316fa4" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Φ₁ &gt; 0 · 高 V₁</text>
-<text x="500.00" y="535.00" fill="#bd5b54" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Φ₂ &lt; 0 · 低 V₂</text>
-<line x1="80.00" y1="210.00" x2="430.00" y2="210.00" stroke="#316fa4" stroke-width="2.5" opacity="1.0"/>
-<line x1="430.00" y1="210.00" x2="500.00" y2="245.00" stroke="#316fa4" stroke-width="2.5" opacity="1.0"/>
-<line x1="500.00" y1="245.00" x2="820.00" y2="310.00" stroke="#316fa4" stroke-width="2.5" opacity="1.0"/>
-<line x1="80.00" y1="255.00" x2="430.00" y2="255.00" stroke="#bd5b54" stroke-width="2.5" opacity="1.0"/>
-<line x1="430.00" y1="255.00" x2="500.00" y2="274.25" stroke="#bd5b54" stroke-width="2.5" opacity="1.0"/>
-<line x1="500.00" y1="274.25" x2="820.00" y2="310.00" stroke="#bd5b54" stroke-width="2.5" opacity="1.0"/>
-<circle cx="820.00" cy="310.00" r="7.00" fill="#3c9168" stroke="#3c9168" stroke-width="2" opacity="1.0"/>
-<text x="820.00" y="350.00" fill="#3c9168" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F、C 两线共焦</text>
-<text x="670.00" y="125.00" fill="#25303b" font-size="22" font-weight="700" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">Φ₁/V₁ + Φ₂/V₂ = 0</text>
+<text x="40.00" y="100.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">接触薄片：正、负光焦度在同一等效平面相加</text>
+<line x1="65.00" y1="275.00" x2="935.00" y2="275.00" stroke="#7a8590" stroke-width="1" opacity="0.6" stroke-dasharray="6 5"/>
+<rect x="323.00" y="146.00" width="54.00" height="250.00" rx="9" fill="#e7eff7" stroke="#cedbe6" stroke-width="1" opacity="1.0"/>
+<line x1="350.00" y1="170.00" x2="350.00" y2="380.00" stroke="#25303b" stroke-width="2" opacity="1.0"/>
+<polyline points="345.00,179.00 350.00,170.00 355.00,179.00" fill="none" stroke="#25303b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<polyline points="345.00,371.00 350.00,380.00 355.00,371.00" fill="none" stroke="#25303b" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<text x="350.00" y="130.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">双片合成光焦度</text>
+<line x1="70.00" y1="210.00" x2="350.00" y2="210.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="350.00" y1="210.00" x2="840.25" y2="275.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="70.00" y1="340.00" x2="350.00" y2="340.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="350.00" y1="340.00" x2="840.25" y2="275.00" stroke="#316fa4" stroke-width="2" opacity="1.0"/>
+<line x1="70.00" y1="210.00" x2="350.00" y2="210.00" stroke="#bd5b54" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
+<line x1="350.00" y1="210.00" x2="840.25" y2="275.00" stroke="#bd5b54" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
+<line x1="70.00" y1="340.00" x2="350.00" y2="340.00" stroke="#bd5b54" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
+<line x1="350.00" y1="340.00" x2="840.25" y2="275.00" stroke="#bd5b54" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
+<circle cx="840.25" cy="275.00" r="5.00" fill="#3c9168" stroke="#fff" stroke-width="1" opacity="1.0"/>
+<text x="840.25" y="315.00" fill="#3c9168" font-size="18" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F、C 两线共焦</text>
+<text x="88.00" y="176.00" fill="#316fa4" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F · 486.13 nm</text>
+<text x="88.00" y="366.00" fill="#bd5b54" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">C · 656.27 nm（虚线）</text>
+<text x="353.00" y="427.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">N-BK7：正光焦度 / 较高 Abbe 数</text>
+<text x="353.00" y="454.00" fill="#25303b" font-size="17" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">N-F2：负光焦度 / 较低 Abbe 数</text>
+<rect x="40.00" y="488.00" width="920.00" height="84.00" rx="8" fill="#f6f8fa" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
+<text x="62.00" y="514.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">d 线总焦距</text>
+<text x="62.00" y="548.00" fill="#25303b" font-size="22" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">100 mm</text>
+<text x="293.00" y="514.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">正片 / 总光焦度</text>
+<text x="293.00" y="548.00" fill="#316fa4" font-size="22" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">2.3135</text>
+<text x="524.00" y="514.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">F、C 共焦位置</text>
+<text x="524.00" y="548.00" fill="#3c9168" font-size="22" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">100.051 mm</text>
+<text x="755.00" y="514.00" fill="#7a8590" font-size="15" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">d 线 Abbe 数</text>
+<text x="755.00" y="548.00" fill="#8971ac" font-size="22" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">64.17 / 36.43</text>
+<text x="40.00" y="612.00" fill="#7a8590" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">SCHOTT 目录色散；按 Φ1/V1 + Φ2/V2 = 0 配比。箭头标出双片合成的正光焦度。</text>
 </svg>

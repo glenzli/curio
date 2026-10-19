@@ -1,49 +1,46 @@
 import { crossSection, routePoint } from "./model.js";
 const colors = {
-  optics: "#829fb5",
-  silicon: "#5798be",
-  metal: "#b79258",
-  support: "#9caaa5",
-  bond: "#bda2bd",
-  logic: "#71a58b",
+  silicon: "#568eae",
+  metal: "#b6843d",
+  signal: "#247d91",
+  light: "#b77b20",
+  bond: "#9a78a5",
 };
+const path = (points) => "M" + points.map((v) => v.join(",")).join("L");
+const text = (x, y, value, size = 10, attrs = "") =>
+  `<text x="${x}" y="${y}" font-size="${size}" ${attrs}>${value}</text>`;
+// Endpoints and layer order come from the functional model. Material details
+// identify the layers without adding a process or an optical simulation.
 export function structureFigure(input) {
   const m = crossSection(input),
-    p = m.progress,
-    light = routePoint(m.photonRoute, Math.min(1, p / 40)),
-    electronic = routePoint(
-      m.signalRoute,
-      Math.max(0, Math.min(1, (p - 60) / 40)),
-    );
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 420" style="font:12px sans-serif" role="img" aria-label="${m.illumination.toUpperCase()}${m.stacked ? "逻辑堆栈" : "同片电路"}功能截面，入光和电子路径分开"><text x="30" y="17">入光 ↓</text>${m.layers
+    p = m.progress;
+  const light = routePoint(m.photonRoute, Math.min(1, p / 40));
+  const electronic = routePoint(
+    m.signalRoute,
+    Math.max(0, Math.min(1, (p - 60) / 40)),
+  );
+  const silicon = m.layers.find((l) => l.kind === "silicon"),
+    metal = m.layers.find((l) => l.kind === "metal");
+  const waferTop = Math.min(silicon.y, metal.y),
+    waferBottom = Math.max(silicon.bottom, metal.bottom);
+  const layers = m.layers
     .map((l) => {
-      const body = `<rect x="30" y="${l.y}" width="200" height="${l.height}" rx="3" fill="${colors[l.kind]}" fill-opacity=".18" stroke="${colors[l.kind]}"/>`;
-      if (l.kind === "silicon")
-        return (
-          body +
-          `<text x="148" y="${l.y + 15}">${m.illumination === "bsi" ? "背面入光" : "感光硅"}</text><rect x="62" y="${m.diode.y - 12}" width="60" height="24" rx="10" fill="${colors.silicon}" fill-opacity=".35" stroke="${colors.silicon}"/><text x="92" y="${m.diode.y + 25}" text-anchor="middle">PPD</text>`
-        );
-      if (l.kind === "metal")
-        return (
-          body +
-          `<rect x="34" y="${l.y + 5}" width="38" height="${l.height - 10}" fill="${colors.metal}"/><rect x="113" y="${l.y + 5}" width="113" height="${l.height - 10}" fill="${colors.metal}" fill-opacity=".5"/><text x="169" y="${l.center + 4}" text-anchor="middle">晶体管 / 金属</text>`
-        );
+      const rect = (fill, stroke) =>
+        `<rect x="30" y="${l.y}" width="200" height="${l.height}" rx="2" fill="${fill}" stroke="${stroke}" stroke-width=".9"/>`;
       if (l.kind === "optics")
-        return (
-          body +
-          `<path d="M43 ${l.y + 10}Q74 ${l.y - 13}105 ${l.y + 10}M132 ${l.y + 10}Q163 ${l.y - 13}194 ${l.y + 10}" fill="none" stroke="${colors.optics}"/><text x="130" y="${l.bottom - 4}" text-anchor="middle">微透镜 / CFA</text>`
-        );
+        return `<g data-layer="optics"><defs><clipPath id="stack-optics-clip"><rect x="30" y="30" width="200" height="60"/></clipPath></defs><g clip-path="url(#stack-optics-clip)">${[22, 92, 162, 232].map((x, i) => `<path d="M${x - 33} ${l.y + 11}Q${x} ${l.y - 13} ${x + 33} ${l.y + 11}Z" fill="#dfeaf1" stroke="#82a7bf" stroke-width=".8"/><rect x="${x - 33}" y="${l.y + 15}" width="66" height="9" rx="1" fill="${["#b87168", "#6b9b7b", "#6f95b5", "#6b9b7b"][i]}" fill-opacity=".7"/>`).join("")}</g>${text(160, l.y - 10, "微透镜", 11)}${text(238, l.bottom - 1, "CFA", 9, 'fill="#6c7a83"')}</g>`;
+      if (l.kind === "silicon") {
+        const surface = l.y;
+        return `<g data-layer="silicon">${rect("#e8f1f6", colors.silicon)}<path d="M31 ${surface}H229" stroke="${colors.silicon}" stroke-width="2.5"/><path d="M54 ${l.y + 5}V${l.bottom - 5}M130 ${l.y + 5}V${l.bottom - 5}" stroke="${colors.silicon}" stroke-width=".7" stroke-dasharray="2 3" opacity=".45"/><rect x="62" y="${m.diode.y - 12}" width="60" height="24" rx="11" fill="#c2dfeb" stroke="${colors.silicon}"/>${text(92, m.diode.y + 25, "PPD", 11, 'text-anchor="middle" fill="#265c77"')}${text(147, l.y + 18, "感光硅", 12, 'fill="#265c77"')}${text(147, l.y + 55, m.illumination === "bsi" ? "上侧为背面" : "上侧为前侧", 10, 'fill="#4f7488"')}</g>`;
+      }
+      if (l.kind === "metal")
+        return `<g data-layer="metal">${rect("#faf3e8", "#c69a59")}<path d="M35 ${l.y + 6}H69V${l.bottom - 5}M118 ${l.y + 6}H225M125 ${l.y + 12}H220" fill="none" stroke="${colors.metal}" stroke-width="3"/><path d="M53 ${l.y + 6}V${l.y + 17}H68M207 ${l.y + 6}V${l.y + 13}" fill="none" stroke="${colors.metal}" stroke-width="2"/><rect x="151" y="${l.bottom - 8}" width="27" height="5" rx="1" fill="#8a7457"/>${text(118, l.bottom - 11, "前侧布线", 9, 'fill="#775a2d"')}${text(223, l.bottom - 2, "晶体管", 8, 'text-anchor="end" fill="#775a2d"')}</g>`;
       if (l.kind === "bond")
-        return (
-          body +
-          `<path d="M53 ${l.y}V${l.bottom}M198 ${l.y}V${l.bottom}" stroke="${colors.bond}" stroke-width="4"/><text x="124" y="${l.center + 4}" text-anchor="middle">键合互连</text>`
-        );
-      return (
-        body +
-        `<text x="130" y="${l.center + 4}" text-anchor="middle">${l.kind === "logic" ? "独立逻辑晶圆" : "承载基底"}</text>`
-      );
+        return `<g data-layer="bond">${rect("#f2edf5", "#b49abd")}<path d="M31 ${l.center}H229" stroke="${colors.bond}" stroke-width=".8"/>${[53, 198, 218].map((x) => `<rect x="${x - 3}" y="${l.y + 2}" width="6" height="${l.height - 4}" rx="1" fill="#b49365"/>`).join("")}${text(87, l.center + 3.5, "键合互连", 9, 'fill="#765d80"')}</g>`;
+      if (l.kind === "logic")
+        return `<g data-layer="logic">${rect("#e7f1eb", "#70a28b")}${[42, 58, 74].map((x) => `<rect x="${x}" y="${l.y + 12}" width="10" height="18" rx="1" fill="#c3dbcd" stroke="#80a991" stroke-width=".6"/>`).join("")}<path d="M41 ${l.y + 8}H86M41 ${l.bottom - 8}H86" stroke="#80a991" stroke-width=".7"/>${text(107, l.y + 17, "独立逻辑晶圆", 11, 'fill="#30694f"')}${text(107, l.y + 33, "信号处理 / ADC 等", 9, 'fill="#4e7660"')}</g>`;
+      return `<g data-layer="support">${rect("#edf0f0", "#a5b1af")}<path d="M35 ${l.bottom - 5}l12 -12m0 12l12 -12m0 12l12 -12m0 12l12 -12" stroke="#bac4c1" stroke-width=".8"/>${text(167, l.center + 3.5, "承载基底", 11, 'text-anchor="middle" fill="#647570"')}</g>`;
     })
-    .join(
-      "",
-    )}<path d="M${m.photonRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#c89235" stroke-width="2" stroke-dasharray="4 3" opacity=".65"/><path d="M${m.signalRoute.map((v) => v.join(",")).join("L")}" fill="none" stroke="#40879a" stroke-width="2" stroke-dasharray="3 3" opacity=".6"/>${p <= 40 ? `<circle cx="${light[0]}" cy="${light[1]}" r="5" fill="#c89235"/>` : p < 60 ? `<circle cx="${m.diode.x}" cy="${m.diode.y}" r="${7 + (p - 40) / 3}" fill="#c89235" fill-opacity=".3"/>` : `<circle cx="${electronic[0]}" cy="${electronic[1]}" r="5" fill="#40879a"/>`}<text x="30" y="398">${m.stacked ? "电信号跨键合界面到逻辑晶圆" : "本图读出链留在像素晶圆"}</text><text x="30" y="416">功能层序示意 · 非工艺比例</text></svg>`;
+    .join("");
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 385" fill="currentColor" style="font-family:ui-sans-serif,-apple-system,'PingFang SC',sans-serif;color:var(--text,#293744)" role="img" aria-label="${m.illumination.toUpperCase()}${m.stacked ? "逻辑堆栈" : "同片电路"}功能截面，入光和电子路径分开"><defs><marker id="stack-light-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L6 3L0 6Z" fill="${colors.light}"/></marker><marker id="stack-signal-arrow" viewBox="0 0 6 6" refX="5" refY="3" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L6 3L0 6Z" fill="${colors.signal}"/></marker></defs>${text(31, 21, "入射光", 10, 'fill="currentColor"')}<path d="M92 9V31" stroke="${colors.light}" stroke-width="1.5" marker-end="url(#stack-light-arrow)"/>${layers}<path d="M240 ${waferTop}h5V${waferBottom}h-5" fill="none" stroke="${colors.silicon}" stroke-width=".8"/><text x="261" y="${(waferTop + waferBottom) / 2}" text-anchor="middle" font-size="9" fill="currentColor" transform="rotate(90 261 ${(waferTop + waferBottom) / 2})">像素晶圆</text><path data-route="photon" d="${path(m.photonRoute)}" fill="none" stroke="${colors.light}" stroke-width="1.5" stroke-dasharray="4 3" opacity=".75" marker-end="url(#stack-light-arrow)"/><path data-route="electronic" d="${path(m.signalRoute)}" fill="none" stroke="${colors.signal}" stroke-width="1.7" stroke-linejoin="round" opacity="${p < 60 ? ".3" : ".8"}" marker-end="url(#stack-signal-arrow)"/>${p <= 40 ? `<circle cx="${light[0]}" cy="${light[1]}" r="3.5" fill="${colors.light}" stroke="#fff"/>` : p < 60 ? `<circle cx="${m.diode.x}" cy="${m.diode.y}" r="${7 + (p - 40) / 3}" fill="${colors.light}" fill-opacity=".2"/><circle cx="${m.diode.x}" cy="${m.diode.y}" r="3.5" fill="${colors.light}"/>` : `<circle cx="${electronic[0]}" cy="${electronic[1]}" r="3.5" fill="${colors.signal}" stroke="#fff"/>`}<path d="M30 353H245" stroke="currentColor" stroke-width=".5" opacity=".15"/>${text(30, 369, m.stacked ? "信号经键合互连进入逻辑晶圆" : "像素与本图读出电路位于同一晶圆", 10, 'fill="currentColor"')}</svg>`;
 }

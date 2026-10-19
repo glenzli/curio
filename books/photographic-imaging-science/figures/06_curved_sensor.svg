@@ -1,23 +1,86 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="600" viewBox="0 0 1000 600" role="img" aria-label="图 6.4  平面传感器与弯曲最佳像面">
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-label="图 6.4  平面传感器与弯曲最佳像面">
 <defs>
 <marker id="arrow" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L8,3 z" fill="context-stroke"/></marker>
 <marker id="arrow-open" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L8,3 L0,6" fill="none" stroke="context-stroke"/></marker>
 </defs>
-<rect width="1000" height="600" fill="#fafbfc"/>
-<rect x="8" y="8" width="984" height="584" rx="12" fill="#fff" stroke="#e6e9ed"/>
+<rect width="1000" height="650" fill="#fafbfc"/>
+<rect x="8" y="8" width="984" height="634" rx="12" fill="#fff" stroke="#e6e9ed"/>
 <text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.4  平面传感器与弯曲最佳像面</text>
 <line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<line x1="80.00" y1="300.00" x2="900.00" y2="300.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0" stroke-dasharray="8 6"/>
-<ellipse cx="300.00" cy="300.00" rx="30.00" ry="160.00" fill="#e7eff7" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
-<line x1="80.00" y1="170.00" x2="300.00" y2="300.00" stroke="#bd5b54" stroke-width="2" opacity="1.0"/>
-<line x1="300.00" y1="300.00" x2="720.00" y2="210.00" stroke="#bd5b54" stroke-width="2.5" opacity="1.0"/>
-<line x1="80.00" y1="300.00" x2="300.00" y2="300.00" stroke="#3c9168" stroke-width="2" opacity="1.0"/>
-<line x1="300.00" y1="300.00" x2="760.00" y2="300.00" stroke="#3c9168" stroke-width="2.5" opacity="1.0"/>
-<line x1="80.00" y1="430.00" x2="300.00" y2="300.00" stroke="#8971ac" stroke-width="2" opacity="1.0"/>
-<line x1="300.00" y1="300.00" x2="720.00" y2="390.00" stroke="#8971ac" stroke-width="2.5" opacity="1.0"/>
-<polyline points="738.39,173.78 737.06,177.12 735.77,180.66 734.51,184.39 733.30,188.30 732.13,192.40 731.01,196.66 729.93,201.09 728.90,205.68 727.92,210.42 726.99,215.30 726.11,220.32 725.29,225.47 724.52,230.73 723.81,236.11 723.16,241.59 722.56,247.16 722.03,252.82 721.56,258.55 721.15,264.34 720.80,270.20 720.51,276.10 720.29,282.04 720.13,288.01 720.03,294.00 720.00,300.00 720.03,306.00 720.13,311.99 720.29,317.96 720.51,323.90 720.80,329.80 721.15,335.66 721.56,341.45 722.03,347.18 722.56,352.84 723.16,358.41 723.81,363.89 724.52,369.27 725.29,374.53 726.11,379.68 726.99,384.70 727.92,389.58 728.90,394.32 729.93,398.91 731.01,403.34 732.13,407.60 733.30,411.70 734.51,415.61 735.77,419.34 737.06,422.88 738.39,426.22" fill="none" stroke="#316fa4" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
-<line x1="790.00" y1="145.00" x2="790.00" y2="455.00" stroke="#bd5b54" stroke-width="5" opacity="1.0"/>
-<text x="680.00" y="130.00" fill="#316fa4" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">弯曲最佳像面</text>
-<text x="805.00" y="130.00" fill="#bd5b54" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面传感器</text>
-<text x="500.00" y="535.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">曲率必须与具体镜头的场曲和像散共同匹配</text>
+<rect x="35.00" y="90.00" width="575.00" height="420.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="322.50" y="119.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">先让轴上合焦，再看边缘光束</text>
+<rect x="635.00" y="90.00" width="330.00" height="195.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="800.00" y="119.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面传感器</text>
+<rect x="635.00" y="310.00" width="330.00" height="200.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
+<text x="800.00" y="339.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">曲面与最佳焦点匹配</text>
+<line x1="60.00" y1="310.00" x2="590.00" y2="310.00" stroke="#7a8590" stroke-width="1" opacity="0.5" stroke-dasharray="6 5"/>
+<rect x="79.00" y="223.00" width="51.00" height="174.00" rx="8" fill="#edf0f4" stroke="#b7c3ce" stroke-width="1" opacity="1.0"/>
+<line x1="91.00" y1="239.00" x2="91.00" y2="381.00" stroke="#7a8590" stroke-width="1" opacity="0.45"/>
+<line x1="104.00" y1="239.00" x2="104.00" y2="381.00" stroke="#7a8590" stroke-width="1" opacity="0.45"/>
+<line x1="117.00" y1="239.00" x2="117.00" y2="381.00" stroke="#7a8590" stroke-width="1" opacity="0.45"/>
+<text x="105.00" y="427.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">镜组</text>
+<text x="105.00" y="450.00" fill="#7a8590" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">示意</text>
+<polygon points="150.00,245.00 443.00,190.00 150.00,375.00" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.065"/>
+<polyline points="150.00,245.00 443.00,190.00 515.00,176.48" fill="none" stroke="#316fa4" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,310.00 443.00,190.00 515.00,160.51" fill="none" stroke="#316fa4" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,375.00 443.00,190.00 515.00,144.54" fill="none" stroke="#316fa4" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<defs><marker id="arrow-316fa4-1.7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L8 4.5L1 8Z" fill="#316fa4"/></marker></defs>
+<line x1="294.00" y1="251.02" x2="316.00" y2="242.01" stroke="#316fa4" stroke-width="1.7" opacity="1.0" marker-end="url(#arrow-316fa4-1.7)"/>
+<circle cx="443.00" cy="190.00" r="4.00" fill="#316fa4" stroke="#fff" stroke-width="1" opacity="1.0"/>
+<line x1="515.00" y1="144.54" x2="515.00" y2="176.48" stroke="#316fa4" stroke-width="7" opacity="1.0"/>
+<circle cx="515.00" cy="160.51" r="2.50" fill="#316fa4" stroke="none" stroke-width="2" opacity="1.0"/>
+<polygon points="150.00,245.00 515.00,310.00 150.00,375.00" fill="#3c9168" stroke="none" stroke-width="2" opacity="0.065"/>
+<polyline points="150.00,245.00 515.00,310.00 515.00,310.00" fill="none" stroke="#3c9168" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,310.00 515.00,310.00 515.00,310.00" fill="none" stroke="#3c9168" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,375.00 515.00,310.00 515.00,310.00" fill="none" stroke="#3c9168" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<defs><marker id="arrow-3c9168-1.7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L8 4.5L1 8Z" fill="#3c9168"/></marker></defs>
+<line x1="294.00" y1="310.00" x2="316.00" y2="310.00" stroke="#3c9168" stroke-width="1.7" opacity="1.0" marker-end="url(#arrow-3c9168-1.7)"/>
+<circle cx="515.00" cy="310.00" r="4.00" fill="#3c9168" stroke="#fff" stroke-width="1" opacity="1.0"/>
+<line x1="515.00" y1="310.00" x2="515.00" y2="310.00" stroke="#3c9168" stroke-width="7" opacity="1.0"/>
+<circle cx="515.00" cy="310.00" r="2.50" fill="#3c9168" stroke="none" stroke-width="2" opacity="1.0"/>
+<polygon points="150.00,245.00 443.00,430.00 150.00,375.00" fill="#8971ac" stroke="none" stroke-width="2" opacity="0.065"/>
+<polyline points="150.00,245.00 443.00,430.00 515.00,475.46" fill="none" stroke="#8971ac" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,310.00 443.00,430.00 515.00,459.49" fill="none" stroke="#8971ac" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<polyline points="150.00,375.00 443.00,430.00 515.00,443.52" fill="none" stroke="#8971ac" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" opacity="0.82"/>
+<defs><marker id="arrow-8971ac-1.7" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L8 4.5L1 8Z" fill="#8971ac"/></marker></defs>
+<line x1="294.00" y1="368.98" x2="316.00" y2="377.99" stroke="#8971ac" stroke-width="1.7" opacity="1.0" marker-end="url(#arrow-8971ac-1.7)"/>
+<circle cx="443.00" cy="430.00" r="4.00" fill="#8971ac" stroke="#fff" stroke-width="1" opacity="1.0"/>
+<line x1="515.00" y1="443.52" x2="515.00" y2="475.46" stroke="#8971ac" stroke-width="7" opacity="1.0"/>
+<circle cx="515.00" cy="459.49" r="2.50" fill="#8971ac" stroke="none" stroke-width="2" opacity="1.0"/>
+<polyline points="405.48,162.00 408.42,164.00 411.32,166.00 414.18,168.00 417.00,170.00 419.78,172.00 422.52,174.00 425.22,176.00 427.88,178.00 430.50,180.00 433.08,182.00 435.62,184.00 438.12,186.00 440.58,188.00 443.00,190.00 445.38,192.00 447.72,194.00 450.02,196.00 452.28,198.00 454.50,200.00 456.68,202.00 458.82,204.00 460.92,206.00 462.98,208.00 465.00,210.00 466.98,212.00 468.92,214.00 470.82,216.00 472.68,218.00 474.50,220.00 476.28,222.00 478.02,224.00 479.72,226.00 481.38,228.00 483.00,230.00 484.58,232.00 486.12,234.00 487.62,236.00 489.08,238.00 490.50,240.00 491.88,242.00 493.22,244.00 494.52,246.00 495.78,248.00 497.00,250.00 498.18,252.00 499.32,254.00 500.42,256.00 501.48,258.00 502.50,260.00 503.48,262.00 504.42,264.00 505.32,266.00 506.18,268.00 507.00,270.00 507.78,272.00 508.52,274.00 509.22,276.00 509.88,278.00 510.50,280.00 511.08,282.00 511.62,284.00 512.12,286.00 512.58,288.00 513.00,290.00 513.38,292.00 513.72,294.00 514.02,296.00 514.28,298.00 514.50,300.00 514.68,302.00 514.82,304.00 514.92,306.00 514.98,308.00 515.00,310.00 514.98,312.00 514.92,314.00 514.82,316.00 514.68,318.00 514.50,320.00 514.28,322.00 514.02,324.00 513.72,326.00 513.38,328.00 513.00,330.00 512.58,332.00 512.12,334.00 511.62,336.00 511.08,338.00 510.50,340.00 509.88,342.00 509.22,344.00 508.52,346.00 507.78,348.00 507.00,350.00 506.18,352.00 505.32,354.00 504.42,356.00 503.48,358.00 502.50,360.00 501.48,362.00 500.42,364.00 499.32,366.00 498.18,368.00 497.00,370.00 495.78,372.00 494.52,374.00 493.22,376.00 491.88,378.00 490.50,380.00 489.08,382.00 487.62,384.00 486.12,386.00 484.58,388.00 483.00,390.00 481.38,392.00 479.72,394.00 478.02,396.00 476.28,398.00 474.50,400.00 472.68,402.00 470.82,404.00 468.92,406.00 466.98,408.00 465.00,410.00 462.98,412.00 460.92,414.00 458.82,416.00 456.68,418.00 454.50,420.00 452.28,422.00 450.02,424.00 447.72,426.00 445.38,428.00 443.00,430.00 440.58,432.00 438.12,434.00 435.62,436.00 433.08,438.00 430.50,440.00 427.88,442.00 425.22,444.00 422.52,446.00 419.78,448.00 417.00,450.00 414.18,452.00 411.32,454.00 408.42,456.00 405.48,458.00" fill="none" stroke="#388e9f" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<line x1="515.00" y1="151.00" x2="515.00" y2="469.00" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<text x="323.00" y="153.00" fill="#388e9f" font-size="16" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">逐像高的最佳焦点</text>
+<polyline points="389.00,158.00 421.00,158.00 427.88,178.00" fill="none" stroke="#388e9f" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
+<circle cx="515.00" cy="310.00" r="4.00" fill="#3c9168" stroke="#fff" stroke-width="1" opacity="1.0"/>
+<text x="549.00" y="490.00" fill="#bd5b54" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面</text>
+<line x1="537.00" y1="482.00" x2="515.00" y2="462.00" stroke="#bd5b54" stroke-width="1" opacity="1.0"/>
+<line x1="698.00" y1="166.00" x2="698.00" y2="228.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<rect x="693.00" y="181.03" width="10.00" height="31.95" rx="4" fill="#316fa4" stroke="none" stroke-width="2" opacity="0.18"/>
+<line x1="698.00" y1="181.03" x2="698.00" y2="212.97" stroke="#316fa4" stroke-width="4" opacity="1.0"/>
+<line x1="692.00" y1="181.03" x2="704.00" y2="181.03" stroke="#316fa4" stroke-width="1.2" opacity="1.0"/>
+<line x1="692.00" y1="212.97" x2="704.00" y2="212.97" stroke="#316fa4" stroke-width="1.2" opacity="1.0"/>
+<text x="698.00" y="249.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">上边缘</text>
+<line x1="800.00" y1="166.00" x2="800.00" y2="228.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<circle cx="800.00" cy="197.00" r="3.00" fill="#3c9168" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="800.00" y="249.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">轴上</text>
+<line x1="902.00" y1="166.00" x2="902.00" y2="228.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<rect x="897.00" y="181.03" width="10.00" height="31.95" rx="4" fill="#8971ac" stroke="none" stroke-width="2" opacity="0.18"/>
+<line x1="902.00" y1="181.03" x2="902.00" y2="212.97" stroke="#8971ac" stroke-width="4" opacity="1.0"/>
+<line x1="896.00" y1="181.03" x2="908.00" y2="181.03" stroke="#8971ac" stroke-width="1.2" opacity="1.0"/>
+<line x1="896.00" y1="212.97" x2="908.00" y2="212.97" stroke="#8971ac" stroke-width="1.2" opacity="1.0"/>
+<text x="902.00" y="249.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">下边缘</text>
+<text x="800.00" y="273.00" fill="#7a8590" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光束的纵向截宽 · 两图同尺度</text>
+<line x1="698.00" y1="387.00" x2="698.00" y2="449.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<circle cx="698.00" cy="418.00" r="3.00" fill="#316fa4" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="698.00" y="470.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">上边缘</text>
+<line x1="800.00" y1="387.00" x2="800.00" y2="449.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<circle cx="800.00" cy="418.00" r="3.00" fill="#3c9168" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="800.00" y="470.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">轴上</text>
+<line x1="902.00" y1="387.00" x2="902.00" y2="449.00" stroke="#7a8590" stroke-width="0.8" opacity="0.2"/>
+<circle cx="902.00" cy="418.00" r="3.00" fill="#8971ac" stroke="none" stroke-width="2" opacity="1.0"/>
+<text x="902.00" y="470.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">下边缘</text>
+<text x="800.00" y="494.00" fill="#7a8590" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光束的纵向截宽 · 两图同尺度</text>
+<text x="40.00" y="551.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面上：轴上光束已会聚，离轴光束在到达传感器前已越过焦点。</text>
+<text x="40.00" y="585.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">匹配曲面可让这些光束在接收面上会聚；有像散时，还要比较两个主截面。</text>
+<text x="40.00" y="620.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">颜色区分像高；最佳焦点轨迹为抛物线示意，未计衍射。</text>
 </svg>
