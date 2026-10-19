@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "width": 1024,
+  "height": 1536,
+  "title": {
+    "font": "noto-serif-sc-semibold",
+    "direction": "vertical",
+    "x": 70,
+    "fontSize": 108,
+    "minFontSize": 72,
+    "letterSpacing": 0,
+    "lineGap": 14,
+    "maxWidth": 108,
+    "baseline": 408,
+    "fill": "#242722"
+  },
+  "author": {
+    "font": "noto-sans-regular",
+    "fontSize": 40,
+    "minFontSize": 28,
+    "letterSpacing": 1.4,
+    "maxWidth": 680,
+    "baseline": 1460,
+    "fill": "#363933"
+  }
+}

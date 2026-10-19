@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "family": "Smiley Sans Oblique",
+  "fontVersion": "Version 2.0.1",
+  "sourceRepository": "https://github.com/glenzli/storybook-co-editor",
+  "sourceCommit": "857bd73165f70f0b90a3e9e1aaa1fbbd87646298",
+  "copyright": "Copyright (c) 2022--2024, atelierAnchor <https://atelier-anchor.com>",
+  "fontModified": false,
+  "files": [
+    {
+      "file": "SmileySans-Oblique.ttf.woff2",
+      "bytes": 1150924,
+      "sha256": "731f22973349404b15a88a99ef3b5dd4104c0965c23b7e485c1f11e84fea99e2",
+      "sourcePath": "app/src/assets/fonts/display/SmileySans-Oblique.ttf.woff2",
+      "sourceUrl": "https://github.com/glenzli/storybook-co-editor/blob/857bd73165f70f0b90a3e9e1aaa1fbbd87646298/app/src/assets/fonts/display/SmileySans-Oblique.ttf.woff2"
+    }
+  ],
+  "fontBundledInManuscript": false
+}

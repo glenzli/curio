@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "width": 1024,
+  "height": 1536,
+  "title": {
+    "font": "smiley-sans-oblique",
+    "fontSize": 124,
+    "minFontSize": 90,
+    "letterSpacing": 4,
+    "maxWidth": 840,
+    "baseline": 193,
+    "fill": "#242c2d"
+  },
+  "author": {
+    "font": "noto-sans-regular",
+    "fontSize": 35,
+    "minFontSize": 28,
+    "letterSpacing": 2.5,
+    "maxWidth": 680,
+    "baseline": 259,
+    "fill": "#4b5658"
+  }
+}

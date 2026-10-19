@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "fonts": [
+    {
+      "id": "noto-serif-sc-semibold",
+      "family": "Noto Serif SC SemiBold",
+      "version": "Version 2.003;hotconv 1.1.1;makeotfexe 2.6.0",
+      "weight": 600,
+      "file": "NotoSerifSC-SemiBold.otf",
+      "sha256": "517d9736136b3b4e9aea742a7e1acda1922aea91a4425bd8db79281934055bf5",
+      "sourceRepository": "https://github.com/notofonts/noto-cjk",
+      "sourceCommit": "f8d157532fbfaeda587e826d4cd5b21a49186f7c",
+      "sourcePath": "Serif/SubsetOTF/SC/NotoSerifSC-SemiBold.otf"
+    },
+    {
+      "id": "noto-sans-regular",
+      "family": "Noto Sans",
+      "version": "Version 2.015",
+      "weight": 400,
+      "axes": {
+        "wght": 400,
+        "wdth": 100
+      },
+      "file": "NotoSans-VF.ttf",
+      "sha256": "bfb7bb691513f12e734dc346c03a03f784912432d7e3fa8e56efcf906fe86b3d",
+      "sourceRepository": "https://github.com/google/fonts",
+      "sourceCommit": "47d54ca1ebb14fd864695f1d39dc734f39017c33",
+      "sourcePath": "ofl/notosans/NotoSans[wdth,wght].ttf"
+    },
+    {
+      "id": "smiley-sans-oblique",
+      "family": "Smiley Sans Oblique",
+      "version": "Version 2.0.1",
+      "weight": 400,
+      "file": "SmileySans-Oblique.ttf.woff2",
+      "sha256": "731f22973349404b15a88a99ef3b5dd4104c0965c23b7e485c1f11e84fea99e2",
+      "sourceRepository": "https://github.com/glenzli/storybook-co-editor",
+      "sourceCommit": "857bd73165f70f0b90a3e9e1aaa1fbbd87646298",
+      "sourcePath": "app/src/assets/fonts/display/SmileySans-Oblique.ttf.woff2"
+    }
+  ]
+}

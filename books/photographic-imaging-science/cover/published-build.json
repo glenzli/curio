@@ -1,0 +1,63 @@
+{
+  "generator": "photographic-imaging-science-cover",
+  "version": 1,
+  "title": "摄影成像科学",
+  "author": "Glen Li",
+  "width": 1024,
+  "height": 1536,
+  "source": {
+    "bookSha256": "012a5f458499c9124e45d5fc53d5c20637f0db7529062df8cfcae7bfb7d5994c",
+    "artworkSha256": "932c1e1f8e29798dff6e038cc633b5ddcf44d03ac746a164682c724179ef1166",
+    "layoutSha256": "17fb288bab123989be1d78070c0ddea1d5ae8d60d2ee69a9fefafadd22395983",
+    "scriptSha256": "7b763efe5240ae5bf2a87e0ab3b979078f52c8e8458b611b3cedce8bc19b711d",
+    "lockSha256": "04b1f3d16407db3a45641bb5384e6d236d99c05a7007e253a395f8b7fb16db99"
+  },
+  "fonts": [
+    {
+      "id": "smiley-sans-oblique",
+      "family": "Smiley Sans Oblique",
+      "version": "Version 2.0.1",
+      "weight": 400,
+      "file": "SmileySans-Oblique.ttf.woff2",
+      "sha256": "731f22973349404b15a88a99ef3b5dd4104c0965c23b7e485c1f11e84fea99e2",
+      "sourceRepository": "https://github.com/glenzli/storybook-co-editor",
+      "sourceCommit": "857bd73165f70f0b90a3e9e1aaa1fbbd87646298",
+      "sourcePath": "app/src/assets/fonts/display/SmileySans-Oblique.ttf.woff2",
+      "fontSize": 124,
+      "left": 204.4,
+      "baseline": 193
+    },
+    {
+      "id": "smiley-sans-oblique",
+      "family": "Smiley Sans Oblique",
+      "version": "Version 2.0.1",
+      "weight": 400,
+      "file": "SmileySans-Oblique.ttf.woff2",
+      "sha256": "731f22973349404b15a88a99ef3b5dd4104c0965c23b7e485c1f11e84fea99e2",
+      "sourceRepository": "https://github.com/glenzli/storybook-co-editor",
+      "sourceCommit": "857bd73165f70f0b90a3e9e1aaa1fbbd87646298",
+      "sourcePath": "app/src/assets/fonts/display/SmileySans-Oblique.ttf.woff2",
+      "fontSize": 37,
+      "left": 460.322,
+      "baseline": 259
+    }
+  ],
+  "renderer": {
+    "fontkit": "2.0.4",
+    "resvg": "2.6.2"
+  },
+  "files": {
+    "cover.svg": {
+      "bytes": 2557077,
+      "sha256": "b0c921eceaae457730a8e5ba8ce10e27b132d04552648baa57039d392050d268"
+    },
+    "cover.png": {
+      "bytes": 2402971,
+      "sha256": "a736d2c7f316da80b76a7c68f4c60188ba21252b7fc4b6c84b4155408ebb37d0"
+    },
+    "cover-192.png": {
+      "bytes": 109322,
+      "sha256": "6234b75104d9a4bda084ff887adf39a1352e937dd4971ee529f1e61444f133b5"
+    }
+  }
+}

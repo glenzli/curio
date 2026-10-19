@@ -1,0 +1,15 @@
+{
+  "name": "photographic-imaging-science-cover",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node build-cover.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "2.6.2",
+    "fontkit": "2.0.4"
+  }
+}
