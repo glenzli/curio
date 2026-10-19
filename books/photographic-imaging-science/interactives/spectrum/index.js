@@ -3,7 +3,7 @@ import {parameters,spectralAt,pupilIntegral,independentPsf,linePsf} from './mode
 import {spectrumFigures} from './figures.js';
 const complex=z=>(Math.abs(z[0])<1e-12?0:z[0]).toFixed(4)+(z[1]<-1e-12?' − ':' + ')+(Math.abs(z[1])<1e-12?0:Math.abs(z[1])).toFixed(4)+'i';
 export function mount({element,signal,session}) {
- return experiment({element,signal,session,kicker:'第十二章 · 双波长非相干成像',title:'两条谱线的点像与复 OTF',intro:'先看每条谱线，再改变探测信号权重和 B 谱线的像点位置。所有曲线使用同一像面坐标和空间频率。',
+ return experiment({element,signal,session,kicker:'第十二章 · 双波长非相干成像',title:'两条谱线的点像与复 OTF',intro:'分别绘制两条谱线，再按探测信号权重合成。B谱线的像点位置可调；各曲线使用同一像面坐标和空间频率。',
  controls:[
   {key:'fNumber',label:'光圈 f 数',min:2,max:16,step:.5,value:8,format:v=>'f/'+v},
   {key:'wavelengthA',label:'A 谱线波长',min:400,max:700,step:10,value:500,format:v=>v+' nm'},

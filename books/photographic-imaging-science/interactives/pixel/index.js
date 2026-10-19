@@ -84,9 +84,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "4T 像素 · 电荷与采样",
-    title: "先读参考电平，再转移信号电荷",
+    title: "4T 像素的复位、转移与双采样",
     intro:
-      "逐步看 PPD、FD 和列读出线的状态。拖动复位偏移，比较两次电压怎样一起移动，以及差值为什么保持不变。",
+      "回放显示 PPD、FD 和列读出线在各阶段的状态。复位偏移同时作用于两次电压采样；拖动该参数可核对差分消去共同偏置的结果。",
     controls: [
       {
         key: "electrons",

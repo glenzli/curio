@@ -631,7 +631,7 @@ def figure_06_sensor_structures() -> None:
 
 def figure_06_curved_sensor() -> None:
     s = SVG("图 6.4  平面传感器与弯曲最佳像面", height=650)
-    s.panel(35, 90, 575, 420, "先让轴上合焦，再看边缘光束")
+    s.panel(35, 90, 575, 420, "轴上合焦时的离轴光束")
     s.panel(635, 90, 330, 195, "平面传感器")
     s.panel(635, 310, 330, 200, "曲面与最佳焦点匹配")
     axis, pupil, plane = 310, 150, 515
@@ -683,7 +683,7 @@ def figure_06_curved_sensor() -> None:
             s.text(cx, y + 52, label, size=15, anchor="middle")
         s.text(800, y + 76, "光束的纵向截宽 · 两图同尺度", size=14, color=GRAY, anchor="middle")
     s.text(40, 551, "平面上：轴上光束已会聚，离轴光束在到达传感器前已越过焦点。", size=19)
-    s.text(40, 585, "匹配曲面可让这些光束在接收面上会聚；有像散时，还要比较两个主截面。", size=18)
+    s.text(40, 585, "匹配曲面经过各像高的最佳焦点；存在像散时，两个主截面的焦面需分别考察。", size=18)
     s.text(40, 620, "颜色区分像高；最佳焦点轨迹为抛物线示意，未计衍射。", size=16, color=GRAY)
     s.save("06_curved_sensor.svg")
 
@@ -851,7 +851,7 @@ def figure_09_ei_allocation() -> None:
 
 def figure_10_raw_pipeline() -> None:
     s = SVG("图 10.1  RAW 显影流程及可重新选择的步骤",height=650)
-    s.text(40,104,"从文件样本到显示图像：每一步都改变数据的含义",size=21,weight="600")
+    s.text(40,104,"从文件样本到显示图像的处理链",size=21,weight="600")
     stages=[("读取 RAW","解包 / 线性化",GRAY,"bytes"),("黑 / 白电平","减偏置 / 归一化",RED,"levels"),("去马赛克","CFA → 多通道",BLUE,"cfa"),("白平衡","线性通道增益",GREEN,"rgb"),("颜色矩阵","变换颜色坐标",PURPLE,"matrix"),("色调 / 输出","映射 / 编码",AMBER,"curve")]
     for i,(title,sub,color,kind) in enumerate(stages):
         x=35+i*158
@@ -863,7 +863,7 @@ def figure_10_raw_pipeline() -> None:
     s.text(61,476,"可从样本重新选择后续显影参数",size=17,color=BLUE)
     s.text(529,441,"处理已在写入前不可逆完成",size=18,color=AMBER,weight="600")
     s.text(529,476,"只能调整结果，不能重取原始输入",size=17,color=AMBER)
-    s.text(40,552,"先核对数据仍处在哪一步，再判断某项操作能否重新选择。",size=20)
+    s.text(40,552,"文件保留的样本与处理状态决定后期可调整的范围。",size=20)
     s.text(40,592,"图中是典型逻辑顺序；白平衡、去马赛克与降噪的实际次序随流程而变。",size=18)
     s.text(40,628,"RAW 的处理状态以文件字段和相机已经执行的处理为准。",size=16,color=GRAY)
     s.save("10_raw_pipeline.svg")
@@ -1058,7 +1058,7 @@ def figure_12_frequency_orientation() -> None:
     s = SVG("图 12.4  条纹方向与空间频率方向")
     for x, width in [(36, 326), (390, 276), (688, 276)]:
         s.rect(x, 100, width, 376, fill="#fafbfc", stroke=LIGHT, sw=1, radius=8)
-    s.text(54, 132, "先确定画面中的位置", size=20, weight="600")
+    s.text(54, 132, "像高位置与径向、切向", size=20, weight="600")
     s.rect(62, 162, 274, 264, fill="#fff", stroke="#c7d0d9", sw=1.5)
     center, field = (156, 326), (268, 214)
     s.line(144, 326, 168, 326, color=GRAY, width=1.5)
@@ -1145,8 +1145,8 @@ def figure_13_aberration_spots() -> None:
 
 def figure_13_field_curvature() -> None:
     s = SVG("图 13.2  场曲与同一平面测试", height=650)
-    s.text(255, 105, "① 最佳焦点随像高移动", size=21, anchor="middle", weight="600")
-    s.text(744, 105, "② 固定焦面与逐点重新对焦", size=21, anchor="middle", weight="600")
+    s.text(255, 105, "① 不同像高的最佳焦面", size=21, anchor="middle", weight="600")
+    s.text(744, 105, "② 固定焦面与逐像高重新对焦", size=21, anchor="middle", weight="600")
     left, right = (110, 155, 330, 285), (600, 155, 330, 285)
     s.axes(*left, "像高 h / mm", "最佳焦面 z / μm")
     s.axes(*right, "像高 h / mm", "MTF · 30 lp/mm")
@@ -1169,7 +1169,7 @@ def figure_13_field_curvature() -> None:
     s.text(423, 184, "75 μm", size=15, color=BLUE, anchor="end")
     s.text(930, 317, f"{mtf(75):.3f}", size=15, color=RED, anchor="end")
     s.text(40, 531, "场曲使边缘焦点离开中心焦面；逐像高重新对焦后，局部 MTF 恢复至本例的基准值。", size=19)
-    s.text(40, 568, "若重新对焦仍不能恢复，或两方向不能同时合焦，就要继续检查其他像差。", size=18)
+    s.text(40, 568, "重新对焦后仍有MTF损失，或两方向焦点分离时，还需结合其他像差分析。", size=18)
     s.text(40, 613, "本节高斯 PSF 模型：C = 75 μm，A = 0，σ0 = 1.8 μm；图中未加入像散。", size=17, color=GRAY)
     s.save("13_field_curvature.svg")
 

@@ -7,7 +7,7 @@
 <rect x="8" y="8" width="984" height="634" rx="12" fill="#fff" stroke="#e6e9ed"/>
 <text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 10.1  RAW 显影流程及可重新选择的步骤</text>
 <line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<text x="40.00" y="104.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">从文件样本到显示图像：每一步都改变数据的含义</text>
+<text x="40.00" y="104.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">从文件样本到显示图像的处理链</text>
 <rect x="35.00" y="157.00" width="139.00" height="207.00" rx="8" fill="#fcfdfe" stroke="#dae2e8" stroke-width="1" opacity="1.0"/>
 <line x1="47.00" y1="158.00" x2="162.00" y2="158.00" stroke="#7a8590" stroke-width="3" opacity="1.0"/>
 <circle cx="58.00" cy="182.00" r="11.00" fill="#7a8590" stroke="none" stroke-width="2" opacity="0.13"/>
@@ -92,7 +92,7 @@
 <text x="61.00" y="476.00" fill="#316fa4" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">可从样本重新选择后续显影参数</text>
 <text x="529.00" y="441.00" fill="#be8a39" font-size="18" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">处理已在写入前不可逆完成</text>
 <text x="529.00" y="476.00" fill="#be8a39" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">只能调整结果，不能重取原始输入</text>
-<text x="40.00" y="552.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">先核对数据仍处在哪一步，再判断某项操作能否重新选择。</text>
+<text x="40.00" y="552.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">文件保留的样本与处理状态决定后期可调整的范围。</text>
 <text x="40.00" y="592.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图中是典型逻辑顺序；白平衡、去马赛克与降噪的实际次序随流程而变。</text>
 <text x="40.00" y="628.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">RAW 的处理状态以文件字段和相机已经执行的处理为准。</text>
 </svg>

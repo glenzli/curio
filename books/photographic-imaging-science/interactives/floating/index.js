@@ -59,7 +59,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "对焦 · 两个移动组与远景尺度",
-    title: "镜组怎样一边对焦，一边补偿画面尺度",
+    title: "浮动对焦与画面尺度补偿",
     intro:
       "从无穷远拉焦到近处，比较只移动后组与两组协同。下方标尺始终代表同一组远景方向，虚线保留无穷远时的位置。",
     controls: [

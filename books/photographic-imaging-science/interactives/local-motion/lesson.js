@@ -1,7 +1,7 @@
 import { localMotion } from "./model.js";
 import { control, curve, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "背景对齐以后，主体未必对齐",
+  title: "全局配准与局部运动的差异",
   alt: "互动示意：两块局部运动、观测位移估计与HDR权重对照",
   intro:
     "背景和主体各占一个固定区域。用同一批长短曝光，比较一个全局位移、两个局部位移和已知生成位移。",

@@ -2,10 +2,10 @@ import { veilingFlare } from "./model.js";
 import { control, number, curve, grid } from "../common/lesson-view.js";
 import { imagePanels } from "../common/image-view.js";
 export const spec = {
-  title: "面纱眩光怎样降低对比",
+  title: "面纱眩光与图像对比度",
   alt: "互动示意：均匀杂散光、Michelson对比度与扣均值后的散粒噪声",
   intro:
-    "黑白图案保持不变，只增加一层均匀杂散光。比较对比度，再假设已知这层光的平均值，检查扣除后还剩多少噪声。",
+    "均匀杂散光抬高黑位，降低黑白图案的对比度。扣除其已知均值可恢复原有的平均亮度，新增的散粒噪声仍会保留。",
   staticCaption:
     "亮区1000 e⁻，暗区100 e⁻，均匀杂散光300 e⁻/像素，读噪4 e⁻ rms。",
   note: "局部均匀、与目标光独立的杂散光；各处电子数为期望值。示意图显示无噪声均值；噪声按独立Poisson与加性读噪计算，已知均值扣除不增加校准误差。不追迹散射或鬼影；饱和另属捕获限制。本图显示白点固定2000 e⁻、Gamma 2.2。",

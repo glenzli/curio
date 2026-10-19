@@ -68,7 +68,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "景深 · 几何光线与输出判据",
-    title: "改变容许弥散圈，景深边界随之改变",
+    title: "容许弥散圈与景深边界",
     intro:
       "先保持镜头与对焦位置，只收紧容许直径；再移动物体，比较连续的弥散圈与标出的近、远界。曲线没有突然清晰或模糊的断点。",
     controls: [

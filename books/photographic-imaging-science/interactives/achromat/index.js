@@ -79,9 +79,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "材料色散 · 接触薄透镜",
-    title: "两片镜怎样让 F、C 两线同焦",
+    title: "消色差双片的 F、C 谱线共焦",
     intro:
-      "总焦距保持不变，改变正、负两片分担的光焦度。先比较单片与消色差配比，再移动像面，查看各条谱线的焦点和几何离焦斑。",
+      "总焦距保持不变，正、负两片的光焦度配比决定各谱线的焦点。单片与消色差配比可作对照；移动像面可比较几何离焦斑。",
     controls: [
       {
         key: "focalLength",
@@ -160,7 +160,7 @@ export function mount({ element, signal, session }) {
       const separation = (m.focuses.C - m.focuses.F) * 1000;
       status.textContent =
         m.solutionRatio === null
-          ? "两片都是 N-BK7，Abbe 数相同。正负光焦度怎样分配，都不能在保留非零总光焦度的同时消除 F–C 色差；自动配比在这里无解。"
+          ? "两片都是 N-BK7，Abbe 数相同。保留非零总光焦度时，任意正负配比都无法消除 F–C 色差；自动配比在这里无解。"
           : Math.abs(separation) < 0.001
             ? "F、C 两线已同焦。曲线仍有弯曲：d 线与 g 线的焦点没有随之重合，这部分残差需要其他材料或更多设计自由度。"
             : "目前 F、C 焦点尚未重合。正片与负片的色散贡献没有抵消；点击“F/C 自动配比”可求出本组材料的一级消色差配比。";

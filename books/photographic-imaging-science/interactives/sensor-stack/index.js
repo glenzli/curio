@@ -20,9 +20,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "第六章 · 入光侧与功能晶圆",
-    title: "FSI、BSI 与逻辑堆栈分别改变什么？",
+    title: "FSI、BSI 与逻辑堆栈的结构",
     intro:
-      "以带微透镜和CFA的彩色像素为例：FSI的光先经过前侧布线所在层，BSI从硅背面入光；逻辑堆栈把部分处理电路放到独立晶圆。展开层片，分别跟踪入光和电子信号。",
+      "以带微透镜和CFA的彩色像素为例：FSI的光先经过前侧布线所在层，BSI从硅背面入光；逻辑堆栈把部分处理电路放到独立晶圆。展开间距可调，橙色虚线与蓝色实线分别标出入光和电子信号路径。",
     controls: [
       {
         key: "separation",

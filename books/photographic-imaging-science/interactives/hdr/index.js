@@ -85,7 +85,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "HDR · 从观测估计位移",
-    title: "先估计两帧的错位，再比较融合结果",
+    title: "两帧位移估计与 HDR 融合",
     intro:
       "从长短曝光的灰度变化搜索水平位移。下方并列显示未配准、按估计配准和按真值配准的融合；移动主体可能让整幅画面的估计失效。",
     controls: [

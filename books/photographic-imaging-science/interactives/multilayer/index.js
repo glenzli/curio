@@ -7,7 +7,7 @@ export function mount({ element, signal, session }) {
   let cachedKey = "", spectrum = [];
   return experiment({
     element, signal, session, kicker: "多层膜 · 特征矩阵与界面递推", title: "膜层次序、厚度与反射谱",
-    intro: "先看两层四分之一波膜，再倒转次序、增加层数或改变末层厚度。层数相同，反射谱也可能相差很大。",
+    intro: "以两层四分之一波膜为起点，比较倒转层序、增加层数和改变末层厚度后的反射谱。相同层数的膜系可有不同的光谱响应。",
     controls: [
       { key: "pairs", label: "膜层对数", min: 1, max: 3, step: 1, value: 1, format: (x) => `${x} 对 · ${x * 2} 层` },
       { key: "high", label: "H 层折射率", min: 1.5, max: 2.4, step: "any", value: 1.7, format: (x) => x.toFixed(4) },

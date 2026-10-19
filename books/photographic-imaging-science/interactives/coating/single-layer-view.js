@@ -69,7 +69,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "增透膜 · 传播相位与复振幅",
-    title: "膜厚改变了反射光怎样相加",
+    title: "膜厚、反射相位与振幅合成",
     intro:
       "先把膜厚设为当前波长的四分之一波光学厚度，再改变波长或膜材折射率。比较复振幅的合成与整段可见光反射谱。",
     controls: [

@@ -16,7 +16,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "第五、九章 · EI与监看链",
-    title: "EI、实际曝光与监看分别在哪一步起作用",
+    title: "EI、实际曝光与监看调整的作用位置",
     intro:
       "先固定传感器和模拟读出，再决定是否按EI改变曝光、是否把EI增益放进编码。沿一个场景探针跟踪电子、RAW、Log和监看码，分别标出传感器、文件和显示的白点。",
     controls: [

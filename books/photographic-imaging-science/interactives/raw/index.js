@@ -11,7 +11,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "RAW · 样本、字节与解码约定",
-    title: "两个 12-bit 样本怎样装进三个字节",
+    title: "两个 12-bit 样本的三字节打包",
     intro:
       "播放打包与解包，观察每段位的位置。然后试着丢掉低位，或用错误的 nibble 顺序解码；比较两种错误发生在哪一步。",
     controls: [
@@ -124,7 +124,7 @@ export function mount({ element, signal, session }) {
         `④ 按当前位序解释字节，恢复A′=${m.decoded[0]}、B′=${m.decoded[1]} DN；相对原样本误差为${m.loss[0]}、${m.loss[1]} DN。`,
       ][phase];
       root.querySelector("[data-input]").innerHTML =
-        `<h4>原始样本 → 存盘前样本</h4><p>A：<code>${hex(m.original[0])}</code> → <code>${hex(m.stored[0])}</code>；B：<code>${hex(m.original[1])}</code> → <code>${hex(m.stored[1])}</code></p><p>低位步长 ${m.step} DN。${s.dropBits ? "这一步已经丢失数值，后续无损打包也不能恢复。" : "样本数值保持。"}</p>`;
+        `<h4>原始样本 → 存盘前样本</h4><p>A：<code>${hex(m.original[0])}</code> → <code>${hex(m.stored[0])}</code>；B：<code>${hex(m.original[1])}</code> → <code>${hex(m.stored[1])}</code></p><p>低位步长 ${m.step} DN。${s.dropBits ? "低位清零已损失精度，后续无损打包无法恢复。" : "样本数值保持。"}</p>`;
       root.querySelector("[data-bytes]").classList.toggle("muted", phase < 2);
       root.querySelector("[data-bytes]").innerHTML =
         `<h4>三个字节 · 24 bit</h4><div class="byte-grid">${m.packed.map((v, i) => `<div class="byte"><small>b${i} = ${hex(v, 2)}</small><code>${[...bin(v)].map((bit, j) => `<span class="${i === 2 || (i === 1 && j < 4) ? "from-b" : ""}">${bit}</span>`).join("")}</code></div>`).join("")}</div>`;

@@ -8,7 +8,7 @@
 <text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 6.4  平面传感器与弯曲最佳像面</text>
 <line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
 <rect x="35.00" y="90.00" width="575.00" height="420.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
-<text x="322.50" y="119.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">先让轴上合焦，再看边缘光束</text>
+<text x="322.50" y="119.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">轴上合焦时的离轴光束</text>
 <rect x="635.00" y="90.00" width="330.00" height="195.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
 <text x="800.00" y="119.00" fill="#25303b" font-size="18" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面传感器</text>
 <rect x="635.00" y="310.00" width="330.00" height="200.00" rx="9" fill="#fbfcfd" stroke="#d5dce4" stroke-width="1" opacity="1.0"/>
@@ -81,6 +81,6 @@
 <text x="902.00" y="470.00" fill="#25303b" font-size="15" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">下边缘</text>
 <text x="800.00" y="494.00" fill="#7a8590" font-size="14" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">光束的纵向截宽 · 两图同尺度</text>
 <text x="40.00" y="551.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">平面上：轴上光束已会聚，离轴光束在到达传感器前已越过焦点。</text>
-<text x="40.00" y="585.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">匹配曲面可让这些光束在接收面上会聚；有像散时，还要比较两个主截面。</text>
+<text x="40.00" y="585.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">匹配曲面经过各像高的最佳焦点；存在像散时，两个主截面的焦面需分别考察。</text>
 <text x="40.00" y="620.00" fill="#7a8590" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">颜色区分像高；最佳焦点轨迹为抛物线示意，未计衍射。</text>
 </svg>

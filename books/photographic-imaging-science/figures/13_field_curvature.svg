@@ -7,8 +7,8 @@
 <rect x="8" y="8" width="984" height="634" rx="12" fill="#fff" stroke="#e6e9ed"/>
 <text x="36.00" y="39.00" fill="#25303b" font-size="25" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">图 13.2  场曲与同一平面测试</text>
 <line x1="36.00" y1="60.00" x2="964.00" y2="60.00" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<text x="255.00" y="105.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">① 最佳焦点随像高移动</text>
-<text x="744.00" y="105.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">② 固定焦面与逐点重新对焦</text>
+<text x="255.00" y="105.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">① 不同像高的最佳焦面</text>
+<text x="744.00" y="105.00" fill="#25303b" font-size="21" font-weight="600" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">② 固定焦面与逐像高重新对焦</text>
 <defs><marker id="arrow-25303b-1.8" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L8 4.5L1 8Z" fill="#25303b"/></marker></defs>
 <line x1="110.00" y1="440.00" x2="440.00" y2="440.00" stroke="#25303b" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow-25303b-1.8)"/>
 <line x1="110.00" y1="440.00" x2="110.00" y2="155.00" stroke="#25303b" stroke-width="1.8" opacity="1.0" marker-end="url(#arrow-25303b-1.8)"/>
@@ -65,6 +65,6 @@
 <text x="423.00" y="184.00" fill="#316fa4" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">75 μm</text>
 <text x="930.00" y="317.00" fill="#bd5b54" font-size="15" font-weight="400" text-anchor="end" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">0.498</text>
 <text x="40.00" y="531.00" fill="#25303b" font-size="19" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">场曲使边缘焦点离开中心焦面；逐像高重新对焦后，局部 MTF 恢复至本例的基准值。</text>
-<text x="40.00" y="568.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">若重新对焦仍不能恢复，或两方向不能同时合焦，就要继续检查其他像差。</text>
+<text x="40.00" y="568.00" fill="#25303b" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">重新对焦后仍有MTF损失，或两方向焦点分离时，还需结合其他像差分析。</text>
 <text x="40.00" y="613.00" fill="#7a8590" font-size="17" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">本节高斯 PSF 模型：C = 75 μm，A = 0，σ0 = 1.8 μm；图中未加入像散。</text>
 </svg>

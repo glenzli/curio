@@ -22,9 +22,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "曝光 · 光子预算与运动积分",
-    title: "相同曝光量，运动轨迹仍可能不同",
+    title: "曝光量与曝光期间的运动模糊",
     intro:
-      "先比较曝光结束时的光子数和拖影长度；播放可再看它们怎样积累。两组进度同步到各自曝光结束，实际经过的毫秒数分别标出。",
+      "默认画面显示曝光结束时的光子数与拖影长度；回放显示曝光中的积累过程。两组进度分别对应各自的曝光时长，实际毫秒数单独标出。",
     controls: [
       {
         key: "apertureEV",

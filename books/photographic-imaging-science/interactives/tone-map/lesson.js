@@ -33,7 +33,7 @@ export const spec = {
     return {
       panels: [
         {
-          title: "先比较线性显示亮度，再做Gamma编码",
+          title: "Gamma编码前的线性显示亮度",
           xMax: 8,
           xLabel: "场景线性输入",
           yLabel: "显示线性亮度 / 归一化",

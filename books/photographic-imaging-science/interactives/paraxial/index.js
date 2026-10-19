@@ -50,7 +50,7 @@ function diagram(p, m) {
 export function mount({ element, signal, session }) {
   return experiment({
     element, signal, session, kicker: "近轴镜组 · ABCD 与逐面追迹", title: "焦距从主平面量起，后焦距从后组量起",
-    intro: "用正、负两组拼出望远型或反望远型。改变组间距后，观察主平面和交点怎样移动，再调节像面位置。",
+    intro: "正、负两薄组按不同次序组成望远型或反望远型模型。组间距决定系统光焦度、主平面和焦点位置；像面位置可独立调节。",
     controls: [
       { key: "power1", label: "前组光焦度", min: -20, max: 20, step: 0.5, value: 10, format: (x) => `${x.toFixed(1)} D` },
       { key: "power2", label: "后组光焦度", min: -20, max: 20, step: 0.5, value: -10, format: (x) => `${x.toFixed(1)} D` },

@@ -10,7 +10,7 @@
 <rect x="36.00" y="100.00" width="326.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
 <rect x="390.00" y="100.00" width="276.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
 <rect x="688.00" y="100.00" width="276.00" height="376.00" rx="8" fill="#fafbfc" stroke="#edf0f4" stroke-width="1" opacity="1.0"/>
-<text x="54.00" y="132.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">先确定画面中的位置</text>
+<text x="54.00" y="132.00" fill="#25303b" font-size="20" font-weight="600" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">像高位置与径向、切向</text>
 <rect x="62.00" y="162.00" width="274.00" height="264.00" rx="4" fill="#fff" stroke="#c7d0d9" stroke-width="1.5" opacity="1.0"/>
 <line x1="144.00" y1="326.00" x2="168.00" y2="326.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0"/>
 <line x1="156.00" y1="314.00" x2="156.00" y2="338.00" stroke="#7a8590" stroke-width="1.5" opacity="1.0"/>

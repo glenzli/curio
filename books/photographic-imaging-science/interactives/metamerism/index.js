@@ -8,9 +8,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "第七章 · 光谱与相机响应",
-    title: "不同光谱，为什么会得到相同的 RGB？",
+    title: "同色异谱与相机的光谱响应",
     intro:
-      "先在均匀照明和参照相机下比较A、B，再换照明或给R通道增加短波响应。这里的“相同”只指三个相机读数，不表示人眼一定看成同一种颜色。",
+      "在均匀照明和参照相机下，A、B光谱具有相同的三个通道读数。改变照明或R通道的短波响应可打破这种同响应关系；人眼色度需由另一组光谱响应判断。",
     controls: [
       {
         key: "separation",

@@ -18,7 +18,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "ISO · 曝光量、模拟增益与转换增益",
-    title: "固定曝光和少收光，是两种不同的增益比较",
+    title: "固定曝光与缩短曝光下的增益比较",
     intro:
       "先锁定曝光量改变增益，再改成缩短曝光后补到相同输出尺度。读数统一回到基准曝光的电子尺度，避免直接比较放大后的 DN。",
     controls: [

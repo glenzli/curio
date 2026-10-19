@@ -1,10 +1,10 @@
 import { focusSurvey, focalSurface, response } from "./model.js";
 import { control, curve, grid, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "曲面像面与对焦包围怎样配合看",
+  title: "传感器曲率与对焦包围",
   alt: "互动示意：两方向焦面、传感器曲率和四角对焦包围",
   intro:
-    "先看镜头声明的两条焦面，再放入平面或曲面传感器。同一套合成数据还可比较共同焦点、各点最佳焦点和重复装夹。",
+    "两条给定的最佳焦面与传感器表面共同决定各处的离焦量。同一套合成数据用于比较平面与曲面传感器、共同焦点、各点最佳焦点和重复装夹。",
   staticCaption:
     "边角平均焦面+60 μm，两方向±15 μm，无额外倾斜和观测噪声，平面传感器。",
   note: "局部椭圆Gaussian替代模型：σ₀=1.8 μm，离焦每1 μm增加0.08 μm的正交模糊分量。焦面曲率、像散、倾斜和重复装夹扰动均为显式合成输入，不是具体镜头处方。观测以5 μm间距扫描，可加入固定种子的MTF测量噪声；残差与峰值误差都不是置信区间。",

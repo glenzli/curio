@@ -11,7 +11,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "第七章 · 白平衡与噪声协方差",
-    title: "白平衡后的噪声怎样进入颜色混合",
+    title: "白平衡与颜色混合的噪声传播",
     intro:
       "通道乘法会同时放大均值和标准差；矩阵再把多个通道的噪声混在一起。这里沿用同一批输入读数，分别比较变换前后散点、标准差与相关性。",
     controls: [

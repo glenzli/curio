@@ -1,7 +1,7 @@
 import { demosaic } from "./model.js";
 import { control, curve, number } from "../common/lesson-view.js";
 export const spec = {
-  title: "插值后的像素为什么不再独立",
+  title: "插值产生的像素相关性",
   alt: "互动示意：同色样本线性插值后的空间协方差与区域平均",
   intro:
     "偶数位置保留原始同色样本，奇数位置取相邻两样本的平均。比较单点方差与一个输出窗口的平均误差。",

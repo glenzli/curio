@@ -12,5 +12,5 @@ test("changing feedback gain at step zero preserves the first observation but ch
     b.model.history.map((h) => h.group),
   );
   assert.notEqual(a.figure, b.figure);
-  assert.match(a.figure, /完整回放预览/);
+  assert.match(a.figure, /完整位置轨迹与当前步骤/);
 });

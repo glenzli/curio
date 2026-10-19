@@ -9,9 +9,9 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "第三章 · 列并行ADC误差",
-    title: "列偏置与弯曲斜坡怎样改变码值",
+    title: "列偏置、斜坡非线性与码值误差",
     intro:
-      "相同电压落在哪个码区间，由各时钟边沿的斜坡电压决定。固定列偏置会形成列纹；斜坡弯曲后，减去暗场码也未必能消掉亮处的列差。",
+      "各时钟边沿的斜坡电压决定输入电压对应的码区间。固定列偏置会形成列纹；斜坡弯曲后，减去暗场码也未必能消掉亮处的列差。",
     controls: [
       {
         key: "bits",

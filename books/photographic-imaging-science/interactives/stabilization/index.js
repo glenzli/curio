@@ -30,7 +30,7 @@ export function mount({ element, signal, session }) {
     signal,
     session,
     kicker: "防抖 · 光学位移与相对像移",
-    title: "镜组补偿和传感器补偿如何分担位移",
+    title: "光学与传感器防抖的位移补偿",
     intro:
       "选择一个时刻，比较防抖组、光束交点和传感器中心的位置。下方保留整段100 ms的残余轨迹，单个时刻恰好重合并不代表整段曝光都稳定。",
     controls: [

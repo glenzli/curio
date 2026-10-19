@@ -1,10 +1,10 @@
 import { control, curve, grid, number } from "../common/lesson-view.js";
 import { cdsSpectrum, sample, response } from "./model.js";
 export const spec = {
-  title: "两次采样之间，噪声变了多少",
+  title: "相关双采样的时间与频率响应",
   alt: "互动示意：CDS采样孔径、频率响应与时域方差对照",
   intro:
-    "先看同一条噪声波形上的两次读数，再改变间隔和采样宽度。缓慢变化的分量与快速变化的分量，差分后留下的量不同。",
+    "采样间隔与窗口宽度决定两次读数的差分响应。上图标出同一噪声波形上的两个窗口，下图比较不同频率分量在差分后的幅度。",
   staticCaption:
     "32条10—320 kHz线谱；输入RMS 30 μV，间隔10 μs，矩形采样宽2 μs。",
   note: "有限随机相位线谱；单线50 kHz，均匀线功率或低频较强混合谱。采样值为矩形窗口平均，频响为sinc(πfw)[1−exp(−i2πfτ)]。1024个时间点覆盖一个100 μs共同周期，时间方差与独立线谱预算比较；它不是器件的连续白噪声或1/f测量。",
