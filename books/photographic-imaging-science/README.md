@@ -30,6 +30,8 @@ $$
 写作约束见 [SKILL.md](SKILL.md)，符号见 [NOTATION.md](NOTATION.md)，资料源见
 [SOURCES.md](SOURCES.md)，逐章来源用途见 [CHAPTER_SOURCE_NOTES.md](CHAPTER_SOURCE_NOTES.md)。
 习题答案见 [SOLUTIONS.md](SOLUTIONS.md)，术语检索见 [TERM_INDEX.md](TERM_INDEX.md)。
+在 Markdown Book 0.8.0 及更新版本的阅读器和生成网页中，每道练习可直接查看对应解答，
+解答末尾可返回原题；普通 Markdown 阅读仍保留完整题目与答案。
 55 幅编号技术图由 [generate_figures.py](figures/generate_figures.py) 生成，SVG 源文件位于
 [figures](figures/)；图版按模型参数生成，器材测量数据另行注明。
 

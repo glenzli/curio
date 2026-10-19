@@ -508,18 +508,36 @@ $\sqrt{M_\alpha/(LAR)}$，它等于各支样品均值的样本标准差除以 $\
 
 ## 练习
 
+<div data-mb-exercise="ex-17-1">
+
 **练习 17.1.** 36 mm 宽图像中横向 6000 像素，求 Nyquist lp/mm。某镜头在该频率
 MTF 为 0.3，像素孔径 MTF 为 0.637，求乘积模型的预采样系统 MTF。
+
+</div>
+
+<div data-mb-exercise="ex-17-2">
 
 **练习 17.2.** 测得 MTF50 为 45 lp/mm，画面高度 24 mm。分别换算 lp/ph 与
 LW/PH，并解释二者的两倍关系。
 
+</div>
+
+<div data-mb-exercise="ex-17-3">
+
 **练习 17.3.** 某评测只展示一张相机内锐化 JPEG 的中心斜边 MTF，并宣称镜头
 “解析 100 MP”。列出至少五项缺失条件。
+
+</div>
+
+<div data-mb-exercise="ex-17-4">
 
 **练习 17.4.** 一条线性斜边的 Gaussian LSF 标准差为 $0.70$ pixel，像素节距
 $3.76\ \mu\mathrm m$。按例 17.2 计算 MTF50 的 cycles/pixel 与 lp/mm，并说明
 为何它仍是系统而非镜头单体数值。
+
+</div>
+
+<div data-mb-exercise="ex-17-5">
 
 **练习 17.5.** 为贯穿算例写一段带单位和条件的结果记录。至少给出电子均值、
 量化前 SNR、增益一时的均值流程码、40 lp/mm 的预采样 MTF，以及输入调制度
@@ -527,6 +545,12 @@ $3.76\ \mu\mathrm m$。按例 17.2 计算 MTF50 的 cycles/pixel 与 lp/mm，并
 预览均值可以接近原值，但 SNR 是否相同？最后指出把这份合成结果改称“某镜头
 实测”还缺哪些观测与处理记录。
 
+</div>
+
+<div data-mb-exercise="ex-17-6">
+
 **练习 17.6.** 三点锐化取a=0.8、r=1 px，输入独立噪声RMS 0.015。
 计算0.25 cycles/pixel处的增益与输出噪声RMS。说明图像显示裁切后，为什么仍应
 用未裁切数值核对线性模型的MTF与噪声。
+
+</div>

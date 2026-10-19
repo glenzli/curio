@@ -315,15 +315,31 @@ Y'CbCr 422。
 
 ## 练习
 
+<div data-mb-exercise="ex-10-1">
+
 **练习 10.1.** 14 bit RAW 的黑电平为 1024、白电平为 15,000。把样本 4500 DN
 归一化到 $[0,1]$。
+
+</div>
+
+<div data-mb-exercise="ex-10-2">
 
 **练习 10.2.** 计算 $3840\times2160$、每 photosite 12 bit、60 fps 的未压缩
 马赛克码率，分别用 Gbit/s 和 MB/s 表示。
 
+</div>
+
+<div data-mb-exercise="ex-10-3">
+
 **练习 10.3.** 分别给出一个“RAW 仍可后改”和一个“拍摄时已不可逆固定”的参数，
 并说明物理原因。
+
+</div>
+
+<div data-mb-exercise="ex-10-4">
 
 **练习 10.4.** 按式 (10.1)--(10.2) 的打包约定，解包字节
 $(b_0,b_1,b_2)=(\mathtt{0x45},\mathtt{0xa7},\mathtt{0x3c})$，求 12-bit
 样本 $A,B$。
+
+</div>

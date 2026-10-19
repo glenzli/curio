@@ -450,18 +450,38 @@ $\operatorname{Var}(A-B)=2[\operatorname{Var}(A)-\operatorname{Cov}(A,B)]$。
 
 ## 练习
 
+<div data-mb-exercise="ex-3-1">
+
 **练习 3.1.** 一个 12 bit ADC 满量程为 $1.2\ \mathrm V$。计算量化步长和白噪声
 模型下的量化噪声 rms。
+
+</div>
+
+<div data-mb-exercise="ex-3-2">
 
 **练习 3.2.** 某 RAW 黑电平为 512 DN，白点为 15,360 DN，系统增益
 $0.4\ \mathrm{DN}/e^-$。计算可用数字跨度对应的电子数。若满阱为
 $30\,000\ e^-$，哪一端先限制？
 
+</div>
+
+<div data-mb-exercise="ex-3-3">
+
 **练习 3.3.** 式 (3.5) 中 $\sigma_{R_1,e}=2\ e^-$，
 $\sigma_{R_2}/g_c=8\ e^-$。分别计算 $g_a=1,2,4,8$ 时输入等效读噪。
+
+</div>
+
+<div data-mb-exercise="ex-3-4">
 
 **练习 3.4.** 对 $T=300$ K、$C=10$ fF 的复位节点，按式 (3.3) 计算复位电压
 噪声 rms 和等效电子噪声。说明为何该结果不能直接当作 CDS 后相机读噪。
 
+</div>
+
+<div data-mb-exercise="ex-3-5">
+
 **练习 3.5.** 单一50 kHz噪声的输入RMS为30 μV，每次采用2 μs矩形平均。
 分别计算两次采样间隔10 μs、20 μs时的差分RMS，说明为何前者可以超过单次噪声。
+
+</div>

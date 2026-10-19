@@ -178,6 +178,7 @@ def main() -> None:
 
     exercises: list[str] = []
     chapter_tags: set[str] = set()
+    exercise_targets: dict[str, str] = {}
     referenced_figures: list[Path] = []
     referenced_figure_numbers: dict[Path, str] = {}
     referenced_figure_alts: dict[Path, str] = {}
@@ -208,6 +209,13 @@ def main() -> None:
                 f"non-contiguous exercise numbering in {path.name}; "
                 f"expected={expected_exercise_ids}, found={ids}"
             )
+        linked = re.findall(
+            r'<div data-mb-exercise="([a-z0-9]+(?:-[a-z0-9]+)*)">\s*'
+            r'\*\*练习\s+(\d+\.\d+)\.\*\*', text
+        )
+        if [number for target, number in linked] != ids:
+            fail(f"exercise navigation does not match question numbering in {path.name}")
+        exercise_targets.update({number: target for target, number in linked})
         block_ids = NUMBERED_BLOCK_RE.findall(text)
         expected_block_ids = [
             f"{number}.{index}" for index in range(1, len(block_ids) + 1)
@@ -300,6 +308,17 @@ def main() -> None:
         fail(f"exercise/answer mismatch; missing={missing}, extra={extra}")
     if answers != exercises:
         fail("answer order does not match chapter/exercise order")
+    linked_answers = re.findall(
+        r'<div data-mb-solution="([a-z0-9]+(?:-[a-z0-9]+)*)" '
+        r'data-mb-for="([a-z0-9]+(?:-[a-z0-9]+)*)">\s*'
+        r'\*\*答案\s+(\d+\.\d+)\.\*\*', solutions
+    )
+    if [number for answer_id, target, number in linked_answers
+            if target == exercise_targets.get(number)] != answers:
+        fail("answer navigation does not match question numbering")
+    all_navigation_ids = list(exercise_targets.values()) + [item[0] for item in linked_answers]
+    if len(all_navigation_ids) != len(set(all_navigation_ids)):
+        fail("duplicate exercise/answer navigation identifiers")
 
     for path in markdown:
         text = path.read_text(encoding="utf-8")
