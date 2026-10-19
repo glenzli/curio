@@ -43,7 +43,9 @@
 <circle cx="695.00" cy="433.00" r="6.00" fill="#25303b" stroke="#25303b" stroke-width="2" opacity="1.0"/>
 <circle cx="792.50" cy="285.00" r="6.00" fill="#25303b" stroke="#25303b" stroke-width="2" opacity="1.0"/>
 <circle cx="890.00" cy="137.00" r="6.00" fill="#25303b" stroke="#25303b" stroke-width="2" opacity="1.0"/>
-<text x="650.00" y="145.00" fill="#316fa4" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">ν</text>
-<text x="710.00" y="185.00" fill="#bd5b54" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">ν + 1/p</text>
+<line x1="140.00" y1="79.00" x2="168.00" y2="79.00" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<text x="178.00" y="84.00" fill="#316fa4" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">ν</text>
+<line x1="360.00" y1="79.00" x2="388.00" y2="79.00" stroke="#bd5b54" stroke-width="3" opacity="1.0" stroke-dasharray="7 5"/>
+<text x="398.00" y="84.00" fill="#bd5b54" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">ν + 1/p</text>
 <text x="500.00" y="545.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">黑点完全相同：采样后无法唯一判断原来的连续频率</text>
 </svg>

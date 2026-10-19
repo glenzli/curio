@@ -35,7 +35,9 @@
 <polyline points="130.00,470.00 354.00,100.00" fill="none" stroke="#bd5b54" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
 <polyline points="130.00,470.00 830.00,236.90" fill="none" stroke="#316fa4" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity="1.0"/>
 <line x1="130.00" y1="100.00" x2="830.00" y2="100.00" stroke="#7a8590" stroke-width="2" opacity="1.0" stroke-dasharray="7 5"/>
-<text x="340.00" y="125.00" fill="#bd5b54" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">HCG：高 V/e⁻，较早触顶</text>
-<text x="600.00" y="290.00" fill="#316fa4" font-size="18" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">LCG：低 V/e⁻，容量更大</text>
+<line x1="140.00" y1="79.00" x2="168.00" y2="79.00" stroke="#bd5b54" stroke-width="3" opacity="1.0"/>
+<text x="178.00" y="84.00" fill="#bd5b54" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">HCG：高 V/e⁻，较早触顶</text>
+<line x1="510.00" y1="79.00" x2="538.00" y2="79.00" stroke="#316fa4" stroke-width="3" opacity="1.0"/>
+<text x="548.00" y="84.00" fill="#316fa4" font-size="16" font-weight="400" text-anchor="start" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">LCG：低 V/e⁻，容量更大</text>
 <text x="500.00" y="545.00" fill="#25303b" font-size="20" font-weight="400" text-anchor="middle" font-family="Arial, PingFang SC, Hiragino Sans GB, sans-serif">同一“ISO”菜单可能在某阈值切换两条读出曲线</text>
 </svg>

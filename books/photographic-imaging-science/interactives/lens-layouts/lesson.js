@@ -55,7 +55,7 @@ function diagram(m, progress) {
     });
     body += `<path d="M${px(m.stopZ)} ${y0 - 72}v18m0 108v18" stroke="currentColor" stroke-width="4"/>`;
     if (!full)
-      body += `<text x="${px(m.stopZ)}" y="${y0 - 64}" text-anchor="middle" font-size="14">光阑</text>`;
+      body += `<text x="${px(m.stopZ) + 14}" y="${y0 - 57}" font-size="14">光阑</text>`;
     if (full && m.imageZ !== null) {
       body += `<path d="M${px(m.imageZ)} ${y0 - 65}v130" stroke="#bd8047" stroke-width="2.5"/><text x="${px(m.imageZ)}" y="${y0 + 88}" text-anchor="middle" font-size="15">像面 ${m.imageZ.toFixed(2)}</text>`;
     }

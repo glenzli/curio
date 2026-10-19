@@ -187,6 +187,11 @@ class SVG:
     def arrow(self, x1: float, y1: float, x2: float, y2: float, *, color: str = INK, width: float = 2) -> None:
         self.line(x1, y1, x2, y2, color=color, width=width, arrow=True)
 
+    def legend_entry(self, x: float, y: float, value: str, color: str,
+                     *, dash: str | None = None, size: int = 16) -> None:
+        self.line(x, y - 5, x + 28, y - 5, color=color, width=3, dash=dash)
+        self.text(x + 38, y, value, size=size, color=color)
+
     def axes(self, x: float, y: float, width: float, height: float, xlabel: str, ylabel: str) -> None:
         self.axes_boxes.add((x,y,width,height))
         self.arrow(x, y + height, x + width, y + height, color=INK, width=1.8)
@@ -256,7 +261,7 @@ class SVG:
 def figure_01_radiance_geometry() -> None:
     s = SVG("图 1.1  辐亮度、投影面积与立体角")
     s.polygon([(120, 420), (360, 470), (390, 400), (150, 350)], fill=PALE_BLUE, stroke=BLUE)
-    s.text(220, 465, "接收面 dA", size=19, color=BLUE)
+    s.text(255, 495, "接收面 dA", size=19, color=BLUE, anchor="middle")
     s.arrow(255, 400, 255, 210, color=INK)
     s.text(270, 225, "法线 n", size=17)
     apex = (760, 210)
@@ -264,8 +269,12 @@ def figure_01_radiance_geometry() -> None:
         s.line(apex[0], apex[1], p[0], p[1], color=AMBER, width=2.5)
     s.circle(*apex, 12, fill=AMBER, stroke=AMBER)
     s.text(760, 175, "方向微元 dΩ", size=19, color=AMBER, anchor="middle")
-    s.line(255, 400, 690, 235, color=GRAY, width=1.5, dash="7 6")
-    s.text(420, 300, "θ", size=22)
+    s.line(255, 400, *apex, color=GRAY, width=1.5, dash="7 6")
+    direction_length = math.hypot(apex[0] - 255, apex[1] - 400)
+    arc_x = 255 + 55 * (apex[0] - 255) / direction_length
+    arc_y = 400 + 55 * (apex[1] - 400) / direction_length
+    s.add(f'<path d="M255 345A55 55 0 0 1 {arc_x:.2f} {arc_y:.2f}" fill="none" stroke="{GRAY}" stroke-width="1.4"/>')
+    s.text(280, 375, "θ", size=20, anchor="middle")
     s.text(500, 520, "dΦ = L cosθ dA dΩ dλ", size=22, anchor="middle", weight="700")
     s.save("01_radiance_geometry.svg")
 
@@ -493,10 +502,10 @@ def figure_04_photon_transfer_curve() -> None:
             y -= 0.0022 * (x - 820) ** 2
         pts.append((x, max(0, y)))
     s.plot(pts, box, (0, 1000, 0, 500), color=BLUE, width=3)
-    s.arrow(250, 430, 130, 470 - 20 / 500 * 370, color=RED)
-    s.text(190, 415, "暗场方差 c [DN²]", size=16, color=RED)
-    s.text(430, 280, "线性斜率 = g [DN/e⁻]", size=18, color=BLUE)
-    s.text(700, 175, "饱和 / 非线性", size=17, color=RED)
+    s.arrow(220, 440, 130, 470 - 20 / 500 * 370, color=RED)
+    s.text(235, 445, "暗场方差 c [DN²]", size=16, color=RED)
+    s.legend_entry(140, 84, "线性斜率 = g [DN/e⁻]", BLUE)
+    s.text(700, 128, "饱和 / 非线性", size=17, color=RED)
     s.save("04_photon_transfer_curve.svg")
 
 
@@ -540,8 +549,8 @@ def figure_05_dual_conversion_gain() -> None:
     s.plot(hcg, box, (0, 1, 0, 1), color=RED, width=4)
     s.plot(lcg, box, (0, 1, 0, 1), color=BLUE, width=4)
     s.line(130, 100, 830, 100, color=GRAY, width=2, dash="7 5")
-    s.text(340, 125, "HCG：高 V/e⁻，较早触顶", size=18, color=RED)
-    s.text(600, 290, "LCG：低 V/e⁻，容量更大", size=18, color=BLUE)
+    s.legend_entry(140, 84, "HCG：高 V/e⁻，较早触顶", RED)
+    s.legend_entry(510, 84, "LCG：低 V/e⁻，容量更大", BLUE)
     s.text(500, 545, "同一“ISO”菜单可能在某阈值切换两条读出曲线", size=20, anchor="middle")
     s.save("05_dual_conversion_gain.svg")
 
@@ -715,8 +724,8 @@ def figure_07_aliasing() -> None:
         px = box[0] + n / 8 * box[2]
         py = box[1] + box[3] - value * box[3]
         s.circle(px, py, 6, fill=INK, stroke=INK)
-    s.text(650, 145, "ν", size=18, color=BLUE)
-    s.text(710, 185, "ν + 1/p", size=18, color=RED)
+    s.legend_entry(140, 84, "ν", BLUE)
+    s.legend_entry(360, 84, "ν + 1/p", RED, dash="7 5")
     s.text(500, 545, "黑点完全相同：采样后无法唯一判断原来的连续频率", size=20, anchor="middle")
     s.save("07_aliasing.svg")
 
@@ -734,9 +743,8 @@ def figure_07_spectral_channels() -> None:
     ]
     for pts, color, label in curves:
         s.plot(pts, box, (380, 750, 0, 1.05), color=color, width=4)
-    s.text(730, 210, "R", size=20, color=RED)
-    s.text(530, 135, "G", size=20, color=GREEN)
-    s.text(315, 180, "B", size=20, color=BLUE)
+    for x, color, label in [(180, BLUE, "B"), (390, GREEN, "G"), (600, RED, "R")]:
+        s.legend_entry(x, 84, label, color)
     s.text(500, 545, "曲线为示意函数，峰值与带宽由本例指定", size=19, anchor="middle")
     s.save("07_spectral_channels.svg")
 
@@ -754,9 +762,11 @@ def figure_08_stack_snr() -> None:
         px = box[0] + (x - 1) / 63 * box[2]
         py = box[1] + box[3] - y / 8.5 * box[3]
         s.circle(px, py, 6, fill=RED, stroke=RED)
-        s.text(px + (8 if x in (1, 4) else 0), py + (25 if x == 1 else -14),
-               f"{x}帧 → {y:g}×", size=15, anchor="start" if x in (1, 4) else "middle", color=RED)
-    s.text(500, 545, "固定总曝光时，每帧还会重复支付读出噪声", size=20, anchor="middle")
+        dx, dy, anchor = {1: (8, 25, "start"), 4: (20, 28, "start"),
+                          16: (0, -30, "middle"), 64: (0, 0, "end")}[x]
+        s.text(px + dx, 84 if x == 64 else py + dy,
+               f"{x}帧 → {y:g}×", size=15, anchor=anchor, color=RED)
+    s.text(500, 545, "总曝光时间相同时，多帧短曝光需要多次读出", size=20, anchor="middle")
     s.save("08_stack_snr.svg")
 
 
@@ -810,9 +820,8 @@ def figure_09_transfer_curves() -> None:
     logc = [(x, math.log2(1 + 63 * x) / 6) for x in xs]
     for pts, color in [(linear, GRAY), (gamma, BLUE), (logc, RED)]:
         s.plot(pts, box, (0, 1, 0, 1), color=color, width=3)
-    s.text(730, 170, "Linear", size=16, color=GRAY)
-    s.text(600, 130, "Gamma", size=16, color=BLUE)
-    s.text(390, 135, "Log-like", size=16, color=RED)
+    for x, color, label in [(140, GRAY, "Linear"), (360, BLUE, "Gamma"), (580, RED, "Log-like")]:
+        s.legend_entry(x, 84, label, color)
     s.text(500, 545, "非线性编码重新分配码字，不改变传感器已经捕获的电子", size=20, anchor="middle")
     s.save("09_transfer_curves.svg")
 
@@ -1046,11 +1055,11 @@ def figure_12_system_mtf() -> None:
     lens = [(x, max(0, 1 - 0.65 * x**1.5)) for x in xs]
     pixel = [(x, 1 if x == 0 else math.sin(math.pi * x / 2) / (math.pi * x / 2)) for x in xs]
     system = [(x, lens[i][1] * pixel[i][1]) for i, x in enumerate(xs)]
-    for pts, color, label, yy in [(lens, BLUE, "镜头", 150), (pixel, GREEN, "像素孔径", 185), (system, RED, "乘积系统", 220)]:
+    for pts, color, label, xx in [(lens, BLUE, "镜头", 140), (pixel, GREEN, "像素孔径", 360), (system, RED, "乘积系统", 580)]:
         s.plot(pts, box, (0, 1, 0, 1), color=color, width=3)
-        s.text(735, yy, label, size=16, color=color)
+        s.legend_entry(xx, 84, label, color)
     s.line(830, 100, 830, 470, color=GRAY, width=2, dash="6 5")
-    s.text(830, 495, "Nyquist", size=15, anchor="middle")
+    s.text(845, 128, "Nyquist", size=15, color=GRAY)
     s.save("12_system_mtf.svg")
 
 
@@ -1431,7 +1440,8 @@ def figure_17_mtf_chart() -> None:
     ]
     for idx, (pts, color, label) in enumerate(curves):
         s.plot(pts, box, (0, 21.6, 0, 1), color=color, width=3, dash=None if idx % 2 == 0 else "7 5")
-        s.text(690, 130 + idx * 30, label, size=15, color=color)
+        s.legend_entry(120 + idx * 200, 84, label, color,
+                       dash=None if idx % 2 == 0 else "7 5", size=15)
     s.text(500, 545, "比较前先统一频率、光圈、物距、波长以及设计值/实测值", size=19, anchor="middle")
     s.save("17_mtf_chart.svg")
 

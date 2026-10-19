@@ -4,7 +4,6 @@ const colors = {
   metal: "#b6843d",
   signal: "#247d91",
   light: "#b77b20",
-  bond: "#9a78a5",
 };
 const path = (points) => "M" + points.map((v) => v.join(",")).join("L");
 const text = (x, y, value, size = 10, attrs = "") =>
@@ -31,14 +30,14 @@ export function structureFigure(input) {
         return `<g data-layer="optics"><defs><clipPath id="stack-optics-clip"><rect x="30" y="30" width="200" height="60"/></clipPath></defs><g clip-path="url(#stack-optics-clip)">${[22, 92, 162, 232].map((x, i) => `<path d="M${x - 33} ${l.y + 11}Q${x} ${l.y - 13} ${x + 33} ${l.y + 11}Z" fill="#dfeaf1" stroke="#82a7bf" stroke-width=".8"/><rect x="${x - 33}" y="${l.y + 15}" width="66" height="9" rx="1" fill="${["#b87168", "#6b9b7b", "#6f95b5", "#6b9b7b"][i]}" fill-opacity=".7"/>`).join("")}</g>${text(160, l.y - 10, "微透镜", 11)}${text(238, l.bottom - 1, "CFA", 9, 'fill="#6c7a83"')}</g>`;
       if (l.kind === "silicon") {
         const surface = l.y;
-        return `<g data-layer="silicon">${rect("#e8f1f6", colors.silicon)}<path d="M31 ${surface}H229" stroke="${colors.silicon}" stroke-width="2.5"/><path d="M54 ${l.y + 5}V${l.bottom - 5}M130 ${l.y + 5}V${l.bottom - 5}" stroke="${colors.silicon}" stroke-width=".7" stroke-dasharray="2 3" opacity=".45"/><rect x="62" y="${m.diode.y - 12}" width="60" height="24" rx="11" fill="#c2dfeb" stroke="${colors.silicon}"/>${text(92, m.diode.y + 25, "PPD", 11, 'text-anchor="middle" fill="#265c77"')}${text(147, l.y + 18, "感光硅", 12, 'fill="#265c77"')}${text(147, l.y + 55, m.illumination === "bsi" ? "上侧为背面" : "上侧为前侧", 10, 'fill="#4f7488"')}</g>`;
+        return `<g data-layer="silicon">${rect("#e8f1f6", colors.silicon)}<path d="M31 ${surface}H229" stroke="${colors.silicon}" stroke-width="2.5"/><path d="M54 ${l.y + 5}V${l.bottom - 5}M130 ${l.y + 5}V${l.bottom - 5}" stroke="${colors.silicon}" stroke-width=".7" stroke-dasharray="2 3" opacity=".45"/><rect x="62" y="${m.diode.y - 12}" width="60" height="24" rx="11" fill="#c2dfeb" stroke="${colors.silicon}"/>${text(92, m.diode.y + 27, "PPD", 11, 'text-anchor="middle" fill="#265c77"')}${text(176, l.y + 18, "感光硅", 12, 'fill="#265c77"')}${text(176, l.y + 55, m.illumination === "bsi" ? "背面入光" : "前侧入光", 10, 'fill="#4f7488"')}</g>`;
       }
       if (l.kind === "metal")
-        return `<g data-layer="metal">${rect("#faf3e8", "#c69a59")}<path d="M35 ${l.y + 6}H69V${l.bottom - 5}M118 ${l.y + 6}H225M125 ${l.y + 12}H220" fill="none" stroke="${colors.metal}" stroke-width="3"/><path d="M53 ${l.y + 6}V${l.y + 17}H68M207 ${l.y + 6}V${l.y + 13}" fill="none" stroke="${colors.metal}" stroke-width="2"/><rect x="151" y="${l.bottom - 8}" width="27" height="5" rx="1" fill="#8a7457"/>${text(118, l.bottom - 11, "前侧布线", 9, 'fill="#775a2d"')}${text(223, l.bottom - 2, "晶体管", 8, 'text-anchor="end" fill="#775a2d"')}</g>`;
+        return `<g data-layer="metal">${rect("#faf3e8", "#c69a59")}<path d="M35 ${l.y + 6}H69V${l.y + 14}M45 ${l.y + 6}V${l.y + 13}H65" fill="none" stroke="${colors.metal}" stroke-width="2"/><rect x="118" y="${l.y + 5}" width="27" height="8" rx="1" fill="#8a7457"/>${text(35, l.y + 25.5, "前侧布线", 9.5, 'fill="#775a2d"')}${text(118, l.y + 25.5, "晶体管", 9.5, 'fill="#775a2d"')}</g>`;
       if (l.kind === "bond")
-        return `<g data-layer="bond">${rect("#f2edf5", "#b49abd")}<path d="M31 ${l.center}H229" stroke="${colors.bond}" stroke-width=".8"/>${[53, 198, 218].map((x) => `<rect x="${x - 3}" y="${l.y + 2}" width="6" height="${l.height - 4}" rx="1" fill="#b49365"/>`).join("")}${text(87, l.center + 3.5, "键合互连", 9, 'fill="#765d80"')}</g>`;
+        return `<g data-layer="bond">${rect("#f2edf5", "#b49abd")}${[53, 198, 218].map((x) => `<rect x="${x - 3}" y="${l.y + 2}" width="6" height="${l.height - 4}" rx="1" fill="#b49365"/>`).join("")}${text(87, l.center + 3.5, "键合互连", 9, 'fill="#765d80"')}</g>`;
       if (l.kind === "logic")
-        return `<g data-layer="logic">${rect("#e7f1eb", "#70a28b")}${[42, 58, 74].map((x) => `<rect x="${x}" y="${l.y + 12}" width="10" height="18" rx="1" fill="#c3dbcd" stroke="#80a991" stroke-width=".6"/>`).join("")}<path d="M41 ${l.y + 8}H86M41 ${l.bottom - 8}H86" stroke="#80a991" stroke-width=".7"/>${text(107, l.y + 17, "独立逻辑晶圆", 11, 'fill="#30694f"')}${text(107, l.y + 33, "信号处理 / ADC 等", 9, 'fill="#4e7660"')}</g>`;
+        return `<g data-layer="logic">${rect("#e7f1eb", "#70a28b")}${[42, 58, 74].map((x) => `<rect x="${x}" y="${l.y + 12}" width="10" height="18" rx="1" fill="#c3dbcd" stroke="#80a991" stroke-width=".6"/>`).join("")}<path d="M41 ${l.y + 8}H86M41 ${l.bottom - 8}H86" stroke="#80a991" stroke-width=".7"/>${text(107, l.y + 13, "独立逻辑晶圆", 11, 'fill="#30694f"')}${text(107, l.y + 39, "信号处理 / ADC 等", 9, 'fill="#4e7660"')}</g>`;
       return `<g data-layer="support">${rect("#edf0f0", "#a5b1af")}<path d="M35 ${l.bottom - 5}l12 -12m0 12l12 -12m0 12l12 -12m0 12l12 -12" stroke="#bac4c1" stroke-width=".8"/>${text(167, l.center + 3.5, "承载基底", 11, 'text-anchor="middle" fill="#647570"')}</g>`;
     })
     .join("");
