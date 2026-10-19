@@ -10,9 +10,9 @@ Curio 收录我感兴趣、愿意长期研究，并与 AI 一起认真写成的�
 
 ## 书架
 
-- [摄影成像科学：从光子、CMOS 到镜头与 RAW](books/photographic-imaging-science/)：
+- [摄影成像科学](books/photographic-imaging-science/)：
   从曝光和光电转换讲到 CMOS 读出、噪声、色彩、RAW 与镜头成像。含序章和 18 章
-  正文、55 幅技术图、77 道练习及逐题答案。
+  正文、55 幅技术图、86 道练习及逐题答案。
 
 ## 阅读与修订
 

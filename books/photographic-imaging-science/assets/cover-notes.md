@@ -1,16 +1,18 @@
-# 摄影成像科学封面
+# 摄影成像科学封面插画
 
 - 文件：[cover.png](cover.png)，1024 × 1536 px，PNG，比例 2:3。
-- 书名：摄影成像科学；副标题：从光子、CMOS 到镜头与 RAW。
+- 书名：摄影成像科学。
 - 作者：Glen Li。
 - 许可：[CC BY-NC-ND 4.0](../../../LICENSE)。
-- 制作日期：2026-10-19。使用 Codex 内置 imagegen，以原有 [cover.png](../cover.png) 为输入参考。
-- 图像摘要：`1e286f76628afa716c7f1d301f99d97f1eca4220a5cf75496ed71a5fb41123a6`。
+- 制作日期：2026-10-19。使用 Codex 内置 imagegen，在上一版封面插画上去除全部文字。最初的构图参考保留在 [cover.png](../cover.png)，不用于当前封面发布。
+- 图像摘要：`ece7cd1a010fe43ac42b2d8c67a1376f210cec74c6d3152f22bce988dd63bb72`。
 
-封面以镜头、光束和 CMOS 像素阵列表达全书主题，是成像流程的概念插画。定量光路、镜组处方与结构说明见正文编号图及互动模型。
+图片只包含镜头剖面、光束、CMOS 像素阵列与衍射环纹。书名和作者使用页面文字，便于沿用网站字体、缩放及后续调整。
 
-网站构建使用 `cover: { src: "assets/cover.png", alt: "《摄影成像科学》封面：镜头与 CMOS 传感器的成像示意，作者 Glen Li" }`。书稿清单保留 0.8.0 可读的字段，封面由发布方传入构建器。
+这是成像流程的概念插画。定量光路、镜组处方与结构说明见正文编号图及互动模型。
+
+网站构建使用 `cover: { src: "assets/cover.png", alt: "镜头剖面、光束与 CMOS 像素阵列" }`。书稿清单保留 0.8.0 可读的字段，封面由发布方传入构建器。
 
 ## 图像提示词
 
-Use case: precise-object-edit and text-localization. Asset type: the actual flat front cover of a Chinese photography imaging science textbook, portrait 2:3, no book mockup. The reference is the existing cover to refine. Preserve the refined Chinese serif title typography, warm off-white paper, cutaway glass lens, carefully drawn CMOS stack and restrained spectral color accents. Text must be exactly: top title “摄影成像科学”; subtitle “从光子、CMOS 到镜头与 RAW”; bottom author “Glen Li”. Replace the old author line completely with Glen Li. Simplify the busy composition: remove the unlabeled numerical MTF chart in the upper right, and use generous negative space rather than extra decoration. Correct the conceptual light-path illustration: a small bundle of rays through the lens converges directly on the upper light-sensitive sensor plane; avoid a floating focal point above the sensor that emits a second fan of rays. A quiet PSF/ring motif may appear as a separate small inset with no numerical axes. Keep lens glass, microlenses and Bayer filters convincing and precisely rendered, with clear separation and subtle material textures. This is a conceptual cover illustration, not a measured optical prescription. Maintain the existing balanced technical-illustration aesthetic, improve spacing at bookshelf thumbnail size, and preserve every Chinese character. No additional words, no numerical graphs, no slogans, no publisher logo, no watermark.
+Use case: precise-object-edit. Asset type: text-free cover illustration for an online book, portrait 2:3. Input image is the edit target. Remove ALL baked-in text completely: the large Chinese title across the top, the subtitle below it, and the author name at the bottom. Replace those areas with the same clean warm off-white background, with no visible erasure artifacts or faint lettering. Retain the finely rendered cutaway photographic lens, the translucent glass elements, the restrained spectral light rays, the CMOS microlens and Bayer filter stack, and the small quiet diffraction-ring inset. Rebalance the existing illustration slightly within the portrait canvas so the artwork reads well as a bookshelf thumbnail without a large vacant title block; retain comfortable clean margins. Keep the same precise technical-illustration style, material detail, warm paper background, and restrained color. This is conceptual cover art, not a numerical optical diagram. The title and author will be editable HTML outside the image. No text of any kind, no letters, no numbers, no labels, no logos, no watermarks. Do not add new objects.

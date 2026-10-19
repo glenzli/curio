@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/glenzli/markdown-book/main/schema/book.schema.json",
   "formatVersion": 1,
   "id": "photographic-imaging-science",
-  "title": "摄影成像科学：从光子、CMOS 到镜头与 RAW",
+  "title": "摄影成像科学",
   "description": "从光子、曝光和CMOS读出，到噪声、颜色、RAW与整套镜头成像。序章及18章正文配有可恢复参数的实验、光路回放和静态图，涵盖常见镜组、眩光、数字稳像与呼吸补偿、尺寸减重、增距和近摄附件及对焦驱动。计算保留已知输入与独立对照，练习均附答案。",
   "author": "Glen Li",
   "language": "zh-CN",
