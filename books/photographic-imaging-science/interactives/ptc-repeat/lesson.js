@@ -84,7 +84,7 @@ export const spec = {
     {
       label: "PRNU与照明漂移",
       values: {
-        prnuPercent: 4,
+        prnuPercent: 2,
         driftPercent: 20,
         fitPercent: 75,
         exclude: 1,

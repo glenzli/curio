@@ -35,7 +35,15 @@ export const spec = {
       values: { split: 40, focus: 10, fNumber: 8, frequency: 60, band: 1 },
     },
     {
-      label: "更高频率的对焦目标",
+      label: "三线 · 绿光焦面",
+      values: { split: 40, focus: 0, fNumber: 8, frequency: 60, band: 1 },
+    },
+    {
+      label: "f/6 · 20 lp/mm目标",
+      values: { split: 60, focus: 0, fNumber: 6, frequency: 20, band: 1 },
+    },
+    {
+      label: "f/6 · 120 lp/mm目标",
       values: { split: 60, focus: 0, fNumber: 6, frequency: 120, band: 1 },
     },
   ],

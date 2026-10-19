@@ -5,16 +5,17 @@ export const spec = {
   alt: "互动示意：两方向焦面、传感器曲率和四角对焦包围",
   intro:
     "先看镜头声明的两条焦面，再放入平面或曲面传感器。同一套合成数据还可比较共同焦点、各点最佳焦点和重复装夹。",
-  staticCaption: "边角平均焦面+60 μm，两方向±15 μm，x向倾斜10 μm，平面传感器。",
-  note: "局部椭圆Gaussian替代模型：σ₀=1.8 μm，离焦每1 μm增加0.08 μm的正交模糊分量。焦面曲率、像散、倾斜和重复装夹扰动均为显式合成输入，不是具体镜头处方。观测以5 μm间距扫描，含固定种子的MTF测量噪声；残差与峰值误差都不是置信区间。",
+  staticCaption:
+    "边角平均焦面+60 μm，两方向±15 μm，无额外倾斜和观测噪声，平面传感器。",
+  note: "局部椭圆Gaussian替代模型：σ₀=1.8 μm，离焦每1 μm增加0.08 μm的正交模糊分量。焦面曲率、像散、倾斜和重复装夹扰动均为显式合成输入，不是具体镜头处方。观测以5 μm间距扫描，可加入固定种子的MTF测量噪声；残差与峰值误差都不是置信区间。",
   controls: [
     control("curvature", "角点平均焦面", -80, 100, 5, 60, " μm"),
     control("astigmatism", "两方向分离的半值", 0, 40, 5, 15, " μm"),
     control("sensor", "传感器角点弯曲量", -80, 100, 5, 0, " μm"),
     control("focus", "传感器整体对焦位置", -150, 150, 1, 0, " μm"),
-    control("tilt", "x向倾斜项", -30, 30, 2, 10, " μm"),
+    control("tilt", "x向倾斜项", -30, 30, 2, 0, " μm"),
     control("trial", "重复装夹序号", 1, 3, 1, 1),
-    control("noise", "MTF观测噪声标准差", 0, 0.02, 0.001, 0.005, "", 3),
+    control("noise", "MTF观测噪声标准差", 0, 0.02, 0.001, 0, "", 3),
   ],
   presets: [
     {
@@ -24,9 +25,9 @@ export const spec = {
         astigmatism: 15,
         sensor: 0,
         focus: 0,
-        tilt: 10,
+        tilt: 0,
         trial: 1,
-        noise: 0.005,
+        noise: 0,
       },
     },
     {
@@ -38,7 +39,19 @@ export const spec = {
         focus: 0,
         tilt: 0,
         trial: 1,
-        noise: 0.005,
+        noise: 0,
+      },
+    },
+    {
+      label: "加入倾斜",
+      values: {
+        curvature: 60,
+        astigmatism: 15,
+        sensor: 60,
+        focus: 0,
+        tilt: 10,
+        trial: 1,
+        noise: 0,
       },
     },
     {
@@ -48,7 +61,19 @@ export const spec = {
         astigmatism: 15,
         sensor: 60,
         focus: 0,
-        tilt: 0,
+        tilt: 10,
+        trial: 3,
+        noise: 0,
+      },
+    },
+    {
+      label: "加入观测噪声",
+      values: {
+        curvature: 60,
+        astigmatism: 15,
+        sensor: 60,
+        focus: 0,
+        tilt: 10,
         trial: 3,
         noise: 0.005,
       },

@@ -132,6 +132,11 @@ E_\mathrm{img}
 \approx\frac{\pi T L_e}{4N^2}.                            \tag{1.3}
 $$
 
+起始画面停在曝光结束，两侧都是f/4、4 ms。
+选“等曝光，收小一档”，先核对光子数比接近1，再比较轨迹长度；
+播放只是展开积累过程。
+两条光子柱等长时，运动轨迹仍可能不同。
+
 <div data-mb-component="exposure">
 
 ![图 1.2 f 数与像面辐照度](figures/01_fnumber_exposure.svg)
@@ -239,6 +244,10 @@ $$
 \frac{E(0)}{TL}=\frac{\pi a^2}{z^2+a^2},\qquad
 \lim_{a/z\to0}\frac{E(z\tan\theta)}{E(0)}=\cos^4\theta.  \tag{1.3c}
 $$
+
+从“小出瞳 · 45°”开始，依次查看三个几何因子，再选“扩大出瞳”。
+两条照度曲线的间距显示有限孔径修正；
+下方的积分误差是另一项数值检验，不要把它当成cos⁴θ近似偏差。
 
 <div data-mb-component="offaxis">
 

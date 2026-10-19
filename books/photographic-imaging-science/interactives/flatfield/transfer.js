@@ -209,7 +209,7 @@ export function mount({ element, signal, session }) {
       {
         label: "照明漂移",
         values: {
-          prnuPercent: 4,
+          prnuPercent: 2,
           driftPercent: 20,
           fitPercent: 75,
           excludeClipped: true,

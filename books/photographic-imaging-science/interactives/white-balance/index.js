@@ -87,7 +87,7 @@ export function mount({ element, signal, session }) {
       { label: "关闭白平衡", values: { red: 1, blue: 1, progress: 2 } },
       {
         label: "只有通道乘法",
-        values: { red: 2, blue: 2.5, mixing: 0, progress: 60 },
+        values: { red: 2, blue: 2.5, mixing: 0, progress: 1 },
       },
       {
         label: "独立输入仍会相关",

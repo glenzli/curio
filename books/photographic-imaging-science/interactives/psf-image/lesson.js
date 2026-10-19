@@ -27,6 +27,10 @@ export const spec = {
       values: { defocus: 0, coma: 0, bin: 2, pattern: 0 },
     },
     {
+      label: "无像差细线",
+      values: { defocus: 0, coma: 0, bin: 2, pattern: 1 },
+    },
+    {
       label: "彗差与细线",
       values: { defocus: 0, coma: 0.2, bin: 2, pattern: 1 },
     },

@@ -142,6 +142,10 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 
 ## 展示与互动
 
+各处互动前有具体的操作顺序：从哪组参数开始、改变什么，以及看哪幅图或哪项读数。
+比较前可先重置参数；有些预设只切换一个条件或观看步骤，其余设置会继续保留。
+跨章复用的实验按所在章节分别指引。静态图仍给出输入与参照，不操作也可以跟随计算。
+
 - 第一章 `exposure`：同步回放均匀背景的光子积累与独立的点目标运动轨迹；数值圆锥积分对照解析值，精确等曝光预设仍保留不同运动区间。
 
 - 第一章 `offaxis`：依次展开cos⁴θ的投影与距离因子，有限圆瞳面积分另对照圆周解析式；把积分误差与小瞳近似偏差分开报告。
@@ -241,7 +245,7 @@ python3 books/audit_textbook_narrative.py photographic-imaging-science --strict
 新增展示涵盖[CDS频谱](03_cmos_pixels_readout_and_adc.md#采样间隔怎样选择噪声频率)、
 [暗场序列](04_noise_snr_full_well_and_dynamic_range.md#把热像素和主暗场放回连续拍摄)、
 [旋转快门](06_shutters_bsi_stacking_and_curved_sensors.md#转动叶片为什么会弯曲)、
-[两景深视差](08_computational_exposure_and_hdr.md#同一相机移动近景与远景仍会错位)、
+[前后景视差](08_computational_exposure_and_hdr.md#同一相机移动近景与远景仍会错位)、
 [星芒](12_diffraction_psf_otf_mtf_and_sampling.md#孔径直边与点光源的星芒)、
 [猫眼散景](13_aberrations_and_field_behavior.md#离轴截光怎样改变散景形状)、
 [运动传递](16_lens_architectures_focus_zoom_and_stabilization.md#相同rms的轨迹模糊是否相同)、

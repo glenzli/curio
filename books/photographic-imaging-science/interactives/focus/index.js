@@ -26,10 +26,16 @@ const style = `
 
 export function mount({ element, signal, session }) {
   const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
-  root.innerHTML = `<style>${style}</style><section class="experiment"><div class="eyebrow">第十六章 · 薄透镜的像侧光锥</div><h3>对焦位置与弥散圈</h3><p>调整物距、对焦距离和光圈，观察弥散圈的变化。完全合焦时，光圈仍会改变光锥和景深，几何弥散圈保持为零。可拖动旋转光路，或播放连续对焦动画。</p><div class="scene-grid"><div class="stage" aria-label="薄透镜三维光路，可拖动旋转"><div class="labels"><span id="lens-label">光阑</span><span id="focus-label">理想像点</span><span id="sensor-label">传感器面</span></div></div><div class="cross-section"><svg viewBox="-1.5 -1.5 3 3" role="img" aria-label="传感器面上的弥散圈截面"><path d="M-1.25 0H1.25M0-1.25V1.25" stroke="#d0dcd0" stroke-width=".012"/><circle id="limit-circle" r=".015" fill="none" stroke="#305f4c" stroke-width=".012"/><circle id="blur-circle" fill="#ba8b4b" fill-opacity=".38" stroke="#ba8b4b" stroke-width=".018"/></svg><p>像面截面 · 同一尺度<br>横宽 3 mm<br><span id="limit-label">小圈：容许直径 0.03 mm</span></p></div></div><div class="legend"><span><i class="lens"></i>光阑平面</span><span><i class="focus"></i>理想像点</span><span><i class="sensor"></i>传感器面</span></div><div class="control-grid"><label>物距 <output class="value" id="subject-value"></output><input aria-label="物距" id="subject" type="range" min="0.3" max="6" step="0.01" value="1"></label><label>对焦距离 <output class="value" id="focus-value"></output><input aria-label="对焦距离" id="focus" type="range" min="0.3" max="6" step="0.01" value="2"></label><label>光圈 <output class="value" id="aperture-value"></output><input aria-label="光圈" id="aperture" type="range" min="0.5" max="4" step="0.25" value="2"></label><label>三维容许直径 <output class="value" id="limit-value"></output><input aria-label="三维容许直径" id="limit" type="range" min="5" max="50" step="1" value="30"></label></div><div class="actions"><button id="play" type="button" aria-pressed="false">播放对焦动画</button><button id="match" type="button">对焦到物体</button><button id="view" type="button">重置视角</button></div><div class="stats"><div><small>物体的理想像距</small><strong id="image-distance"></strong><em>mm</em></div><div><small>当前传感器像距</small><strong id="sensor-distance"></strong><em>mm</em></div><div><small>弥散圈直径</small><strong id="blur-diameter"></strong><em>mm</em></div></div><p id="criterion" role="status"></p><p id="dof-limits" class="note"></p><p id="truth" class="note"></p><p class="note">依式 (16.2)：空气中 50 mm 正薄透镜，光阑与透镜共面，采用近轴几何光学。坐标固定于透镜；传感器面的位移表示镜头与像面间距变化。只画像侧，不含像差、衍射与口径蚀；移动标记仅示传播方向，不代表真实光速或单个光子轨迹。容许直径可调，它只改变接受判据，不改变光线。景深边界另由两条边缘光线求根，与解析式核对。未支持 WebGL 2 时保留原静态图。</p></section>`;
+  root.innerHTML = `<style>${style}</style><section class="experiment"><div class="eyebrow">第十六章 · 薄透镜的像侧光锥</div><h3>对焦位置与弥散圈</h3><p>调整物距、对焦距离和光圈，观察弥散圈的变化。完全合焦时，光圈仍会改变光锥和景深，几何弥散圈保持为零。可拖动旋转光路，或播放连续对焦动画。</p><div class="scene-grid"><div class="stage" aria-label="薄透镜三维光路，可拖动旋转"><div class="labels"><span id="lens-label">光阑</span><span id="focus-label">理想像点</span><span id="sensor-label">传感器面</span></div></div><div class="cross-section"><svg viewBox="-1.5 -1.5 3 3" role="img" aria-label="传感器面上的弥散圈截面"><path d="M-1.25 0H1.25M0-1.25V1.25" stroke="#d0dcd0" stroke-width=".012"/><circle id="limit-circle" r=".015" fill="none" stroke="#305f4c" stroke-width=".012"/><circle id="blur-circle" fill="#ba8b4b" fill-opacity=".38" stroke="#ba8b4b" stroke-width=".018"/></svg><p>像面截面 · 同一尺度<br>横宽 3 mm<br><span id="limit-label">小圈：容许直径 0.03 mm</span></p></div></div><div class="legend"><span><i class="lens"></i>光阑平面</span><span><i class="focus"></i>理想像点</span><span><i class="sensor"></i>传感器面</span></div><div class="control-grid"><label>物距 <output class="value" id="subject-value"></output><input aria-label="物距" id="subject" type="range" min="0.3" max="6" step="0.01" value="1"></label><label>对焦距离 <output class="value" id="focus-value"></output><input aria-label="对焦距离" id="focus" type="range" min="0.3" max="6" step="0.01" value="2"></label><label>光圈 <output class="value" id="aperture-value"></output><input aria-label="光圈" id="aperture" type="range" min="0.5" max="4" step="0.25" value="2"></label><label>三维容许直径 <output class="value" id="limit-value"></output><input aria-label="三维容许直径" id="limit" type="range" min="5" max="50" step="1" value="30"></label></div><div class="actions"><button id="play" type="button" aria-pressed="false">播放对焦动画</button><button id="match" type="button">对焦到物体</button><button id="reset" type="button">重置参数</button><button id="view" type="button">重置视角</button></div><div class="stats"><div><small>物体的理想像距</small><strong id="image-distance"></strong><em>mm</em></div><div><small>当前传感器像距</small><strong id="sensor-distance"></strong><em>mm</em></div><div><small>弥散圈直径</small><strong id="blur-diameter"></strong><em>mm</em></div></div><p id="criterion" role="status"></p><p id="dof-limits" class="note"></p><p id="truth" class="note"></p><p class="note">依式 (16.2)：空气中 50 mm 正薄透镜，光阑与透镜共面，采用近轴几何光学。坐标固定于透镜；传感器面的位移表示镜头与像面间距变化。只画像侧，不含像差、衍射与口径蚀；移动标记仅示传播方向，不代表真实光速或单个光子轨迹。容许直径可调，它只改变接受判据，不改变光线。景深边界另由两条边缘光线求根，与解析式核对。未支持 WebGL 2 时保留原静态图。</p></section>`;
   const find = (id) => root.getElementById(id);
   const stage = root.querySelector(".stage");
-  const settings = { subject: 1, focus: 2, exponent: 2, criterionUm: 30 };
+  const initialSettings = {
+    subject: 1,
+    focus: 2,
+    exponent: 2,
+    criterionUm: 30,
+  };
+  const settings = { ...initialSettings };
   const saved = session?.load();
   if (saved?.version === 1)
     for (const [key, min, max] of [
@@ -254,7 +260,10 @@ export function mount({ element, signal, session }) {
     find("focus-value").textContent = `${settings.focus.toFixed(2)} m`;
     find("aperture-value").textContent =
       `f/${(2 ** settings.exponent).toFixed(1)}`;
+    find("subject").value = String(settings.subject);
     find("focus").value = String(settings.focus);
+    find("aperture").value = String(settings.exponent);
+    find("limit").value = String(settings.criterionUm);
     find("image-distance").textContent = model.imageDistanceMm.toFixed(3);
     find("sensor-distance").textContent = model.sensorDistanceMm.toFixed(3);
     find("blur-diameter").textContent = model.blurDiameterMm.toFixed(3);
@@ -329,6 +338,16 @@ export function mount({ element, signal, session }) {
     () => {
       play(false);
       settings.focus = settings.subject;
+      update();
+    },
+    { signal },
+  );
+  find("reset").addEventListener(
+    "click",
+    () => {
+      play(false);
+      Object.assign(settings, initialSettings);
+      animationTime = 0;
       update();
     },
     { signal },

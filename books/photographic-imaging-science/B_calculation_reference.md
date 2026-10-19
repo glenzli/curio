@@ -123,6 +123,11 @@ $$
 入射光子预算仍用SI面积和光子能量。输出分别给出Nyquist频率、理想光学截止、
 Airy第一零点直径和指定SNR下端，不将它们合并为一个“分辨率分数”。
 
+先用“第1章光子预算”，只改变曝光量，看光子数变化；
+给定噪声与SNR判据的下端信号不动；
+再切到“第12章6 μm像素”，比较Nyquist与衍射截止的相对位置。
+最低SNR控件只改变下端判据，不改变像素节距、光学截止或已经给定的曝光。
+
 <div data-mb-component="unit-calculator">
 
 ![互动示意：光子预算、采样频率、衍射尺度与SNR判据换算](interactives/unit-calculator/fallback.svg)

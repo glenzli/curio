@@ -19,8 +19,8 @@ function plan(m) {
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 260" role="img" aria-label="参考相机与移动相机看到2米前景板和6米背景"><path d="M54 130H700" stroke="currentColor" opacity=".15"/><path d="M254 ${y(-0.55)}V${y(0.55)}" stroke="#40879a" stroke-width="7"/><path d="M654 18V242" stroke="#777" stroke-width="5"/>${rays}<circle cx="54" cy="130" r="5" fill="#40879a"/><circle cx="${origin[0]}" cy="${origin[1]}" r="4" fill="#bb7946"/><text x="20" y="30" font-size="17">俯视：参考相机（蓝）与移动相机（橙）</text><text x="185" y="220" font-size="16">前景 Z=2 m</text><text x="552" y="255" font-size="16">背景 Z=6 m</text><text x="20" y="250" font-size="14">纵横方向均按米缩放；图像补偿另由针孔投影计算</text></svg>`;
 }
 export const spec = {
-  title: "两种景深：配准后的视差和遮挡",
-  alt: "互动示意：两景深场景的相机位姿、单平面补偿和逐深度真值对照",
+  title: "前景与背景：配准后的视差和遮挡",
+  alt: "互动示意：前后景场景的相机位姿、单平面补偿和逐深度真值对照",
   intro:
     "相机横移时，近处物体在画面中移动得更多。先把背景对齐，再改为前景深度；只做绕投影中心旋转时，比较结果有什么变化。",
   staticCaption:
@@ -111,11 +111,11 @@ export const spec = {
             scale: "深灰2 m，浅灰6 m",
           },
         ],
-        { title: "两景深场景的观测、补偿和已知参考", tileHeight: 220 },
+        { title: "前后景场景的观测、补偿和已知参考", tileHeight: 220 },
       );
     return {
       model: m,
-      figure: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 920" role="img" aria-label="两景深配准静态对照">${plan(m).replace("<svg ", '<svg x="0" y="0" width="740" height="260" ')}${images.figure.replace("<svg ", '<svg x="0" y="260" width="740" height="660" ')}</svg>`,
+      figure: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 740 920" role="img" aria-label="前后景配准静态对照">${plan(m).replace("<svg ", '<svg x="0" y="0" width="740" height="260" ')}${images.figure.replace("<svg ", '<svg x="0" y="260" width="740" height="660" ')}</svg>`,
       liveFigure:
         `<style>@media(max-width:550px){.parallax-plan{display:none}}</style><div class="parallax-plan">${plan(m)}</div>` +
         images.liveFigure,

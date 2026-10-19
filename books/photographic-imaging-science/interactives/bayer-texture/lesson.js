@@ -32,7 +32,7 @@ export const spec = {
     },
     {
       label: "加入光学低通",
-      values: { scale: 2, angle: 0, shift: 0, width: 1, blur: 0.8 },
+      values: { scale: 1.6, angle: 0, shift: 0, width: 1, blur: 0.8 },
     },
     {
       label: "点采样极限",

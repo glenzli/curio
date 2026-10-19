@@ -24,7 +24,7 @@ export function mount({ element, signal, session }) {
     kicker: "曝光 · 光子预算与运动积分",
     title: "相同曝光量，运动轨迹仍可能不同",
     intro:
-      "播放一次曝光，观察均匀背景的光子积累与移动点的轨迹。两组进度同步到各自曝光结束，实际经过的毫秒数分别标出。",
+      "先比较曝光结束时的光子数和拖影长度；播放可再看它们怎样积累。两组进度同步到各自曝光结束，实际经过的毫秒数分别标出。",
     controls: [
       {
         key: "apertureEV",
@@ -77,7 +77,7 @@ export function mount({ element, signal, session }) {
         min: 0,
         max: 100,
         step: 0.1,
-        value: 0,
+        value: 100,
         format: (v) => `${v.toFixed(1)}%`,
       },
     ],
@@ -90,7 +90,7 @@ export function mount({ element, signal, session }) {
           transmission: 0.8,
           magnification: 0,
           velocity: 0.6,
-          progress: 0,
+          progress: 100,
         },
       },
       {
@@ -100,7 +100,8 @@ export function mount({ element, signal, session }) {
           exposureMs: equalExposureTime({}, Math.sqrt(32)),
           transmission: 0.8,
           magnification: 0,
-          progress: 0,
+          velocity: 0.6,
+          progress: 100,
         },
       },
       {
@@ -110,13 +111,22 @@ export function mount({ element, signal, session }) {
           exposureMs: equalExposureTime({}, Math.sqrt(8)),
           transmission: 0.8,
           magnification: 0,
-          progress: 0,
+          velocity: 0.6,
+          progress: 100,
         },
       },
       {
         label: "近摄 1:1",
-        values: { apertureEV: 2, exposureMs: 4, magnification: 1, progress: 0 },
+        values: {
+          apertureEV: 2,
+          exposureMs: 4,
+          transmission: 0.8,
+          magnification: 1,
+          velocity: 0.6,
+          progress: 100,
+        },
       },
+      { label: "从曝光开始", values: { progress: 0 } },
       { label: "曝光结束", values: { progress: 100 } },
     ],
     content: `<style>.actions button{font-size:11px;padding:4px 8px}.exposure-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}.exposure-panel{border:1px solid #9caea244;border-radius:6px;padding:12px;min-width:0}.exposure-panel h4{font-size:13px;margin:0}.exposure-panel p{font-size:11px}.exposure-panel svg{display:block;width:100%;height:auto}.exposure-panel text{fill:currentColor;font:11px ui-sans-serif,sans-serif}.truth{font-size:11px;border:1px solid #9caea244;border-radius:6px;padding:12px;margin:14px 0}.stats strong{font-size:18px}@media(max-width:650px){.exposure-panel text{font-size:14px}.exposure-pair,.stats{grid-template-columns:1fr}.stats>div{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}}</style><div class="exposure-pair" data-panels></div><div class="stats" data-stats></div><p class="reading" data-reading aria-live="polite"></p><div class="truth" data-truth></div>`,

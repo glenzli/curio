@@ -22,16 +22,21 @@ export const spec = {
       values: { masters: 16, frames: 8, drift: 0, read: 3, dark: 4, target: 1 },
     },
     {
+      label: "校准后漂移3 e⁻",
+      values: { masters: 16, frames: 8, drift: 3, read: 3, dark: 4, target: 1 },
+    },
+    {
       label: "漂移后继续平均",
       values: {
         masters: 16,
         frames: 64,
-        drift: 5,
+        drift: 3,
         read: 3,
         dark: 4,
-        target: 5,
+        target: 1,
       },
     },
+    { label: "提高SNR判据", values: { target: 5 } },
   ],
   evaluate(s) {
     const m = calibration(s),
