@@ -134,7 +134,8 @@ export function mountThreeLesson(context, spec, createScene) {
   }
   const cleanup = experiment({
     ...context,
-    version: 1,
+    version: spec.version ?? 1,
+    migrate: spec.migrate,
     kicker: "摄影成像科学 · 三维机构与数值对照",
     title: spec.title,
     intro: spec.intro,

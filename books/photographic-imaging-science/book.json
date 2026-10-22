@@ -139,6 +139,15 @@
     }
   ],
   "components": {
+    "light-timing": {
+      "entry": "interactives/light-timing/index.js"
+    },
+    "optical-lowpass": {
+      "entry": "interactives/optical-lowpass/index.js"
+    },
+    "cover-glass": {
+      "entry": "interactives/cover-glass/index.js"
+    },
     "subpixel": {
       "entry": "interactives/subpixel/index.js"
     },

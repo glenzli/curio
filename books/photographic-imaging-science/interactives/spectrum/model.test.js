@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {parameters,j1,linePsf,lineOtf,spectralAt,spectralPsf,pupilIntegral,independentPsf} from './model.js';
+import {spectrumFigures} from './figures.js';
 const near=(a,b,e=1e-9)=>assert.ok(Math.abs(a-b)<=e,`${a} vs ${b}, tolerance ${e}`);
 test('spectral weights use detected signal and reduce to each monochromatic endpoint',()=>{
  for(const w of [0,.1,.5,1])for(const frequency of [0,40,100,220,400]){
@@ -43,4 +44,13 @@ test('PSF radial energy matches the independent encircled-energy identity with t
 test('spectral model rejects zero scales, nonfinite inputs and invalid weights',()=>{
  for(const p of [{weightB:-.1},{weightB:1.1},{wavelengthA:0},{fNumber:0},{shiftUm:NaN},{frequency:-1}])assert.throws(()=>parameters(p),RangeError);
  assert.throws(()=>j1(300),RangeError);
+});
+test('physical plot axes stay fixed across aperture, wavelength and image shift presets',()=>{
+ for(const p of [{fNumber:2,wavelengthA:400,wavelengthB:700,shiftUm:-10},
+  {fNumber:8,shiftUm:5},{fNumber:16,wavelengthA:700,wavelengthB:400,shiftUm:10}]) {
+  const f=spectrumFigures(p);
+  assert.ok(!/NaN|Infinity/.test(f.psf+f.otf));
+  for(const tick of ['-40','-20','0','20','40']) assert.ok(f.psf.includes('>'+tick+'</text>'));
+  for(const tick of ['0','100','200','300','400']) assert.ok(f.otf.includes('>'+tick+'</text>'));
+ }
 });

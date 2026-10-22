@@ -140,7 +140,7 @@ export const spec = {
       ],
       stats: [
         [
-          "右下角共同焦点",
+          "右下角共同焦面MTF",
           corner.current.map((x) => number(x, 3)).join(" / "),
           "方向S / T，40 lp/mm",
         ],

@@ -49,7 +49,7 @@ function background(m, label) {
   return `<div class="background"><h4>${label}</h4><svg role="img" aria-label="${label}时固定远景方向的像面标尺" viewBox="0 0 300 100">${s}</svg><p>角尺度 ${mm(m.scale)} / rad<br>相对无穷远 ${percent(m.breathingPercent)}%</p></div>`;
 }
 export function mount({ element, signal, session }) {
-  const trajectory = Array.from({ length: 101 }, (_, i) => {
+  const trajectory = Array.from({ length: 126 }, (_, i) => {
     const w = i * 0.02,
       p = floatingTruth(w)[0];
     return [w, p];
@@ -120,8 +120,6 @@ export function mount({ element, signal, session }) {
         rear = focusSystem({ ...state, mode: "rear" }),
         dual = focusSystem({ ...state, mode: "floating" }),
         manual = (state.mode ?? "rear") === "manual";
-      const playButton = root.querySelector("[data-replay]");
-      if (playButton) playButton.disabled = manual;
       for (const label of ["手动组 2 位置", "手动组 3 位置"])
         root.querySelector(`input[aria-label="${label}"]`).disabled = !manual;
       const modes = {
@@ -177,13 +175,13 @@ export function mount({ element, signal, session }) {
       ];
       root.querySelector("[data-trajectory]").innerHTML = plot({
         curves,
-        xMax: 2,
+        xMax: 2.5,
         leftPadding: 70,
         height: 285,
         topPadding: 44,
         bottomPadding: 60,
         yMax: 190,
-        xLabel: "目标物距的倒数 / D（0为∞，1为1m，2为0.5m）",
+        xLabel: "物距倒数 / D（0为∞，2为0.5m，2.5为0.4m）",
         yLabel: "z / mm",
         markers: [
           {
@@ -215,6 +213,7 @@ export function mount({ element, signal, session }) {
         start: 0,
         end: 2,
         label: "播放拉焦",
+        enabled: (state) => (state.mode ?? "rear") !== "manual",
       }),
   });
 }

@@ -13,8 +13,23 @@ import { sceneSample } from "./scene.js";
 import { grayPng } from "./raster.js";
 import { inflateSync } from "node:zlib";
 import { pipeline } from "../ei-monitor/model.js";
+import { spec } from "./lesson.js";
 const near = (a, b, e = 1e-11) =>
   assert.ok(Math.abs(a - b) < e, `${a} versus ${b}`);
+test("EI-neutral controls disable at unity gain and re-enable for either EI direction", () => {
+  for (const key of ["metered", "record"]) {
+    const control = spec.controls.find((c) => c.key === key);
+    assert.equal(control.enabled({ eiStops: 0 }), false);
+    assert.deepEqual(pixel({ [key]: 0 }, 1), pixel({ [key]: 1 }, 1));
+    for (const eiStops of [-1, 1]) {
+      assert.equal(control.enabled({ eiStops }), true);
+      const a = pixel({ eiStops, [key]: 0 }, 1);
+      const b = pixel({ eiStops, [key]: 1 }, 1);
+      assert.notEqual(a[key === "metered" ? "mu" : "logCode"],
+        b[key === "metered" ? "mu" : "logCode"]);
+    }
+  }
+});
 test("capture scene pixel follows the existing RAW and teaching Log chain", () => {
   for (const metered of [0, 1])
     for (const record of [0, 1])

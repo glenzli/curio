@@ -5,6 +5,8 @@ import { lessonBody } from "./lesson-view.js";
 export function mountLesson(context, spec) {
   return experiment({
     ...context,
+    version: spec.version ?? 1,
+    migrate: spec.migrate,
     kicker: "摄影成像科学 · 模型与对照",
     title: spec.title,
     intro: spec.intro,

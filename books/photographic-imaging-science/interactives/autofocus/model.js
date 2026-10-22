@@ -186,13 +186,17 @@ export function autofocus(input = {}) {
     return { group: position, observed, expected };
   });
   const peak = contrast.reduce((a, b) => (a.observed > b.observed ? a : b));
+  const contrastRange = peak.observed - Math.min(...contrast.map((p) => p.observed));
   return {
     p,
     history,
     current,
     group: current.group + (next.group - current.group) * fraction,
     contrast,
-    contrastPeak: peak.group,
+    // A constant observed scan has no identifiable best position. Do not turn
+    // the reduction's arbitrary tie-breaking endpoint into a reported focus.
+    contrastPeak: contrastRange > 1e-12 ? peak.group : null,
+    contrastRange,
     knownFocus: 0,
   };
 }

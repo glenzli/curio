@@ -43,7 +43,10 @@ export const spec = {
       y = Math.floor(s.selected / width),
       left = Math.floor(x / 4) * 4,
       top = Math.floor(y / 4) * 4,
-      cfa = ["R", "G", "G", "B"];
+      cfa = ["R", "G", "G", "B"],
+      byteOffset = m.offset + 2 * s.selected,
+      selectedBytes = Array.from(bytes.slice(byteOffset, byteOffset + 2)),
+      byteCells = selectedBytes.map((value, j) => `<rect x="${12 + 165 * j}" y="325" width="151" height="52" rx="5" fill="#bb7946" fill-opacity=".15" stroke="#bb7946"/><text x="${24 + 165 * j}" y="347" style="font-size:12px">偏移 ${byteOffset + j}</text><text x="${24 + 165 * j}" y="369" style="font-size:19px;font-weight:600">${value.toString(16).padStart(2, "0")}</text>`).join("");
     let cells = "";
     for (let row = 0; row < 4; row++)
       for (let col = 0; col < 4; col++) {
@@ -55,7 +58,8 @@ export const spec = {
         cells += `<rect x="${8 + col * 156}" y="${45 + row * 58}" width="150" height="54" rx="5" fill="${{ R: "#c56b61", G: "#539a74", B: "#4f83b7" }[channel]}" fill-opacity="${selected ? 0.25 : 0.11}" stroke="${selected ? "currentColor" : { R: "#c56b61", G: "#539a74", B: "#4f83b7" }[channel]}" stroke-opacity="${selected ? 0.8 : 0.3}"/><text x="${16 + col * 156}" y="${65 + row * 58}" style="font-size:16px">${channel} (${xx},${yy})</text><text x="${16 + col * 156}" y="${88 + row * 58}">${m.decoded[i]}</text>`;
       }
     return {
-      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 290" role="img" aria-label="所选样本附近的CFA码值"><text x="10" y="25">CFA通道与原始DN（行优先；底色标识滤色通道）</text>${cells}</svg>`,
+      figureHeight: 400,
+      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 390" role="img" aria-label="所选样本附近的CFA码值和所选两字节"><text x="10" y="25">CFA通道与原始DN（行优先；底色标识滤色通道）</text>${cells}<text x="12" y="312" style="font-size:14px">所选两字节（十六进制；文件为小端）</text>${byteCells}<text x="354" y="347" style="font-size:14px">${s.wrong ? "错误：先读的字节作为高位" : "低位字节在前，高位在后"}</text><text x="354" y="373" style="font-size:18px">${s.wrong ? selectedBytes[0] * 256 + " + " + selectedBytes[1] : selectedBytes[0] + " + 256 × " + selectedBytes[1]} = ${m.decoded[s.selected]}</text></svg>`,
       stats: [
         [
           "所选样本",

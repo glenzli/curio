@@ -124,6 +124,8 @@ export function mount({ element, signal, session }) {
         step: 1,
         value: 12,
         format: (x) => `${x} px`,
+        enabled: (s) => !s.uniform,
+        hint: (s) => s.uniform ? "均匀场景没有独立移动主体。" : "",
       },
       {
         key: "search",
@@ -142,6 +144,7 @@ export function mount({ element, signal, session }) {
         step: 0.25,
         value: 0,
         format: (x) => `${format(x)} px`,
+        hint: "位移估计可用时，才改变中间融合图的补偿量。",
       },
       {
         key: "probe",
@@ -238,6 +241,7 @@ export function mount({ element, signal, session }) {
       }
       const available = registration.offset !== null,
         offset = available ? registration.offset + state.residual : null;
+      root.querySelector('input[data-control-key="residual"]').disabled = !available;
       const plain = fuseImage(frames.short, frames.long, 0, state.deghost),
         truth = fuseImage(
           frames.short,

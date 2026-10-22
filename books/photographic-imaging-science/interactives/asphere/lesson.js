@@ -4,9 +4,9 @@ export const spec = {
   title: "非球面的矢高差与斜率",
   alt: "互动示意：非球面矢高差、单位与边缘斜率的数值对照",
   intro:
-    "基准球面与非球面具有相同顶点曲率。上图显示微米级矢高差，下图显示局部斜率差。",
+    "基准球面与非球面具有相同顶点曲率。上图显示微米级矢高差，下图显示局部斜率差；虚线保留到16 mm的面形参照，实线仅画有效口径。",
   staticCaption: "R=50 mm，k=−1，A₄=−1×10⁻⁶ mm⁻³，有效半口径12 mm。",
-  note: "旋转对称圆锥面加A₄r⁴，长度统一用mm；图中差值转换成μm。只计算面形和dz/dr，不进行整镜像差优化。实值面形与有限导数的条件在采样口径内检查；斜率差不等于自动校正的球差量。",
+  note: "旋转对称圆锥面加A₄r⁴，长度统一用mm；图中差值转换成μm。只计算面形和dz/dr，不进行整镜像差优化。横轴固定0–16 mm，纵轴由16 mm参考轮廓确定，所以只缩小有效口径不会自动把残差重新拉满。实值面形与有限导数的条件在采样口径内检查；斜率差不等于自动校正的球差量。",
   controls: [
     control("radius", "顶点曲率半径", 35, 80, 1, 50, " mm"),
     control("conic", "圆锥常数 k", -2, 0, 0.1, -1, "", 1),
@@ -28,26 +28,30 @@ export const spec = {
     const m = asphere(s),
       depart = grid(0, s.aperture, (r) => m.at(r).departure),
       slopes = grid(0, s.aperture, (r) => m.at(r).slopeDifference * 1000),
+      referenceDepart = grid(0, 16, (r) => m.at(r).departure),
+      referenceSlopes = grid(0, 16, (r) => m.at(r).slopeDifference * 1000),
       range = (pts) => Math.max(1, ...pts.map((p) => Math.abs(p[1]))) * 1.15;
     return {
       panels: [
         {
           title: "相对同顶点曲率球面的矢高差",
-          xMax: s.aperture,
+          xMax: 16,
           xLabel: "半径 / mm",
           yLabel: "Δz / μm",
-          yMin: -range(depart),
-          yMax: range(depart),
-          curves: [curve("非球面−球面", depart)],
+          yMin: -range(referenceDepart),
+          yMax: range(referenceDepart),
+          markers: [{ value: s.aperture, label: "有效边缘" }],
+          curves: [curve("16 mm面形参照", referenceDepart, 3, true), curve("有效口径内：非球面−球面", depart)],
         },
         {
           title: "局部斜率差（小角时近似mrad）",
-          xMax: s.aperture,
+          xMax: 16,
           xLabel: "半径 / mm",
           yLabel: "1000·Δ(dz/dr)",
-          yMin: -range(slopes),
-          yMax: range(slopes),
-          curves: [curve("斜率差", slopes, 1)],
+          yMin: -range(referenceSlopes),
+          yMax: range(referenceSlopes),
+          markers: [{ value: s.aperture, label: "有效边缘" }],
+          curves: [curve("16 mm面形参照", referenceSlopes, 3, true), curve("有效口径内斜率差", slopes, 1)],
         },
       ],
       stats: [

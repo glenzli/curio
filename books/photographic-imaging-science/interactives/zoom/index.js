@@ -97,7 +97,11 @@ export function mount({ element, signal, session }) {
         : `手动模式：补偿组 z=${mm(p.compensator)}。`;
       root.querySelector("[data-stats]").innerHTML = [
         ["当前有效焦距", mm(m.focalLength), "从主平面量起"],
-        ["平行光最佳像面 z", mm(m.imageZ), "固定像面始终位于200 mm"],
+        [
+          m.imageZ !== null && m.imageZ < p.compensator ? "出射束虚交点 z" : "平行光近轴像面 z",
+          mm(m.imageZ),
+          m.imageZ !== null && m.imageZ < p.compensator ? "仅反向延长交点；固定像面在200 mm" : "固定像面始终位于200 mm",
+        ],
         [
           "固定像面光束跨度",
           `${(m.spread * 1000).toFixed(3)} µm`,
@@ -146,11 +150,13 @@ export function mount({ element, signal, session }) {
       root.querySelector("[data-key]").innerHTML =
         legend(curves) +
         `<span><i style="border-color:#9b703c;border-top-style:dotted"></i>逐面求根</span>`;
-      root.querySelector("[data-reading]").textContent = m.compensated
+      root.querySelector("[data-reading]").textContent = (m.imageZ !== null && m.imageZ < p.compensator
+        ? "当前出射束发散，所列虚交点来自反向延长，不是光线实际会聚的像面。"
+        : "") + (m.compensated
         ? "补偿组沿非直线轨迹移动，把最佳像面留在200 mm。焦距仍在变化，补偿的是像面位置。"
         : m.solved === null
           ? "这组光焦度与行程不能覆盖当前变倍组位置。扩大变焦范围需要重新选择结构或运动范围。"
-          : "当前没有自动移动第三组。对照曲线上的求解点，可以看到还需要怎样调整补偿组。";
+          : "当前没有自动移动第三组。对照曲线上的求解点，可以看到还需要怎样调整补偿组。");
       const truth = m.analytic[0] ?? null;
       root.querySelector("[data-truth]").innerHTML =
         `<strong>独立对照</strong><br>逐面追迹求根 c=${mm(m.solved)}；二次方程解析根 c=${mm(truth)}。${truth === null ? "两条路径均无行程内解。" : `位置差 ${Math.abs(m.solved - truth).toExponential(2)} mm。`}<br>当前总矩阵传播到固定像面的 A=${m.detectorMatrix[0].toFixed(9)}；轴上平行光合焦要求 A=0。<br>系统矩阵 AD−BC=${m.determinant.toFixed(9)}。中段 v=50 mm 时二次项退化，解析真值为 c=150 mm、f=100 mm。`;

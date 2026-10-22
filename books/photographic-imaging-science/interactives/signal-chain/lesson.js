@@ -1,5 +1,13 @@
 import { signalChain } from "./model.js";
 import { control, number, escape } from "../common/lesson-view.js";
+const stageNames = [
+  "像素收到能量",
+  "入射光子",
+  "信号电子",
+  "读出电压",
+  "记录码值",
+  "显示信号",
+];
 export const spec = {
   title: "同一次曝光的成像链",
   alt: "互动示意：同一次曝光从能量、光子、电子到码值与显示",
@@ -8,19 +16,18 @@ export const spec = {
   staticCaption: "4 μm像素，550 nm，曝光量10⁻⁴ J/m²，QE 70%，模拟增益1。",
   note: "单色、均匀像面曝光、均值流程；满阱32000 e⁻，电子→电压为1 V满量程，14 bit ADC、零黑电平，Gamma 2.2显示。没有生成随机计数，也未包含色彩变换。显示端读数是无量纲码值；换成cd/m²需另给显示器的光度标定。",
   controls: [
-    control(
-      "exposure",
-      "曝光量的10进对数",
-      -6,
-      -2,
-      0.25,
-      -4,
-      " log₁₀(J/m²)",
-      2,
-    ),
+    {
+      ...control("exposure", "像面曝光量 Hₑ", -6, -2, 0.25, -4),
+      format: (x) => `${(10 ** x).toExponential(2)} J/m²`,
+      hint: "按对数间隔调节；光子数与曝光量成正比。",
+    },
     control("qe", "外量子效率", 0, 1, 0.05, 0.7, "", 2),
     control("gain", "模拟增益", 1, 8, 0.5, 1, "倍", 1),
-    control("step", "查看环节", 0, 5, 1, 0),
+    {
+      ...control("step", "查看环节", 0, 5, 1, 0),
+      discrete: true,
+      format: (x) => `${Math.floor(x) + 1} · ${stageNames[Math.floor(x)]}`,
+    },
   ],
   presets: [
     {
@@ -29,7 +36,7 @@ export const spec = {
     },
     {
       label: "固定曝光提高增益",
-      values: { exposure: -4, qe: 0.7, gain: 4, step: 3 },
+      values: { exposure: -4, qe: 0.7, gain: 4, step: 4 },
     },
     {
       label: "光电二极管已饱和",
@@ -47,16 +54,28 @@ export const spec = {
   evaluate(s) {
     const m = signalChain(s),
       stages = [
+        [stageNames[0], m.energy.toExponential(3) + " J", "第1章：面积×曝光量"],
         [
-          "像素收到能量",
-          m.energy.toExponential(3) + " J",
-          "第1章：面积×曝光量",
+          stageNames[1],
+          number(m.photons, 0) + " 个",
+          "第1—2章：像素能量÷单光子能量",
         ],
-        ["入射光子", number(m.photons, 0) + " 个", "第1—2章：能量÷光子能量"],
-        ["信号电子", number(m.electrons, 0) + " e⁻", "第2—4章：期望值×QE"],
-        ["读出电压", number(m.volts, 4) + " V", "第3、5章：满阱后再加增益"],
-        ["记录码值", String(m.code) + " DN", "第3、10章：14 bit ADC"],
-        ["显示信号", number(m.display, 3), "第9章：归一化及Gamma"],
+        [
+          stageNames[2],
+          number(m.electrons, 0) + " e⁻",
+          "第2—4章：入射光子均值×QE",
+        ],
+        [
+          stageNames[3],
+          number(m.volts, 4) + " V",
+          "第3、5章：捕获电荷换算为增益前电压",
+        ],
+        [
+          stageNames[4],
+          String(m.code) + " DN",
+          "第3、10章：模拟增益后作14 bit量化",
+        ],
+        [stageNames[5], number(m.display, 3), "第9章：归一化及Gamma编码"],
       ];
     const active = Math.min(5, Math.floor(s.step));
     return {

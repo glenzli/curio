@@ -111,7 +111,7 @@ export const spec = {
         yLabel: "归一化相关",
       },
       {
-        title: "3 独立扫描：实测对比度（蓝）与积分真值（橙虚线）",
+        title: "3 独立扫描：观测方差（蓝）与无噪积分（橙虚线）",
         curves: [
           curve(
             "观测方差",
@@ -125,7 +125,7 @@ export const spec = {
           ),
         ],
         markers: [{ value: 0, label: "已知焦点", color: "#329383" }],
-        samples: [
+        samples: a.contrastPeak === null ? [] : [
           [a.contrastPeak, Math.max(...a.contrast.map((v) => v.observed))],
         ],
         xMin: -0.3,
@@ -185,9 +185,9 @@ export const spec = {
         ],
         ["当前镜组位置", number(group, 4) + " mm", "动画在相邻位置指令间插值"],
         [
-          "扫描得到的峰位置",
-          number(a.contrastPeak, 4) + " mm",
-          "独立扫描；已知焦点0 mm",
+          "观测扫描最大位置",
+          a.contrastPeak === null ? "没有可区分的最大位置" : number(a.contrastPeak, 4) + " mm",
+          "独立扫描；已知焦点0 mm仅作对照",
         ],
         ["标定斜率", "22.5 px/mm", "焦点附近的位移关系"],
         [
@@ -201,7 +201,7 @@ export const spec = {
           "停止后不生成新观测",
         ],
       ],
-      reading: `半瞳图像的有符号偏移决定校正方向。当前生成偏移为${number(geometry(group).disparity, 3)} px；相关峰不唯一时保留镜组位置。对比度扫描比较整幅合并图像的方差，其峰位置受噪声和位置步长影响。`,
+      reading: `半瞳图像的有符号偏移决定校正方向。当前生成偏移为${number(geometry(group).disparity, 3)} px；相关峰不唯一时保留镜组位置。${a.contrastPeak === null ? "当前对比度扫描为常数，没有可识别的最佳焦位；未把任一端点当成焦点。" : s.kind === 1 ? "均匀目标没有焦位信息；带噪方差扫描的最大位置只反映这次噪声实现。" : "对比度扫描比较整幅合并图像的方差，其最大位置受噪声和位置步长影响。"}`,
     };
   },
 };

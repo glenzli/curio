@@ -11,18 +11,19 @@
 | 3 | Fossum；Janesick；EMVA 1288 | 单斜坡机制另核对Kleinfelder等2001 slide 7；ADC误差另核MT-010 pp. 4–7；列偏置、二次斜坡与DNL/INL采用声明模型及固定端点参考；列 ADC 电路细节外置；$kT/C$、线性读出、噪声带宽和量化模型书内推导 |
 | 4 | EMVA 1288 Release 4.0 Linear §§2.1--2.5，式 (16)--(18)；Janesick, *Photon Transfer* | PTC 用 N−1 样本方差及成对差分/2；Gaussian 行列随机效应、ROI 平均与共享暗场校准下限另在书内推导，与标准的固定空间非均匀性测量区分 |
 | 5 | ISO 12232:2019/Amd 1:2020；Sony Base ISO；Canon DGO | 标准合格性文本不复制；增益位置模型和DCG权衡书内计算；EI监看另核ARRI SUP 1.1 §9.4，教学链固定传感器与模拟读出 |
-| 6 | Sony 2012堆栈发布、Pregius S及开发访谈；Hamamatsu qCMOS；Guenter et al. 2017 | BSI/DTI/堆栈/曲面具体制造为外部输入；分层图按功能层序核对，不模拟器件性能；时序畸变书内推导 |
+| 6 | Sony 2012堆栈发布、Pregius S及开发访谈；Hamamatsu qCMOS；Guenter et al. 2017；Basler Flash Window；Nikon/Canon HSS说明 | BSI/DTI/堆栈/曲面具体制造为外部输入；分层图按功能层序核对，不模拟器件性能；时序畸变、PWM精确积分和有限单闪的窗口交集书内推导；PWM固定平均辐照度，单闪固定总量，HSS仅作时序类比 |
 | 7 | Bayer US3971065A；Hunt--Pointer；Zhu--Finlayson 2020；DNG specification | RGGB 布局来自公开原始专利；同色格、倒格、起点相位与双线性示例书内计算；四波段响应和噪声混合矩阵为教学输入；同色异谱、精确色度映射、独立噪声源与协方差传播书内论证，未把输出称为标定XYZ |
 | 8 | Hasinoff et al. 2016；Debevec--Malik 1997；Sony HF-HDR | 具体产品算法外置；独立堆栈与加权估计书内推导；本书的水平梯度搜索与二维强度相关算法分别定义，HDR+ 的 FFT 配准保留为外部背景 |
-| 9 | ARRI LogC4 2023 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100-3 表4–5、附录1 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明；PQ按绝对显示亮度定义，HLG相对场景编码与显示变换分开 |
+| 9 | ARRI LogC4 2025 §§3.1、4.1；ARRI Dynamic Range 2022 表 4；ITU-R BT.2100-3 表4–5、附录1 | 区分硬件 EI 增益、固定解码曲线和高 EI 编码限幅；分段连续性与量化误差书内证明；PQ按绝对显示亮度定义，HLG相对场景编码与显示变换分开 |
 | 10 | Adobe DNG 1.7.1.0 pp. 33、52--53、99--100；Apple ProRes RAW | 颜色矩阵方向及 RAW 线性化顺序按规范；位打包、负值裁切偏置与归一化算例书内计算 |
 | 11 | Born--Wolf；Smith；Kingslake--Johnson；MIT 6.161 §2.2；Ansys BFL 定义；Edmund Optics 瞳定义；MIT 2.71 Lecture 6 slides 3–6 | 真实处方追迹外置；近轴矩阵、主平面和有限共轭书内推导；孔径逐面截光另对照ABCD三圆投影与圆弧面积，不把面积比当照度 |
-| 12 | Goodman；MIT 2.71 2014 Lecture 25；MIT 18.103 2013 Fourier Integrals pp.1–2；Zeiss MTF notes | 标量 Fourier 模型与Plancherel定理为外部输入；平移内积、物理尺度与OTF自相关书内推导，宽谱合成注明条件；传播分别对照Airy、圆盘重叠、直接自相关、Parseval与网格收敛 |
-| 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；轴上比的 RMS 小相位近似及四项圆瞳模式正交归一在正文推导；Mahajan 1982/1985 的摘要与表格用于核对参考点/峰值约定；波前演示以连续圆瞳积分和纯离焦精确式另核固定原点 S₀ |
+| 12 | Goodman；MIT 2.71 2014 Lecture 25；MIT 18.103 2013 Fourier Integrals pp.1–2；Zeiss MTF notes；Nikon D800/D800E p.3；NDK光学元件说明 | 标量 Fourier 模型与Plancherel定理为外部输入；平移内积、物理尺度与OTF自相关书内推导，宽谱合成注明条件；传播分别对照Airy、圆盘重叠、直接自相关、Parseval与网格收敛；分光强度核、余弦OTF和采样折返自行推导，以直接平移和像素面积求积核对 |
+| 13 | Mahajan；Kingslake--Johnson；Ansys Seidel coefficients；Edmund平板球差说明；Nikon MicroscopyU Coverslip Correction | 区分三阶光线像差与四阶波像差；Seidel/Zernike 体系为外部经典框架；轴上比的 RMS 小相位近似及四项圆瞳模式正交归一在正文推导；Mahajan 1982/1985 的摘要与表格用于核对参考点/峰值约定；波前演示以连续圆瞳积分和纯离焦精确式另核固定原点 S₀；盖玻璃按双界面Snell推导并核对向量追迹，最小子午RMS不当作最大Strehl |
 | 14 | Nikon Research Report 2022；SCHOTT N-BK7/N-F2 数据表；Canon Fluorite；Zeon COP | 材料目录与制造性质外置；互动使用目录 Sellmeier 系数与谱线数据；书内推导接触薄片的消色差和二级光谱，完整镜头处方另需曲率、厚度与间隔 |
 | 15 | Born--Wolf；Macleod；Erteza 1995 §2.1.2；Byrnes v5 §§2--4、附录A；Nikon PF；Canon lens technologies | 具体制造外置；量化 blaze 逐段 Fourier 积分、连续极限及交替四分之一波层导纳书内推导；正/斜入射s/p矩阵与完整电场递推比较；区分切向振幅和能流，不含吸收或倏逝波 |
 | 16 | Smith；Kingslake--Johnson；MIT 6.161 §2.2.2；Fan et al. 2022；Nikon 防抖与多组对焦原理；Edmund 远心与景深说明 | 三组补偿方程、去心薄组响应、整周期残余 RMS、瞳共轭与远心条件书内推导，并有独立追迹对照；复杂控制、像差、处方与器材性能外置 |
 | 17 | Burns 2000 pp. 135--136；Zeiss MTF notes；ISO 12233:2024（公开范围） | 互动采用逐行差分质心与直线拟合，并自定支持域、平滑和失败条件；二维 PSF 线积分、有限差分与尺度书内推导，ISO 合格性测试另需完整的标准流程 |
+| 18 | Nikon/Canon驱动与镜头技术资料；公开驱动论文；Nikon MicroscopyU Coverslip Correction | 入瞳、近摄附件和执行器运动按已声明模型计算；实机结构、闭环性能和镜头与滤镜匹配由具体设计决定，测焦估计与生成真值分开 |
 
 ## 图像与重复实验扩展
 
@@ -205,7 +206,7 @@ ISO 演示采用正文给定的教学电压/电容尺度，观测统计只读取
 不等于均值置信区间。去马赛克空间相关、饱和和增益估计误差未进入该例。
 
 第五、九章共用固定传感器的EI实验，按曝光、记录位置和监看分层；物理档位真值
-不读取显示码。ARRI的SUP 1.1 §9.4与LogC4 2023 §§3.1、4.1提供实际术语边界，
+不读取显示码。ARRI的SUP 1.1 §9.4与LogC4 2025 §§3.1、4.1提供实际术语边界，
 教学Log、Gamma硬白点、14 bit RAW及满阱参数均另行声明，未复制厂商硬件公式。
 
 ## 示意图重绘（2026-10-19）

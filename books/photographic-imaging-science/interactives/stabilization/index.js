@@ -69,6 +69,8 @@ export function mount({ element, signal, session }) {
         step: 1,
         value: 0,
         format: (v) => `${v} ms`,
+        enabled: (s) => s.ois + s.ibis > 0,
+        hint: (s) => s.ois + s.ibis > 0 ? "" : "先启用镜组或传感器补偿，再比较延迟",
       },
       {
         key: "time",

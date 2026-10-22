@@ -41,7 +41,10 @@ export const spec = {
   controls: [
     control("translation", "横向平移", -0.3, 0.3, 0.01, 0.15, " m", 2),
     control("yaw", "绕投影中心偏转", -3, 3, 0.1, 1, "°", 1),
-    control("plane", "补偿采用的平面深度", 2, 6, 0.25, 6, " m", 2),
+    { ...control("plane", "补偿采用的平面深度", 2, 6, 0.25, 6, " m", 2),
+      enabled: s => Math.abs(s.translation * s.progress) > 1e-12,
+      hint: s => s.progress === 0 ? "当前位姿与参考相同。" :
+        s.translation === 0 ? "绕投影中心纯旋转时，映射与平面深度无关。" : "" },
     control("progress", "位姿变化进度", 0, 1, 0.01, 1, "", 2),
   ],
   presets: [

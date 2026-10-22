@@ -12,6 +12,7 @@ export function replay({
   durationMs = 8000,
   label = "播放演示",
   startOnFirstPlay = false,
+  enabled = () => true,
 }) {
   const button = document.createElement("button");
   button.dataset.replay = "true";
@@ -23,14 +24,18 @@ export function replay({
     drawn = 0,
     disposed = false,
     played = false;
+  function syncAvailability() {
+    button.disabled =
+      !enabled(state) ||
+      !!root.querySelector(`input[data-control-key="${key}"]`)?.disabled;
+  }
   function pause() {
     const wasRunning = running;
     running = false;
     cancelAnimationFrame(frame);
     button.textContent = label;
     button.setAttribute("aria-pressed", "false");
-    button.disabled = !!root.querySelector(`input[data-control-key="${key}"]`)
-      ?.disabled;
+    syncAvailability();
     // Save and display the same final frame, including time since the last draw.
     if (wasRunning && !disposed) render();
   }
@@ -53,6 +58,7 @@ export function replay({
   }
   pause();
   const onPlay = () => {
+    syncAvailability();
     if (button.disabled) return;
     if (running) return pause();
     if (
@@ -72,6 +78,11 @@ export function replay({
   };
   button.addEventListener("click", onPlay, { signal });
   root.addEventListener("input", pause, { signal });
+  const onControlsUpdated = () => {
+    syncAvailability();
+    if (button.disabled && running) pause();
+  };
+  root.addEventListener("mb-controls-updated", onControlsUpdated, { signal });
   const actions = root.querySelector(".actions");
   const onAction = (e) => {
     if (e.target !== button) pause();
@@ -90,6 +101,7 @@ export function replay({
     pause();
     observer.disconnect();
     root.removeEventListener("input", pause);
+    root.removeEventListener("mb-controls-updated", onControlsUpdated);
     actions.removeEventListener("click", onAction);
     button.removeEventListener("click", onPlay);
     document.removeEventListener("visibilitychange", visibility);

@@ -5,6 +5,18 @@
 
 ## 成像物理与传感器
 
+- Basler, [Line Source — Flash Window](https://docs.baslerweb.com/line-source#flash-window),
+  “Rolling Shutter Cameras”, checked 22 October 2026. The common window runs from
+  the last row's exposure start to the first row's exposure end. Chapter 6 derives
+  this interval intersection and the exposure from a finite rectangular flash;
+  its fixed-mean PWM calculation is a separate teaching model.
+- Nikon, [High Speed Sync](https://www.nikonusa.com/learn-and-explore/c/tips-and-techniques/high-speed-sync-a-flash-technique-to-add-a-pro-touch-to-your-photographs),
+  “How It Works”; Canon, [Speedlite EL-5 (Ver.2) — High-Speed Sync](https://cam.start.canon/en/A014/manual/html/UG-02_Advanced_Flash_0050.html),
+  document D461-021, “Caution”, checked 22 October 2026. Nikon describes the pulse
+  train during shutter travel; Canon states that the guide number decreases at
+  faster shutter speeds. Chapter 6 uses ideal pulses to explain timing, while
+  leaving device waveforms, output and trigger tolerances to the product documentation.
+
 - John Tsitsiklis and Patrick Jaillet, MIT *Introduction to Probability*, Spring 2018,
   [Lecture 22: The Poisson Process](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/d92a00a2bc9d20d84ad11d43be0e7ae0_MITRES_6_012S18_L22.pdf)
   and [Lecture 23: More on the Poisson Process](https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/5dc3b904bffcf92b4e5ec6c67d603414_MITRES_6_012S18_L23.pdf),
@@ -113,7 +125,7 @@
   aliases after filtering. Equality is checked on every actual CFA sample, while
   interpolation error is evaluated separately on a common interior region.
 - ARRI, [ARRI LogC4 Logarithmic Color Space Specification](https://www.arri.com/resource/blob/278790/db65b86066de1f74852edb8f15acf082/2023-05-arri-logc4-specification-data.pdf),
-  May 2023, §3.1 hardware EI gain and §4.1 EI-independent decoding curve.
+  23 January 2025 revision, §3.1 hardware EI gain and §4.1 EI-independent decoding curve.
 - ARRI, [Dynamic Range White Paper](https://www.arri.com/resource/blob/295460/e10ff8a5b3abf26c33f8754379b57442/2022-09-28-arri-dynamic-range-whitepaper-data.pdf),
   28 September 2022, Table 4 and the Log C encoding section;
   includes the ALEXA 35 high-EI encoding limit described in that implementation.
@@ -145,6 +157,16 @@
   Morgan Kaufmann, 2012.
 - R. W. G. Hunt and M. R. Pointer, *Measuring Colour*, 4th ed., Wiley, 2011.
 
+- Nikon, [Moiré & False Colour](https://cdn-4.nikon-cdn.com/en_CA/o/CBTZ8ZQ3AzZ4Pm9E2GAU8EKdTa4/PDF/Moire_and_False_Colour.pdf),
+  p. 3, Functions of Nikon D800/D800E optical low-pass filter. Two directional splitting
+  stages and a wave plate illustrate four-image separation; the D800E diagram illustrates
+  cancellation of the separation. Chapter 12 derives an ideal equal-weight incoherent
+  translation kernel, not that camera's measured separation distances or polarization prescription.
+- NDK, [Optical Component — Product Lineup](https://www.ndk.com/en/products/optics/products/),
+  optical low-pass filter and quartz crystal wave plate entries. Birefringent separation
+  into ordinary and extraordinary rays is the material mechanism; the book's numerical
+  spacing and equal branch weights are declared teaching inputs.
+
 ## Fourier 分析的数学工具
 
 - MIT, [18.103 Fourier Integrals on L²(R) and L¹(R)](https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/d95e4644254e96ffe92a970c5ed65b0e_MIT18_103F13_fourierint1.pdf),
@@ -171,6 +193,18 @@
   response and a separate validation measurement, not measured lens data.
 
 ## 几何光学、Fourier 光学与镜头
+
+- Edmund Optics, [An In-Depth Look at Spherical Aberration Compensation Plates](https://www.edmundoptics.com/knowledge-center/application-notes/optics/an-in-depth-look-at-spherical-aberration-compensation-plates/),
+  discussion surrounding Eq. (4), checked 22 October 2026. This supports the
+  presence of plate-induced spherical aberration in a converging beam. Chapter 13
+  derives its focus shift from exact two-interface Snell geometry and compares
+  it with an independent direction-vector construction.
+- Thomas J. Fellers and Michael W. Davidson, Nikon MicroscopyU,
+  [Coverslip Correction](https://www.microscopyu.com/microscopy-basics/coverslip-correction),
+  checked 22 October 2026. The dependence on glass thickness, refractive index
+  and objective design provides a documented example of lens/medium matching.
+  Chapters 13 and 18 use that principle without transferring microscope thickness
+  or numerical-aperture limits to photographic lenses.
 
 - Delft University of Technology, *Advanced Optical Imaging*,
   [Chapter 7: Coherent optical imaging](https://qiweb.tudelft.nl/aoi/coherentimaging/coherentimaging/),
@@ -305,7 +339,7 @@ ISO 12232:2019/Amd 1:2020、ISO 12233:2024、CIE 色度学标准和若干编码�
   performance or missing-code behavior is inferred from that example.
 - ARRI, [ALEXA 35 SUP 1.1 User Manual](https://www.arri.com/resource/blob/282238/84d1df5e5269a799515446d37d10876a/user-manual-alexa-35-sup-1-0-data.pdf),
   §9.4, p. 39: EI, exposure normalization and middle-gray placement. Together with
-  the May 2023 LogC4 specification §§3.1 and 4.1, this fixes the distinction between
+  the January 2025 LogC4 specification §§3.1 and 4.1, this fixes the distinction between
   hardware gain and scene-linear decoding. Chapters 5/9 use a separate fixed-sensor,
   teaching-Log and hard-white Gamma chain; it is not an ARRI LUT or hardware reproduction.
 - Irvine C. Gardner, [Validity of the Cosine-Fourth-Power Law of Illumination](https://nvlpubs.nist.gov/nistpubs/jres/39/jresv39n3p213_A1b.pdf),

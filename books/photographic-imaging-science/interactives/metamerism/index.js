@@ -32,7 +32,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "probe",
-        label: "R通道增加的短波响应 η",
+        label: "R通道增加的短波能量响应",
         min: 0,
         max: 0.5,
         step: 0.05,
@@ -70,7 +70,7 @@ export function mount({ element, signal, session }) {
     ],
     content:
       '<style>.actions button{font-size:11px;padding:4px 8px}.spectral-pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}.spectral-pair>div{min-width:0}.chart text{font-size:14px}.stats strong{font-size:20px}.truth{font-size:11px;line-height:1.9;padding:12px;border:1px solid #9caea255;border-radius:6px}.illuminant{font-size:12px;font-variant-numeric:tabular-nums}.illuminant b{white-space:nowrap}@media(max-width:650px){.spectral-pair{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.chart text{font-size:20px}}</style><div class="spectral-pair"><div class="chart" data-reflectance></div><div class="chart" data-response></div></div><p class="illuminant" data-illumination></p><div class="chart" data-readout></div><div class="stats"></div><p class="reading" data-reading aria-live="polite"></p><p class="truth" data-truth></p>',
-    note: "400–700 nm分为四个75 nm等宽波段，区间外响应为零。ρA=0.5+a(1,−1,1,−1)，ρB=0.5−a(1,−1,1,−1)；0≤a≤0.5。照明为相对谱曝光密度 E=(1−τ,1−τ/3,1+τ/3,1+τ)，几何比例固定，像面相对谱曝光H=Eρ。读数为∫Hs dλ/(75 nm)，无单位；不是电子数或显示RGB。响应为声明的理想方窗，未采用实测相机或CIE人眼函数。无荧光、噪声、白平衡、色彩矩阵、饱和或显示色块；倾斜参数不是色温。轮廓是完整积分，实色是已积分部分；动画顺序不代表相机按波长顺序曝光。",
+    note: "400–700 nm分为四个75 nm等宽波段，区间外响应为零。ρA=0.5+a(1,−1,1,−1)，ρB=0.5−a(1,−1,1,−1)；0≤a≤0.5。照明为相对谱曝光密度 E=(1−τ,1−τ/3,1+τ/3,1+τ)，几何比例固定，像面相对谱曝光H=Eρ。读数为∫Hs dλ/(75 nm)，无单位；不是电子数或显示RGB。响应s是归一化有效能量响应，已吸收光子能量换算，不能作为量子效率读取。它采用声明的理想方窗，未采用实测相机或CIE人眼函数。无荧光、噪声、白平衡、色彩矩阵、饱和或显示色块；倾斜参数不是色温。轮廓是完整积分，实色是已积分部分；动画顺序不代表相机按波长顺序曝光。",
     update(root, s) {
       const m = spectralPair(s),
         ta = quadratureTruth(m.a, m.illuminant, m.response),

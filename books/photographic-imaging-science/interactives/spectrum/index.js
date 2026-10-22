@@ -19,7 +19,7 @@ export function mount({element,signal,session}) {
   {label:'无横向偏移',values:{shiftUm:0}},
  ],
  content:'<style>.spectral-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.spectral-grid>div{min-width:0}.spectral-grid svg{width:100%;height:auto;display:block}.spectral-grid text{fill:currentColor;font:11px ui-sans-serif,sans-serif}.truth{font-size:11px;line-height:1.9;border:1px solid #9caea255;padding:12px;border-radius:6px;overflow-wrap:anywhere}.spectral-grid h4{font-size:12px;margin:12px 0}@media(max-width:900px){.spectral-grid{grid-template-columns:1fr}}</style><div class="stats"></div><div class="spectral-grid"><div><h4>像面强度</h4><div data-psf></div><div class="legend" data-psf-legend></div></div><div><h4>复传递函数</h4><div data-otf></div><div class="legend" data-otf-legend></div></div></div><p class="reading" data-reading></p><div class="truth" data-truth aria-label="双波长独立真值对照"></div>',
- note:'各谱线采用标量近轴模型与均匀完整圆瞳；不同波长按非相干强度相加，物体光谱与空间结构可分离。权重表示各谱线经光源、透射与探测响应后的信号份额，不是显示 RGB 比例。B 的位移由指定的线性瞳相位表示，只示意横向色差；未建立真实材料处方或轴向色差。PSF 为完整二维像面的归一化密度，图中只画 y=0 截面；截面面积不等于总能量。Airy 曲线与解析圆盘 OTF 为主路径，独立极坐标瞳积分及瞳重叠数值积分作对照。无像差且无位移时 OTF 非负实数，直接平均 MTF 才与正确结果一致。',
+ note:'各谱线采用标量近轴模型与均匀完整圆瞳；不同波长按非相干强度相加，物体光谱与空间结构可分离。权重表示各谱线经光源、透射与探测响应后的信号份额，不是显示 RGB 比例。B 的位移由指定的线性瞳相位表示，只示意横向色差；未建立真实材料处方或轴向色差。PSF 为完整二维像面的归一化密度，图中只画 y=0 截面；截面面积不等于总能量。像面横坐标固定±40 μm，OTF横坐标固定0…400 lp/mm；PSF纵轴按当前峰值适配并保留μm⁻²刻度，比较通量密度须读刻度。Airy 曲线与解析圆盘 OTF 为主路径，独立极坐标瞳积分及瞳重叠数值积分作对照。无像差且无位移时 OTF 非负实数，直接平均 MTF 才与正确结果一致。',
  update(root,state) {
   const p=parameters(state),m=spectralAt(p),a=pupilIntegral(p.frequency,p.wavelengthA,p.fNumber),b=pupilIntegral(p.frequency,p.wavelengthB,p.fNumber,p.shiftUm);
   const h=a.map((v,i)=>(1-p.weightB)*v+p.weightB*b[i]);

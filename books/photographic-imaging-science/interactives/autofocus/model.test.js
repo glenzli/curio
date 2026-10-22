@@ -54,4 +54,12 @@ test("closed loop uses measured offsets, reaches either side of focus, and contr
   assert.throws(() => autofocus({ gain: 0 }), RangeError);
 });
 
+test("a textureless constant contrast scan has no identifiable maximum position", () => {
+  const m = autofocus({ kind: 1, noise: 0 });
+  assert.ok(m.contrast.every((p) => p.observed === 0 && p.expected === 0));
+  assert.equal(m.contrastPeak, null);
+  assert.equal(m.contrastRange, 0);
+  assert.ok(m.history.every((h) => h.group === 0.2));
+});
+
 await import("./view.test.js");

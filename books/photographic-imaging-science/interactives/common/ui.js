@@ -117,10 +117,9 @@ export function experiment({
       output.value = control.format ? control.format(shown) : String(shown);
     }
     update(root, state);
-    for (const button of root.querySelectorAll("button[data-replay-key]")) {
-      const field = fields.get(button.dataset.replayKey);
-      if (field) button.disabled = field.input.disabled;
-    }
+    // Playback owns its availability: an enabled slider can still be a manual
+    // input in a mode where automatic motion has no meaning.
+    root.dispatchEvent(new Event("mb-controls-updated"));
     const parameters = Object.fromEntries(
       Object.entries(state).filter(
         ([, v]) =>

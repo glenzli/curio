@@ -8,7 +8,10 @@ export function spectralLines({ split = 40, band = 1 } = {}) {
     weight: band ? [0.25, 0.5, 0.25][i] : +(i === 1),
   }));
 }
-const beta = (delta, nm, N) => (Math.PI * delta) / (4 * N * N * nm * 0.001);
+// Positive delta moves the observation plane along the image-space axis.
+// The resulting quadratic pupil phase is negative (§12 and §13.7).
+// Pure defocus intensity and its real OTF are invariant under sign reversal.
+const beta = (delta, nm, N) => -(Math.PI * delta) / (4 * N * N * nm * 0.001);
 export function axialDensity(delta, nm, N) {
   const b = beta(delta, nm, N) / 2,
     s = Math.abs(b) < 1e-10 ? 1 : Math.sin(b) / b;

@@ -86,7 +86,7 @@ export function mount({ element, signal, session }) {
       {
         key: "progress",
         label: "配准位移的回放进度",
-        hint: "移动配准叠加图；相关面和误差读数始终对应完整配准。",
+        hint: "估计可用时移动配准叠加图；相关面和误差读数对应完整配准。",
         min: 0,
         max: 100,
         step: 0.25,
@@ -192,6 +192,7 @@ export function mount({ element, signal, session }) {
       }
       const offset = result.offset,
         aligned = root.querySelector("[data-estimate]");
+      root.querySelector('input[data-control-key="progress"]').disabled = !offset;
       aligned.hidden = !offset;
       root.querySelector("[data-empty]").hidden = !!offset;
       if (offset)

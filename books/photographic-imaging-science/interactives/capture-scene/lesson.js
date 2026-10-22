@@ -16,6 +16,7 @@ export const spec = {
     control("eiStops", "EI相对800", -2, 3, 1, 0, "档"),
     {
       ...control("metered", "曝光规则", 0, 1, 1, 0),
+      enabled: (s) => s.eiStops !== 0,
       format: (v) => (v ? "按EI少曝" : "固定实际曝光"),
       hint: (s) =>
         s.eiStops === 0
@@ -24,6 +25,7 @@ export const spec = {
     },
     {
       ...control("record", "EI增益的位置", 0, 1, 1, 0),
+      enabled: (s) => s.eiStops !== 0,
       format: (v) => (v ? "记录Log之前" : "记录之后监看"),
       hint: (s) =>
         s.eiStops === 0

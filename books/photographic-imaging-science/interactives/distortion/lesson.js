@@ -43,8 +43,16 @@ export const spec = {
         )}" stroke="${colors[0]}"/>`;
       }
     }
+    // Keep the measured radius visible in both coordinate systems. A diagonal
+    // probe remains inside the declared square even when r exceeds one.
+    const probe = [s.radius / Math.SQRT2, s.radius / Math.SQRT2],
+      mappedProbe = radialMap(...probe, s.coefficient);
+    const probes = [probe, mappedProbe].map(([x, y], i) =>
+      `<circle cx="${center[i][0] + scale * x}" cy="${center[i][1] - scale * y}" r="5" fill="#8b62a5" stroke="white" stroke-width="1.5"/>`,
+    ).join("");
     return {
-      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" role="img" aria-label="原始方格与径向畸变方格"><g fill="none" stroke-width="1.5">${lines}</g><text x="170" y="32" text-anchor="middle">原始坐标</text><text x="460" y="32" text-anchor="middle">畸变后坐标</text><text x="320" y="286" text-anchor="middle">两幅图使用相同坐标尺度</text></svg>`,
+      figure: `<svg class="drawing" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 344" role="img" aria-label="原始方格、径向畸变方格与紫色半径探针"><g fill="none" stroke-width="1.5">${lines}</g>${probes}<text x="170" y="26" text-anchor="middle">原始坐标</text><text x="460" y="26" text-anchor="middle">畸变后坐标</text><text x="320" y="306" text-anchor="middle">紫点：45°方向的同一半径探针</text><text x="320" y="331" text-anchor="middle">两幅图使用相同坐标尺度</text></svg>`,
+      figureHeight: 344,
       panels: [
         {
           title: "局部径向与切向放大率",
@@ -52,6 +60,7 @@ export const spec = {
           xLabel: "归一化半径 r",
           yLabel: "局部尺度",
           yMax: 2,
+          markers: [{ value: s.radius, label: "探针" }],
           curves: [
             curve(
               "径向 1+3kr²",
@@ -68,6 +77,7 @@ export const spec = {
       stats: [
         ["径向位置变化", number(100 * m.relative, 1) + "%", "相对同一理想半径"],
         ["局部面积比例", number(m.jacobian, 3), "径向×切向Jacobian"],
+        ["径向 / 切向尺度", `${number(m.radial, 3)} / ${number(m.tangent, 3)}`, "紫色探针处读取"],
         ["逆映射半径", number(m.inverted, 6), `原始 ${number(s.radius, 6)}`],
       ],
       reading:

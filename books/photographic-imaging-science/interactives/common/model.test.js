@@ -291,3 +291,87 @@ test("chart ticks distinguish quarter fractions and small physical values instea
   assert.equal(tickLabel(0), "0");
   assert.notEqual(tickLabel(1e-8), tickLabel(2e-8));
 });
+
+test("manual mode stops playback while keeping the physical input available, then auto mode can resume", (t) => {
+  class Button extends EventTarget {
+    dataset = {};
+    setAttribute() {}
+  }
+  const actions = new EventTarget(),
+    root = new EventTarget(),
+    doc = new EventTarget();
+  let button,
+    next = 0;
+  const pending = new Map(),
+    input = { disabled: false };
+  actions.prepend = (b) => {
+    button = b;
+  };
+  root.querySelector = (s) => (s.startsWith("input") ? input : actions);
+  doc.createElement = () => new Button();
+  const replacements = {
+    document: doc,
+    requestAnimationFrame: (fn) => {
+      pending.set(++next, fn);
+      return next;
+    },
+    cancelAnimationFrame: (id) => pending.delete(id),
+    IntersectionObserver: class {
+      observe() {}
+      disconnect() {}
+    },
+  };
+  const previous = Object.fromEntries(
+    Object.keys(replacements).map((k) => [
+      k,
+      Object.getOwnPropertyDescriptor(globalThis, k),
+    ]),
+  );
+  for (const [k, value] of Object.entries(replacements))
+    Object.defineProperty(globalThis, k, {
+      value,
+      configurable: true,
+      writable: true,
+    });
+  const state = { progress: 0, mode: "auto" };
+  let renders = 0;
+  const dispose = replay({
+    root,
+    state,
+    key: "progress",
+    element: {},
+    signal: new AbortController().signal,
+    enabled: (s) => s.mode === "auto",
+    render() {
+      renders++;
+      root.dispatchEvent(new Event("mb-controls-updated"));
+    },
+  });
+  t.after(() => {
+    dispose();
+    for (const [k, d] of Object.entries(previous)) {
+      if (d) Object.defineProperty(globalThis, k, d);
+      else delete globalThis[k];
+    }
+  });
+  button.dispatchEvent(new Event("click"));
+  assert.equal(pending.size, 1);
+  state.mode = "manual";
+  root.dispatchEvent(new Event("mb-controls-updated"));
+  assert.equal(input.disabled, false);
+  assert.equal(button.disabled, true);
+  assert.equal(pending.size, 0);
+  assert.equal(button.textContent, "播放演示");
+  const pausedRenders = renders;
+  button.dispatchEvent(new Event("click"));
+  assert.equal(renders, pausedRenders);
+  state.mode = "auto";
+  root.dispatchEvent(new Event("mb-controls-updated"));
+  assert.equal(button.disabled, false);
+  button.dispatchEvent(new Event("click"));
+  assert.equal(pending.size, 1);
+  input.disabled = true;
+  root.dispatchEvent(new Event("mb-controls-updated"));
+  assert.equal(button.disabled, true);
+  assert.equal(pending.size, 0);
+});

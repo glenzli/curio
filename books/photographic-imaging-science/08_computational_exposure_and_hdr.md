@@ -80,6 +80,19 @@ $w_i\propto 1/\sigma_i^2$。但运动不一致、饱和和遮挡会引入偏差�
 推导。若根据观测值本身选权重或剔除帧，权重就与噪声相关，结果可能带偏；实际算法
 需要在降噪、细节保留和去鬼影之间选择。
 
+若重采样写成 $\boldsymbol Z=A\boldsymbol X$，其完整协方差为
+$A\Sigma_XA^{\mathsf T}$。即使原始像素独立，两个输出位置复用同一原始样本时也会
+相关；不能仅凭插值后较小的逐点方差计算区域平均收益。固定一个待融合的场景点，
+若各帧误差的协方差矩阵 $\Sigma$ 正定，固定线性无偏权重的约束为
+$\boldsymbol1^{\mathsf T}\boldsymbol\alpha=1$。用Lagrange乘子对
+$\boldsymbol\alpha^{\mathsf T}\Sigma\boldsymbol\alpha$ 求极值，得到
+$\boldsymbol\alpha=\Sigma^{-1}\boldsymbol1/
+(\boldsymbol1^{\mathsf T}\Sigma^{-1}\boldsymbol1)$，最小方差是
+$(\boldsymbol1^{\mathsf T}\Sigma^{-1}\boldsymbol1)^{-1}$。这里允许实权重；若要求每个
+权重非负，须另求带不等式约束的最小值。独立帧的对角 $\Sigma$
+才把它化成方差倒数加权。共同暗场误差、同一电荷的双路读取，以及从同批噪声中
+估计配准或权重，都需要额外分析；固定矩阵传播式只覆盖已给定变换和权重的情况。
+
 第8.3节的HDR互动把配准限制为全局水平平移。它先把观测换算到共同曝光尺度，对压缩灰度
 求平滑水平梯度，再在选定条带中按列平均。令参考列序列为 $a_j$，候选位移 $s$ 下
 的对应列序列为 $b_j(s)$，共同有效列上的均值分别为 $\bar a$、$\bar b(s)$，则用

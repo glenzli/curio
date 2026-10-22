@@ -70,9 +70,10 @@ MTF 只是光学分析的一部分。在相同的像高、焦面和拍摄条件�
 [Edmund Optics 的 MTF 说明](https://www.edmundoptics.com/knowledge-center/application-notes/imaging/modulation-transfer-function-mtf-and-mtf-curves/)
 给出了频率曲线的示例。比较这些图时，仍需分别核对所用的频率、方向和计算条件。
 
-**例子 17.1（同一数字的歧义）.** “MTF 0.7”若指 10 lp/mm 可能只是一般低频
-反差；若指全开角落 50 lp/mm 则非常强；若指锐化 JPEG 的 MTF50 附近，又已包含
-数字处理。缺少频率和处理状态时，0.7 没有可比较意义。
+**例子 17.1（同一数字的歧义）.** “MTF 0.7”若是在中心、10 lp/mm处读取，给出
+的是该处低频调制度传递；若是在全开角落、50 lp/mm处读取，则描述另一工作点
+的细节响应。若0.7来自锐化JPEG，还含有数字处理。相同数值并未提供相同的
+测试条件；缺少频率、像高、焦位和处理状态时，无法据此比较镜头。
 
 ## 17.2 斜边法的 MTF 估计
 

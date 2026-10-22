@@ -45,6 +45,8 @@ export function mount({ element, signal, session }) {
         step: "any",
         value: 1.38,
         format: (v) => v.toFixed(5),
+        enabled: (s) => s.mode !== "bare",
+        hint: (s) => s.mode === "bare" ? "裸界面没有膜层；选择单层或多层后启用" : "",
       },
       {
         key: "thicknessScale",
@@ -54,6 +56,8 @@ export function mount({ element, signal, session }) {
         step: 0.01,
         value: 1,
         format: (v) => v.toFixed(2) + " ×",
+        enabled: (s) => s.mode !== "bare",
+        hint: (s) => s.mode === "bare" ? "裸界面没有膜厚；选择单层或多层后启用" : "",
       },
       {
         key: "pFraction",

@@ -26,11 +26,11 @@ export const spec = {
     control("blur", "光学模糊 σ", 0, 0.35, 0.025, 0.1, " px", 3),
     control("noise", "观测噪声 σ", 0, 0.03, 0.001, 0, "", 3),
     {
-      ...control("bias", "末帧位移估计误差", -0.15, 0.15, 0.01, 0, " px", 2),
+      ...control("bias", "第4帧的位移估计误差", -0.15, 0.15, 0.01, 0, " px", 2),
       enabled: (s) => Math.floor(s.frames) > 1,
       hint: (s) =>
         Math.floor(s.frames) > 1
-          ? "误差随帧序号递增；已知位移支路不受此控件影响。"
+          ? `前${Math.floor(s.frames)}帧的末帧误差为${number(s.bias * (Math.floor(s.frames) - 1) / 3, 3)} px；已知位移支路不受影响。`
           : "第一帧作为位置参考，不加位移估计误差。",
     },
     control("ridge", "正则系数 λ", 0, 0.05, 0.001, 0, "", 3),

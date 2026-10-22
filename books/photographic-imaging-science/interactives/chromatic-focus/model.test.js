@@ -52,6 +52,16 @@ test("OTF defocus integral agrees with separate Cartesian pupil quadrature", () 
     ) < 1e-4,
   );
 });
+test("conjugating pure defocus leaves the complete radial intensity and signed OTF unchanged", () => {
+  for (const nm of [450, 550, 650]) for (const delta of [20, 60, 100]) {
+    for (const r of [0, 2, 7, 12])
+      assert.ok(Math.abs(radialDensity(r, delta, nm, 8) -
+        radialDensity(r, -delta, nm, 8)) < 1e-14);
+    for (const nu of [20, 80, 160])
+      assert.ok(Math.abs(defocusedOtf(nu, delta, nm, 8) -
+        defocusedOtf(nu, -delta, nm, 8)) < 1e-14);
+  }
+});
 test("single-line endpoint, common coordinates and finite scan objectives", () => {
   const m = chromaticFocus({ band: 0, focus: 0 });
   assert(Math.abs(m.current.axis - m.idealAxis) < 1e-14);
