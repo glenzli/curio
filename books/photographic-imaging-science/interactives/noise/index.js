@@ -1,4 +1,5 @@
 import { noiseBudget, randomGenerator, samplePixel } from "./model.js";
+import { createControl, controlStyle } from "../common/controls.js";
 
 const css = `:host{display:block;color:var(--text,#232b2a);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif}*{box-sizing:border-box}.lab{padding:25px}.eyebrow{font-size:10px;letter-spacing:.14em;color:var(--accent,#2f6251);margin:0 0 8px}h3{font-size:20px;line-height:1.4;letter-spacing:-.03em;font-weight:600;margin:0}.intro{font-size:12px;line-height:1.8;color:var(--muted,#77817c);margin:10px 0 23px}.images{display:grid;grid-template-columns:1fr 1fr;gap:13px}figure{margin:0}canvas{width:100%;height:auto;display:block;border-radius:5px;image-rendering:pixelated;background:#777}figcaption{display:flex;justify-content:space-between;gap:5px;margin:8px 0 0;font-size:10px;color:var(--muted,#77817c)}.controls{display:grid;grid-template-columns:1fr 1fr;gap:18px 25px;margin:26px 0 22px}.control label{font-size:11px;display:flex;justify-content:space-between;gap:8px;margin-bottom:8px}.control output{color:var(--accent,#2f6251);font-variant-numeric:tabular-nums}input{width:100%;margin:0;accent-color:var(--accent,#2f6251);cursor:pointer}input:focus-visible,button:focus-visible{outline:2px solid var(--accent,#2f6251);outline-offset:3px}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-block:1px solid var(--line,#e2e5de);padding:17px 0;gap:12px}.stat small{display:block;color:var(--muted,#77817c);font-size:10px;margin-bottom:6px}.stat strong{font-size:23px;line-height:1.2;font-weight:550;font-variant-numeric:tabular-nums}.stat span{font-size:10px;color:var(--muted,#77817c);margin-left:5px}.formula{font-family:ui-monospace,monospace;font-size:11px;overflow-x:auto;white-space:nowrap;padding:17px 0 8px;color:var(--accent,#2f6251)}.interpretation{font-size:12px;line-height:1.9;margin:6px 0 17px}.foot{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:10px;color:var(--muted,#77817c)}button{background:transparent;border:1px solid var(--line,#e2e5de);color:inherit;padding:6px 10px;border-radius:4px;font:inherit;font-size:10px;cursor:pointer;white-space:nowrap}.notes{font-size:10px;line-height:1.85;color:var(--muted,#77817c);margin:17px 0 0}.seed{font-family:ui-monospace,monospace}@media(max-width:540px){.lab{padding:18px}.controls{gap:17px 18px}.stat strong{font-size:20px}.stat small{font-size:9px}.images{gap:9px}.foot{align-items:flex-start}h3{font-size:18px}}`;
 
@@ -12,19 +13,80 @@ export function mount({ element, props = {}, signal, session }) {
     saved?.version === 1 && Number.isSafeInteger(saved.seed)
       ? saved.seed
       : initialSeed;
-  shadow.innerHTML = `<style>${css}</style><section class="lab" aria-label="曝光与噪声互动实验"><p class="eyebrow">第四章 · 单像素时间噪声</p><h3>曝光时间与信噪比</h3><p class="intro">调整曝光时间和噪声参数，比较单帧与多帧平均后的图像。</p><div class="images"><figure><canvas width="120" height="76" aria-label="基准：1秒曝光单帧的模拟噪声"></canvas><figcaption><span>基准 · 1 s / 单帧</span><span>相同平均灰度</span></figcaption></figure><figure><canvas width="120" height="76" aria-label="当前参数的模拟噪声"></canvas><figcaption><span id="sample-label"></span><span>相同平均灰度</span></figcaption></figure></div><div class="controls"><div class="control"><label for="exposure">曝光时间 <output id="exposure-value"></output></label><input id="exposure" aria-label="曝光时间" type="range" min="-2" max="6" step="0.25" value="0"></div><div class="control"><label for="read-noise">读出噪声 <output id="read-noise-value"></output></label><input id="read-noise" aria-label="读出噪声" type="range" min="0" max="12" step="0.25" value="2"></div><div class="control"><label for="dark-rate">暗电流率 <output id="dark-rate-value"></output></label><input id="dark-rate" aria-label="暗电流率" type="range" min="0" max="10" step="0.1" value="0.1"></div><div class="control"><label for="frames">独立平均帧数 <output id="frames-value"></output></label><input id="frames" aria-label="独立平均帧数" type="range" min="0" max="4" step="1" value="0"></div></div><div class="stats" role="status" aria-live="polite"><div class="stat"><small>每帧信号均值</small><strong id="signal"></strong><span>e⁻</span></div><div class="stat"><small>平均后总噪声 RMS</small><strong id="sigma"></strong><span>e⁻</span></div><div class="stat"><small>时间信噪比 SNR</small><strong id="snr"></strong><span id="db"></span></div></div><div class="formula">SNR = √M · μₛ / √(μₛ + i_d t + σᵣ²)</div><p class="interpretation" id="interpretation"></p><div class="foot"><span>信号率固定为 20 e⁻/s · <span class="seed" id="seed"></span></span><div><button id="resample" type="button">重新抽样</button> <button id="reset" type="button">重置参数</button></div></div><p class="notes">依照式 (4.1)–(4.2)：信号与暗电子独立服从 Poisson 分布，读出项采用零均值高斯噪声；减去已知平均暗信号。各帧独立，未计入共享暗场误差、PRNU、空间相关和饱和。两幅图按各自期望信号归一化至相同平均灰度，显示值会截断；数据卡为解析值，不从图像估计。模型示意，不是器材实测。</p></section>`;
+  shadow.innerHTML = `<style>${css}</style><section class="lab" aria-label="曝光与噪声互动实验"><p class="eyebrow">第四章 · 单像素时间噪声</p><h3>曝光时间与信噪比</h3><p class="intro">调整曝光时间和噪声参数，比较单帧与多帧平均后的图像。</p><div class="images"><figure><canvas width="120" height="76" aria-label="基准：1秒曝光单帧的模拟噪声"></canvas><figcaption><span>基准 · 1 s / 单帧</span><span>相同平均灰度</span></figcaption></figure><figure><canvas width="120" height="76" aria-label="当前参数的模拟噪声"></canvas><figcaption><span id="sample-label"></span><span>相同平均灰度</span></figcaption></figure></div><div class="controls"></div><div class="stats" role="status" aria-live="polite"><div class="stat"><small>每帧信号均值</small><strong id="signal"></strong><span>e⁻</span></div><div class="stat"><small>平均后总噪声 RMS</small><strong id="sigma"></strong><span>e⁻</span></div><div class="stat"><small>时间信噪比 SNR</small><strong id="snr"></strong><span id="db"></span></div></div><div class="formula">SNR = √M · μₛ / √(μₛ + i_d t + σᵣ²)</div><p class="interpretation" id="interpretation"></p><div class="foot"><span>信号率固定为 20 e⁻/s · <span class="seed" id="seed"></span></span><div><button id="resample" type="button">重新抽样</button> <button id="reset" type="button">重置参数</button></div></div><p class="notes">依照式 (4.1)–(4.2)：信号与暗电子独立服从 Poisson 分布，读出项采用零均值高斯噪声；减去已知平均暗信号。各帧独立，未计入共享暗场误差、PRNU、空间相关和饱和。两幅图按各自期望信号归一化至相同平均灰度，显示值会截断；数据卡为解析值，不从图像估计。模型示意，不是器材实测。</p></section>`;
   const $ = (selector) => shadow.querySelector(selector);
-  const controls = ["exposure", "read-noise", "dark-rate", "frames"].map((id) =>
-    $(`#${id}`),
-  );
+  const extraStyle = document.createElement("style");
+  extraStyle.textContent =
+    controlStyle +
+    ".lab>.controls{grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}.control-field output{margin-left:auto}.foot{margin:0 0 14px}.stats{margin-bottom:20px}";
+  shadow.append(extraStyle);
+  const definitions = [
+    {
+      key: "exposure",
+      label: "曝光时间",
+      min: -2,
+      max: 6,
+      step: 0.25,
+      value: 0,
+      numeric: { toInput: (v) => 2 ** v, fromInput: Math.log2, unit: "s" },
+      format: (v) => `${(2 ** v).toPrecision(4)} s`,
+    },
+    {
+      key: "read-noise",
+      label: "读出噪声",
+      min: 0,
+      max: 12,
+      step: 0.25,
+      value: 2,
+      numeric: { unit: "e⁻ RMS" },
+    },
+    {
+      key: "dark-rate",
+      label: "暗电流率",
+      min: 0,
+      max: 10,
+      step: 0.1,
+      value: 0.1,
+      numeric: { unit: "e⁻/s" },
+    },
+    {
+      key: "frames",
+      label: "独立平均帧数",
+      min: 0,
+      max: 4,
+      step: 1,
+      value: 0,
+      options: Array.from({ length: 5 }, (_, value) => ({
+        value,
+        label: `${2 ** value} 帧`,
+      })),
+    },
+  ];
+  const state = Object.fromEntries(definitions.map((c) => [c.key, c.value]));
   if (saved?.version === 1 && Array.isArray(saved.controls))
-    controls.forEach((input, i) => {
+    definitions.forEach((c, i) => {
       const value = saved.controls[i];
       if (Number.isFinite(value))
-        input.value = String(
-          Math.max(Number(input.min), Math.min(Number(input.max), value)),
+        state[c.key] = Math.max(
+          c.min,
+          Math.min(c.max, c.options ? Math.round(value) : value),
         );
     });
+  const controlBox = $(".controls");
+  controlBox.replaceChildren();
+  const fields = definitions.map((c) => {
+    const field = createControl(c, {
+      signal: events.signal,
+      onChange(value) {
+        state[c.key] = value;
+        schedule();
+      },
+    });
+    field.output.id = `${c.key}-value`;
+    controlBox.append(field.element);
+    return field;
+  });
+  $(".intro").after(controlBox, $(".foot"), $(".stats"));
   let snapshot;
   session?.describe(() => snapshot);
   const format = (value) => (value < 10 ? value.toFixed(2) : value.toFixed(1));
@@ -51,10 +113,11 @@ export function mount({ element, props = {}, signal, session }) {
     context.putImageData(image, 0, 0);
   }
   function update() {
-    const exposure = 2 ** Number(controls[0].value);
-    const readNoise = Number(controls[1].value);
-    const darkRate = Number(controls[2].value);
-    const frames = 2 ** Number(controls[3].value);
+    for (const field of fields) field.sync(state[field.control.key], state);
+    const exposure = 2 ** state.exposure;
+    const readNoise = state["read-noise"];
+    const darkRate = state["dark-rate"];
+    const frames = 2 ** state.frames;
     const parameters = {
       signalRate: 20,
       exposure,
@@ -85,7 +148,7 @@ export function mount({ element, props = {}, signal, session }) {
     session?.save({
       version: 1,
       seed,
-      controls: controls.map((input) => Number(input.value)),
+      controls: definitions.map((c) => state[c.key]),
     });
     snapshot = {
       title: "曝光时间与信噪比",
@@ -112,9 +175,6 @@ export function mount({ element, props = {}, signal, session }) {
     cancelAnimationFrame(frame);
     frame = requestAnimationFrame(update);
   };
-  controls.forEach((input) =>
-    input.addEventListener("input", schedule, { signal: events.signal }),
-  );
   $("#resample").addEventListener(
     "click",
     () => {
@@ -126,10 +186,9 @@ export function mount({ element, props = {}, signal, session }) {
   $("#reset").addEventListener(
     "click",
     () => {
-      controls[0].value = "0";
-      controls[1].value = "2";
-      controls[2].value = "0.1";
-      controls[3].value = "0";
+      for (const c of definitions) state[c.key] = c.value;
+      for (const field of fields)
+        field.sync(state[field.control.key], state, true);
       seed = initialSeed;
       schedule();
     },

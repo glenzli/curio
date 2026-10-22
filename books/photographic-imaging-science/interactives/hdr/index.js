@@ -100,6 +100,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "stops",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: ":1",
+        },
         label: "长短曝光比",
         min: 0,
         max: 5,
@@ -129,6 +135,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "search",
+        numeric: { step: 1, unit: "px" },
         label: "位移搜索半宽",
         min: 1,
         max: 8,
@@ -148,6 +155,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "probe",
+        numeric: { step: 1, unit: "px" },
         label: "探针横坐标（中间行）",
         min: 0,
         max: WIDTH - 1,
@@ -241,7 +249,7 @@ export function mount({ element, signal, session }) {
       }
       const available = registration.offset !== null,
         offset = available ? registration.offset + state.residual : null;
-      root.querySelector('input[data-control-key="residual"]').disabled = !available;
+      root.querySelector('[data-control-key="residual"]').disabled = !available;
       const plain = fuseImage(frames.short, frames.long, 0, state.deghost),
         truth = fuseImage(
           frames.short,

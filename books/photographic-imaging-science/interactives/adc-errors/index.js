@@ -15,6 +15,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "bits",
+        numeric: { step: 1, unit: "bit" },
         label: "ADC位深",
         min: 6,
         max: 10,
@@ -51,6 +52,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "column",
+        numeric: { step: 1, unit: "列" },
         label: "放大观察的列",
         min: 0,
         max: 11,

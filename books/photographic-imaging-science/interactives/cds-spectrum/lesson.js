@@ -11,13 +11,21 @@ export const spec = {
   controls: [
     {
       ...control("kind", "输入谱型", 0, 2, 1, 2),
+      options: [
+        { value: 0, label: "单线50 kHz" },
+        { value: 1, label: "各线等功率" },
+        { value: 2, label: "低频较强" },
+      ],
       format: (v) => ["单线50 kHz", "各线等功率", "低频较强"][v],
     },
     control("rms", "输入噪声 RMS", 0, 60, 1, 30, " μV"),
     control("tau", "两次采样间隔", 0, 40, 0.5, 10, " μs", 1),
     control("aperture", "单次采样宽度", 0, 25, 0.5, 2, " μs", 1),
     control("time", "第一窗口中心", 15, 60, "any", 20, " μs", 1),
-    control("seed", "波形种子", 1, 999, 1, 17),
+    {
+      ...control("seed", "波形种子", 1, 999, 1, 17),
+      numeric: { step: 1 },
+    },
   ],
   presets: [
     { label: "同一时刻相减", values: { tau: 0 } },

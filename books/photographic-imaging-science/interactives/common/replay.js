@@ -27,7 +27,7 @@ export function replay({
   function syncAvailability() {
     button.disabled =
       !enabled(state) ||
-      !!root.querySelector(`input[data-control-key="${key}"]`)?.disabled;
+      !!root.querySelector(`[data-control-key="${key}"]`)?.disabled;
   }
   function pause() {
     const wasRunning = running;
@@ -78,6 +78,7 @@ export function replay({
   };
   button.addEventListener("click", onPlay, { signal });
   root.addEventListener("input", pause, { signal });
+  root.addEventListener("mb-control-edit", pause, { signal });
   const onControlsUpdated = () => {
     syncAvailability();
     if (button.disabled && running) pause();
@@ -101,6 +102,7 @@ export function replay({
     pause();
     observer.disconnect();
     root.removeEventListener("input", pause);
+    root.removeEventListener("mb-control-edit", pause);
     root.removeEventListener("mb-controls-updated", onControlsUpdated);
     actions.removeEventListener("click", onAction);
     button.removeEventListener("click", onPlay);

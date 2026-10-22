@@ -239,12 +239,14 @@ export function mountThreeLesson(context, spec, createScene) {
         };
         actions.addEventListener("click", actionPause, { signal });
         root.addEventListener("input", pause, { signal });
+        root.addEventListener("mb-control-edit", pause, { signal });
         pause();
         render();
         return () => {
           if (disposed) return;
           disposed = true;
           root.removeEventListener("input", pause);
+          root.removeEventListener("mb-control-edit", pause);
           actions.removeEventListener("click", actionPause);
           visual.dispose?.();
           viewport.dispose();

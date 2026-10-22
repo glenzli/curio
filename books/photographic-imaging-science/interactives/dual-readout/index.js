@@ -22,6 +22,12 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "signalEV",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: "e⁻",
+        },
         label: "每次曝光的平均信号",
         min: 0,
         max: 16,
@@ -49,6 +55,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 0, label: "积分" },
+          { value: 1, label: "高增益读出" },
+          { value: 2, label: "低增益或再次积分" },
+          { value: 3, label: "归一化与融合" },
+        ],
         label: "查看讲解环节",
         min: 0,
         max: 3,

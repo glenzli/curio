@@ -47,9 +47,31 @@ export const spec = {
     {
       ...control("kind", "目标纹理", 0, 2, 1, 0),
       format: (v) => ["多频纹理", "均匀目标", "重复条纹"][v],
+      options: [
+        { value: 0, label: "多频纹理" },
+        { value: 1, label: "均匀目标" },
+        { value: 2, label: "重复条纹" },
+      ],
     },
-    control("seed", "观测种子", 1, 999, 1, 41),
-    control("step", "调整步骤", 0, 8, 0.01, 0, "", 2),
+    {
+      ...control("seed", "观测种子", 1, 999, 1, 41),
+      discrete: true, numeric: { step: 1 },
+    },
+    {
+      ...control("step", "调整步骤", 0, 8, 0.01, 0, "", 2),
+      discrete: true,
+      options: [
+        { value: 0, label: "第0步 · 初始观测" },
+        { value: 1, label: "第1步 · 校正后观测" },
+        { value: 2, label: "第2步 · 校正后观测" },
+        { value: 3, label: "第3步 · 校正后观测" },
+        { value: 4, label: "第4步 · 校正后观测" },
+        { value: 5, label: "第5步 · 校正后观测" },
+        { value: 6, label: "第6步 · 校正后观测" },
+        { value: 7, label: "第7步 · 校正后观测" },
+        { value: 8, label: "第8步 · 校正后观测" },
+      ],
+    },
   ],
   presets: [
     {

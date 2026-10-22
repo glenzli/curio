@@ -40,6 +40,7 @@ export function playback({ root, state, render, element, signal }) {
     { signal },
   );
   root.addEventListener("input", pause, { signal });
+  root.addEventListener("mb-control-edit", pause, { signal });
   root.querySelector(".actions").addEventListener(
     "click",
     (event) => {
@@ -58,6 +59,7 @@ export function playback({ root, state, render, element, signal }) {
   return () => {
     pause();
     observer.disconnect();
+    root.removeEventListener("mb-control-edit", pause);
     document.removeEventListener("visibilitychange", visibility);
   };
 }

@@ -24,7 +24,10 @@ export const spec = {
     control("speed", "转速", -50, 50, 1, 20, " 转/s"),
     control("scan", "顶行到底行起始差", 0, 30, 1, 18, " ms"),
     control("exposure", "单行曝光时间", 0.25, 10, 0.25, 1, " ms", 2),
-    control("blades", "叶片数", 1, 4, 1, 2),
+    {
+      ...control("blades", "叶片数", 1, 4, 1, 2),
+      numeric: { step: 1, unit: "片" },
+    },
     control("phase", "初始角度", -90, 90, 1, 10, "°"),
     control("progress", "曝光进度", 0, 1, "any", 1, "", 3),
   ],

@@ -8,11 +8,23 @@ export const spec = {
   staticCaption: "背景+2 px，主体−2 px，曝光比4，读噪4 e⁻，满码1000。",
   note: "两块互不跨界的一维场景，仅估计整数平移；固定共同支持、校准曝光比与读噪。噪声为真实Poisson加Gaussian读噪。观测权重用两帧初估电子率；它依赖观测，不继承固定权重的严格无偏保证。真值支路另用已知电子率。",
   controls: [
-    control("background", "背景位移", -5, 5, 1, 2, " px"),
-    control("foreground", "主体位移", -5, 5, 1, -2, " px"),
+    {
+      ...control("background", "背景位移", -5, 5, 1, 2, " px"),
+      numeric: { step: 1, unit: "px" },
+    },
+    {
+      ...control("foreground", "主体位移", -5, 5, 1, -2, " px"),
+      numeric: { step: 1, unit: "px" },
+    },
     control("ratio", "长短曝光比", 1, 8, 1, 4, ":1"),
     control("read", "读噪", 0, 12, 1, 4, " e⁻"),
-    control("noise", "观测噪声", 0, 1, 1, 1),
+    {
+      ...control("noise", "观测噪声", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "关" },
+        { value: 1, label: "开" },
+      ],
+    },
   ],
   presets: [
     {

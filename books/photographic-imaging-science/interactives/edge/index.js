@@ -275,6 +275,12 @@ export function mount({ element, signal, session }) {
         step: 1,
         value: 4,
         format: (x) => `1/${x} px`,
+        options: [
+          { value: 1, label: "1 px" },
+          { value: 2, label: "1/2 px" },
+          { value: 3, label: "1/3 px" },
+          { value: 4, label: "1/4 px" },
+        ],
       },
       {
         key: "noise",
@@ -284,6 +290,7 @@ export function mount({ element, signal, session }) {
         step: 0.0025,
         value: 0,
         format: (x) => `${format(x * 100, 2)}%`,
+        numeric: { toInput: (v) => 100 * v, fromInput: (v) => v / 100, step: "any", unit: "%" },
       },
       {
         key: "row",
@@ -294,6 +301,7 @@ export function mount({ element, signal, session }) {
         step: 1,
         value: 32,
         format: (x) => `${x} / ${SIZE - 1}`,
+        discrete: true, numeric: { step: 1, unit: "行" },
       },
     ],
     presets: [

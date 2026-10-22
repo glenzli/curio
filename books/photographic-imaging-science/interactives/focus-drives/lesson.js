@@ -43,6 +43,13 @@ export const stepperSpec = {
     {
       ...control("sublevel", "每整步细分", 0, 4, 1, 4),
       format: (v) => [1, 2, 4, 8, 16][v] + "细分",
+      options: [
+        { value: 0, label: "1细分 · 整步" },
+        { value: 1, label: "2细分" },
+        { value: 2, label: "4细分" },
+        { value: 3, label: "8细分" },
+        { value: 4, label: "16细分" },
+      ],
     },
     control("backlash", "换向间隙", 0, 0.2, 0.001, 0.08, " mm", 3),
   ],
@@ -200,6 +207,10 @@ export const voiceSpec = {
     {
       ...control("brake", "第二段电流", 0, 1, 1, 1),
       format: (v) => (v ? "反向制动" : "保持同向"),
+      options: [
+        { value: 0, label: "保持同向" },
+        { value: 1, label: "反向制动" },
+      ],
     },
   ],
   presets: [
@@ -317,6 +328,7 @@ export const ultrasonicSpec = {
       ...phaseControl(0.2),
       label: "振动相位进度",
       format: (v) => number(4 * v, 2) + " 周期",
+      numeric: { toInput: (v) => 4 * v, fromInput: (v) => v / 4, step: "any", unit: "周期" },
     },
     control("amplitude", "法向振幅", 0.5, 4, 0.5, 2, " μm", 1),
     {
@@ -326,6 +338,10 @@ export const ultrasonicSpec = {
     {
       ...control("reverse", "行波方向", 0, 1, 1, 0),
       format: (v) => (v ? "反向" : "正向"),
+      options: [
+        { value: 0, label: "正向" },
+        { value: 1, label: "反向" },
+      ],
     },
     control("separation", "拆解距离", 0, 1, 0.1, 0.4, "", 1),
   ],

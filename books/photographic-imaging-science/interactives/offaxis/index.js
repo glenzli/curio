@@ -41,6 +41,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 0, label: "出瞳投影" },
+          { value: 1, label: "距离反平方" },
+          { value: 2, label: "接收面投影" },
+          { value: 3, label: "三个因子的乘积" },
+        ],
         label: "查看讲解环节",
         min: 0,
         max: 3,

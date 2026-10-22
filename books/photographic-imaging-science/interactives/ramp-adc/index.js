@@ -14,6 +14,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "bits",
+        numeric: { step: 1, unit: "bit" },
         label: "ADC位深",
         min: 3,
         max: 12,

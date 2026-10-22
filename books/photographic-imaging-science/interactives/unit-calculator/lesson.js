@@ -13,8 +13,14 @@ export const spec = {
     control("fNumber", "f数", 2, 16, 0.5, 8, "", 1),
     {
       ...control("exposure", "像面曝光量 Hₑ", -6, -2, 0.25, -4),
+      numeric: {
+        toInput: (v) => 10 ** v,
+        fromInput: Math.log10,
+        step: "any",
+        unit: "J/m²",
+      },
       format: (x) => `${(10 ** x).toExponential(2)} J/m²`,
-      hint: "按对数间隔调节，读数为实际曝光量。",
+      hint: "输入实际曝光量；滑杆按对数间隔调节。",
     },
     control("read", "读噪", 0, 10, 0.5, 3, " e⁻ rms", 1),
     control("target", "下端SNR", 1, 10, 0.5, 1, ":1", 1),

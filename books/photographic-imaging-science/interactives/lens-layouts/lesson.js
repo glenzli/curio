@@ -78,6 +78,13 @@ export const spec = {
     {
       ...control("type", "镜组结构", 0, 4, 1, 2),
       format: (v) => LAYOUTS[v].name,
+      options: [
+        { value: 0, label: "三片式" },
+        { value: 1, label: "Tessar式" },
+        { value: 2, label: "双高斯式" },
+        { value: 3, label: "反望远式" },
+        { value: 4, label: "望远式" },
+      ],
     },
     control("separation", "组间距倍率", 0.5, 1.5, 0.05, 1, "", 2),
     control("angle", "入射方向", -1, 1, 0.1, 0.5, "°", 1),

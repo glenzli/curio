@@ -16,6 +16,10 @@ export const spec = {
     control("eiStops", "EI相对800", -2, 3, 1, 0, "档"),
     {
       ...control("metered", "曝光规则", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "固定实际曝光" },
+        { value: 1, label: "按EI少曝" },
+      ],
       enabled: (s) => s.eiStops !== 0,
       format: (v) => (v ? "按EI少曝" : "固定实际曝光"),
       hint: (s) =>
@@ -25,6 +29,10 @@ export const spec = {
     },
     {
       ...control("record", "EI增益的位置", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "记录之后监看" },
+        { value: 1, label: "记录Log之前" },
+      ],
       enabled: (s) => s.eiStops !== 0,
       format: (v) => (v ? "记录Log之前" : "记录之后监看"),
       hint: (s) =>
@@ -32,22 +40,44 @@ export const spec = {
           ? "当前EI增益为1×，前后位置结果相同；可选“亮窗在记录时合并”比较。"
           : "对照文件Log码与降低监看后的亮区，检查细节是在记录时丢失，还是只在显示时变白。",
     },
-    control("bits", "教学Log位深", 8, 12, 1, 10, " bit"),
+    {
+      ...control("bits", "教学Log位深", 8, 12, 1, 10, " bit"),
+      numeric: { step: 1, unit: "bit" },
+    },
     control("monitor", "额外监看补偿", -4, 2, 0.5, 0, "档", 1),
     {
       ...control("mapping", "显示高光处理", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "硬白点" },
+        { value: 1, label: "连续肩部" },
+      ],
       format: (v) => (v ? "连续肩部" : "硬白点"),
     },
     {
       ...control("probeX", "探针横向位置", 0, 47, 1, 34),
+      numeric: {
+        toInput: (v) => ((v + 0.5) / 48) * 100,
+        fromInput: (v) => Math.round((v / 100) * 48 - 0.5),
+        step: 100 / 48,
+        unit: "%宽度",
+      },
+      hint: "只取48列像素中心，相邻位置相差约2.0833个百分点。",
       format: (v) => `${number(((v + 0.5) / 48) * 100, 0)}%`,
     },
     {
       ...control("probeY", "探针纵向位置", 0, 31, 1, 12),
+      numeric: {
+        toInput: (v) => ((v + 0.5) / 32) * 100,
+        fromInput: (v) => Math.round((v / 100) * 32 - 0.5),
+        step: 100 / 32,
+        unit: "%高度",
+      },
+      hint: "只取32行像素中心，相邻位置相差3.125个百分点。",
       format: (v) => `${number(((v + 0.5) / 32) * 100, 0)}%`,
     },
     {
       ...control("progress", "高亮查看环节", 0, 4, 1, 4),
+      options: stages.map((label, value) => ({ value, label })),
       discrete: true,
       hint: "只切换处理环节的高亮；六幅图始终保留完整结果。",
       format: (v) => stages[Math.min(4, Math.floor(v))],

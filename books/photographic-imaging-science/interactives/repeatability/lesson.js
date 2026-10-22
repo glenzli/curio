@@ -47,16 +47,59 @@ export const spec = {
     "4支样品，每支3次装夹，每次5张；三层标准差0.040、0.025、0.015；生成均值0.600。",
   note: "平衡嵌套Gaussian模型：样品效应、装夹效应与拍摄误差独立、零均值，观测由模型生成，MTF读数不截断到0…1。矩估计只读观测与组标签，负的方差分量估计原样保留。总体均值0.600，重复整套研究256次；已知方差给出的均值标准差与观测标准误分开，不显示置信区间。对焦支路沿用40 lp/mm的Gaussian响应，−80…80 μm网格，比较选择读数、选中位置真值和独立复测。播放只逐条显露当前数据，统计始终使用完整数据。",
   controls: [
-    control("lenses", "样品数", 2, 8, 1, 4),
-    control("mounts", "每支装夹次数", 2, 6, 1, 3),
-    control("repeats", "每次装夹张数", 2, 12, 1, 5),
+    {
+      ...control("lenses", "样品数", 2, 8, 1, 4),
+      options: [
+        { value: 2, label: "2支样品" },
+        { value: 3, label: "3支样品" },
+        { value: 4, label: "4支样品" },
+        { value: 5, label: "5支样品" },
+        { value: 6, label: "6支样品" },
+        { value: 7, label: "7支样品" },
+        { value: 8, label: "8支样品" },
+      ],
+    },
+    {
+      ...control("mounts", "每支装夹次数", 2, 6, 1, 3),
+      options: [
+        { value: 2, label: "2次装夹" },
+        { value: 3, label: "3次装夹" },
+        { value: 4, label: "4次装夹" },
+        { value: 5, label: "5次装夹" },
+        { value: 6, label: "6次装夹" },
+      ],
+    },
+    {
+      ...control("repeats", "每次装夹张数", 2, 12, 1, 5),
+      options: [
+        { value: 2, label: "2张" },
+        { value: 3, label: "3张" },
+        { value: 4, label: "4张" },
+        { value: 5, label: "5张" },
+        { value: 6, label: "6张" },
+        { value: 7, label: "7张" },
+        { value: 8, label: "8张" },
+        { value: 9, label: "9张" },
+        { value: 10, label: "10张" },
+        { value: 11, label: "11张" },
+        { value: 12, label: "12张" },
+      ],
+    },
     control("lensSD", "样品标准差", 0, 0.1, 0.005, 0.04, "", 3),
     control("mountSD", "装夹标准差", 0, 0.08, 0.005, 0.025, "", 3),
     control("readSD", "拍摄/焦点测量标准差", 0, 0.05, 0.005, 0.015, "", 3),
-    control("seed", "随机种子", 1, 999999, 1, 17017),
+    {
+      ...control("seed", "随机种子", 1, 999999, 1, 17017),
+      discrete: true, numeric: { step: 1 },
+    },
     {
       ...control("grid", "对焦候选点数", 0, 2, 1, 2),
       format: (v) => String([9, 17, 33][Math.round(v)]),
+      options: [
+        { value: 0, label: "9个候选点" },
+        { value: 1, label: "17个候选点" },
+        { value: 2, label: "33个候选点" },
+      ],
       hint: (s) =>
         s.readSD === 0
           ? "三种网格都包含真实峰值，零测量噪声时结果相同。"

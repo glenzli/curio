@@ -23,7 +23,13 @@ export const spec = {
     control("focus", "所选像面", -80, 80, 2, 10, " μm"),
     control("fNumber", "f数", 6, 16, 0.5, 8, "", 1),
     control("frequency", "MTF探针频率", 10, 140, 5, 60, " lp/mm"),
-    control("band", "谱线模式：0单绿 / 1三线", 0, 1, 1, 1),
+    {
+      ...control("band", "谱线模式：0单绿 / 1三线", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "仅绿光" },
+        { value: 1, label: "红绿蓝三谱线" },
+      ],
+    },
   ],
   presets: [
     {

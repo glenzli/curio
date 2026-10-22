@@ -76,6 +76,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "noise",
+        numeric: {
+          toInput: (v) => 100 * v,
+          fromInput: (v) => v / 100,
+          step: "any",
+          unit: "%相对灰度",
+        },
         label: "观测噪声标准差",
         min: 0,
         max: 0.05,
@@ -163,7 +169,7 @@ export function mount({ element, signal, session }) {
       { label: "从未配准开始", values: { progress: 0 } },
     ],
     content:
-      '<style>.actions button{font-size:11px;padding:4px 8px}.reg-images{display:grid;grid-template-columns:1fr 1fr;gap:14px}.reg-images figure{margin:0;min-width:0}.reg-images figcaption{font-size:11px;margin:6px 0}.reg-images canvas{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px}.reg-images [hidden]{display:none}.unavailable{aspect-ratio:9/7;display:grid;place-content:center;border:1px dashed #9caea277;padding:12px;font-size:12px;text-align:center}.reg-analysis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;align-items:center}.reg-analysis .chart{margin:16px 0}.chart text{font-size:12px}.stats{grid-template-columns:1fr;gap:8px}.stats strong{font-size:18px;white-space:nowrap}.truth{font-size:11px;line-height:1.9;border:1px solid #9caea255;padding:12px;border-radius:6px}.status{font-size:12px;border-left:2px solid #40879a;padding-left:12px}.status[data-failed=true]{border-color:#bb7946}@media(max-width:650px){.reg-analysis{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats strong{font-size:16px}}@media(max-width:400px){.stats{grid-template-columns:1fr}}</style><p class="reading" data-mode></p><div class="reg-images"><figure><figcaption>参考帧 · 虚框为共同取样区域</figcaption><canvas width="72" height="56" data-reference role="img" aria-label="二维配准参考观测"></canvas></figure><figure><figcaption>移动帧 · 生成时向右/向下平移</figcaption><canvas width="72" height="56" data-moving role="img" aria-label="二维配准移动观测"></canvas></figure><figure><figcaption data-warp-label>采用估计位移 · 红/青叠加</figcaption><canvas width="72" height="56" data-estimate role="img" aria-label="按估计二维位移配准的观测叠加"></canvas><div class="unavailable" data-empty hidden>估计未通过检查<br>不生成配准结果</div></figure><figure><figcaption>按已知真值配准 · 红/青叠加</figcaption><canvas width="72" height="56" data-oracle role="img" aria-label="按生成真值二维位移配准的观测叠加"></canvas></figure></div><div class="reg-analysis"><div class="chart" data-surface></div><div class="stats"></div></div><p class="status reading" data-status aria-live="polite"></p><p class="reading">相关面：浅黄色十字为生成真值；小圆为观测的最佳候选，采用时为浅蓝色，拒绝时为橙色。搜索范围外的真值不画在面内。相关系数与峰间差不是置信度。</p><p class="truth" data-truth></p>',
+      '<style>.actions button{font-size:11px;padding:4px 8px}.reg-images{display:grid;grid-template-columns:1fr 1fr;gap:14px}.reg-images figure{margin:0;min-width:0}.reg-images figcaption{font-size:11px;margin:6px 0}.reg-images canvas{display:block;width:100%;height:auto;image-rendering:pixelated;border-radius:4px}.reg-images [hidden]{display:none}.unavailable{aspect-ratio:9/7;display:grid;place-content:center;border:1px dashed #9caea277;padding:12px;font-size:12px;text-align:center}.reg-analysis{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;align-items:center}.reg-analysis .chart{width:100%;max-width:680px;margin:16px auto}.chart text{font-size:12px}.stats{grid-template-columns:1fr;gap:8px}.stats strong{font-size:18px;white-space:nowrap}.truth{font-size:11px;line-height:1.9;border:1px solid #9caea255;padding:12px;border-radius:6px}.status{font-size:12px;border-left:2px solid #40879a;padding-left:12px}.status[data-failed=true]{border-color:#bb7946}@media(max-width:650px){.reg-analysis{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.stats strong{font-size:16px}}@media(max-width:400px){.stats{grid-template-columns:1fr}}</style><p class="reading" data-mode></p><div class="reg-images"><figure><figcaption>参考帧 · 虚框为共同取样区域</figcaption><canvas width="72" height="56" data-reference role="img" aria-label="二维配准参考观测"></canvas></figure><figure><figcaption>移动帧 · 生成时向右/向下平移</figcaption><canvas width="72" height="56" data-moving role="img" aria-label="二维配准移动观测"></canvas></figure><figure><figcaption data-warp-label>采用估计位移 · 红/青叠加</figcaption><canvas width="72" height="56" data-estimate role="img" aria-label="按估计二维位移配准的观测叠加"></canvas><div class="unavailable" data-empty hidden>估计未通过检查<br>不生成配准结果</div></figure><figure><figcaption>按已知真值配准 · 红/青叠加</figcaption><canvas width="72" height="56" data-oracle role="img" aria-label="按生成真值二维位移配准的观测叠加"></canvas></figure></div><div class="reg-analysis"><div class="chart" data-surface></div><div class="stats"></div></div><p class="status reading" data-status aria-live="polite"></p><p class="reading">相关面：浅黄色十字为生成真值；小圆为观测的最佳候选，采用时为浅蓝色，拒绝时为橙色。搜索范围外的真值不画在面内。相关系数与峰间差不是置信度。</p><p class="truth" data-truth></p>',
     note: "72×56的相对线性灰度，未裁切；独立加性Gaussian观测噪声，固定种子。无CFA、Poisson噪声、曝光合成、旋转、尺度变化或滚动快门。移动帧M(x,y)=F(x−dx,y−dy)+噪声；匹配R(x,y)与双线性取样M(x+sx,y+sy)，因此估计的对应偏移与生成位移同号，显示校正向相反方向。候选sx、sy均为−6到6 px，间隔0.25 px；所有候选使用同一组观测有效点，每隔2 px取样，缺失像素按整个搜索邻域排除。相关峰不足0.85、相距至少1.5 px的竞争峰差不足0.012，或唯一最佳峰位于边界，均拒绝；这些是教学筛选阈值，不是置信区间或普适可靠性保证。分数面和读数为最终搜索结果，回放只演示采用位移的重采样。紫色为超出画面的区域；真值配准仍有噪声、插值误差及遮挡，不能保证图像相同。",
     update(root, s) {
       const p = parameters(s);
@@ -192,7 +198,7 @@ export function mount({ element, signal, session }) {
       }
       const offset = result.offset,
         aligned = root.querySelector("[data-estimate]");
-      root.querySelector('input[data-control-key="progress"]').disabled = !offset;
+      root.querySelector('[data-control-key="progress"]').disabled = !offset;
       aligned.hidden = !offset;
       root.querySelector("[data-empty]").hidden = !!offset;
       if (offset)

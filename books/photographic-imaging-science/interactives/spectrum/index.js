@@ -8,7 +8,7 @@ export function mount({element,signal,session}) {
   {key:'fNumber',label:'光圈 f 数',min:2,max:16,step:.5,value:8,format:v=>'f/'+v},
   {key:'wavelengthA',label:'A 谱线波长',min:400,max:700,step:10,value:500,format:v=>v+' nm'},
   {key:'wavelengthB',label:'B 谱线波长',min:400,max:700,step:10,value:650,format:v=>v+' nm'},
-  {key:'weightB',label:'B 的探测信号权重',min:0,max:1,step:.05,value:.5,format:v=>(100*v).toFixed(0)+'%'},
+  {key:'weightB',label:'B 的探测信号权重',min:0,max:1,step:.05,value:.5,format:v=>(100*v).toFixed(0)+'%',numeric:{toInput:v=>100*v,fromInput:v=>v/100,step:'any',unit:'%'}},
   {key:'shiftUm',label:'B 像点的横向偏移',min:-10,max:10,step:.25,value:5,format:v=>v.toFixed(2)+' µm'},
   {key:'frequency',label:'OTF 探针频率',min:0,max:400,step:5,value:100,format:v=>v+' lp/mm'},
  ],

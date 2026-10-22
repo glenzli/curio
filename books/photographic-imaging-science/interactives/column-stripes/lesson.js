@@ -13,6 +13,11 @@ export const spec = {
   controls: [
     {
       ...control("bits", "ADC位深", 0, 2, 1, 1),
+      options: [
+        { value: 0, label: "6 bit" },
+        { value: 1, label: "8 bit" },
+        { value: 2, label: "10 bit" },
+      ],
       format: (v) => `${[6, 8, 10][v]} bit`,
     },
     control("curvature", "斜坡曲率", -0.8, 0.8, 0.05, 0.45, "", 2),
@@ -21,9 +26,16 @@ export const spec = {
     control("calSignal", "均匀校准信号", 0, 0.4, 0.025, 0, " V", 3),
     {
       ...control("gradient", "输入图案", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "均匀平场" },
+        { value: 1, label: "纵向渐变" },
+      ],
       format: (v) => (v ? "纵向渐变" : "均匀平场"),
     },
-    control("row", "核对行", 0, 31, 1, 16, ""),
+    {
+      ...control("row", "核对行", 0, 31, 1, 16, ""),
+      numeric: { step: 1, unit: "行" },
+    },
   ],
   presets: [
     {

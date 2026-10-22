@@ -21,9 +21,24 @@ export const spec = {
   staticCaption: "32×32合成RGGB，黑电平64，白电平4095；小端TIFF、单条带。",
   note: "本书生成的DNG 1.4兼容样本。ColorMatrix1填入恒等矩阵作为文件字段示例，彩色显影另需真实传感器标定。解析范围为本地单IFD、单条带、16 bit未压缩样本。样本与本书采用相同许可。",
   controls: [
-    control("selected", "样本序号（行优先）", 0, 1023, 1, 0),
-    control("wrong", "错误字节解释：0关 / 1开", 0, 1, 1, 0),
-    control("ignoreBlack", "忽略黑电平：0关 / 1开", 0, 1, 1, 0),
+    {
+      ...control("selected", "样本序号（行优先）", 0, 1023, 1, 0),
+      numeric: { step: 1 },
+    },
+    {
+      ...control("wrong", "错误字节解释", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "关" },
+        { value: 1, label: "开" },
+      ],
+    },
+    {
+      ...control("ignoreBlack", "忽略黑电平", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "关" },
+        { value: 1, label: "开" },
+      ],
+    },
   ],
   presets: [
     {

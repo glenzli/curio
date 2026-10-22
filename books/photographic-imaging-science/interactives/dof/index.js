@@ -89,6 +89,7 @@ export function mount({ element, signal, session }) {
         step: 0.25,
         value: 2,
         format: (x) => `f/${(2 ** x).toFixed(2)}`,
+        numeric: { toInput: (v) => 2 ** v, fromInput: (v) => Math.log2(v), step: "any", unit: "f数" },
       },
       {
         key: "criterionUm",
@@ -107,6 +108,7 @@ export function mount({ element, signal, session }) {
         step: "any",
         value: 0.2,
         format: distance,
+        numeric: { toInput: (v) => 1 / v, fromInput: (v) => 1 / v, infinity: 0, step: "any", unit: "m" },
       },
       {
         key: "subjectVergence",
@@ -116,6 +118,7 @@ export function mount({ element, signal, session }) {
         step: "any",
         value: 0.25,
         format: distance,
+        numeric: { toInput: (v) => 1 / v, fromInput: (v) => 1 / v, infinity: 0, step: "any", unit: "m" },
       },
     ],
     presets: [

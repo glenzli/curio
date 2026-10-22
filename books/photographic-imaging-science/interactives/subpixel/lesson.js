@@ -11,10 +11,15 @@ export const spec = {
   controls: [
     {
       ...control("frames", "使用帧数", 1, 4, 1, 4),
+      numeric: { step: 1, unit: "帧" },
       format: (v) => String(Math.floor(v)),
     },
     {
       ...control("diverse", "采样相位", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "每帧位置相同" },
+        { value: 1, label: "每帧错开0.25 px" },
+      ],
       format: (v) => (v ? "每帧错开0.25 px" : "每帧位置相同"),
       enabled: (s) => Math.floor(s.frames) > 1,
       hint: (s) =>

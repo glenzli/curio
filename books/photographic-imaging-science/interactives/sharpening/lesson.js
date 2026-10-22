@@ -13,9 +13,20 @@ export const spec = {
   controls: [
     control("sigma", "有效模糊 σ", 0, 3, 0.1, 1.2, " px", 1),
     control("amount", "锐化强度 a", 0, 2, 0.1, 0.8, "", 2),
-    control("radius", "水平半径 r", 1, 4, 1, 1, " px"),
+    {
+      ...control("radius", "水平半径 r", 1, 4, 1, 1, " px"),
+      options: [
+        { value: 1, label: "1 px" },
+        { value: 2, label: "2 px" },
+        { value: 3, label: "3 px" },
+        { value: 4, label: "4 px" },
+      ],
+    },
     control("noise", "输入噪声 RMS", 0, 0.05, 0.005, 0.015, "", 3),
-    control("seed", "观测种子", 1, 999, 1, 23),
+    {
+      ...control("seed", "观测种子", 1, 999, 1, 23),
+      discrete: true, numeric: { step: 1 },
+    },
   ],
   presets: [
     { label: "保持原观测", values: { amount: 0 } },

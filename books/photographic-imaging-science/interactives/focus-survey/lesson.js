@@ -14,7 +14,14 @@ export const spec = {
     control("sensor", "传感器角点弯曲量", -80, 100, 5, 0, " μm"),
     control("focus", "传感器整体对焦位置", -150, 150, 1, 0, " μm"),
     control("tilt", "x向倾斜项", -30, 30, 2, 0, " μm"),
-    control("trial", "重复装夹序号", 1, 3, 1, 1),
+    {
+      ...control("trial", "重复装夹序号", 1, 3, 1, 1),
+      options: [
+        { value: 1, label: "第1次装夹" },
+        { value: 2, label: "第2次装夹" },
+        { value: 3, label: "第3次装夹" },
+      ],
+    },
     control("noise", "MTF观测噪声标准差", 0, 0.02, 0.001, 0, "", 3),
   ],
   presets: [

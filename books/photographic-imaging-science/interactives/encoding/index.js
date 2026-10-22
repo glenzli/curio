@@ -30,6 +30,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "bits",
+        numeric: { step: 1, unit: "bit" },
         label: "编码位深",
         min: 8,
         max: 12,

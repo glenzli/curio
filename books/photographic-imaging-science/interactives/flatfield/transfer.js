@@ -152,6 +152,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "side",
+        options: [
+          { value: 16, label: "16 × 16 px" },
+          { value: 32, label: "32 × 32 px" },
+          { value: 48, label: "48 × 48 px" },
+          { value: 64, label: "64 × 64 px" },
+        ],
         label: "方形 ROI 边长",
         min: 16,
         max: 64,
@@ -161,6 +167,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "pairs",
+        numeric: { step: 1, unit: "对" },
         label: "每级平场对数",
         min: 1,
         max: 8,
@@ -179,6 +186,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "level",
+        numeric: { step: 1, unit: "级" },
         label: "查看采样级",
         min: 0,
         max: LEVELS - 1,

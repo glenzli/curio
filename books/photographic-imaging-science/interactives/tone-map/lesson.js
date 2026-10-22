@@ -10,7 +10,10 @@ export const spec = {
   controls: [
     control("exposure", "显示曝光", -2, 3, 0.25, 0, "档", 2),
     control("knee", "肩部起点", 0.2, 0.8, 0.05, 0.6, "", 2),
-    control("bits", "显示线性量化位深", 4, 12, 1, 10, " bit"),
+    {
+      ...control("bits", "显示线性量化位深", 4, 12, 1, 10, " bit"),
+      numeric: { step: 1, unit: "bit" },
+    },
     control("capacity", "捕获上限", 1, 8, 0.5, 4),
     control("probe", "场景探针", 0, 8, 0.1, 2, "", 1),
   ],

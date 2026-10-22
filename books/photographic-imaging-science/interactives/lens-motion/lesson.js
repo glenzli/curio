@@ -73,6 +73,10 @@ export const focusingSpec = {
     {
       ...control("coordinated", "对焦方式", 0, 1, 1, 1),
       format: (v) => (v ? "两组协同" : "只动后组"),
+      options: [
+        { value: 0, label: "只动后组" },
+        { value: 1, label: "两组协同" },
+      ],
     },
   ],
   presets: [
@@ -139,6 +143,10 @@ export const zoomingSpec = {
     {
       ...control("compensate", "补偿方式", 0, 1, 1, 1),
       format: (v) => (v ? "自动保持像面" : "锁定后组"),
+      options: [
+        { value: 0, label: "锁定后组" },
+        { value: 1, label: "自动保持像面" },
+      ],
     },
     {
       ...control("compensator", "锁定时的 G3位置", 90, 190, 0.1, 150, " mm", 1),

@@ -66,6 +66,13 @@ export function mount({ element, signal, session }) {
         step: 1,
         value: 4,
         discrete: true,
+        options: [
+          { value: 0, label: "光阑" },
+          { value: 1, label: "向前组作图" },
+          { value: 2, label: "入瞳" },
+          { value: 3, label: "向后组作图" },
+          { value: 4, label: "入瞳与出瞳" },
+        ],
         format: (v) =>
           ["光阑", "向前组作图", "入瞳", "向后组作图", "入瞳与出瞳"][
             Math.min(4, Math.floor(v))

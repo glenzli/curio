@@ -16,6 +16,11 @@ export const spec = {
     control("sensor", "像面 z", 16, 180, 1, 83, " mm"),
     {
       ...control("pair", "反射界面 · 按发生顺序", 0, 2, 1, 0),
+      options: [
+        { value: 0, label: "① S3 → ② S2" },
+        { value: 1, label: "① S4 → ② S1" },
+        { value: 2, label: "① S4 → ② S2" },
+      ],
       format: (v) => {
         const [a, b] = pairs[v];
         return `① S${a + 1} → ② S${b + 1}`;

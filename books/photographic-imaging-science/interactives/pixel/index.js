@@ -90,6 +90,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "electrons",
+        numeric: { step: 1, unit: "e⁻" },
         label: "积分结束时的信号电荷",
         min: 0,
         max: 10000,
@@ -126,6 +127,10 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        discrete: true,
+        options: stages.map(({ at: value, name: label }) => ({ value, label })),
+        optionValue: (v) =>
+          stages.find((s) => v >= s.start && (v < s.end || s.end === 100)).at,
         label: "读出过程",
         min: 0,
         max: 100,

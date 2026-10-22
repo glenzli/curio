@@ -71,6 +71,7 @@ export function mount({ element, signal, session }) {
         step: "any",
         value: 1,
         format: distance,
+        numeric: { toInput: (v) => 1 / v, fromInput: (v) => 1 / v, infinity: 0, step: "any", unit: "m" },
       },
       {
         key: "manualV",
@@ -80,6 +81,7 @@ export function mount({ element, signal, session }) {
         step: 0.25,
         value: 50,
         format: mm,
+        enabled: (s) => (s.mode ?? "rear") === "manual",
       },
       {
         key: "manualC",
@@ -89,6 +91,7 @@ export function mount({ element, signal, session }) {
         step: 0.25,
         value: 150,
         format: mm,
+        enabled: (s) => (s.mode ?? "rear") === "manual",
       },
       {
         key: "directionMrad",

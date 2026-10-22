@@ -1,3 +1,10 @@
+import {
+  createControl,
+  controlStyle,
+  bringReadingsForward,
+  displayedOption,
+} from "./controls.js";
+
 const style = `
 :host{display:block;color:var(--text,#262626);font:13px/1.7 ui-sans-serif,-apple-system,"PingFang SC",sans-serif}*{box-sizing:border-box}.lab{padding:24px}.kicker{font-size:10px;letter-spacing:.09em;opacity:.6}h3{font-size:22px;line-height:1.4;margin:8px 0}p{margin:8px 0;opacity:.72}.controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:20px 0}.controls label{font-size:11px;display:grid;gap:8px}.controls output{float:right;font-variant-numeric:tabular-nums;font-weight:600}input{width:100%;accent-color:var(--accent,#555)}button{font:inherit;color:inherit;background:transparent;border:1px solid var(--line,#aaa);border-radius:5px;padding:6px 10px;cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid currentColor;outline-offset:3px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.chart{margin:16px 0;min-width:0}.chart svg{width:100%;height:auto;display:block}.chart text{font-family:inherit;fill:currentColor;font-size:11px}.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:10px;margin:8px 0}.legend i{display:inline-block;width:18px;border-top:2px solid;vertical-align:middle;margin-right:5px}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;border-block:1px solid #9caea244;padding:15px 0;margin:18px 0}.stats small{font-size:10px;opacity:.65}.stats>div{min-width:0}.stats strong{overflow-wrap:anywhere;font-size:22px;line-height:1.5;font-variant-numeric:tabular-nums;display:block}.stats em{font-style:normal;font-size:10px;opacity:.65}.note{font-size:10px;line-height:1.85;opacity:.65}.reading{font-size:12px}.stripes{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stripes svg{width:100%;height:54px;border-radius:4px;display:block}.stripes small{font-size:10px}.field-grid{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:14px;align-items:center}.psf svg{width:100%;height:auto}.psf p{font-size:10px;text-align:center}.chart-wrap{border-radius:6px;background:color-mix(in srgb,currentColor 3%,transparent);padding:10px}.criterion{font-size:12px;font-weight:600}@media(max-width:550px){.stats{grid-template-columns:1fr}.lab{padding:18px}h3{font-size:19px}.controls{grid-template-columns:1fr;gap:12px}.stats>div{min-width:0}.stats strong{overflow-wrap:anywhere;font-size:18px}.stripes{grid-template-columns:1fr}.field-grid{grid-template-columns:1fr}.psf{max-width:180px;margin:auto}}`;
 
@@ -48,7 +55,11 @@ export function experiment({
   migrate,
 }) {
   const root = element.shadowRoot ?? element.attachShadow({ mode: "open" });
-  root.innerHTML = `<style>${style}</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div>${content}<p class="note">${note}</p></section>`;
+  root.innerHTML = `<style>${style}${controlStyle}
+.lab>.controls{grid-template-columns:repeat(auto-fit,minmax(min(100%,195px),1fr));align-items:start}
+.key-readings .stats{grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr));margin:8px 0 18px;padding:12px 0;gap:10px 18px}
+.key-readings .stats strong{font-size:18px;line-height:1.45}
+</style><section class="lab"><div class="kicker">${kicker}</div><h3>${title}</h3><p>${intro}</p><div class="controls"></div><div class="actions"></div><div class="key-readings" role="region" aria-label="当前结果"></div>${content}<p class="note">${note}</p></section>`;
   const stored = session?.load();
   const saved = migrate ? migrate(stored) : stored;
   const restored =
@@ -70,53 +81,25 @@ export function experiment({
   let snapshot;
   session?.describe(() => snapshot);
   for (const control of controls) {
-    const label = document.createElement("label"),
-      name = document.createElement("span"),
-      output = document.createElement("output"),
-      input = document.createElement("input");
-    input.type = "range";
-    input.min = control.min;
-    input.max = control.max;
-    input.step = control.step;
-    input.value = control.value;
-    input.setAttribute("aria-label", control.label);
-    input.dataset.controlKey = control.key;
-    name.textContent = control.label;
-    name.append(output);
-    label.append(name, input);
-    const hint = document.createElement("small");
-    hint.id = `hint-${control.key}`;
-    hint.style.opacity = ".7";
-    hint.style.fontSize = "10px";
-    input.setAttribute("aria-describedby", hint.id);
-    label.append(hint);
-    root.querySelector(".controls").append(label);
     const previous = state[control.key];
     state[control.key] = restoredControlValue(control, previous);
-    fields.set(control.key, { input, output, hint, control });
-    input.addEventListener(
-      "input",
-      () => {
-        state[control.key] = Number(input.value);
+    const field = createControl(control, {
+      signal,
+      onEdit: () => root.dispatchEvent(new Event("mb-control-edit")),
+      onChange(value) {
+        state[control.key] = value;
         presetLabel = null;
         render();
       },
-      { signal },
-    );
+    });
+    fields.set(control.key, field);
+    root.querySelector(".controls").append(field.element);
   }
-  function render() {
-    for (const [key, { input, output, hint, control }] of fields) {
-      const shown = control.discrete ? Math.floor(state[key]) : state[key];
-      input.value = shown;
-      if (control.enabled) input.disabled = !control.enabled(state);
-      hint.textContent =
-        typeof control.hint === "function"
-          ? control.hint(state)
-          : (control.hint ?? "");
-      hint.hidden = !hint.textContent;
-      output.value = control.format ? control.format(shown) : String(shown);
-    }
-    update(root, state);
+  function render(force = false) {
+    for (const [key, field] of fields) field.sync(state[key], state, force);
+    update(root, state, { force });
+    bringReadingsForward(root, root.querySelector(".key-readings"));
+    for (const field of fields.values()) field.syncDisabled();
     // Playback owns its availability: an enabled slider can still be a manual
     // input in a mode where automatic motion has no meaning.
     root.dispatchEvent(new Event("mb-controls-updated"));
@@ -133,9 +116,11 @@ export function experiment({
       preset: presetLabel,
       parameters: [...fields.values()].map(({ control }) => ({
         label: control.label,
-        value: control.format
-          ? control.format(state[control.key])
-          : String(state[control.key]),
+        value: control.options
+          ? displayedOption(control, state[control.key]).label
+          : control.format
+            ? control.format(state[control.key])
+            : String(state[control.key]),
       })),
       options: Object.fromEntries(
         Object.entries(parameters).filter(([key]) => !fields.has(key)),
@@ -184,7 +169,7 @@ export function experiment({
             : preset.values,
         );
         presetLabel = typeof preset.values === "function" ? null : preset.label;
-        render();
+        render(true);
       },
       { signal },
     );
@@ -200,7 +185,7 @@ export function experiment({
         for (const key of Object.keys(state)) delete state[key];
         for (const control of controls) state[control.key] = control.value;
         presetLabel = null;
-        render();
+        render(true);
       },
       { signal },
     );

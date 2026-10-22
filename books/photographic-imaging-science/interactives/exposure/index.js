@@ -28,6 +28,12 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "apertureEV",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: "f数",
+        },
         label: "曝光光圈",
         min: 1,
         max: 4,
@@ -46,6 +52,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "transmission",
+        numeric: {
+          toInput: (v) => 100 * v,
+          fromInput: (v) => v / 100,
+          step: "any",
+          unit: "%",
+        },
         label: "镜头能量透射率",
         min: 0,
         max: 1,

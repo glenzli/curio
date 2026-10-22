@@ -26,6 +26,12 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "gainEV",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: "倍",
+        },
         label: "增益",
         min: 0,
         max: 4,
@@ -35,6 +41,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "bits",
+        numeric: { step: 1, unit: "bit" },
         label: "ADC 位深",
         min: 8,
         max: 14,

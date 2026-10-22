@@ -22,6 +22,12 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "eiStops",
+        numeric: {
+          toInput: (v) => 800 * 2 ** v,
+          fromInput: (v) => Math.log2(v / 800),
+          step: "any",
+          unit: "EI",
+        },
         label: "相对EI 800的变化",
         min: -2,
         max: 3,
@@ -49,6 +55,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "bits",
+        numeric: { step: 1, unit: "bit" },
         label: "教学Log文件位深",
         min: 8,
         max: 12,
@@ -58,6 +65,13 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 0, label: "收集电子" },
+          { value: 1, label: "线性RAW" },
+          { value: 2, label: "Log文件" },
+          { value: 3, label: "反解与增益" },
+          { value: 4, label: "监看码" },
+        ],
         label: "查看处理环节",
         min: 0,
         max: 4,

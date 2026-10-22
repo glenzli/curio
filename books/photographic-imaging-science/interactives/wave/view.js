@@ -1,4 +1,5 @@
 import { experiment, plot, legend } from "../common/ui.js";
+import { createControl } from "../common/controls.js";
 import { replay } from "../common/replay.js";
 import {
   propagate,
@@ -23,7 +24,7 @@ const complex = (z) =>
   `${fmt(z[0])} ${z[1] < -0.00005 ? "−" : "+"} ${fmt(Math.abs(z[1]))}i`;
 const zero = { defocus: 0, astigmatism: 0, coma: 0, spherical: 0 };
 const style = `<style>
-.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.wave-card{min-width:0;border:1px solid #9caea244;border-radius:7px;padding:14px}.wave-card h4{margin:0 0 8px;font-size:14px}.wave-card p{font-size:11px;min-height:3em}.wave-card canvas,.wave-card svg{display:block;width:100%;max-width:280px;aspect-ratio:1;margin:auto;border-radius:4px}.wave-card svg{height:auto}.wave-card canvas{background:#10171c}.wave-card svg text{fill:currentColor;font-size:12px}.wave-plots .chart text{font-size:13px}.wave-truth{padding:14px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px;font-size:11px;font-variant-numeric:tabular-nums}.wave-truth p{opacity:.85;margin:5px 0}.wave-process{font-size:12px;padding:12px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px}.wave-display{margin:5px 0}.wave-map-scale,.wave-profile-note{font-size:11px}.wave-map{position:relative;max-width:280px;margin:auto}.wave-map .probe-overlay{position:absolute;inset:0;pointer-events:none}.wave-sum-control{display:grid;gap:6px;font-size:11px;margin:10px 0}.wave-sum-control span{display:flex;justify-content:space-between}.wave-sum-control input{width:100%}.wave-how{font-size:11px;line-height:1.8;padding:10px 0}.wave-truth summary{cursor:pointer;font-weight:600}
+.wave-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}.wave-card{min-width:0;border:1px solid #9caea244;border-radius:7px;padding:14px}.wave-card h4{margin:0 0 8px;font-size:14px}.wave-card p{font-size:11px;min-height:3em}.wave-card canvas,.wave-card svg{display:block;width:100%;max-width:280px;aspect-ratio:1;margin:auto;border-radius:4px}.wave-card svg{height:auto}.wave-card canvas{background:#10171c}.wave-card svg text{fill:currentColor;font-size:12px}.wave-plots .chart text{font-size:13px}.wave-truth{padding:14px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px;font-size:11px;font-variant-numeric:tabular-nums}.wave-truth p{opacity:.85;margin:5px 0}.wave-process{font-size:12px;padding:12px;background:color-mix(in srgb,currentColor 4%,transparent);border-radius:6px}.wave-display{margin:5px 0}.wave-map-scale,.wave-profile-note{font-size:11px}.wave-map{position:relative;max-width:280px;margin:auto}.wave-map .probe-overlay{position:absolute;inset:0;pointer-events:none}.wave-sum-control{display:grid;gap:6px;font-size:11px;margin:10px 0}.wave-how{font-size:11px;line-height:1.8;padding:10px 0}.wave-truth summary{cursor:pointer;font-weight:600}
 @media(max-width:550px){.wave-grid{grid-template-columns:1fr}.wave-card{padding:12px}.wave-plots .chart text{font-size:14px}.stats{grid-template-columns:1fr}.wave-truth{font-size:12px}.wave-truth p{overflow-wrap:anywhere}}
 </style>`;
 export function mountWave({ element, signal, session, aberrations = false }) {
@@ -31,7 +32,8 @@ export function mountWave({ element, signal, session, aberrations = false }) {
     g,
     truth,
     drawnKey,
-    enhanced = true;
+    enhanced = true,
+    sumField;
   const controls = aberrations
     ? [
         ...[
@@ -148,19 +150,17 @@ export function mountWave({ element, signal, session, aberrations = false }) {
     kicker: aberrations
       ? "第十三章 · 波前与成像"
       : "第十二章 · 孔径、点像与纹理",
-    title: aberrations
-      ? "波像差、点像与 OTF"
-      : "复瞳 → 复振幅 → PSF → OTF",
+    title: aberrations ? "波像差、点像与 OTF" : "复瞳 → 复振幅 → PSF → OTF",
     intro: aberrations
       ? "四项系数分别控制一组归一化圆瞳模式。瞳相位、固定像面上的点像和传递函数同时显示，可比较各模式的影响。"
       : "先切换f/4和f/16：左图孔径缩小，下方点像在同一微米窗口内展开。再移动“像面取样位置”滑块，黄色十字会跟着移动；右侧相量图显示该点的复振幅怎样由各条瞳带相加。",
     controls,
     presets,
-    content: `${style}<p class="wave-process"></p><div class="wave-grid"><section class="wave-card"><h4>${aberrations ? "① 复瞳 P · 相位" : "① 圆孔 · 固定毫米尺度"}</h4><canvas class="pupil-map" role="img" aria-label="连续圆瞳轮廓与相位，橙色为当前求和条带"></canvas><p class="pupil-reading"></p></section><section class="wave-card"><h4>② 这个像点的复振幅 U</h4><div class="phasor"></div>${aberrations ? "" : '<label class="wave-sum-control"><span>已累计条带<output class="sum-count">32/32</output></span><input class="sum-slider" aria-label="已累计条带数" type="range" min="0" max="32" step="1" value="32"></label>'}<p class="amplitude-reading"></p></section><section class="wave-card"><h4>③ 点像 PSF · 固定微米尺度</h4><div class="wave-map"><canvas class="psf-map" role="img" aria-label="固定48微米窗口与共同白点的点像强度"></canvas><div class="probe-overlay"></div></div><p class="psf-reading"></p></section><section class="wave-card"><h4>④ 这组纹理的 OTF</h4><div class="overlap"></div><p class="otf-reading"></p></section></div><p class="wave-how"></p><button class="wave-display" type="button">切换为线性强度</button><p class="wave-map-scale"></p><div class="stats"></div><div class="wave-plots"><div class="chart psf-chart"></div><div class="legend psf-legend"></div><p class="wave-profile-note"></p><div class="chart otf-chart"></div><div class="legend otf-legend"></div></div><details class="wave-truth" aria-label="独立真值对照"><summary>独立真值与数值精度</summary><div class="truth-body"></div></details>`,
+    content: `${style}<p class="wave-process"></p><div class="wave-grid"><section class="wave-card"><h4>${aberrations ? "① 复瞳 P · 相位" : "① 圆孔 · 固定毫米尺度"}</h4><canvas class="pupil-map" role="img" aria-label="连续圆瞳轮廓与相位，橙色为当前求和条带"></canvas><p class="pupil-reading"></p></section><section class="wave-card"><h4>② 这个像点的复振幅 U</h4><div class="phasor"></div>${aberrations ? "" : '<div class="wave-sum-control"></div>'}<p class="amplitude-reading"></p></section><section class="wave-card"><h4>③ 点像 PSF · 固定微米尺度</h4><div class="wave-map"><canvas class="psf-map" role="img" aria-label="固定48微米窗口与共同白点的点像强度"></canvas><div class="probe-overlay"></div></div><p class="psf-reading"></p></section><section class="wave-card"><h4>④ 这组纹理的 OTF</h4><div class="overlap"></div><p class="otf-reading"></p></section></div><p class="wave-how"></p><button class="wave-display" type="button">切换为线性强度</button><p class="wave-map-scale"></p><div class="stats"></div><div class="wave-plots"><div class="chart psf-chart"></div><div class="legend psf-legend"></div><p class="wave-profile-note"></p><div class="chart otf-chart"></div><div class="legend otf-legend"></div></div><details class="wave-truth" aria-label="独立真值对照"><summary>独立真值与数值精度</summary><div class="truth-body"></div></details>`,
     note: aberrations
       ? "单色、标量、近轴，均匀圆瞳；相位图按瞳半径归一。波前系数用当前波长，128格瞳、4倍补零；点像固定48 μm窗口，使用550 nm、f/8参考白点。离散Parseval、瞳自相关及连续积分保留作核对。横纵是固定方向；未加入像素、光谱平均或具体镜头处方。"
       : "单色、标量、近轴后焦面，均匀完整圆瞳；物点按非相干强度相加。孔径示例固定焦距50 mm，D=f/N，图幅30 mm；点像图幅固定48 μm，白点固定在550 nm、f/8的单位通量理想峰值。圆孔图按连续Airy积分，像差图用128格瞳、4倍补零的FFT；连续相位图与离散数值网格分开。相量条带按采样瞳面积归一，顺序是求和过程；点像和OTF均显示完整孔径的结果。未加入像素、色差或实际镜头处方。",
-    update(root, s) {
+    update(root, s, { force = false } = {}) {
       enhanced = s.enhanced !== false;
       const p = aberrations
         ? {
@@ -190,11 +190,7 @@ export function mountWave({ element, signal, session, aberrations = false }) {
       root.querySelector(".phasor").innerHTML = phasors(point);
       root.querySelector(".amplitude-reading").textContent =
         `固定像面x=${fmt(point.probeUm, 2)} μm。已累计${point.strips}/32条带：U/A=${complex(part)}；完整和为${complex(full)}。`;
-      const slider = root.querySelector(".sum-slider");
-      if (slider) {
-        slider.value = point.strips;
-        root.querySelector(".sum-count").value = `${point.strips}/32`;
-      }
+      sumField?.sync(s.sumProgress ?? 1, s, force);
       root.querySelector(".probe-overlay").innerHTML = crosshair(point);
       root.querySelector(".psf-reading").textContent = aberrations
         ? `横纵固定为±${HALF_FIELD_UM} μm，黄色十字与复振幅取样点对应；各波前共用同一白点。`
@@ -394,14 +390,36 @@ export function mountWave({ element, signal, session, aberrations = false }) {
         },
         { signal },
       );
-      root.querySelector(".sum-slider")?.addEventListener(
-        "input",
-        (event) => {
-          state.sumProgress = Number(event.target.value) / 32;
-          render();
-        },
-        { signal },
-      );
+      if (!aberrations) {
+        sumField = createControl(
+          {
+            key: "sumProgress",
+            label: "已累计条带数",
+            min: 0,
+            max: 1,
+            step: 1 / 32,
+            value: 1,
+            format: (v) => `${Math.floor(v * 32 + 1e-10)}/32`,
+            numeric: {
+              toInput: (v) => Math.floor(v * 32 + 1e-10),
+              fromInput: (v) => v / 32,
+              step: 1,
+              unit: "条",
+            },
+          },
+          {
+            signal,
+            onEdit: () => root.dispatchEvent(new Event("mb-control-edit")),
+            onChange: (value) => {
+              state.sumProgress = value;
+              render();
+            },
+          },
+        );
+        root
+          .querySelector(".wave-sum-control")
+          .replaceChildren(sumField.element);
+      }
       render();
       return replay({
         root,

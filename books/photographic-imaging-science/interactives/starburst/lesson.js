@@ -61,11 +61,25 @@ export const spec = {
     "550 nm，七边直边孔径、圆孔参考f/8；连续孔径轮廓，逐边积分计算点像；固定177.1 μm窗口和共同对数显示。",
   note: "标量单色、合焦、无像差。外接圆半径固定，径向边界由正多边形连续过渡到圆。直边的Fourier面积积分逐边解析求和，曲线用每边32段逼近，圆孔用Bessel积分；257×257显示采样，固定177.1 μm窗口。PSF按单位总通量归一，白点仍为550 nm、f/8圆孔峰值；对数映射只用于看弱光芒。旧笛卡尔FFT与独立极坐标积分保留为数值对照。",
   controls: [
-    { ...control("blades", "规则叶片数", 3, 12, 1, 7),
+    {
+      ...control("blades", "规则叶片数", 3, 12, 1, 7),
+      options: [
+        { value: 3, label: "3片" },
+        { value: 4, label: "4片" },
+        { value: 5, label: "5片" },
+        { value: 6, label: "6片" },
+        { value: 7, label: "7片" },
+        { value: 8, label: "8片" },
+        { value: 9, label: "9片" },
+        { value: 10, label: "10片" },
+        { value: 11, label: "11片" },
+        { value: 12, label: "12片" },
+      ],
       enabled: s => s.roundness < 1,
       hint: s => s.roundness === 1 ? "完全圆孔没有直边；减小圆化程度后启用。" : "" },
     control("roundness", "边缘向圆形过渡", 0, 1, 0.05, 0, "", 2),
-    { ...control("rotation", "孔径旋转角", 0, 180, 1, 0, "°"),
+    {
+      ...control("rotation", "孔径旋转角", 0, 180, 1, 0, "°"),
       enabled: s => s.roundness < 1,
       hint: s => s.roundness === 1 ? "圆孔旋转不改变点像。" : "" },
     control("fNumber", "圆孔参考 f 数", 4, 16, 1, 8),

@@ -67,6 +67,7 @@ export function mount({ element, signal, session }) {
         step: 0.05,
         value: 0.5,
         format: (v) => (100 * v).toFixed(0) + "%",
+        numeric: { toInput: (v) => 100 * v, fromInput: (v) => v / 100, step: "any", unit: "%" },
       },
       {
         key: "progress",

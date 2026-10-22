@@ -35,6 +35,14 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 20, label: "入光" },
+          { value: 50, label: "感光节点" },
+          { value: 72, label: "像素电路" },
+          { value: 100, label: "逻辑连接" },
+        ],
+        discrete: true,
+        optionValue: (v) => (v < 40 ? 20 : v < 60 ? 50 : v < 85 ? 72 : 100),
         label: "入光 → 读出的展示进度",
         min: 0,
         max: 100,

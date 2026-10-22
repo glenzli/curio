@@ -27,13 +27,26 @@ export const spec = {
     control("exposure", "曝光时长", 1, 120, 1, 10, " s"),
     control("dark", "普通像素暗电流率", 0, 0.3, 0.01, 0.1, " e⁻/s", 2),
     control("read", "单次读噪", 0, 6, 0.25, 3, " e⁻", 2),
-    control("frames", "目标帧数 N", 1, 64, 1, 8),
-    control("masters", "主暗场张数 M", 1, 64, 1, 16),
+    {
+      ...control("frames", "目标帧数 N", 1, 64, 1, 8),
+      numeric: { step: 1, unit: "帧" },
+    },
+    {
+      ...control("masters", "主暗场张数 M", 1, 64, 1, 16),
+      numeric: { step: 1, unit: "张" },
+    },
     {
       ...control("probe", "查看像素", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "普通像素" },
+        { value: 1, label: "标记热像素" },
+      ],
       format: (v) => (v ? "标记热像素" : "普通像素"),
     },
-    control("seed", "采集种子", 1, 999, 1, 31),
+    {
+      ...control("seed", "采集种子", 1, 999, 1, 31),
+      numeric: { step: 1 },
+    },
   ],
   presets: [
     { label: "一张暗场", values: { masters: 1 } },

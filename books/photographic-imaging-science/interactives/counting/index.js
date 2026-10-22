@@ -26,6 +26,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "incident",
+        numeric: { step: 1, unit: "个/曝光" },
         label: "入射光子数（Poisson模式为均值）",
         min: 0,
         max: 80,
@@ -35,6 +36,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "eta",
+        numeric: {
+          toInput: (v) => 100 * v,
+          fromInput: (v) => v / 100,
+          step: "any",
+          unit: "%",
+        },
         label: "量子效率 η",
         min: 0,
         max: 1,

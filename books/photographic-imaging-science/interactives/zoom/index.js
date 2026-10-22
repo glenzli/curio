@@ -65,6 +65,7 @@ export function mount({ element, signal, session }) {
         step: "any",
         value: 150,
         format: (v) => `${v.toFixed(3)} mm`,
+        enabled: (s) => !s.auto,
       },
     ],
     presets: [

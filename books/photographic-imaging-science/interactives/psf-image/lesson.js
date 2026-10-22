@@ -13,13 +13,31 @@ export const spec = {
   controls: [
     control("defocus", "离焦系数", -0.3, 0.3, 0.025, 0, " λ rms", 3),
     control("coma", "彗差系数", -0.3, 0.3, 0.025, 0, " λ rms", 3),
-    control("bin", "像素边长占细格数", 1, 4, 1, 2),
+    {
+      ...control("bin", "像素边长占细格数", 1, 4, 1, 2),
+      options: [
+        { value: 1, label: "1格" },
+        { value: 2, label: "2格" },
+        { value: 3, label: "3格" },
+        { value: 4, label: "4格" },
+      ],
+    },
     {
       ...control("pattern", "输入图案", 0, 1, 1, 0),
       format: (v) => (v < 0.5 ? "点阵" : "细线与字形"),
+      options: [
+        { value: 0, label: "点阵" },
+        { value: 1, label: "细线与字形" },
+      ],
     },
-    control("probeX", "探针横坐标", 0, 47, 1, 24, "格"),
-    control("probeY", "探针纵坐标", 0, 47, 1, 24, "格"),
+    {
+      ...control("probeX", "探针横坐标", 0, 47, 1, 24, "格"),
+      discrete: true, numeric: { step: 1, unit: "格" },
+    },
+    {
+      ...control("probeY", "探针纵坐标", 0, 47, 1, 24, "格"),
+      discrete: true, numeric: { step: 1, unit: "格" },
+    },
   ],
   presets: [
     {

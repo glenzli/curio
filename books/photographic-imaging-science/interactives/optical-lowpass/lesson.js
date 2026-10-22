@@ -11,9 +11,17 @@ export const spec = {
   staticCaption: "4 μm节距；四点等权、分光间隔1 px、频率0.65 cycle/px、水平方向；相位0.08周期，满宽像素积分。",
   note: "理想非相干等权副像模型；省略偏振态、波片色散、真实晶体处方、镜头像差和CFA。两点间隔为d，单点偏移为±d/2。32×16 px范围固定，连续图每px取8细格；所有图共用线性0…1，无逐图拉伸。像素孔径宽w、节距仍为1 px；w=0取点采样极限。曲线先计算采样前有符号OTF，离散折返另列。蓝框固定在样点(8,4)，用直接平移连续图像和二维求积独立核对该点，不读取cos/sinc公式。",
   controls: [
-    { ...control("mode", "副像排列", 0, 2, 1, 2),
-      format: v => ["无分光", "水平两点", "四点"][Math.round(v)] },
-    { ...control("separation", "两点间隔 d/p", 0, 2, 0.05, 1, " px", 2),
+    {
+      ...control("mode", "副像排列", 0, 2, 1, 2),
+      format: v => ["无分光", "水平两点", "四点"][Math.round(v)],
+      options: [
+        { value: 0, label: "无分光" },
+        { value: 1, label: "水平两点" },
+        { value: 2, label: "四点" },
+      ],
+    },
+    {
+      ...control("separation", "两点间隔 d/p", 0, 2, 0.05, 1, " px", 2),
       enabled: s => s.mode !== 0,
       hint: s => s.mode === 0 ? "选择两点或四点后启用" : "每个方向的偏移为±d/2" },
     control("frequency", "条纹频率模长", 0.05, 1.5, 0.01, 0.65, " cycle/px", 2),

@@ -22,7 +22,16 @@ export const spec = {
     "匀速轨迹，中心化RMS 2 px，256个等时样本；两处停留预设保留相同RMS。",
   note: "一维横向像移、局部平移不变模型；输入是三个已知二维正弦的连续周期场景。运动OTF由等时相量平均得到；匀速和两处停留另有sinc与cos解析式，正弦往返另用8192点角积分。点像图按0.5 px分箱，传递计算不使用该直方图。播放按完整曝光刻度积累，未包含光学、像素孔径、颜色和噪声。",
   controls: [
-    { ...control("mode", "曝光内运动", 0, 3, 1, 1), format: (v) => MODES[v] },
+    {
+      ...control("mode", "曝光内运动", 0, 3, 1, 1),
+      format: (v) => MODES[v],
+      options: [
+        { value: 0, label: "固定偏移" },
+        { value: 1, label: "匀速扫过" },
+        { value: 2, label: "两处等时停留" },
+        { value: 3, label: "正弦往返" },
+      ],
+    },
     {
       ...control("rms", "中心化 RMS 参数", 0, 4, 0.1, 2, " px", 1),
       enabled: (s) => s.mode !== 0,

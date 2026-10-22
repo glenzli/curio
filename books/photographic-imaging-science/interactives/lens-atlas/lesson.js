@@ -14,6 +14,14 @@ export const spec = {
     {
       ...control("type", "镜片结构", 0, 5, 1, 2),
       format: (v) => PRESCRIPTIONS[Math.round(v)].name,
+      options: [
+        { value: 0, label: "三片式" },
+        { value: 1, label: "Tessar" },
+        { value: 2, label: "双高斯" },
+        { value: 3, label: "Sonnar" },
+        { value: 4, label: "反望远" },
+        { value: 5, label: "望远型" },
+      ],
     },
     control("angle", "入射方向", -3, 3, 0.1, 0, "°", 1),
     control("radius", "首面入射束半宽", 0.2, 4, 0.1, 1.5, " mm", 1),
@@ -21,6 +29,12 @@ export const spec = {
     {
       ...control("fanScale", "偏移图纵轴", 0, 3, 1, 0),
       format: (v) => "±" + FAN_SCALES[Math.round(v)] + " μm",
+      options: [
+        { value: 0, label: "±20 μm" },
+        { value: 1, label: "±100 μm" },
+        { value: 2, label: "±500 μm" },
+        { value: 3, label: "±2000 μm" },
+      ],
     },
     control("progress", "逐面光路进度", 0, 1, 0.01, 1, "", 2),
   ],

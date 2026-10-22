@@ -19,6 +19,10 @@ export const spec = {
   note: '静止均匀表面、理想矩形行窗、从顶行到底行匀速扫描；时间统一为ms。PWM在所有时间周期重复，时间平均辐照度E_ref固定，占空比d的峰值为E_ref/d。单闪总曝光量固定为8 E_ref·ms，持续δ ms时峰值为8/δ E_ref；环境光为a E_ref，只在单闪模式加入。图示脉冲条高不表示强度；曝光量纵轴按E_ref·T_e归一化，虚线1保留固定照明参照。行曲线显示129条等距代表行，逐行采用精确区间积分并与独立分段积分核对。未加入噪声、饱和、触发延迟、真实闪光衰减或帘幕运动误差。',
   controls: [
     { ...control('source', '照明模式', 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "PWM" },
+        { value: 1, label: "单次闪光" },
+      ],
       discrete: true, format: (x) => ['PWM', '单次闪光'][x] },
     control('scanMs', '首末行起始时间差', 0, 20, 0.25, 8, ' ms', 2),
     control('exposureMs', '每行曝光时间', 0.25, 20, 0.25, 2, ' ms', 2),

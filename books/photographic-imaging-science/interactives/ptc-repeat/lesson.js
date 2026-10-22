@@ -32,19 +32,36 @@ export const spec = {
   controls: [
     {
       ...control("roi", "每帧ROI", 0, 1, 1, 0),
+      options: [
+        { value: 0, label: "16 × 16 px" },
+        { value: 1, label: "32 × 32 px" },
+      ],
       format: (v) => (v ? "32 × 32 px" : "16 × 16 px"),
     },
-    control("pairs", "每信号级平场对数", 1, 4, 1, 2, " 对"),
+    {
+      ...control("pairs", "每信号级平场对数", 1, 4, 1, 2, " 对"),
+      numeric: { step: 1, unit: "对" },
+    },
     control("prnuPercent", "固定响应差异 PRNU", 0, 5, 0.5, 0, "%", 1),
     control("driftPercent", "两帧照明相对差", 0, 20, 1, 0, "%"),
     control("fitPercent", "拟合均值上限 / 白点跨度", 30, 105, 5, 75, "%"),
     {
       ...control("exclude", "排除接近饱和的级", 0, 1, 1, 1),
+      options: [
+        { value: 0, label: "关" },
+        { value: 1, label: "开" },
+      ],
       format: (v) => (v ? "开" : "关"),
       hint: "仅当拟合范围包含接近饱和的观测时生效；用下方两个饱和段预设比较。",
     },
-    control("study", "显露到第几次采集", 1, STUDIES, 1, STUDIES, ""),
-    control("batch", "随机批次", 0, 9, 1, 0, ""),
+    {
+      ...control("study", "显露到第几次采集", 1, STUDIES, 1, STUDIES, ""),
+      numeric: { step: 1, unit: "次" },
+    },
+    {
+      ...control("batch", "随机批次", 0, 9, 1, 0, ""),
+      numeric: { step: 1 },
+    },
   ],
   presets: [
     {

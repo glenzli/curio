@@ -17,6 +17,7 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "a",
+        numeric: { step: 1, unit: "DN" },
         label: "RAW 样本 A",
         min: 0,
         max: 4095,
@@ -26,6 +27,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "b",
+        numeric: { step: 1, unit: "DN" },
         label: "RAW 样本 B",
         min: 0,
         max: 4095,
@@ -35,6 +37,7 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "dropBits",
+        numeric: { step: 1, unit: "bit" },
         label: "存盘前丢弃低位",
         min: 0,
         max: 4,
@@ -53,6 +56,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 0, label: "原始样本" },
+          { value: 1, label: "低位处理" },
+          { value: 2, label: "字节容器" },
+          { value: 3, label: "按约定解码" },
+        ],
         label: "查看讲解环节",
         min: 0,
         max: 3,

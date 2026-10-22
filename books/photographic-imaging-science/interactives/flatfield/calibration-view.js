@@ -76,6 +76,11 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "sidePower",
+        options: [
+          { value: 3, label: "8 × 8 px" },
+          { value: 4, label: "16 × 16 px" },
+          { value: 5, label: "32 × 32 px" },
+        ],
         label: "方形 ROI 边长",
         min: 3,
         max: 5,
@@ -85,6 +90,15 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "lightPower",
+        options: [
+          { value: 0, label: "1 张" },
+          { value: 1, label: "2 张" },
+          { value: 2, label: "4 张" },
+          { value: 3, label: "8 张" },
+          { value: 4, label: "16 张" },
+          { value: 5, label: "32 张" },
+          { value: 6, label: "64 张" },
+        ],
         label: "目标帧平均张数 L",
         min: 0,
         max: 6,
@@ -94,6 +108,15 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "darkPower",
+        options: [
+          { value: 0, label: "1 张" },
+          { value: 1, label: "2 张" },
+          { value: 2, label: "4 张" },
+          { value: 3, label: "8 张" },
+          { value: 4, label: "16 张" },
+          { value: 5, label: "32 张" },
+          { value: 6, label: "64 张" },
+        ],
         label: "平均暗场的采集张数 M",
         min: 0,
         max: 6,

@@ -18,6 +18,12 @@ export const spec = {
   controls: [
     {
       ...control("exposure", "像面曝光量 Hₑ", -6, -2, 0.25, -4),
+      numeric: {
+        toInput: (v) => 10 ** v,
+        fromInput: (v) => Math.log10(v),
+        step: "any",
+        unit: "J/m²",
+      },
       format: (x) => `${(10 ** x).toExponential(2)} J/m²`,
       hint: "按对数间隔调节；光子数与曝光量成正比。",
     },
@@ -25,6 +31,7 @@ export const spec = {
     control("gain", "模拟增益", 1, 8, 0.5, 1, "倍", 1),
     {
       ...control("step", "查看环节", 0, 5, 1, 0),
+      options: stageNames.map((label, value) => ({ value, label })),
       discrete: true,
       format: (x) => `${Math.floor(x) + 1} · ${stageNames[Math.floor(x)]}`,
     },

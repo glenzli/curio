@@ -55,7 +55,7 @@ export function mount({ element, signal, session }) {
       { key: "power1", label: "前组光焦度", min: -20, max: 20, step: 0.5, value: 10, format: (x) => `${x.toFixed(1)} D` },
       { key: "power2", label: "后组光焦度", min: -20, max: 20, step: 0.5, value: -10, format: (x) => `${x.toFixed(1)} D` },
       { key: "gap", label: "组间距", min: 0, max: 250, step: 1, value: 50, format: (x) => `${x} mm` },
-      { key: "objectDistance", label: "有限物距 · 从前组量起", min: 100, max: 2000, step: 10, value: 1000, format: (x) => `${x} mm` },
+      { key: "objectDistance", label: "有限物距 · 从前组量起", min: 100, max: 2000, step: 10, value: 1000, format: (x) => `${x} mm`, enabled: (s) => !!s.finite },
       { key: "rearDistance", label: "像面距后组", min: 0, max: 400, step: 1, value: 100, format: (x) => `${x} mm` },
     ],
     presets: [

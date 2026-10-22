@@ -53,6 +53,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "mixing",
+        numeric: {
+          toInput: (v) => 100 * v,
+          fromInput: (v) => v / 100,
+          step: "any",
+          unit: "%",
+        },
         label: "教学矩阵的混合比例",
         min: 0,
         max: 1,
@@ -62,6 +68,11 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "progress",
+        options: [
+          { value: 0, label: "输入噪声" },
+          { value: 1, label: "白平衡" },
+          { value: 2, label: "矩阵混合" },
+        ],
         label: "查看传播环节",
         min: 0,
         max: 2,

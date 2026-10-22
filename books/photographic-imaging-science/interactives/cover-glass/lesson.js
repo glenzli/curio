@@ -51,7 +51,16 @@ export const spec = {
     control("thickness", "平板厚度", 0, 4, 0.1, 2, " mm", 1),
     control("index", "平板折射率", 1, 1.9, 0.01, 1.52, "", 2),
     control("fNumber", "入射锥 N=L/(2a)", 1.2, 8, 0.1, 1.4, "", 1),
-    { ...control("focusMode", "像面选择", 0, 3, 1, 0), format: (v) => MODES[Math.round(v)] },
+    {
+      ...control("focusMode", "像面选择", 0, 3, 1, 0),
+      format: (v) => MODES[Math.round(v)],
+      options: [
+        { value: 0, label: "原像面" },
+        { value: 1, label: "近轴重新对焦" },
+        { value: 2, label: "最小子午RMS" },
+        { value: 3, label: "手动像面" },
+      ],
+    },
     {
       ...control("sensorShift", "手动像面后移", -0.1, 2.5, 0.001, 0, " mm", 3),
       enabled: (s) => s.focusMode === 3,

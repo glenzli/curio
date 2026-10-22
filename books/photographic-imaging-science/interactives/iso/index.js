@@ -24,6 +24,12 @@ export function mount({ element, signal, session }) {
     controls: [
       {
         key: "signalEV",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: "e⁻",
+        },
         label: "基准平均电子数",
         min: 0,
         max: 16,
@@ -33,6 +39,12 @@ export function mount({ element, signal, session }) {
       },
       {
         key: "gainEV",
+        numeric: {
+          toInput: (v) => 2 ** v,
+          fromInput: (v) => Math.log2(v),
+          step: "any",
+          unit: "倍",
+        },
         label: "ADC 前模拟增益",
         min: 0,
         max: 4,

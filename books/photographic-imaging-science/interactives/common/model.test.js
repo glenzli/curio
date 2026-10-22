@@ -2,6 +2,73 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { restoredControlValue } from "./ui.js";
 import { replay } from "./replay.js";
+import {
+  parseControlNumber,
+  numericBounds,
+  displayedOption,
+} from "./controls.js";
+
+test("exact physical inputs keep values between slider ticks", () => {
+  const linear = { min: 0, max: 2, step: 0.01 };
+  assert.equal(parseControlNumber(linear, "0.71237").value, 0.71237);
+  const exposure = {
+    min: -2,
+    max: 6,
+    step: 0.25,
+    numeric: { toInput: (v) => 2 ** v, fromInput: Math.log2 },
+  };
+  const raw = parseControlNumber(exposure, "3").value;
+  assert.equal(2 ** raw, 3);
+  assert.notEqual(raw / exposure.step, Math.round(raw / exposure.step));
+  const aperture = { ...exposure, min: 0.5, max: 4 };
+  assert.ok(
+    Math.abs(2 ** parseControlNumber(aperture, "2.8").value - 2.8) < 1e-14,
+  );
+});
+
+test("reciprocal distances accept finite metres and reserve zero raw state for infinity", () => {
+  const distance = {
+    min: 0,
+    max: 2,
+    step: 0.05,
+    numeric: { toInput: (v) => 1 / v, fromInput: (v) => 1 / v, infinity: 0 },
+  };
+  assert.deepEqual(numericBounds(distance), { min: 0.5, max: Infinity });
+  assert.equal(parseControlNumber(distance, "3").value, 1 / 3);
+  assert.equal(parseControlNumber(distance, "0").ok, false);
+  assert.equal(parseControlNumber(distance, "Infinity").ok, false);
+  assert.equal(restoredControlValue(distance, 0), 0);
+});
+
+test("physical range and integer constraints reject invalid edits instead of clamping", () => {
+  const count = { min: 1, max: 100, step: 1, numeric: { step: 1 } };
+  for (const text of ["", " ", "NaN", "Infinity", "0", "101", "2.5"])
+    assert.equal(parseControlNumber(count, text).ok, false, text);
+  assert.equal(parseControlNumber(count, "17").value, 17);
+  const percentage = {
+    min: 0,
+    max: 1,
+    step: 0.1,
+    numeric: { toInput: (v) => 100 * v, fromInput: (v) => v / 100 },
+  };
+  assert.equal(parseControlNumber(percentage, "42.123").value, 0.42123);
+});
+
+test("named playback choices describe a continuous stored playhead without changing it", () => {
+  const steps = {
+    discrete: true,
+    options: [0, 1, 2].map((value) => ({ value, label: `stage ${value}` })),
+  };
+  const raw = 1.375;
+  assert.equal(displayedOption(steps, raw).value, 1);
+  assert.equal(raw, 1.375);
+  const irregular = {
+    ...steps,
+    optionValue: (v) => (v < 25 ? 0 : v < 80 ? 1 : 2),
+  };
+  assert.equal(displayedOption(irregular, 79.99).value, 1);
+  assert.equal(displayedOption(irregular, 80).value, 2);
+});
 test("stored continuous optical values preserve ideal matching and quarter-wave thickness with step any", () => {
   const index = Math.sqrt(1.52),
     thickness = 550 / (4 * index);
@@ -135,6 +202,11 @@ test("a first frame older than the click keeps strict progress valid; finite rep
   assert.equal(button.attributes["aria-pressed"], "false");
   assert.equal(drawn.at(-1), state.progress);
   assert.ok(drawn.includes(1));
+  button.dispatchEvent(new Event("click"));
+  assert.equal(pending.size, 1);
+  root.dispatchEvent(new Event("mb-control-edit"));
+  assert.equal(pending.size, 0);
+  assert.equal(button.attributes["aria-pressed"], "false");
 });
 
 test("legacy explanatory percentages restore to named stages without changing physical controls", async () => {
@@ -229,7 +301,7 @@ test("a replay with an inactive controlled parameter cannot start a meaningless 
   actions.prepend = (b) => (button = b);
   const root = new EventTarget();
   root.querySelector = (s) =>
-    s.startsWith("input") ? { disabled: true } : actions;
+    s.startsWith("[data-control-key") ? { disabled: true } : actions;
   const doc = new EventTarget();
   doc.createElement = () => new Button();
   doc.hidden = false;
@@ -307,7 +379,8 @@ test("manual mode stops playback while keeping the physical input available, the
   actions.prepend = (b) => {
     button = b;
   };
-  root.querySelector = (s) => (s.startsWith("input") ? input : actions);
+  root.querySelector = (s) =>
+    s.startsWith("[data-control-key") ? input : actions;
   doc.createElement = () => new Button();
   const replacements = {
     document: doc,

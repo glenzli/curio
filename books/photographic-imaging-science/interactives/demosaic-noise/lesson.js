@@ -9,7 +9,10 @@ export const spec = {
   note: "一维同色行、固定线性插值、独立同方差Gaussian输入。用它计算同色插值产生的空间协方差。二维、自适应插值需要相应的邻域与权重；白平衡、裁切和纹理在此省略。",
   controls: [
     control("sigma", "原始同色样本标准差", 0, 10, 0.5, 3, " DN", 1),
-    control("window", "平均窗口输出数", 1, 16, 1, 4),
+    {
+      ...control("window", "平均窗口输出数", 1, 16, 1, 4),
+      numeric: { step: 1, unit: "px" },
+    },
   ],
   presets: [
     { label: "四点平均", values: { sigma: 3, window: 4 } },
